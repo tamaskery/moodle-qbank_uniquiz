@@ -14,7 +14,8 @@ async function login(page, base, username = 'uniquizteacher') {
 
 async function reviewFile(page, filename) {
     await page.waitForFunction(() => document.querySelector('#qbank-uniquiz')?.dataset.initialized === 'true');
-    await page.locator('#file-input').setInputFiles(typeof filename === 'string' ? path.join(root, filename) : filename);
+    await page.locator('#file-input').setInputFiles(typeof filename === 'string'
+        ? (path.isAbsolute(filename) ? filename : path.join(root, filename)) : filename);
     await page.locator('#consent').check();
     await page.locator('#analyse-button').click();
     await page.locator('[data-step="2"]:visible').waitFor();

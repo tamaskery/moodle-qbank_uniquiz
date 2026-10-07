@@ -6,6 +6,14 @@ import * as aiken from '../source/js/aiken-core.js';
 import * as preview from '../source/js/preview.js';
 const root = new URL('../source/', import.meta.url);
 const catalogue = JSON.parse(await fs.readFile(new URL('./language-catalogue.json', import.meta.url), 'utf8'));
+const registry = JSON.parse(await fs.readFile(new URL('./language-registry.json', import.meta.url), 'utf8'));
+const migration = JSON.parse(await fs.readFile(new URL('./language-key-migration-0.1.4.json', import.meta.url), 'utf8'));
+assert.deepEqual(new Set(Object.values(migration)), new Set(Object.keys(registry)), 'Migration must cover every stable key');
+assert.equal(Object.values(migration).length, new Set(Object.values(migration)).size, 'Migration must not merge translations');
+for (const [key, entry] of Object.entries(catalogue)) {
+    assert.ok(!/_[0-9a-f]{8}$/.test(key), 'Text hashes are not stable identifiers');
+    assert.equal(registry[key].value, entry.value, 'Registry and extracted English differ');
+}
 const definitions = new Map();
 const cache = new Map();
 const context = vm.createContext({define: (name, deps, factory) => definitions.set(name, {deps, factory}),
