@@ -1,3 +1,10 @@
+# 0.1.5 — 7 October 2026
+
+- Replace generated hash-suffixed translation keys with an explicit stable registry and publish a migration map for 0.1.4 translations.
+- Add complete validator parameter documentation and renderable Mustache example contexts.
+- Format generated JavaScript/CSS consistently with Moodle's rules and extract focused validation helpers.
+- Make frontend lint, source-map integrity, engine regressions and language/export invariance required build checks.
+
 # 0.1.4 — 7 October 2026
 
 - Assign a distinct Moodle upgrade version (2026100701) to the reviewed 0.1.3 respin; the conversion/import implementation is unchanged.

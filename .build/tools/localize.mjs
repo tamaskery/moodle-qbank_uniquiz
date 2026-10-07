@@ -1,14 +1,17 @@
 // Plugin-only, syntax-aware localization. The standalone parser and wire formats stay unchanged.
-import {createHash} from 'node:crypto';
+import fs from 'node:fs';
 import {transformAsync} from '@babel/core';
 import * as t from '@babel/types';
 import {parseFragment} from 'parse5';
 
 export const catalogue = new Map();
+const registry = JSON.parse(fs.readFileSync(new URL('./language-registry.json', import.meta.url), 'utf8'));
+const identities = new Map(Object.entries(registry).map(([key, entry]) => [entry.prefix + '\0' + entry.value, key]));
+if (identities.size !== Object.keys(registry).length) throw new Error('Duplicate language registry entry');
 
 function register(prefix, value, location, params = []) {
-    const slug = value.replace(/\{\$a->p\d+\}/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 48);
-    const key = `${prefix}_${slug || 'text'}_${createHash('sha256').update(value).digest('hex').slice(0, 8)}`;
+    const key = identities.get(prefix + '\0' + value);
+    if (!key) throw new Error(`Register UI text explicitly in language-registry.json, retaining its existing key on copy edits: ${location}: ${value}`);
     const existing = catalogue.get(key) ?? {value, locations: [], params};
     if (existing.value !== value) throw new Error(`Language key collision: ${key}`);
     existing.locations.push(location);

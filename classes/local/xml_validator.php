@@ -43,6 +43,7 @@ final class xml_validator {
 
     /**
      * Reject invalid input with safe location details.
+     * @param string $reason Language key explaining the rejection
      * @return never
      */
     private static function reject(string $reason = 'xmlstructure'): void {
@@ -56,6 +57,9 @@ final class xml_validator {
 
     /**
      * Validate child elements and reject duplicate singleton fields.
+     * @param \DOMElement $node Parent element
+     * @param string[] $allowed Allowed child names
+     * @param string[] $repeated Child names allowed more than once
      * @return \DOMElement[]
      */
     private static function children(\DOMElement $node, array $allowed, array $repeated = []): array {
@@ -79,6 +83,8 @@ final class xml_validator {
 
     /**
      * Check attributes without accepting namespace or resource injection.
+     * @param \DOMElement $node Element to validate
+     * @param string[] $allowed Allowed attribute names
      */
     private static function attributes(\DOMElement $node, array $allowed = []): void {
         foreach ($node->attributes as $attribute) {
@@ -90,6 +96,7 @@ final class xml_validator {
 
     /**
      * Read a scalar text value without nested markup.
+     * @param \DOMElement $node Text container
      * @return string
      */
     private static function scalar(\DOMElement $node): string {
@@ -108,6 +115,8 @@ final class xml_validator {
 
     /**
      * Read text and sanitize HTML when appropriate.
+     * @param \DOMElement $node Field containing a text element
+     * @param bool $html Whether to sanitize HTML
      * @return string
      */
     private static function text(\DOMElement $node, bool $html = false): string {
@@ -130,6 +139,7 @@ final class xml_validator {
 
     /**
      * Parse a finite numeric value.
+     * @param string $value Numeric source text
      * @return float
      */
     private static function number(string $value): float {
@@ -145,6 +155,8 @@ final class xml_validator {
 
     /**
      * Validate, sanitize HTML and remove category markers.
+     * @param string $xml Submitted UTF-8 XML
+     * @param int $expected Expected number of questions
      * @return array [XML, count]
      */
     public static function prepare(string $xml, int $expected): array {

@@ -48,6 +48,9 @@ jobs:
           npm ci --prefix .build/tools
           node .build/tools/build.mjs
           git diff --exit-code -- amd templates lang styles.css examples ENGINE-SOURCES.json
+          node --test .build/source/tests/*.test.js
+          node .build/tools/check-language.mjs
+          node .build/tools/check-assets.mjs
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'

@@ -1,0 +1,21 @@
+Question,Answer A,Answer B,Answer C,Answer D,Correct
+What is the capital of Hungary?,Vienna,Budapest,Prague,Warsaw,B
+Which numbers are prime?,2,3,4,6,"A,B"
+Which are primary colours in additive light?,Red,Green,Blue,Yellow,"A,B,C"
+"Is the statement ""The Earth orbits the Sun"" true?",True,False,Only in winter,Unknown,A
+Melyik Magyarország fővárosa?,Bécs,Budapest,Prága,Pozsony,B
+Какой город является столицей Венгрии?,Вена,Будапешт,Прага,Варшава,B
+Ποια πόλη είναι η πρωτεύουσα της Ουγγαρίας;,Βιέννη,Βουδαπέστη,Πράγα,Βαρσοβία,B
+ما عاصمة المجر؟,فيينا,بودابست,براغ,وارسو,B
+מהי בירת הונגריה?,וינה,בודפשט,פראג,ורשה,B
+匈牙利的首都是哪里？,维也纳,布达佩斯,布拉格,华沙,B
+ハンガリーの首都はどこですか？,ウィーン,ブダペスト,プラハ,ワルシャワ,B
+헝가리의 수도는 어디입니까?,빈,부다페스트,프라하,바르샤바,B
+Thủ đô của Hungary là gì?,Viên,Budapest,Prague,Warsaw,B
+Which expression is true: 2 < 3 & 4 > 1?,yes & definitely,no <never>,"maybe ""sometimes""",apostrophe's answer,A
+"Choose the city, country pair that names Hungary's capital.","Budapest, Hungary","Vienna, Austria","Prague, Czechia","Warsaw, Poland",A
+This deliberately long question checks that generated Moodle question names are truncated safely after exactly fifty Unicode code points without changing the full question text.,Correct long answer,Incorrect long answer,Another distractor,Final distractor,A
+Which lowercase city should be capitalized by the optional setting?,budapest,vienna,prague,warsaw,A
+Which two values are even?,one,two,three,four,"B,D"
+Which character is an ampersand?,&,<,>,"""",A
+Select all valid UTF-8 examples.,Árvíztűrő tükörfúrógép,東京,Будапешт,plain ASCII,"A,B,C,D"

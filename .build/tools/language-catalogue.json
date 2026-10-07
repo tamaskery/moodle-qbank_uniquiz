@@ -1,548 +1,765 @@
 {
-  "js_core_unsupported_text_character_9545ef05": {
-    "value": "Unsupported text character",
+  "js_core_question_text_column_not_identified": {
+    "value": "Question text column not identified",
     "locations": [
-      "core:89",
-      "core:1055"
+      "core:22"
     ],
     "params": []
   },
-  "js_core_the_source_contains_which_xml_cannot_represent_r_88b454c6": {
+  "js_core_answer_columns_not_identified_add_at_least_two_a": {
+    "value": "Answer columns not identified; add at least two answer columns or one True/False answer column",
+    "locations": [
+      "core:25"
+    ],
+    "params": []
+  },
+  "js_core_at_least_two_answer_columns_are_required": {
+    "value": "At least two answer columns are required",
+    "locations": [
+      "core:26"
+    ],
+    "params": []
+  },
+  "js_core_correct_answer_column_not_identified_add_a_corre": {
+    "value": "Correct-answer column not identified; add a correct column or explicit answer fractions",
+    "locations": [
+      "core:29"
+    ],
+    "params": []
+  },
+  "js_core_invalid_true_false_answers": {
+    "value": "Invalid True/False answers",
+    "locations": [
+      "core:41"
+    ],
+    "params": []
+  },
+  "js_core_native_true_false_questions_need_exactly_two_ans": {
+    "value": "Native True/False questions need exactly two answers named true and false.",
+    "locations": [
+      "core:42"
+    ],
+    "params": []
+  },
+  "js_core_invalid_answer_fraction": {
+    "value": "Invalid answer fraction",
+    "locations": [
+      "core:49",
+      "core:621",
+      "core:1264"
+    ],
+    "params": []
+  },
+  "js_core_is_not_a_valid_answer_fraction_use_a_number_from": {
+    "value": "“{$a->p0}” is not a valid answer fraction. Use a number from -100 to 100.",
+    "locations": [
+      "core:50",
+      "core:625",
+      "core:633",
+      "core:1265"
+    ],
+    "params": [
+      "p0: dynamic display value"
+    ]
+  },
+  "js_core_no_correct_answer": {
+    "value": "No correct answer",
+    "locations": [
+      "core:61"
+    ],
+    "params": []
+  },
+  "js_core_this_question_has_no_positively_scored_answer_ma": {
+    "value": "This question has no positively scored answer. Mark at least one answer as correct before exporting.",
+    "locations": [
+      "core:62"
+    ],
+    "params": []
+  },
+  "js_core_answer_fractions_do_not_total_100": {
+    "value": "Answer fractions do not total 100%",
+    "locations": [
+      "core:68"
+    ],
+    "params": []
+  },
+  "js_core_positive_answer_fractions_must_total_100_the_cur": {
+    "value": "Positive answer fractions must total 100%. The current total is {$a->p0}%.",
+    "locations": [
+      "core:69"
+    ],
+    "params": [
+      "p0: dynamic display value"
+    ]
+  },
+  "js_core_conflicting_answer_mode": {
+    "value": "Conflicting answer mode",
+    "locations": [
+      "core:75"
+    ],
+    "params": []
+  },
+  "js_core_this_question_is_marked_as_single_answer_but_its": {
+    "value": "This question is marked as single-answer but its scoring defines multiple positively scored answers.",
+    "locations": [
+      "core:76"
+    ],
+    "params": []
+  },
+  "js_core_invalid_default_mark": {
+    "value": "Invalid default mark",
+    "locations": [
+      "core:83",
+      "core:621",
+      "core:1209",
+      "core:1304"
+    ],
+    "params": []
+  },
+  "js_core_the_default_mark_must_be_greater_than_0_enter_a_": {
+    "value": "The default mark must be greater than 0. Enter a positive number before exporting.",
+    "locations": [
+      "core:84",
+      "core:634",
+      "core:1210",
+      "core:1305"
+    ],
+    "params": []
+  },
+  "js_core_unsupported_answer_numbering": {
+    "value": "Unsupported answer numbering",
+    "locations": [
+      "core:90",
+      "core:685"
+    ],
+    "params": []
+  },
+  "js_core_answer_numbering_must_be_abc_abcd_123_or_none_ch": {
+    "value": "Answer numbering must be abc, ABCD, 123, or none. Choose one of the supported values.",
+    "locations": [
+      "core:91",
+      "core:686"
+    ],
+    "params": []
+  },
+  "js_core_no_answer_labels": {
+    "value": "no answer labels",
+    "locations": [
+      "core:97"
+    ],
+    "params": []
+  },
+  "js_core_correct_answer_reference_is_invalid": {
+    "value": "Correct answer reference is invalid",
+    "locations": [
+      "core:99"
+    ],
+    "params": []
+  },
+  "js_core_the_correct_answer_field_refers_to_answer_but_th": {
+    "value": "The correct-answer field refers to answer {$a->p0}, but the available answers are {$a->p1}. Choose a non-empty answer.",
+    "locations": [
+      "core:100"
+    ],
+    "params": [
+      "p0: label",
+      "p1: range"
+    ]
+  },
+  "js_core_duplicate_correct_answer_reference": {
+    "value": "Duplicate correct-answer reference",
+    "locations": [
+      "core:107"
+    ],
+    "params": []
+  },
+  "js_core_the_same_correct_answer_is_listed_more_than_once": {
+    "value": "The same correct answer is listed more than once. Keep each correct-answer reference only once.",
+    "locations": [
+      "core:108"
+    ],
+    "params": []
+  },
+  "js_core_unsupported_text_character": {
+    "value": "Unsupported text character",
+    "locations": [
+      "core:133",
+      "core:260"
+    ],
+    "params": []
+  },
+  "js_core_this_field_contains_a_character_that_xml_cannot_": {
+    "value": "This field contains a character that XML cannot represent. Correct the source before exporting.",
+    "locations": [
+      "core:134"
+    ],
+    "params": []
+  },
+  "js_core_question_name_is_too_long": {
+    "value": "Question name is too long",
+    "locations": [
+      "core:138"
+    ],
+    "params": []
+  },
+  "js_core_use_at_most_255_characters_for_the_question_name": {
+    "value": "Use at most 255 characters for the question name.",
+    "locations": [
+      "core:139"
+    ],
+    "params": []
+  },
+  "js_core_tag_would_be_changed_by_moodle": {
+    "value": "Tag would be changed by Moodle",
+    "locations": [
+      "core:142"
+    ],
+    "params": []
+  },
+  "js_core_use_tags_of_at_most_255_characters_with_single_s": {
+    "value": "Use tags of at most 255 characters, with single spaces and no control characters, angle brackets or backticks.",
+    "locations": [
+      "core:143"
+    ],
+    "params": []
+  },
+  "js_core_unsupported_question_type": {
+    "value": "Unsupported question type",
+    "locations": [
+      "core:148"
+    ],
+    "params": []
+  },
+  "js_core_this_question_uses_the_unsupported_type_use_mult": {
+    "value": "This question uses the unsupported type “{$a->p0}”. Use multichoice, truefalse, shortanswer, numerical, essay, or description.",
+    "locations": [
+      "core:149"
+    ],
+    "params": [
+      "p0: dynamic display value"
+    ]
+  },
+  "js_core_description_content_is_missing": {
+    "value": "Description content is missing",
+    "locations": [
+      "core:155"
+    ],
+    "params": []
+  },
+  "js_core_this_description_has_no_content_add_question_tex": {
+    "value": "This Description has no content. Add question_text before exporting.",
+    "locations": [
+      "core:155"
+    ],
+    "params": []
+  },
+  "js_core_essay_question_text_is_missing": {
+    "value": "Essay question text is missing",
+    "locations": [
+      "core:157"
+    ],
+    "params": []
+  },
+  "js_core_this_essay_question_is_missing_question_text_add": {
+    "value": "This Essay question is missing question text. Add question_text before exporting.",
+    "locations": [
+      "core:157"
+    ],
+    "params": []
+  },
+  "js_core_short_answer_question_text_is_missing": {
+    "value": "Short Answer question text is missing",
+    "locations": [
+      "core:159"
+    ],
+    "params": []
+  },
+  "js_core_this_short_answer_question_is_missing_question_t": {
+    "value": "This Short Answer question is missing question text. Add question_text before exporting.",
+    "locations": [
+      "core:159"
+    ],
+    "params": []
+  },
+  "js_core_numerical_question_text_is_missing": {
+    "value": "Numerical question text is missing",
+    "locations": [
+      "core:161"
+    ],
+    "params": []
+  },
+  "js_core_this_numerical_question_is_missing_question_text": {
+    "value": "This Numerical question is missing question text. Add question_text before exporting.",
+    "locations": [
+      "core:161"
+    ],
+    "params": []
+  },
+  "js_core_question_text_is_missing": {
+    "value": "Question text is missing",
+    "locations": [
+      "core:162"
+    ],
+    "params": []
+  },
+  "js_core_this_question_has_no_question_text_add_question_": {
+    "value": "This question has no question text. Add question text before exporting.",
+    "locations": [
+      "core:162"
+    ],
+    "params": []
+  },
+  "js_core_the_source_contains_which_xml_cannot_represent_r": {
     "value": "The source contains {$a->p0}, which XML cannot represent. Replace it in the source before continuing.",
     "locations": [
-      "core:90"
+      "core:261"
     ],
     "params": [
       "p0: codepoint"
     ]
   },
-  "js_core_review_this_issue_before_exporting_2a7514be": {
+  "js_core_review_this_issue_before_exporting": {
     "value": "Review this issue before exporting.",
     "locations": [
-      "core:139",
-      "core:935"
+      "core:310",
+      "core:1097"
     ],
     "params": []
   },
-  "js_core_csv_row_ec7551ef": {
+  "js_core_csv_row": {
     "value": "CSV row {$a->p0}",
     "locations": [
-      "core:146"
+      "core:317"
     ],
     "params": [
       "p0: csvRow"
     ]
   },
-  "js_core_column_98a1373a": {
+  "js_core_column": {
     "value": ", column {$a->p0}",
     "locations": [
-      "core:147"
+      "core:318"
     ],
     "params": [
       "p0: csvColumn"
     ]
   },
-  "js_core_csv_row_36f62464": {
+  "js_core_csv_row_2": {
     "value": "CSV row {$a->p0}{$a->p1}",
     "locations": [
-      "core:147"
+      "core:318"
     ],
     "params": [
       "p0: csvRow",
       "p1: dynamic display value"
     ]
   },
-  "js_core_column_7986fe9a": {
+  "js_core_column_2": {
     "value": "column {$a->p0}",
     "locations": [
-      "core:148"
+      "core:319"
     ],
     "params": [
       "p0: csvColumn"
     ]
   },
-  "js_core_csv_column_b2e751f4": {
+  "js_core_csv_column": {
     "value": "CSV column {$a->p0}",
     "locations": [
-      "core:149"
+      "core:320"
     ],
     "params": [
       "p0: csvColumn"
     ]
   },
-  "js_core_line_5c53eed5": {
+  "js_core_line": {
     "value": "Line {$a->p0}",
     "locations": [
-      "core:151"
+      "core:322"
     ],
     "params": [
       "p0: line"
     ]
   },
-  "js_core_question_a708e36a": {
+  "js_core_question": {
     "value": "Question {$a->p0}",
     "locations": [
-      "core:153",
-      "core:1498",
-      "core:1522"
+      "core:324",
+      "core:1526",
+      "core:1550"
     ],
     "params": [
       "p0: question"
     ]
   },
-  "js_core_answer_3f67a21a": {
+  "js_core_answer": {
     "value": "Answer {$a->p0}",
-    "locations": [
-      "core:156"
-    ],
-    "params": [
-      "p0: dynamic display value"
-    ]
-  },
-  "js_core_unexpected_text_after_a_quoted_csv_value_7a2ef70c": {
-    "value": "Unexpected text after a quoted CSV value",
-    "locations": [
-      "core:301"
-    ],
-    "params": []
-  },
-  "js_core_a_quoted_csv_field_contains_unexpected_text_afte_62763fb0": {
-    "value": "A quoted CSV field contains unexpected text after its closing quote. Remove the extra text or place it inside the quotes.",
-    "locations": [
-      "core:302"
-    ],
-    "params": []
-  },
-  "js_core_quoted_csv_value_is_not_closed_4f0761ee": {
-    "value": "Quoted CSV value is not closed",
-    "locations": [
-      "core:313"
-    ],
-    "params": []
-  },
-  "js_core_a_quoted_csv_field_is_not_closed_add_the_closing_d71fd580": {
-    "value": "A quoted CSV field is not closed. Add the closing double quote before the end of the file.",
-    "locations": [
-      "core:314"
-    ],
-    "params": []
-  },
-  "js_core_no_usable_rows_9066c48f": {
-    "value": "No usable rows",
-    "locations": [
-      "core:326"
-    ],
-    "params": []
-  },
-  "js_core_the_file_does_not_contain_any_usable_rows_add_a__ea7e5a06": {
-    "value": "The file does not contain any usable rows. Add a header row and at least one question row.",
     "locations": [
       "core:327"
     ],
+    "params": [
+      "p0: dynamic display value"
+    ]
+  },
+  "js_core_unexpected_text_after_a_quoted_csv_value": {
+    "value": "Unexpected text after a quoted CSV value",
+    "locations": [
+      "core:472"
+    ],
     "params": []
   },
-  "js_core_unrecognized_column_ignored_d3d47692": {
+  "js_core_a_quoted_csv_field_contains_unexpected_text_afte": {
+    "value": "A quoted CSV field contains unexpected text after its closing quote. Remove the extra text or place it inside the quotes.",
+    "locations": [
+      "core:473"
+    ],
+    "params": []
+  },
+  "js_core_quoted_csv_value_is_not_closed": {
+    "value": "Quoted CSV value is not closed",
+    "locations": [
+      "core:484"
+    ],
+    "params": []
+  },
+  "js_core_a_quoted_csv_field_is_not_closed_add_the_closing": {
+    "value": "A quoted CSV field is not closed. Add the closing double quote before the end of the file.",
+    "locations": [
+      "core:485"
+    ],
+    "params": []
+  },
+  "js_core_no_usable_rows": {
+    "value": "No usable rows",
+    "locations": [
+      "core:497"
+    ],
+    "params": []
+  },
+  "js_core_the_file_does_not_contain_any_usable_rows_add_a_": {
+    "value": "The file does not contain any usable rows. Add a header row and at least one question row.",
+    "locations": [
+      "core:498"
+    ],
+    "params": []
+  },
+  "js_core_unrecognized_column_ignored": {
     "value": "Unrecognized column ignored",
     "locations": [
-      "core:344"
+      "core:515"
     ],
     "params": []
   },
-  "js_core_unrecognized_column_ignored_review_the_heading_o_952e746a": {
+  "js_core_unrecognized_column_ignored_review_the_heading_o": {
     "value": "Unrecognized column ignored: “{$a->p0}”. Review the heading or leave it ignored.",
     "locations": [
-      "core:345"
+      "core:516"
     ],
     "params": [
       "p0: dynamic display value"
     ]
   },
-  "js_core_duplicate_column_detected_31b96190": {
+  "js_core_duplicate_column_detected": {
     "value": "Duplicate column detected",
     "locations": [
-      "core:356"
+      "core:527"
     ],
     "params": []
   },
-  "js_core_duplicate_column_detected_keep_only_one_column_f_ccd9bd83": {
+  "js_core_duplicate_column_detected_keep_only_one_column_f": {
     "value": "Duplicate column detected: “{$a->p0}”. Keep only one column for this field before exporting.",
     "locations": [
-      "core:357"
+      "core:528"
     ],
     "params": [
       "p0: field"
     ]
   },
-  "js_core_question_text_column_not_identified_ab44f96d": {
-    "value": "Question text column not identified",
-    "locations": [
-      "core:389"
-    ],
-    "params": []
-  },
-  "js_core_answer_columns_not_identified_add_at_least_two_a_6515f011": {
-    "value": "Answer columns not identified; add at least two answer columns or one True/False answer column",
-    "locations": [
-      "core:392"
-    ],
-    "params": []
-  },
-  "js_core_at_least_two_answer_columns_are_required_0a318de7": {
-    "value": "At least two answer columns are required",
-    "locations": [
-      "core:393"
-    ],
-    "params": []
-  },
-  "js_core_correct_answer_column_not_identified_add_a_corre_c20b1536": {
-    "value": "Correct-answer column not identified; add a correct column or explicit answer fractions",
-    "locations": [
-      "core:396"
-    ],
-    "params": []
-  },
-  "js_core_all_required_columns_were_recognized_37467eee": {
+  "js_core_all_required_columns_were_recognized": {
     "value": "All required columns were recognized.",
     "locations": [
-      "core:407"
+      "core:569"
     ],
     "params": []
   },
-  "js_core_rename_the_column_or_use_manual_column_mapping_cf1e0f5f": {
+  "js_core_rename_the_column_or_use_manual_column_mapping": {
     "value": "{$a->p0}. Rename the column or use manual column mapping.",
     "locations": [
-      "core:408"
+      "core:570"
     ],
     "params": [
       "p0: dynamic display value"
     ]
   },
-  "js_core_invalid_numerical_tolerance_d8a1110b": {
+  "js_core_invalid_numerical_tolerance": {
     "value": "Invalid numerical tolerance",
     "locations": [
-      "core:432",
-      "core:444",
-      "core:1167"
+      "core:594",
+      "core:606",
+      "core:1282"
     ],
     "params": []
   },
-  "js_core_is_not_a_valid_numerical_tolerance_use_zero_or_a_4c41e5ad": {
+  "js_core_is_not_a_valid_numerical_tolerance_use_zero_or_a": {
     "value": "“{$a->p0}” is not a valid numerical tolerance. Use zero or a non-negative decimal number.",
     "locations": [
-      "core:433"
+      "core:595"
     ],
     "params": [
       "p0: source"
     ]
   },
-  "js_core_numerical_tolerance_must_be_zero_or_a_non_negati_a5b5675e": {
+  "js_core_numerical_tolerance_must_be_zero_or_a_non_negati": {
     "value": "Numerical tolerance must be zero or a non-negative decimal number.",
     "locations": [
-      "core:445",
-      "core:1168"
+      "core:607",
+      "core:1283"
     ],
     "params": []
   },
-  "js_core_invalid_answer_fraction_1efc0f6d": {
-    "value": "Invalid answer fraction",
-    "locations": [
-      "core:459",
-      "core:1149",
-      "core:1210"
-    ],
-    "params": []
-  },
-  "js_core_invalid_default_mark_c454f754": {
-    "value": "Invalid default mark",
-    "locations": [
-      "core:459",
-      "core:1094",
-      "core:1189",
-      "core:1244"
-    ],
-    "params": []
-  },
-  "js_core_is_not_a_valid_answer_fraction_use_a_number_from_b7ca40ac": {
-    "value": "“{$a->p0}” is not a valid answer fraction. Use a number from -100 to 100.",
-    "locations": [
-      "core:463",
-      "core:471",
-      "core:1150",
-      "core:1211"
-    ],
-    "params": [
-      "p0: source"
-    ]
-  },
-  "js_core_is_not_a_valid_default_mark_enter_a_number_great_321e9190": {
+  "js_core_is_not_a_valid_default_mark_enter_a_number_great": {
     "value": "“{$a->p0}” is not a valid default mark. Enter a number greater than 0.",
     "locations": [
-      "core:464"
+      "core:626"
     ],
     "params": [
       "p0: source"
     ]
   },
-  "js_core_the_default_mark_must_be_greater_than_0_enter_a__e04c0693": {
-    "value": "The default mark must be greater than 0. Enter a positive number before exporting.",
-    "locations": [
-      "core:472",
-      "core:1095",
-      "core:1190",
-      "core:1245"
-    ],
-    "params": []
-  },
-  "js_core_invalid_true_false_value_9e03fbf3": {
+  "js_core_invalid_true_false_value": {
     "value": "Invalid true/false value",
     "locations": [
-      "core:487"
+      "core:649"
     ],
     "params": []
   },
-  "js_core_must_be_true_false_1_or_0_update_the_value_befor_ae5afc66": {
+  "js_core_must_be_true_false_1_or_0_update_the_value_befor": {
     "value": "{$a->p0} must be true, false, 1, or 0. Update the value before exporting.",
     "locations": [
-      "core:488"
+      "core:650"
     ],
     "params": [
       "p0: field"
     ]
   },
-  "js_core_unsupported_case_sensitive_value_0c335cb4": {
+  "js_core_unsupported_case_sensitive_value": {
     "value": "Unsupported case-sensitive value",
     "locations": [
-      "core:503"
+      "core:665"
     ],
     "params": []
   },
-  "js_core_case_sensitive_must_be_true_false_1_or_0_update__2147abcb": {
+  "js_core_case_sensitive_must_be_true_false_1_or_0_update_": {
     "value": "case_sensitive must be true, false, 1, or 0. Update the value before exporting.",
     "locations": [
-      "core:504"
+      "core:666"
     ],
     "params": []
   },
-  "js_core_unsupported_answer_numbering_ce3f891a": {
-    "value": "Unsupported answer numbering",
-    "locations": [
-      "core:523",
-      "core:1251"
-    ],
-    "params": []
-  },
-  "js_core_answer_numbering_must_be_abc_abcd_123_or_none_ch_4cffc6ad": {
-    "value": "Answer numbering must be abc, ABCD, 123, or none. Choose one of the supported values.",
-    "locations": [
-      "core:524",
-      "core:1252"
-    ],
-    "params": []
-  },
-  "js_core_answer_data_without_answer_text_e50eb477": {
+  "js_core_answer_data_without_answer_text": {
     "value": "Answer data without answer text",
     "locations": [
-      "core:669",
-      "core:718"
+      "core:831",
+      "core:880"
     ],
     "params": []
   },
-  "js_core_answer_contains_scoring_or_feedback_but_has_no_a_873b0280": {
+  "js_core_answer_contains_scoring_or_feedback_but_has_no_a": {
     "value": "Answer {$a->p0} contains scoring or feedback but has no answer text. Add the missing answer or remove its scoring and feedback.",
     "locations": [
-      "core:670",
-      "core:719"
+      "core:832",
+      "core:881"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_conflicting_scoring_methods_76f2dbcb": {
+  "js_core_conflicting_scoring_methods": {
     "value": "Conflicting scoring methods",
-    "locations": [
-      "core:702"
-    ],
-    "params": []
-  },
-  "js_core_this_question_uses_both_correct_and_explicit_ans_e7a0a5a2": {
-    "value": "This question uses both Correct and explicit answer fractions. Keep one scoring method before exporting.",
-    "locations": [
-      "core:703"
-    ],
-    "params": []
-  },
-  "js_core_answer_fraction_is_missing_4dbb8513": {
-    "value": "Answer fraction is missing",
-    "locations": [
-      "core:737"
-    ],
-    "params": []
-  },
-  "js_core_answer_has_answer_text_but_no_explicit_fraction__fa81d2f0": {
-    "value": "Answer {$a->p0} has answer text but no explicit fraction. Add a fraction from -100 to 100.",
-    "locations": [
-      "core:738"
-    ],
-    "params": [
-      "p0: label"
-    ]
-  },
-  "js_core_answer_key_without_a_question_2c81b353": {
-    "value": "Answer key without a question",
-    "locations": [
-      "core:822"
-    ],
-    "params": []
-  },
-  "js_core_line_has_an_answer_key_without_a_question_add_th_36d8d470": {
-    "value": "Line {$a->p0} has an answer key without a question. Add the question and answers before this key.",
-    "locations": [
-      "core:823"
-    ],
-    "params": [
-      "p0: answerLine"
-    ]
-  },
-  "js_core_ambiguous_txt_structure_2f7f35db": {
-    "value": "Ambiguous TXT structure",
-    "locations": [
-      "core:851"
-    ],
-    "params": []
-  },
-  "js_core_line_is_ambiguous_add_an_answer_line_before_the__4ad32726": {
-    "value": "Line {$a->p0} is ambiguous. Add an ANSWER: line before the next question.",
-    "locations": [
-      "core:852"
-    ],
-    "params": [
-      "p0: lineNumber"
-    ]
-  },
-  "js_core_answer_key_is_missing_d3cc0f52": {
-    "value": "Answer key is missing",
     "locations": [
       "core:864"
     ],
     "params": []
   },
-  "js_core_the_question_beginning_on_line_is_missing_an_ans_bcbea878": {
-    "value": "The question beginning on line {$a->p0} is missing an ANSWER: line. Add its answer key before exporting.",
+  "js_core_this_question_uses_both_correct_and_explicit_ans": {
+    "value": "This question uses both Correct and explicit answer fractions. Keep one scoring method before exporting.",
     "locations": [
       "core:865"
+    ],
+    "params": []
+  },
+  "js_core_answer_fraction_is_missing": {
+    "value": "Answer fraction is missing",
+    "locations": [
+      "core:899"
+    ],
+    "params": []
+  },
+  "js_core_answer_has_answer_text_but_no_explicit_fraction_": {
+    "value": "Answer {$a->p0} has answer text but no explicit fraction. Add a fraction from -100 to 100.",
+    "locations": [
+      "core:900"
+    ],
+    "params": [
+      "p0: label"
+    ]
+  },
+  "js_core_answer_key_without_a_question": {
+    "value": "Answer key without a question",
+    "locations": [
+      "core:984"
+    ],
+    "params": []
+  },
+  "js_core_line_has_an_answer_key_without_a_question_add_th": {
+    "value": "Line {$a->p0} has an answer key without a question. Add the question and answers before this key.",
+    "locations": [
+      "core:985"
+    ],
+    "params": [
+      "p0: answerLine"
+    ]
+  },
+  "js_core_ambiguous_txt_structure": {
+    "value": "Ambiguous TXT structure",
+    "locations": [
+      "core:1013"
+    ],
+    "params": []
+  },
+  "js_core_line_is_ambiguous_add_an_answer_line_before_the_": {
+    "value": "Line {$a->p0} is ambiguous. Add an ANSWER: line before the next question.",
+    "locations": [
+      "core:1014"
+    ],
+    "params": [
+      "p0: lineNumber"
+    ]
+  },
+  "js_core_answer_key_is_missing": {
+    "value": "Answer key is missing",
+    "locations": [
+      "core:1026"
+    ],
+    "params": []
+  },
+  "js_core_the_question_beginning_on_line_is_missing_an_ans": {
+    "value": "The question beginning on line {$a->p0} is missing an ANSWER: line. Add its answer key before exporting.",
+    "locations": [
+      "core:1027"
     ],
     "params": [
       "p0: sourceLine"
     ]
   },
-  "js_core_no_questions_detected_881a751d": {
+  "js_core_no_questions_detected": {
     "value": "No questions detected",
     "locations": [
-      "core:874",
-      "core:984"
+      "core:1036",
+      "core:1146"
     ],
     "params": []
   },
-  "js_core_uniquiz_could_not_identify_any_supported_questio_44064ab6": {
+  "js_core_uniquiz_could_not_identify_any_supported_questio": {
     "value": "UniQuiz could not identify any supported questions in this input. Check the file structure or try another supported format.",
     "locations": [
-      "core:875",
-      "core:986"
+      "core:1037",
+      "core:1148"
     ],
     "params": []
   },
-  "js_core_review_recommended_6b75ef46": {
+  "js_core_review_recommended": {
     "value": "Review recommended",
     "locations": [
-      "core:934"
+      "core:1096"
     ],
     "params": []
   },
-  "js_core_issue_requires_attention_ed7b48c9": {
+  "js_core_issue_requires_attention": {
     "value": "Issue requires attention",
     "locations": [
-      "core:934"
+      "core:1096"
     ],
     "params": []
   },
-  "js_core_export_blocked_d7646e0d": {
+  "js_core_export_blocked": {
     "value": "Export blocked",
     "locations": [
-      "core:987",
-      "core:1012"
+      "core:1149",
+      "core:1174"
     ],
     "params": []
   },
-  "js_core_question_1f5087db": {
+  "js_core_question_2": {
     "value": "question",
     "locations": [
-      "core:992"
+      "core:1154"
     ],
     "params": []
   },
-  "js_core_questions_17d5efa6": {
+  "js_core_questions": {
     "value": "questions",
     "locations": [
-      "core:992"
+      "core:1154"
     ],
     "params": []
   },
-  "js_core_ready_for_moodle_d8924caf": {
+  "js_core_ready_for_moodle": {
     "value": "{$a->p0} {$a->p1} ready for Moodle",
     "locations": [
-      "core:997"
+      "core:1159"
     ],
     "params": [
       "p0: total",
       "p1: questionNoun"
     ]
   },
-  "js_core_no_issues_detected_32b6b310": {
+  "js_core_no_issues_detected": {
     "value": "No issues detected.",
     "locations": [
-      "core:999"
+      "core:1161"
     ],
     "params": []
   },
-  "js_core_ready_to_export_47942aa3": {
+  "js_core_ready_to_export": {
     "value": "Ready to export",
     "locations": [
-      "core:1000"
+      "core:1162"
     ],
     "params": []
   },
-  "js_core_with_warning_9782c89e": {
+  "js_core_with_warning": {
     "value": "with warning",
     "locations": [
-      "core:1004"
+      "core:1166"
     ],
     "params": []
   },
-  "js_core_with_warnings_78bf1f18": {
+  "js_core_with_warnings": {
     "value": "with warnings",
     "locations": [
-      "core:1004"
+      "core:1166"
     ],
     "params": []
   },
-  "js_core_with_error_a7ef869e": {
+  "js_core_with_error": {
     "value": "with error",
     "locations": [
-      "core:1005"
+      "core:1167"
     ],
     "params": []
   },
-  "js_core_with_errors_0ccb3a8e": {
+  "js_core_with_errors": {
     "value": "with errors",
     "locations": [
-      "core:1005"
+      "core:1167"
     ],
     "params": []
   },
-  "js_core_ready_3db5033c": {
+  "js_core_ready": {
     "value": "{$a->p0} ready · {$a->p1} {$a->p2} · {$a->p3} {$a->p4}",
     "locations": [
-      "core:1006"
+      "core:1168"
     ],
     "params": [
       "p0: dynamic display value",
@@ -552,531 +769,277 @@
       "p4: errorLabel"
     ]
   },
-  "js_core_1_question_contains_an_error_that_must_be_resolv_b33dcfc0": {
+  "js_core_1_question_contains_an_error_that_must_be_resolv": {
     "value": "1 question contains an error that must be resolved before export.",
     "locations": [
-      "core:1009"
+      "core:1171"
     ],
     "params": []
   },
-  "js_core_questions_contain_errors_that_must_be_resolved_b_9948b6e8": {
+  "js_core_questions_contain_errors_that_must_be_resolved_b": {
     "value": "{$a->p0} questions contain errors that must be resolved before export.",
     "locations": [
-      "core:1010"
+      "core:1172"
     ],
     "params": [
       "p0: dynamic display value"
     ]
   },
-  "js_core_import_errors_must_be_resolved_before_export_7226f0ce": {
+  "js_core_import_errors_must_be_resolved_before_export": {
     "value": "Import errors must be resolved before export.",
     "locations": [
-      "core:1011"
+      "core:1173"
     ],
     "params": []
   },
-  "js_core_found_136be7be": {
+  "js_core_found": {
     "value": "{$a->p0} {$a->p1} found",
     "locations": [
-      "core:1012",
-      "core:1015"
+      "core:1174",
+      "core:1177"
     ],
     "params": [
       "p0: total",
       "p1: questionNoun"
     ]
   },
-  "js_core_warnings_do_not_prevent_export_but_reviewing_the_0d7d20f9": {
+  "js_core_warnings_do_not_prevent_export_but_reviewing_the": {
     "value": "Warnings do not prevent export, but reviewing them is recommended.",
     "locations": [
-      "core:1017"
+      "core:1179"
     ],
     "params": []
   },
-  "js_core_ready_to_export_with_warnings_b01aa7ee": {
+  "js_core_ready_to_export_with_warnings": {
     "value": "Ready to export with warnings",
     "locations": [
-      "core:1018"
+      "core:1180"
     ],
     "params": []
   },
-  "js_core_this_field_contains_a_character_that_xml_cannot__539cf7fb": {
-    "value": "This field contains a character that XML cannot represent. Correct the source before exporting.",
-    "locations": [
-      "core:1056"
-    ],
-    "params": []
-  },
-  "js_core_question_name_is_too_long_024045cc": {
-    "value": "Question name is too long",
-    "locations": [
-      "core:1060"
-    ],
-    "params": []
-  },
-  "js_core_use_at_most_255_characters_for_the_question_name_9f72765e": {
-    "value": "Use at most 255 characters for the question name.",
-    "locations": [
-      "core:1061"
-    ],
-    "params": []
-  },
-  "js_core_tag_would_be_changed_by_moodle_c2743b89": {
-    "value": "Tag would be changed by Moodle",
-    "locations": [
-      "core:1064"
-    ],
-    "params": []
-  },
-  "js_core_use_tags_of_at_most_255_characters_with_single_s_6b87e6c6": {
-    "value": "Use tags of at most 255 characters, with single spaces and no control characters, angle brackets or backticks.",
-    "locations": [
-      "core:1065"
-    ],
-    "params": []
-  },
-  "js_core_unsupported_question_type_b82948ee": {
-    "value": "Unsupported question type",
-    "locations": [
-      "core:1070"
-    ],
-    "params": []
-  },
-  "js_core_this_question_uses_the_unsupported_type_use_mult_aed5c9dc": {
-    "value": "This question uses the unsupported type “{$a->p0}”. Use multichoice, truefalse, shortanswer, numerical, essay, or description.",
-    "locations": [
-      "core:1071"
-    ],
-    "params": [
-      "p0: dynamic display value"
-    ]
-  },
-  "js_core_description_content_is_missing_c4b5cd37": {
-    "value": "Description content is missing",
-    "locations": [
-      "core:1077"
-    ],
-    "params": []
-  },
-  "js_core_this_description_has_no_content_add_question_tex_b7245d0e": {
-    "value": "This Description has no content. Add question_text before exporting.",
-    "locations": [
-      "core:1077"
-    ],
-    "params": []
-  },
-  "js_core_essay_question_text_is_missing_85f2298c": {
-    "value": "Essay question text is missing",
-    "locations": [
-      "core:1079"
-    ],
-    "params": []
-  },
-  "js_core_this_essay_question_is_missing_question_text_add_8bbf3179": {
-    "value": "This Essay question is missing question text. Add question_text before exporting.",
-    "locations": [
-      "core:1079"
-    ],
-    "params": []
-  },
-  "js_core_short_answer_question_text_is_missing_f853ce25": {
-    "value": "Short Answer question text is missing",
-    "locations": [
-      "core:1081"
-    ],
-    "params": []
-  },
-  "js_core_this_short_answer_question_is_missing_question_t_cb719597": {
-    "value": "This Short Answer question is missing question text. Add question_text before exporting.",
-    "locations": [
-      "core:1081"
-    ],
-    "params": []
-  },
-  "js_core_numerical_question_text_is_missing_30058237": {
-    "value": "Numerical question text is missing",
-    "locations": [
-      "core:1083"
-    ],
-    "params": []
-  },
-  "js_core_this_numerical_question_is_missing_question_text_ad15b150": {
-    "value": "This Numerical question is missing question text. Add question_text before exporting.",
-    "locations": [
-      "core:1083"
-    ],
-    "params": []
-  },
-  "js_core_question_text_is_missing_410b003d": {
-    "value": "Question text is missing",
-    "locations": [
-      "core:1084"
-    ],
-    "params": []
-  },
-  "js_core_this_question_has_no_question_text_add_question__d33a8804": {
-    "value": "This question has no question text. Add question text before exporting.",
-    "locations": [
-      "core:1084"
-    ],
-    "params": []
-  },
-  "js_core_invalid_true_false_answer_a378bd20": {
+  "js_core_invalid_true_false_answer": {
     "value": "Invalid true/false answer",
     "locations": [
-      "core:1107"
+      "core:1222"
     ],
     "params": []
   },
-  "js_core_is_not_a_supported_true_false_answer_use_true_or_ede0f1c3": {
+  "js_core_is_not_a_supported_true_false_answer_use_true_or": {
     "value": "“{$a->p0}” is not a supported true/false answer. Use true or false.",
     "locations": [
-      "core:1109"
+      "core:1224"
     ],
     "params": [
       "p0: found"
     ]
   },
-  "js_core_the_true_false_answer_is_empty_enter_true_or_fal_0aeaf69f": {
+  "js_core_the_true_false_answer_is_empty_enter_true_or_fal": {
     "value": "The true/false answer is empty. Enter true or false before exporting.",
     "locations": [
-      "core:1110"
+      "core:1225"
     ],
     "params": []
   },
-  "js_core_duplicate_answer_label_11c34eb3": {
+  "js_core_duplicate_answer_label": {
     "value": "Duplicate answer label",
     "locations": [
-      "core:1121"
+      "core:1236"
     ],
     "params": []
   },
-  "js_core_answer_label_is_used_more_than_once_give_each_an_018f7e3b": {
+  "js_core_answer_label_is_used_more_than_once_give_each_an": {
     "value": "Answer label {$a->p0} is used more than once. Give each answer a unique label.",
     "locations": [
-      "core:1122"
+      "core:1237"
     ],
     "params": [
       "p0: dynamic display value"
     ]
   },
-  "js_core_not_enough_answers_9c2e1a5a": {
+  "js_core_not_enough_answers": {
     "value": "Not enough answers",
     "locations": [
-      "core:1129"
+      "core:1244"
     ],
     "params": []
   },
-  "js_core_multiple_choice_questions_need_at_least_two_non__dc82ac15": {
+  "js_core_multiple_choice_questions_need_at_least_two_non_": {
     "value": "Multiple-choice questions need at least two non-empty answers.",
     "locations": [
-      "core:1130"
+      "core:1245"
     ],
     "params": []
   },
-  "js_core_duplicate_answer_text_b0722c9b": {
+  "js_core_duplicate_answer_text": {
     "value": "Duplicate answer text",
     "locations": [
-      "core:1139"
+      "core:1254"
     ],
     "params": []
   },
-  "js_core_answers_and_contain_the_same_text_the_question_c_a9c729c8": {
+  "js_core_answers_and_contain_the_same_text_the_question_c": {
     "value": "Answers {$a->p0} and {$a->p1} contain the same text. The question can still be exported, but you may want to review it.",
     "locations": [
-      "core:1140"
+      "core:1255"
     ],
     "params": [
       "p0: dynamic display value",
       "p1: dynamic display value"
     ]
   },
-  "js_core_invalid_numerical_answer_30f25032": {
+  "js_core_invalid_numerical_answer": {
     "value": "Invalid numerical answer",
     "locations": [
-      "core:1159"
+      "core:1274"
     ],
     "params": []
   },
-  "js_core_is_not_a_valid_number_enter_a_finite_integer_or__fb78fbaa": {
+  "js_core_is_not_a_valid_number_enter_a_finite_integer_or_": {
     "value": "“{$a->p0}” is not a valid number. Enter a finite integer or decimal value.",
     "locations": [
-      "core:1160"
+      "core:1275"
     ],
     "params": [
       "p0: numericText"
     ]
   },
-  "js_core_no_accepted_short_answer_1ad32fe9": {
+  "js_core_no_accepted_short_answer": {
     "value": "No accepted Short Answer",
     "locations": [
-      "core:1179"
+      "core:1294"
     ],
     "params": []
   },
-  "js_core_no_accepted_numerical_answer_2b422ac6": {
+  "js_core_no_accepted_numerical_answer": {
     "value": "No accepted numerical answer",
     "locations": [
-      "core:1179"
+      "core:1294"
     ],
     "params": []
   },
-  "js_core_short_answer_question_has_no_accepted_answer_add_be965b63": {
+  "js_core_short_answer_question_has_no_accepted_answer_add": {
     "value": "Short Answer question has no accepted answer. Add at least one answer with a positive fraction.",
     "locations": [
-      "core:1181"
+      "core:1296"
     ],
     "params": []
   },
-  "js_core_numerical_question_has_no_accepted_answer_add_at_f1f375f2": {
+  "js_core_numerical_question_has_no_accepted_answer_add_at": {
     "value": "Numerical question has no accepted answer. Add at least one numeric answer with a positive fraction.",
     "locations": [
-      "core:1182"
+      "core:1297"
     ],
     "params": []
   },
-  "js_core_invalid_true_false_answers_60c5f665": {
-    "value": "Invalid True/False answers",
-    "locations": [
-      "core:1202"
-    ],
-    "params": []
-  },
-  "js_core_native_true_false_questions_need_exactly_two_ans_19bca34e": {
-    "value": "Native True/False questions need exactly two answers named true and false.",
-    "locations": [
-      "core:1203"
-    ],
-    "params": []
-  },
-  "js_core_no_correct_answer_1f5caabb": {
-    "value": "No correct answer",
-    "locations": [
-      "core:1222"
-    ],
-    "params": []
-  },
-  "js_core_this_question_has_no_positively_scored_answer_ma_012fd5ff": {
-    "value": "This question has no positively scored answer. Mark at least one answer as correct before exporting.",
-    "locations": [
-      "core:1223"
-    ],
-    "params": []
-  },
-  "js_core_answer_fractions_do_not_total_100_a6bd1bd3": {
-    "value": "Answer fractions do not total 100%",
-    "locations": [
-      "core:1229"
-    ],
-    "params": []
-  },
-  "js_core_positive_answer_fractions_must_total_100_the_cur_816d668b": {
-    "value": "Positive answer fractions must total 100%. The current total is {$a->p0}%.",
-    "locations": [
-      "core:1230"
-    ],
-    "params": [
-      "p0: dynamic display value"
-    ]
-  },
-  "js_core_conflicting_answer_mode_0e0fde11": {
-    "value": "Conflicting answer mode",
-    "locations": [
-      "core:1236"
-    ],
-    "params": []
-  },
-  "js_core_this_question_is_marked_as_single_answer_but_its_0b2542a8": {
-    "value": "This question is marked as single-answer but its scoring defines multiple positively scored answers.",
-    "locations": [
-      "core:1237"
-    ],
-    "params": []
-  },
-  "js_core_no_answer_labels_8525d49d": {
-    "value": "no answer labels",
-    "locations": [
-      "core:1258"
-    ],
-    "params": []
-  },
-  "js_core_correct_answer_reference_is_invalid_68a190ee": {
-    "value": "Correct answer reference is invalid",
-    "locations": [
-      "core:1260"
-    ],
-    "params": []
-  },
-  "js_core_the_correct_answer_field_refers_to_answer_but_th_06a58f86": {
-    "value": "The correct-answer field refers to answer {$a->p0}, but the available answers are {$a->p1}. Choose a non-empty answer.",
-    "locations": [
-      "core:1261"
-    ],
-    "params": [
-      "p0: label",
-      "p1: range"
-    ]
-  },
-  "js_core_duplicate_correct_answer_reference_3c361619": {
-    "value": "Duplicate correct-answer reference",
-    "locations": [
-      "core:1268"
-    ],
-    "params": []
-  },
-  "js_core_the_same_correct_answer_is_listed_more_than_once_759d78af": {
-    "value": "The same correct answer is listed more than once. Keep each correct-answer reference only once.",
-    "locations": [
-      "core:1269"
-    ],
-    "params": []
-  },
-  "js_core_a_question_must_have_a_correct_answer_d11d3299": {
+  "js_core_a_question_must_have_a_correct_answer": {
     "value": "A question must have a correct answer.",
     "locations": [
-      "core:1317"
+      "core:1355"
     ],
     "params": []
   },
-  "js_core_moodle_numeric_values_must_be_finite_70305ed2": {
+  "js_core_moodle_numeric_values_must_be_finite": {
     "value": "Moodle numeric values must be finite.",
     "locations": [
-      "core:1323"
+      "core:1361"
     ],
     "params": []
   },
-  "js_core_unsupported_answer_numbering_setting_d72ec5eb": {
+  "js_core_unsupported_answer_numbering_setting": {
     "value": "Unsupported answer numbering setting.",
     "locations": [
-      "core:1340"
+      "core:1378"
     ],
     "params": []
   },
-  "js_core_the_xml_declaration_is_missing_or_is_not_the_fir_d05acabf": {
+  "js_core_the_xml_declaration_is_missing_or_is_not_the_fir": {
     "value": "The XML declaration is missing or is not the first content in the file.",
     "locations": [
-      "core:1489"
+      "core:1517"
     ],
     "params": []
   },
-  "js_core_an_xml_parser_is_not_available_in_this_browser_14a8ecc0": {
+  "js_core_an_xml_parser_is_not_available_in_this_browser": {
     "value": "An XML parser is not available in this browser.",
     "locations": [
-      "core:1491"
+      "core:1519"
     ],
     "params": []
   },
-  "js_core_the_generated_xml_is_not_well_formed_0c4b7239": {
+  "js_core_the_generated_xml_is_not_well_formed": {
     "value": "The generated XML is not well-formed.",
     "locations": [
-      "core:1494"
+      "core:1522"
     ],
     "params": []
   },
-  "js_core_the_generated_xml_does_not_have_a_quiz_root_e0725a43": {
+  "js_core_the_generated_xml_does_not_have_a_quiz_root": {
     "value": "The generated XML does not have a quiz root.",
     "locations": [
-      "core:1495"
+      "core:1523"
     ],
     "params": []
   },
-  "js_core_has_no_name_4823161f": {
+  "js_core_has_no_name": {
     "value": "{$a->p0} has no name.",
     "locations": [
-      "core:1499",
-      "core:1523"
+      "core:1527",
+      "core:1551"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_has_no_question_text_9d8d6529": {
+  "js_core_has_no_question_text": {
     "value": "{$a->p0} has no question text.",
     "locations": [
-      "core:1500",
-      "core:1524"
+      "core:1528",
+      "core:1552"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_has_fewer_than_two_answers_a0705278": {
+  "js_core_has_fewer_than_two_answers": {
     "value": "{$a->p0} has fewer than two answers.",
     "locations": [
-      "core:1502"
+      "core:1530"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_has_invalid_grading_fractions_92a37abc": {
+  "js_core_has_invalid_grading_fractions": {
     "value": "{$a->p0} has invalid grading fractions.",
     "locations": [
-      "core:1506",
-      "core:1537"
+      "core:1534",
+      "core:1565"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_grading_totals_not_100_a22ce4cc": {
+  "js_core_grading_totals_not_100": {
     "value": "{$a->p0} grading totals {$a->p1}, not 100.",
     "locations": [
-      "core:1509"
+      "core:1537"
     ],
     "params": [
       "p0: label",
       "p1: total"
     ]
   },
-  "js_core_has_an_inconsistent_single_answer_setting_cde5e397": {
+  "js_core_has_an_inconsistent_single_answer_setting": {
     "value": "{$a->p0} has an inconsistent single-answer setting.",
     "locations": [
-      "core:1511"
+      "core:1539"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_has_unsupported_answer_numbering_80283436": {
+  "js_core_has_unsupported_answer_numbering": {
     "value": "{$a->p0} has unsupported answer numbering.",
-    "locations": [
-      "core:1513"
-    ],
-    "params": [
-      "p0: label"
-    ]
-  },
-  "js_core_has_an_invalid_default_grade_f598f7e9": {
-    "value": "{$a->p0} has an invalid default grade.",
-    "locations": [
-      "core:1515",
-      "core:1529"
-    ],
-    "params": [
-      "p0: label"
-    ]
-  },
-  "js_core_description_has_a_non_zero_default_grade_f45948cb": {
-    "value": "{$a->p0} description has a non-zero default grade.",
-    "locations": [
-      "core:1527"
-    ],
-    "params": [
-      "p0: label"
-    ]
-  },
-  "js_core_has_no_accepted_answers_f560bae7": {
-    "value": "{$a->p0} has no accepted answers.",
-    "locations": [
-      "core:1533"
-    ],
-    "params": [
-      "p0: label"
-    ]
-  },
-  "js_core_has_an_invalid_case_sensitivity_setting_19df50e7": {
-    "value": "{$a->p0} has an invalid case-sensitivity setting.",
     "locations": [
       "core:1541"
     ],
@@ -1084,50 +1047,87 @@
       "p0: label"
     ]
   },
-  "js_core_has_an_invalid_numerical_answer_5a35bf09": {
+  "js_core_has_an_invalid_default_grade": {
+    "value": "{$a->p0} has an invalid default grade.",
+    "locations": [
+      "core:1543",
+      "core:1557"
+    ],
+    "params": [
+      "p0: label"
+    ]
+  },
+  "js_core_description_has_a_non_zero_default_grade": {
+    "value": "{$a->p0} description has a non-zero default grade.",
+    "locations": [
+      "core:1555"
+    ],
+    "params": [
+      "p0: label"
+    ]
+  },
+  "js_core_has_no_accepted_answers": {
+    "value": "{$a->p0} has no accepted answers.",
+    "locations": [
+      "core:1561"
+    ],
+    "params": [
+      "p0: label"
+    ]
+  },
+  "js_core_has_an_invalid_case_sensitivity_setting": {
+    "value": "{$a->p0} has an invalid case-sensitivity setting.",
+    "locations": [
+      "core:1569"
+    ],
+    "params": [
+      "p0: label"
+    ]
+  },
+  "js_core_has_an_invalid_numerical_answer": {
     "value": "{$a->p0} has an invalid numerical answer.",
     "locations": [
-      "core:1547"
+      "core:1575"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_has_an_invalid_numerical_tolerance_39f6674f": {
+  "js_core_has_an_invalid_numerical_tolerance": {
     "value": "{$a->p0} has an invalid numerical tolerance.",
     "locations": [
-      "core:1548"
+      "core:1576"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_has_invalid_true_false_answers_fbac0d60": {
+  "js_core_has_invalid_true_false_answers": {
     "value": "{$a->p0} has invalid True/False answers.",
     "locations": [
-      "core:1556"
+      "core:1584"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_should_not_contain_automatically_graded_answers_327a20e8": {
+  "js_core_should_not_contain_automatically_graded_answers": {
     "value": "{$a->p0} should not contain automatically graded answers.",
     "locations": [
-      "core:1560"
+      "core:1588"
     ],
     "params": [
       "p0: label"
     ]
   },
-  "js_core_the_xml_contains_no_supported_questions_a312cc02": {
+  "js_core_the_xml_contains_no_supported_questions": {
     "value": "The XML contains no supported questions.",
     "locations": [
-      "core:1564"
+      "core:1592"
     ],
     "params": []
   },
-  "js_preview_question_a708e36a": {
+  "js_preview_question": {
     "value": "Question {$a->p0}",
     "locations": [
       "preview:33"
@@ -1136,35 +1136,35 @@
       "p0: dynamic display value"
     ]
   },
-  "js_preview_question_1f5087db": {
+  "js_preview_question_2": {
     "value": "question",
     "locations": [
       "preview:76"
     ],
     "params": []
   },
-  "js_preview_questions_17d5efa6": {
+  "js_preview_questions": {
     "value": "questions",
     "locations": [
       "preview:76"
     ],
     "params": []
   },
-  "js_preview_has_a_warning_3fcd21be": {
+  "js_preview_has_a_warning": {
     "value": "has a warning",
     "locations": [
       "preview:78"
     ],
     "params": []
   },
-  "js_preview_have_warnings_4dce76d3": {
+  "js_preview_have_warnings": {
     "value": "have warnings",
     "locations": [
       "preview:78"
     ],
     "params": []
   },
-  "js_preview_matching_6173f080": {
+  "js_preview_matching": {
     "value": "{$a->p0} {$a->p1} matching “{$a->p2}” {$a->p3}",
     "locations": [
       "preview:78",
@@ -1177,21 +1177,21 @@
       "p3: dynamic display value"
     ]
   },
-  "js_preview_has_an_error_16ebe1c0": {
+  "js_preview_has_an_error": {
     "value": "has an error",
     "locations": [
       "preview:81"
     ],
     "params": []
   },
-  "js_preview_have_errors_319e389f": {
+  "js_preview_have_errors": {
     "value": "have errors",
     "locations": [
       "preview:81"
     ],
     "params": []
   },
-  "js_preview_matching_abdac942": {
+  "js_preview_matching_2": {
     "value": "{$a->p0} {$a->p1} matching “{$a->p2}”",
     "locations": [
       "preview:83"
@@ -1202,42 +1202,42 @@
       "p2: query"
     ]
   },
-  "js_preview_question_with_a_warning_1e2fb12f": {
+  "js_preview_question_with_a_warning": {
     "value": "question with a warning",
     "locations": [
       "preview:84"
     ],
     "params": []
   },
-  "js_preview_questions_with_warnings_4db4530a": {
+  "js_preview_questions_with_warnings": {
     "value": "questions with warnings",
     "locations": [
       "preview:84"
     ],
     "params": []
   },
-  "js_preview_question_with_an_error_b548bb5a": {
+  "js_preview_question_with_an_error": {
     "value": "question with an error",
     "locations": [
       "preview:85"
     ],
     "params": []
   },
-  "js_preview_questions_with_errors_4efca907": {
+  "js_preview_questions_with_errors": {
     "value": "questions with errors",
     "locations": [
       "preview:85"
     ],
     "params": []
   },
-  "js_preview_showing_1_of_1_matching_question_293486e9": {
+  "js_preview_showing_1_of_1_matching_question": {
     "value": "Showing 1 of 1 matching question",
     "locations": [
       "preview:91"
     ],
     "params": []
   },
-  "js_preview_showing_of_matching_questions_73ed3512": {
+  "js_preview_showing_of_matching_questions": {
     "value": "Showing {$a->p0}–{$a->p1} of {$a->p2} matching questions",
     "locations": [
       "preview:92"
@@ -1248,21 +1248,21 @@
       "p2: dynamic display value"
     ]
   },
-  "js_preview_no_questions_to_preview_320b29ed": {
+  "js_preview_no_questions_to_preview": {
     "value": "No questions to preview",
     "locations": [
       "preview:112"
     ],
     "params": []
   },
-  "js_preview_showing_1_of_1_question_c00c4f62": {
+  "js_preview_showing_1_of_1_question": {
     "value": "Showing 1 of 1 question",
     "locations": [
       "preview:114"
     ],
     "params": []
   },
-  "js_preview_showing_of_questions_184ac13b": {
+  "js_preview_showing_of_questions": {
     "value": "Showing {$a->p0}–{$a->p1} of {$a->p2} questions",
     "locations": [
       "preview:115"
@@ -1273,7 +1273,7 @@
       "p2: dynamic display value"
     ]
   },
-  "js_preview_page_of_f7e8f50f": {
+  "js_preview_page_of": {
     "value": "Page {$a->p0} of {$a->p1}",
     "locations": [
       "preview:127"
@@ -1283,14 +1283,14 @@
       "p1: dynamic display value"
     ]
   },
-  "js_timing_processing_timing_values_must_be_finite_positive_0f7fa5e5": {
+  "js_timing_processing_timing_values_must_be_finite_positive": {
     "value": "Processing timing values must be finite positive numbers.",
     "locations": [
       "timing:5"
     ],
     "params": []
   },
-  "js_app_step_of_5_e7d5b4ff": {
+  "js_app_step_of_5": {
     "value": "Step {$a->p0} of 5.",
     "locations": [
       "app:112"
@@ -1299,14 +1299,14 @@
       "p0: step"
     ]
   },
-  "js_app_please_fix_this_issue_2908e9f3": {
+  "js_app_please_fix_this_issue": {
     "value": "Please fix this issue",
     "locations": [
       "app:119"
     ],
     "params": []
   },
-  "js_app_please_fix_these_issues_34bc362b": {
+  "js_app_please_fix_these_issues": {
     "value": "Please fix these {$a->p0} issues",
     "locations": [
       "app:119"
@@ -1315,35 +1315,35 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_need_help_with_file_structure_e2e47a98": {
+  "js_app_need_help_with_file_structure": {
     "value": "Need help with file structure? ",
     "locations": [
       "app:129"
     ],
     "params": []
   },
-  "js_app_open_the_guide_faq_7ce03f21": {
+  "js_app_open_the_guide_faq": {
     "value": "Open the Guide & FAQ",
     "locations": [
       "app:132"
     ],
     "params": []
   },
-  "js_app_choose_a_csv_or_txt_file_318482d0": {
+  "js_app_choose_a_csv_or_txt_file": {
     "value": "Choose a CSV or TXT file.",
     "locations": [
       "app:218"
     ],
     "params": []
   },
-  "js_app_this_file_is_larger_than_5_mb_split_it_into_smal_59a8b58f": {
+  "js_app_this_file_is_larger_than_5_mb_split_it_into_smal": {
     "value": "This file is larger than 5 MB. Split it into smaller files and try again.",
     "locations": [
       "app:223"
     ],
     "params": []
   },
-  "js_app_kb_selected_ba1c0250": {
+  "js_app_kb_selected": {
     "value": "{$a->p0} · {$a->p1} KB selected",
     "locations": [
       "app:231"
@@ -1353,7 +1353,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_app_selected_review_and_accept_the_conversion_acknow_0254ccaa": {
+  "js_app_selected_review_and_accept_the_conversion_acknow": {
     "value": "{$a->p0} selected. Review and accept the conversion acknowledgement to continue.",
     "locations": [
       "app:233"
@@ -1362,56 +1362,56 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_this_file_is_not_valid_utf_8_save_it_as_utf_8_in_31f52b13": {
+  "js_app_this_file_is_not_valid_utf_8_save_it_as_utf_8_in": {
     "value": "This file is not valid UTF-8. Save it as UTF-8 in your text editor or spreadsheet app, then try again.",
     "locations": [
       "app:241"
     ],
     "params": []
   },
-  "js_app_question_1f5087db": {
+  "js_app_question": {
     "value": "question",
     "locations": [
       "app:258"
     ],
     "params": []
   },
-  "js_app_questions_17d5efa6": {
+  "js_app_questions": {
     "value": "questions",
     "locations": [
       "app:258"
     ],
     "params": []
   },
-  "js_app_single_answer_7be2b9f8": {
+  "js_app_single_answer": {
     "value": "single-answer",
     "locations": [
       "app:259"
     ],
     "params": []
   },
-  "js_app_multiple_answer_bc7b5b2c": {
+  "js_app_multiple_answer": {
     "value": "multiple-answer",
     "locations": [
       "app:260"
     ],
     "params": []
   },
-  "js_app_other_type_b16fa987": {
+  "js_app_other_type": {
     "value": "other type",
     "locations": [
       "app:262"
     ],
     "params": []
   },
-  "js_app_other_types_830b9814": {
+  "js_app_other_types": {
     "value": "other types",
     "locations": [
       "app:262"
     ],
     "params": []
   },
-  "js_app_error_ca00fccf": {
+  "js_app_error": {
     "value": "error",
     "locations": [
       "app:263",
@@ -1419,7 +1419,7 @@
     ],
     "params": []
   },
-  "js_app_errors_be4bd567": {
+  "js_app_errors": {
     "value": "errors",
     "locations": [
       "app:263",
@@ -1428,49 +1428,49 @@
     ],
     "params": []
   },
-  "js_app_no_questions_detected_881a751d": {
+  "js_app_no_questions_detected": {
     "value": "No questions detected",
     "locations": [
       "app:273"
     ],
     "params": []
   },
-  "js_app_uniquiz_could_not_identify_any_supported_questio_44064ab6": {
+  "js_app_uniquiz_could_not_identify_any_supported_questio": {
     "value": "UniQuiz could not identify any supported questions in this input. Check the file structure or try another supported format.",
     "locations": [
       "app:275"
     ],
     "params": []
   },
-  "js_app_all_required_fields_recognized_b029f34b": {
+  "js_app_all_required_fields_recognized": {
     "value": "✓ All required fields recognized",
     "locations": [
       "app:284"
     ],
     "params": []
   },
-  "js_app_every_question_has_usable_answers_and_a_valid_an_12b5b799": {
+  "js_app_every_question_has_usable_answers_and_a_valid_an": {
     "value": "Every question has usable answers and a valid answer key.",
     "locations": [
       "app:286"
     ],
     "params": []
   },
-  "js_app_errors_that_need_attention_3dae53f2": {
+  "js_app_errors_that_need_attention": {
     "value": "Errors that need attention",
     "locations": [
       "app:292"
     ],
     "params": []
   },
-  "js_app_warnings_to_review_d90bd032": {
+  "js_app_warnings_to_review": {
     "value": "Warnings to review",
     "locations": [
       "app:293"
     ],
     "params": []
   },
-  "js_app_plus_more_2018f1ce": {
+  "js_app_plus_more": {
     "value": "Plus {$a->p0} more.",
     "locations": [
       "app:311"
@@ -1479,28 +1479,28 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_column_role_a8ab4aa0": {
+  "js_app_column_role": {
     "value": "Column role",
     "locations": [
       "app:322"
     ],
     "params": []
   },
-  "js_app_ignore_this_column_995c0a91": {
+  "js_app_ignore_this_column": {
     "value": "Ignore this column",
     "locations": [
       "app:324"
     ],
     "params": []
   },
-  "js_app_question_text_75c3c5e1": {
+  "js_app_question_text": {
     "value": "Question text",
     "locations": [
       "app:324"
     ],
     "params": []
   },
-  "js_app_answer_3f67a21a": {
+  "js_app_answer": {
     "value": "Answer {$a->p0}",
     "locations": [
       "app:325"
@@ -1509,21 +1509,21 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_correct_answer_key_bf92f98d": {
+  "js_app_correct_answer_key": {
     "value": "Correct answer / key",
     "locations": [
       "app:326"
     ],
     "params": []
   },
-  "js_app_boolean_answer_true_false_ba1498df": {
+  "js_app_boolean_answer_true_false": {
     "value": "Boolean answer (true / false)",
     "locations": [
       "app:327"
     ],
     "params": []
   },
-  "js_app_column_ae9cce64": {
+  "js_app_column": {
     "value": "Column {$a->p0}",
     "locations": [
       "app:347"
@@ -1532,28 +1532,28 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_reading_your_questions_80f1b6d6": {
+  "js_app_reading_your_questions": {
     "value": "Reading your questions…",
     "locations": [
       "app:372"
     ],
     "params": []
   },
-  "js_app_checking_answers_3e28715e": {
+  "js_app_checking_answers": {
     "value": "Checking answers…",
     "locations": [
       "app:372"
     ],
     "params": []
   },
-  "js_app_preparing_your_review_4f0d75e6": {
+  "js_app_preparing_your_review": {
     "value": "Preparing your review…",
     "locations": [
       "app:372"
     ],
     "params": []
   },
-  "js_app_questions_detected_657cc3d9": {
+  "js_app_questions_detected": {
     "value": "{$a->p0} questions detected.",
     "locations": [
       "app:380"
@@ -1562,56 +1562,56 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_the_file_could_not_be_analysed_cf85c6af": {
+  "js_app_the_file_could_not_be_analysed": {
     "value": "The file could not be analysed.",
     "locations": [
       "app:384"
     ],
     "params": []
   },
-  "js_app_choose_one_question_column_and_either_one_boolea_867258d1": {
+  "js_app_choose_one_question_column_and_either_one_boolea": {
     "value": "Choose one question column and either one Boolean answer column, or one correct-answer column with at least two uniquely labelled answer columns.",
     "locations": [
       "app:400"
     ],
     "params": []
   },
-  "js_app_column_mapping_confirmed_74d88278": {
+  "js_app_column_mapping_confirmed": {
     "value": "Column mapping confirmed.",
     "locations": [
       "app:403"
     ],
     "params": []
   },
-  "js_app_column_mapping_applied_0b4df2b9": {
+  "js_app_column_mapping_applied": {
     "value": "Column mapping applied.",
     "locations": [
       "app:407"
     ],
     "params": []
   },
-  "js_app_import_checks_c09a67ca": {
+  "js_app_import_checks": {
     "value": "Import checks",
     "locations": [
       "app:440"
     ],
     "params": []
   },
-  "js_app_essay_manually_graded_in_moodle_2c9891d4": {
+  "js_app_essay_manually_graded_in_moodle": {
     "value": "Essay — manually graded in Moodle",
     "locations": [
       "app:465"
     ],
     "params": []
   },
-  "js_app_invalid_fraction_0a6025e5": {
+  "js_app_invalid_fraction": {
     "value": "Invalid fraction",
     "locations": [
       "app:490"
     ],
     "params": []
   },
-  "js_app_feedback_7c47b656": {
+  "js_app_feedback": {
     "value": "Feedback: {$a->p0}",
     "locations": [
       "app:495"
@@ -1620,35 +1620,35 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_question_name_5180bbe3": {
+  "js_app_question_name": {
     "value": "Question name",
     "locations": [
       "app:505"
     ],
     "params": []
   },
-  "js_app_category_292c06f0": {
+  "js_app_category": {
     "value": "Category",
     "locations": [
       "app:506"
     ],
     "params": []
   },
-  "js_app_default_mark_9815efb6": {
+  "js_app_default_mark": {
     "value": "Default mark",
     "locations": [
       "app:507"
     ],
     "params": []
   },
-  "js_app_case_sensitive_e124ba47": {
+  "js_app_case_sensitive": {
     "value": "Case sensitive",
     "locations": [
       "app:509"
     ],
     "params": []
   },
-  "js_app_yes_85a39ab3": {
+  "js_app_yes": {
     "value": "Yes",
     "locations": [
       "app:509",
@@ -1656,7 +1656,7 @@
     ],
     "params": []
   },
-  "js_app_no_1ea442a1": {
+  "js_app_no": {
     "value": "No",
     "locations": [
       "app:509",
@@ -1664,28 +1664,28 @@
     ],
     "params": []
   },
-  "js_app_answer_choice_labels_f1b172a3": {
+  "js_app_answer_choice_labels": {
     "value": "Answer choice labels",
     "locations": [
       "app:510"
     ],
     "params": []
   },
-  "js_app_shuffle_answers_fad4787e": {
+  "js_app_shuffle_answers": {
     "value": "Shuffle answers",
     "locations": [
       "app:511"
     ],
     "params": []
   },
-  "js_app_grading_64dc41e1": {
+  "js_app_grading": {
     "value": "Grading",
     "locations": [
       "app:513"
     ],
     "params": []
   },
-  "js_app_manually_graded_in_moodle_b2e4b897": {
+  "js_app_manually_graded_in_moodle": {
     "value": "Manually graded in Moodle",
     "locations": [
       "app:513",
@@ -1693,35 +1693,35 @@
     ],
     "params": []
   },
-  "js_app_informational_item_48f0b88d": {
+  "js_app_informational_item": {
     "value": "Informational item",
     "locations": [
       "app:514"
     ],
     "params": []
   },
-  "js_app_single_answer_61aa18ad": {
+  "js_app_single_answer_2": {
     "value": "Single answer",
     "locations": [
       "app:516"
     ],
     "params": []
   },
-  "js_app_multiple_answer_5f873f53": {
+  "js_app_multiple_answer_2": {
     "value": "Multiple answer",
     "locations": [
       "app:516"
     ],
     "params": []
   },
-  "js_app_tags_1331275b": {
+  "js_app_tags": {
     "value": "Tags",
     "locations": [
       "app:517"
     ],
     "params": []
   },
-  "js_app_general_feedback_5360957a": {
+  "js_app_general_feedback": {
     "value": "General feedback",
     "locations": [
       "app:533",
@@ -1729,28 +1729,28 @@
     ],
     "params": []
   },
-  "js_app_correct_feedback_bbed96c4": {
+  "js_app_correct_feedback": {
     "value": "Correct feedback",
     "locations": [
       "app:534"
     ],
     "params": []
   },
-  "js_app_partially_correct_feedback_80cea558": {
+  "js_app_partially_correct_feedback": {
     "value": "Partially correct feedback",
     "locations": [
       "app:535"
     ],
     "params": []
   },
-  "js_app_incorrect_feedback_41c0e10e": {
+  "js_app_incorrect_feedback": {
     "value": "Incorrect feedback",
     "locations": [
       "app:536"
     ],
     "params": []
   },
-  "js_app_diagnostics_for_question_0440d51a": {
+  "js_app_diagnostics_for_question": {
     "value": "Diagnostics for Question {$a->p0}",
     "locations": [
       "app:557"
@@ -1759,14 +1759,14 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_this_question_must_be_fixed_before_moodle_xml_ca_afe7bcd7": {
+  "js_app_this_question_must_be_fixed_before_moodle_xml_ca": {
     "value": "This question must be fixed before Moodle XML can be exported.",
     "locations": [
       "app:573"
     ],
     "params": []
   },
-  "js_app_question_a708e36a": {
+  "js_app_question_2": {
     "value": "Question {$a->p0}",
     "locations": [
       "app:589"
@@ -1775,70 +1775,70 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_multiple_choice_79fefc32": {
+  "js_app_multiple_choice": {
     "value": "Multiple choice",
     "locations": [
       "app:592"
     ],
     "params": []
   },
-  "js_app_true_false_3d971996": {
+  "js_app_true_false": {
     "value": "True/False",
     "locations": [
       "app:593"
     ],
     "params": []
   },
-  "js_app_short_answer_91b03d90": {
+  "js_app_short_answer": {
     "value": "Short Answer",
     "locations": [
       "app:594"
     ],
     "params": []
   },
-  "js_app_numerical_a6382f93": {
+  "js_app_numerical": {
     "value": "Numerical",
     "locations": [
       "app:595"
     ],
     "params": []
   },
-  "js_app_essay_6bc4fba5": {
+  "js_app_essay": {
     "value": "Essay",
     "locations": [
       "app:596"
     ],
     "params": []
   },
-  "js_app_description_526e0087": {
+  "js_app_description": {
     "value": "Description",
     "locations": [
       "app:597"
     ],
     "params": []
   },
-  "js_app_unknown_type_6a29772e": {
+  "js_app_unknown_type": {
     "value": "Unknown type",
     "locations": [
       "app:598"
     ],
     "params": []
   },
-  "js_app_ready_5fa7aac5": {
+  "js_app_ready": {
     "value": "Ready",
     "locations": [
       "app:604"
     ],
     "params": []
   },
-  "js_app_warning_4bd9354b": {
+  "js_app_warning": {
     "value": "warning",
     "locations": [
       "app:605"
     ],
     "params": []
   },
-  "js_app_warnings_227690d7": {
+  "js_app_warnings": {
     "value": "warnings",
     "locations": [
       "app:605",
@@ -1846,49 +1846,49 @@
     ],
     "params": []
   },
-  "js_app_question_text_is_missing_410b003d": {
+  "js_app_question_text_is_missing": {
     "value": "Question text is missing",
     "locations": [
       "app:611"
     ],
     "params": []
   },
-  "js_app_informational_content_d7e195b3": {
+  "js_app_informational_content": {
     "value": "Informational content",
     "locations": [
       "app:616"
     ],
     "params": []
   },
-  "js_app_answer_0db52f40": {
+  "js_app_answer_2": {
     "value": "answer",
     "locations": [
       "app:618"
     ],
     "params": []
   },
-  "js_app_answers_677fe21b": {
+  "js_app_answers": {
     "value": "answers",
     "locations": [
       "app:618"
     ],
     "params": []
   },
-  "js_app_feedback_59bda3f8": {
+  "js_app_feedback_2": {
     "value": "feedback",
     "locations": [
       "app:620"
     ],
     "params": []
   },
-  "js_app_feedbacks_b7de37c4": {
+  "js_app_feedbacks": {
     "value": "feedbacks",
     "locations": [
       "app:620"
     ],
     "params": []
   },
-  "js_app_answer_46234d41": {
+  "js_app_answer_3": {
     "value": "{$a->p0} answer {$a->p1}",
     "locations": [
       "app:620"
@@ -1898,7 +1898,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_app_expand_details_957d5d59": {
+  "js_app_expand_details": {
     "value": "Expand details",
     "locations": [
       "app:627",
@@ -1906,28 +1906,28 @@
     ],
     "params": []
   },
-  "js_app_needs_attention_c1ebc781": {
+  "js_app_needs_attention": {
     "value": "Needs attention",
     "locations": [
       "app:636"
     ],
     "params": []
   },
-  "js_app_review_recommended_6b75ef46": {
+  "js_app_review_recommended": {
     "value": "Review recommended",
     "locations": [
       "app:636"
     ],
     "params": []
   },
-  "js_app_collapse_details_0b655856": {
+  "js_app_collapse_details": {
     "value": "Collapse details",
     "locations": [
       "app:654"
     ],
     "params": []
   },
-  "js_app_page_current_page_81bd7811": {
+  "js_app_page_current_page": {
     "value": "Page {$a->p0}, current page",
     "locations": [
       "app:688"
@@ -1936,7 +1936,7 @@
       "p0: item"
     ]
   },
-  "js_app_go_to_page_3df1f477": {
+  "js_app_go_to_page": {
     "value": "Go to page {$a->p0}",
     "locations": [
       "app:696"
@@ -1945,14 +1945,14 @@
       "p0: item"
     ]
   },
-  "js_app_no_matching_questions_08c2b38c": {
+  "js_app_no_matching_questions": {
     "value": "No matching questions",
     "locations": [
       "app:735"
     ],
     "params": []
   },
-  "js_app_no_questions_matching_contain_c3d37f1f": {
+  "js_app_no_questions_matching_contain": {
     "value": "No questions matching “{$a->p0}” contain {$a->p1}.",
     "locations": [
       "app:736"
@@ -1962,7 +1962,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_app_clear_search_3b7ea517": {
+  "js_app_clear_search": {
     "value": "Clear search",
     "locations": [
       "app:738",
@@ -1970,7 +1970,7 @@
     ],
     "params": []
   },
-  "js_app_show_all_questions_48a510cd": {
+  "js_app_show_all_questions": {
     "value": "Show all questions",
     "locations": [
       "app:739",
@@ -1979,14 +1979,14 @@
     ],
     "params": []
   },
-  "js_app_no_questions_found_bc8f6055": {
+  "js_app_no_questions_found": {
     "value": "No questions found",
     "locations": [
       "app:742"
     ],
     "params": []
   },
-  "js_app_no_questions_match_6a1f241e": {
+  "js_app_no_questions_match": {
     "value": "No questions match “{$a->p0}”.",
     "locations": [
       "app:743"
@@ -1995,77 +1995,77 @@
       "p0: query"
     ]
   },
-  "js_app_no_warnings_found_10dd6abb": {
+  "js_app_no_warnings_found": {
     "value": "No warnings found",
     "locations": [
       "app:746"
     ],
     "params": []
   },
-  "js_app_all_imported_questions_passed_uniquiz_s_warning__d0d5e5ca": {
+  "js_app_all_imported_questions_passed_uniquiz_s_warning_": {
     "value": "All imported questions passed UniQuiz's warning checks.",
     "locations": [
       "app:747"
     ],
     "params": []
   },
-  "js_app_no_errors_found_e2cf82b6": {
+  "js_app_no_errors_found": {
     "value": "No errors found",
     "locations": [
       "app:750"
     ],
     "params": []
   },
-  "js_app_all_imported_questions_can_be_converted_to_moodl_e7c86881": {
+  "js_app_all_imported_questions_can_be_converted_to_moodl": {
     "value": "All imported questions can be converted to Moodle XML.",
     "locations": [
       "app:751"
     ],
     "params": []
   },
-  "js_app_no_questions_to_preview_320b29ed": {
+  "js_app_no_questions_to_preview": {
     "value": "No questions to preview",
     "locations": [
       "app:754"
     ],
     "params": []
   },
-  "js_app_no_supported_questions_are_available_in_this_ban_51a7c4f7": {
+  "js_app_no_supported_questions_are_available_in_this_ban": {
     "value": "No supported questions are available in this bank.",
     "locations": [
       "app:755"
     ],
     "params": []
   },
-  "js_app_preparing_moodle_xml_58ddca43": {
+  "js_app_preparing_moodle_xml": {
     "value": "Preparing Moodle XML…",
     "locations": [
       "app:839"
     ],
     "params": []
   },
-  "js_app_checking_grading_9e42cf93": {
+  "js_app_checking_grading": {
     "value": "Checking grading…",
     "locations": [
       "app:839"
     ],
     "params": []
   },
-  "js_app_validating_your_file_5b819b2b": {
+  "js_app_validating_your_file": {
     "value": "Validating your file…",
     "locations": [
       "app:839"
     ],
     "params": []
   },
-  "js_app_resolve_the_errors_in_the_preview_before_exporti_93e1c19c": {
+  "js_app_resolve_the_errors_in_the_preview_before_exporti": {
     "value": "Resolve the errors in the preview before exporting Moodle XML.",
     "locations": [
       "app:843"
     ],
     "params": []
   },
-  "js_app_moodle_xml_validation_passed_for_questions_623d0d36": {
+  "js_app_moodle_xml_validation_passed_for_questions": {
     "value": "Moodle XML validation passed for {$a->p0} questions.",
     "locations": [
       "app:858"
@@ -2074,35 +2074,35 @@
       "p0: dynamic display value"
     ]
   },
-  "js_app_the_moodle_xml_could_not_be_validated_f08d2649": {
+  "js_app_the_moodle_xml_could_not_be_validated": {
     "value": "The Moodle XML could not be validated.",
     "locations": [
       "app:860"
     ],
     "params": []
   },
-  "js_aiken_core_aiken_issue_37879233": {
+  "js_aiken_core_aiken_issue": {
     "value": "AIKEN issue",
     "locations": [
       "aiken-core:8"
     ],
     "params": []
   },
-  "js_aiken_core_question_39821a75": {
+  "js_aiken_core_question": {
     "value": "Question ",
     "locations": [
       "aiken-core:10"
     ],
     "params": []
   },
-  "js_aiken_core_source_line_4ae12a62": {
+  "js_aiken_core_source_line": {
     "value": "source line ",
     "locations": [
       "aiken-core:12"
     ],
     "params": []
   },
-  "js_aiken_core_line_answer_appears_before_any_question_text_36373d33": {
+  "js_aiken_core_line_answer_appears_before_any_question_text": {
     "value": "Line {$a->p0}: answer {$a->p1} appears before any question text.",
     "locations": [
       "aiken-core:109"
@@ -2112,7 +2112,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_aiken_core_line_an_answer_line_appears_before_any_question__20dcf94f": {
+  "js_aiken_core_line_an_answer_line_appears_before_any_question_": {
     "value": "Line {$a->p0}: an ANSWER line appears before any question text.",
     "locations": [
       "aiken-core:122"
@@ -2121,28 +2121,28 @@
       "p0: dynamic display value"
     ]
   },
-  "js_aiken_core_the_utf_8_bom_can_be_removed_safely_4f1f1af4": {
+  "js_aiken_core_the_utf_8_bom_can_be_removed_safely": {
     "value": "The UTF-8 BOM can be removed safely.",
     "locations": [
       "aiken-core:145"
     ],
     "params": []
   },
-  "js_aiken_core_utf_8_bom_2548d50d": {
+  "js_aiken_core_utf_8_bom": {
     "value": "UTF-8 BOM",
     "locations": [
       "aiken-core:145"
     ],
     "params": []
   },
-  "js_aiken_core_no_bom_a5ee98ed": {
+  "js_aiken_core_no_bom": {
     "value": "No BOM",
     "locations": [
       "aiken-core:145"
     ],
     "params": []
   },
-  "js_aiken_core_lines_repeated_blank_lines_can_be_normalized_to__625c9351": {
+  "js_aiken_core_lines_repeated_blank_lines_can_be_normalized_to_": {
     "value": "Lines {$a->p0}-{$a->p1}: repeated blank lines can be normalized to one.",
     "locations": [
       "aiken-core:160"
@@ -2152,7 +2152,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_aiken_core_blank_lines_93c53ae0": {
+  "js_aiken_core_blank_lines": {
     "value": "{$a->p0} blank lines",
     "locations": [
       "aiken-core:161"
@@ -2161,21 +2161,21 @@
       "p0: blankRunLength"
     ]
   },
-  "js_aiken_core_1_blank_line_edac49a6": {
+  "js_aiken_core_1_blank_line": {
     "value": "1 blank line",
     "locations": [
       "aiken-core:161"
     ],
     "params": []
   },
-  "js_aiken_core_no_aiken_questions_were_detected_upload_or_paste_853742f6": {
+  "js_aiken_core_no_aiken_questions_were_detected_upload_or_paste": {
     "value": "No AIKEN questions were detected. Upload or paste at least one complete question.",
     "locations": [
       "aiken-core:189"
     ],
     "params": []
   },
-  "js_aiken_core_question_question_text_is_missing_3a4e530c": {
+  "js_aiken_core_question_question_text_is_missing": {
     "value": "Question {$a->p0}: question text is missing.",
     "locations": [
       "aiken-core:205"
@@ -2184,7 +2184,7 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_question_the_question_spans_lines_moodle_aiken_r_d2c66676": {
+  "js_aiken_core_question_the_question_spans_lines_moodle_aiken_r": {
     "value": "Question {$a->p0}: the question spans {$a->p1} lines; Moodle AIKEN requires one line. Review the proposed join.",
     "locations": [
       "aiken-core:214"
@@ -2194,7 +2194,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_aiken_core_question_a_question_number_prefix_was_detected_r_6d00a104": {
+  "js_aiken_core_question_a_question_number_prefix_was_detected_r": {
     "value": "Question {$a->p0}: a question-number prefix was detected. Remove it only if it is not educational content.",
     "locations": [
       "aiken-core:223"
@@ -2203,7 +2203,7 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_question_trailing_structural_whitespace_can_be_r_707ad856": {
+  "js_aiken_core_question_trailing_structural_whitespace_can_be_r": {
     "value": "Question {$a->p0}: trailing structural whitespace can be removed.",
     "locations": [
       "aiken-core:231"
@@ -2212,7 +2212,7 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_question_at_least_two_usable_answers_are_require_04b6bbd6": {
+  "js_aiken_core_question_at_least_two_usable_answers_are_require": {
     "value": "Question {$a->p0}: at least two usable answers are required.",
     "locations": [
       "aiken-core:239"
@@ -2221,14 +2221,14 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_2_or_more_answers_46d3492f": {
+  "js_aiken_core_2_or_more_answers": {
     "value": "2 or more answers",
     "locations": [
       "aiken-core:239"
     ],
     "params": []
   },
-  "js_aiken_core_question_aiken_supports_at_most_26_single_letter_24051191": {
+  "js_aiken_core_question_aiken_supports_at_most_26_single_letter": {
     "value": "Question {$a->p0}: AIKEN supports at most 26 single-letter answer labels.",
     "locations": [
       "aiken-core:245"
@@ -2237,14 +2237,14 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_26_or_fewer_answers_3e53d097": {
+  "js_aiken_core_26_or_fewer_answers": {
     "value": "26 or fewer answers",
     "locations": [
       "aiken-core:245"
     ],
     "params": []
   },
-  "js_aiken_core_question_answer_label_is_duplicated_8412fc63": {
+  "js_aiken_core_question_answer_label_is_duplicated": {
     "value": "Question {$a->p0}: answer label {$a->p1} is duplicated.",
     "locations": [
       "aiken-core:256"
@@ -2254,7 +2254,7 @@
       "p1: label"
     ]
   },
-  "js_aiken_core_question_answer_labels_must_run_consecutively_fr_62a167f4": {
+  "js_aiken_core_question_answer_labels_must_run_consecutively_fr": {
     "value": "Question {$a->p0}: answer labels must run consecutively from A; Moodle grades AIKEN answers by position.",
     "locations": [
       "aiken-core:262"
@@ -2263,7 +2263,7 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_question_answer_has_no_text_1638ccd8": {
+  "js_aiken_core_question_answer_has_no_text": {
     "value": "Question {$a->p0}: answer {$a->p1} has no text.",
     "locations": [
       "aiken-core:279"
@@ -2273,7 +2273,7 @@
       "p1: label"
     ]
   },
-  "js_aiken_core_question_answer_spans_multiple_lines_moodle_aike_ae3d2798": {
+  "js_aiken_core_question_answer_spans_multiple_lines_moodle_aike": {
     "value": "Question {$a->p0}: answer {$a->p1} spans multiple lines; Moodle AIKEN requires one line. Review the proposed join.",
     "locations": [
       "aiken-core:288"
@@ -2283,7 +2283,7 @@
       "p1: label"
     ]
   },
-  "js_aiken_core_question_answer_uses_a_lowercase_option_label_8bfea6b0": {
+  "js_aiken_core_question_answer_uses_a_lowercase_option_label": {
     "value": "Question {$a->p0}: answer {$a->p1} uses a lowercase option label.",
     "locations": [
       "aiken-core:296"
@@ -2293,7 +2293,7 @@
       "p1: label"
     ]
   },
-  "js_aiken_core_question_answer_needs_one_normal_space_after_2e37e877": {
+  "js_aiken_core_question_answer_needs_one_normal_space_after": {
     "value": "Question {$a->p0}: answer {$a->p1} needs one normal space after {$a->p2}{$a->p3}.",
     "locations": [
       "aiken-core:303"
@@ -2305,7 +2305,7 @@
       "p3: dynamic display value"
     ]
   },
-  "js_aiken_core_question_answer_uses_inconsistent_option_punctua_8f3047d4": {
+  "js_aiken_core_question_answer_uses_inconsistent_option_punctua": {
     "value": "Question {$a->p0}: answer {$a->p1} uses inconsistent option punctuation.",
     "locations": [
       "aiken-core:310"
@@ -2315,7 +2315,7 @@
       "p1: label"
     ]
   },
-  "js_aiken_core_question_the_answer_line_is_missing_eb21560b": {
+  "js_aiken_core_question_the_answer_line_is_missing": {
     "value": "Question {$a->p0}: the ANSWER: line is missing.",
     "locations": [
       "aiken-core:320"
@@ -2324,7 +2324,7 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_question_multiple_answer_lines_conflict_or_dupli_7a3fc04e": {
+  "js_aiken_core_question_multiple_answer_lines_conflict_or_dupli": {
     "value": "Question {$a->p0}: multiple ANSWER: lines conflict or duplicate the answer key.",
     "locations": [
       "aiken-core:327"
@@ -2333,14 +2333,14 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_one_answer_line_9d7ef1b8": {
+  "js_aiken_core_one_answer_line": {
     "value": "One ANSWER: line",
     "locations": [
       "aiken-core:327"
     ],
     "params": []
   },
-  "js_aiken_core_question_standard_moodle_aiken_supports_exactly__85addc0e": {
+  "js_aiken_core_question_standard_moodle_aiken_supports_exactly_": {
     "value": "Question {$a->p0}: standard Moodle AIKEN supports exactly one correct answer, not “{$a->p1}”.",
     "locations": [
       "aiken-core:335"
@@ -2350,14 +2350,14 @@
       "p1: rawValue"
     ]
   },
-  "js_aiken_core_use_a_single_answer_label_or_another_moodle_form_914f73a9": {
+  "js_aiken_core_use_a_single_answer_label_or_another_moodle_form": {
     "value": "Use a single answer label or another Moodle format",
     "locations": [
       "aiken-core:336"
     ],
     "params": []
   },
-  "js_aiken_core_question_answer_must_contain_exactly_one_answer__776eec0b": {
+  "js_aiken_core_question_answer_must_contain_exactly_one_answer_": {
     "value": "Question {$a->p0}: ANSWER must contain exactly one answer letter.",
     "locations": [
       "aiken-core:341"
@@ -2366,7 +2366,7 @@
       "p0: number"
     ]
   },
-  "js_aiken_core_question_answer_references_but_that_answer_does__b9e2712d": {
+  "js_aiken_core_question_answer_references_but_that_answer_does_": {
     "value": "Question {$a->p0}: ANSWER references {$a->p1}, but that answer does not exist.",
     "locations": [
       "aiken-core:348"
@@ -2376,7 +2376,7 @@
       "p1: correct"
     ]
   },
-  "js_aiken_core_question_normalize_the_answer_key_to_answer_da66958b": {
+  "js_aiken_core_question_normalize_the_answer_key_to_answer": {
     "value": "Question {$a->p0}: normalize the answer key to “ANSWER: {$a->p1}”.",
     "locations": [
       "aiken-core:354"
@@ -2386,119 +2386,119 @@
       "p1: correct"
     ]
   },
-  "js_aiken_core_a_review_issue_with_a_proposed_replacement_is_re_87a89d34": {
+  "js_aiken_core_a_review_issue_with_a_proposed_replacement_is_re": {
     "value": "A review issue with a proposed replacement is required.",
     "locations": [
       "aiken-core:418"
     ],
     "params": []
   },
-  "js_aiken_app_question_detected_354a34bb": {
+  "js_aiken_app_question_detected": {
     "value": "question detected",
     "locations": [
       "aiken-app:102"
     ],
     "params": []
   },
-  "js_aiken_app_questions_detected_c2816fe2": {
+  "js_aiken_app_questions_detected": {
     "value": "questions detected",
     "locations": [
       "aiken-app:102"
     ],
     "params": []
   },
-  "js_aiken_app_valid_ec654fac": {
+  "js_aiken_app_valid": {
     "value": "valid",
     "locations": [
       "aiken-app:103"
     ],
     "params": []
   },
-  "js_aiken_app_safely_fixable_062df61e": {
+  "js_aiken_app_safely_fixable": {
     "value": "safely fixable",
     "locations": [
       "aiken-app:104"
     ],
     "params": []
   },
-  "js_aiken_app_require_review_1dc0509a": {
+  "js_aiken_app_require_review": {
     "value": "require review",
     "locations": [
       "aiken-app:105"
     ],
     "params": []
   },
-  "js_aiken_app_blocking_errors_3b54787b": {
+  "js_aiken_app_blocking_errors": {
     "value": "blocking errors",
     "locations": [
       "aiken-app:106"
     ],
     "params": []
   },
-  "js_aiken_app_no_unresolved_aiken_issues_cd032993": {
+  "js_aiken_app_no_unresolved_aiken_issues": {
     "value": "✓ No unresolved AIKEN issues",
     "locations": [
       "aiken-app:127"
     ],
     "params": []
   },
-  "js_aiken_app_every_detected_question_has_canonical_structure__2683399c": {
+  "js_aiken_app_every_detected_question_has_canonical_structure_": {
     "value": "Every detected question has canonical structure and one valid correct answer.",
     "locations": [
       "aiken-app:129"
     ],
     "params": []
   },
-  "js_aiken_app_safe_fix_4cb60fa6": {
+  "js_aiken_app_safe_fix": {
     "value": "Safe fix",
     "locations": [
       "aiken-app:144"
     ],
     "params": []
   },
-  "js_aiken_app_review_required_f0742e3a": {
+  "js_aiken_app_review_required": {
     "value": "Review required",
     "locations": [
       "aiken-app:144"
     ],
     "params": []
   },
-  "js_aiken_app_blocking_error_0b7f69f0": {
+  "js_aiken_app_blocking_error": {
     "value": "Blocking error",
     "locations": [
       "aiken-app:144"
     ],
     "params": []
   },
-  "js_aiken_app_before_9bb72500": {
+  "js_aiken_app_before": {
     "value": "Before",
     "locations": [
       "aiken-app:154"
     ],
     "params": []
   },
-  "js_aiken_app_proposed_9b0c660b": {
+  "js_aiken_app_proposed": {
     "value": "Proposed",
     "locations": [
       "aiken-app:154"
     ],
     "params": []
   },
-  "js_aiken_app_approve_this_change_5a8afe8a": {
+  "js_aiken_app_approve_this_change": {
     "value": "Approve this change",
     "locations": [
       "aiken-app:162"
     ],
     "params": []
   },
-  "js_aiken_app_aiken_validation_passed_677cfb54": {
+  "js_aiken_app_aiken_validation_passed": {
     "value": "AIKEN validation passed",
     "locations": [
       "aiken-app:188"
     ],
     "params": []
   },
-  "js_aiken_app_question_1f5087db": {
+  "js_aiken_app_question": {
     "value": "question",
     "locations": [
       "aiken-app:189",
@@ -2506,7 +2506,7 @@
     ],
     "params": []
   },
-  "js_aiken_app_questions_17d5efa6": {
+  "js_aiken_app_questions": {
     "value": "questions",
     "locations": [
       "aiken-app:189",
@@ -2514,21 +2514,21 @@
     ],
     "params": []
   },
-  "js_aiken_app_formatting_issue_54f88b50": {
+  "js_aiken_app_formatting_issue": {
     "value": "formatting issue",
     "locations": [
       "aiken-app:190"
     ],
     "params": []
   },
-  "js_aiken_app_formatting_issues_3b0955f8": {
+  "js_aiken_app_formatting_issues": {
     "value": "formatting issues",
     "locations": [
       "aiken-app:190"
     ],
     "params": []
   },
-  "js_aiken_app_valid_repaired_0_unresolved_errors_30fc48c4": {
+  "js_aiken_app_valid_repaired_0_unresolved_errors": {
     "value": "{$a->p0} {$a->p1} · {$a->p2} valid · {$a->p3} {$a->p4} repaired · 0 unresolved errors",
     "locations": [
       "aiken-app:191"
@@ -2541,14 +2541,14 @@
       "p4: repairNoun"
     ]
   },
-  "js_aiken_app_download_is_disabled_until_validation_passes_8f640669": {
+  "js_aiken_app_download_is_disabled_until_validation_passes": {
     "value": "Download is disabled until validation passes",
     "locations": [
       "aiken-app:194"
     ],
     "params": []
   },
-  "js_aiken_app_safe_fixes_review_changes_blocking_errors_remain_dda75499": {
+  "js_aiken_app_safe_fixes_review_changes_blocking_errors_remain": {
     "value": "{$a->p0} safe fixes · {$a->p1} review changes · {$a->p2} blocking errors remain.",
     "locations": [
       "aiken-app:195"
@@ -2559,21 +2559,21 @@
       "p2: dynamic display value"
     ]
   },
-  "js_aiken_app_ready_to_download_6cf01301": {
+  "js_aiken_app_ready_to_download": {
     "value": "Ready to download",
     "locations": [
       "aiken-app:199"
     ],
     "params": []
   },
-  "js_aiken_app_revalidation_required_4385d872": {
+  "js_aiken_app_revalidation_required": {
     "value": "Revalidation required",
     "locations": [
       "aiken-app:199"
     ],
     "params": []
   },
-  "js_aiken_app_aiken_validation_passed_for_381e3710": {
+  "js_aiken_app_aiken_validation_passed_for": {
     "value": "AIKEN validation passed for {$a->p0} {$a->p1}.",
     "locations": [
       "aiken-app:216"
@@ -2583,7 +2583,7 @@
       "p1: questionNoun"
     ]
   },
-  "js_aiken_app_aiken_checked_blocking_errors_remain_9d87626c": {
+  "js_aiken_app_aiken_checked_blocking_errors_remain": {
     "value": "AIKEN checked. {$a->p0} blocking errors remain.",
     "locations": [
       "aiken-app:217"
@@ -2592,28 +2592,28 @@
       "p0: dynamic display value"
     ]
   },
-  "js_aiken_app_this_file_is_not_valid_utf_8_save_it_as_utf_8_th_dd4eb101": {
+  "js_aiken_app_this_file_is_not_valid_utf_8_save_it_as_utf_8_th": {
     "value": "This file is not valid UTF-8. Save it as UTF-8, then try again.",
     "locations": [
       "aiken-app:225"
     ],
     "params": []
   },
-  "js_aiken_app_choose_a_moodle_aiken_txt_file_51cc6f07": {
+  "js_aiken_app_choose_a_moodle_aiken_txt_file": {
     "value": "Choose a Moodle AIKEN .txt file.",
     "locations": [
       "aiken-app:234"
     ],
     "params": []
   },
-  "js_aiken_app_this_file_is_larger_than_5_mb_split_it_into_smal_2723631a": {
+  "js_aiken_app_this_file_is_larger_than_5_mb_split_it_into_smal": {
     "value": "This file is larger than 5 MB. Split it into smaller AIKEN files and try again.",
     "locations": [
       "aiken-app:238"
     ],
     "params": []
   },
-  "js_aiken_app_kb_selected_ba1c0250": {
+  "js_aiken_app_kb_selected": {
     "value": "{$a->p0} · {$a->p1} KB selected",
     "locations": [
       "aiken-app:245"
@@ -2623,7 +2623,7 @@
       "p1: dynamic display value"
     ]
   },
-  "js_aiken_app_loaded_locally_select_check_aiken_to_continue_f517716f": {
+  "js_aiken_app_loaded_locally_select_check_aiken_to_continue": {
     "value": "{$a->p0} loaded locally. Select Check AIKEN to continue.",
     "locations": [
       "aiken-app:247"
@@ -2632,14 +2632,14 @@
       "p0: dynamic display value"
     ]
   },
-  "js_aiken_app_upload_or_paste_at_least_one_aiken_question_befo_c7939a1b": {
+  "js_aiken_app_upload_or_paste_at_least_one_aiken_question_befo": {
     "value": "Upload or paste at least one AIKEN question before checking.",
     "locations": [
       "aiken-app:258"
     ],
     "params": []
   },
-  "js_aiken_app_safe_formatting_issues_fixed_review_changes_were_b8d41107": {
+  "js_aiken_app_safe_formatting_issues_fixed_review_changes_were": {
     "value": "{$a->p0} safe formatting issues fixed. Review changes were not applied.",
     "locations": [
       "aiken-app:324"
@@ -2648,140 +2648,140 @@
       "p0: fixedCount"
     ]
   },
-  "js_aiken_app_the_reviewed_change_was_applied_and_the_complete_51eca19e": {
+  "js_aiken_app_the_reviewed_change_was_applied_and_the_complete": {
     "value": "The reviewed change was applied and the complete AIKEN text was revalidated.",
     "locations": [
       "aiken-app:335"
     ],
     "params": []
   },
-  "js_aiken_app_the_original_aiken_input_was_restored_c1a0df65": {
+  "js_aiken_app_the_original_aiken_input_was_restored": {
     "value": "The original AIKEN input was restored.",
     "locations": [
       "aiken-app:342"
     ],
     "params": []
   },
-  "js_aiken_app_checking_changes_40cd7c8f": {
+  "js_aiken_app_checking_changes": {
     "value": "Checking changes…",
     "locations": [
       "aiken-app:348"
     ],
     "params": []
   },
-  "js_aiken_app_download_remains_disabled_until_the_corrected_ai_06443bb7": {
+  "js_aiken_app_download_remains_disabled_until_the_corrected_ai": {
     "value": "Download remains disabled until the corrected AIKEN passes validation.",
     "locations": [
       "aiken-app:356"
     ],
     "params": []
   },
-  "ui_choose_a_file_review_the_complete_question_bank__b8bbfb76": {
+  "ui_choose_a_file_review_the_complete_question_bank_": {
     "value": "Choose a file, review the complete question bank, then download XML or import into Moodle.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_conversion_progress_87a3edfb": {
+  "ui_conversion_progress": {
     "value": "Conversion progress",
     "locations": [
       "converter:aria-label"
     ],
     "params": []
   },
-  "ui_upload_865e89de": {
+  "ui_upload": {
     "value": "Upload",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_analyse_d8673f98": {
+  "ui_analyse": {
     "value": "Analyse",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_settings_74a883a0": {
+  "ui_settings": {
     "value": "Settings",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_review_aff0766a": {
+  "ui_review": {
     "value": "Review",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_import_2cff9baa": {
+  "ui_import": {
     "value": "Import",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_step_1_of_5_13983850": {
+  "ui_step_1_of_5": {
     "value": "Step 1 of 5",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_upload_your_questions_31642d01": {
+  "ui_upload_your_questions": {
     "value": "Upload your questions",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_csv_or_txt_up_to_5_mb_ae4e7fc3": {
+  "ui_csv_or_txt_up_to_5_mb": {
     "value": "CSV or TXT · up to 5 MB",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_drop_your_file_here_6d2c22b8": {
+  "ui_drop_your_file_here": {
     "value": "Drop your file here",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_or_choose_it_from_your_device_5b506c9c": {
+  "ui_or_choose_it_from_your_device": {
     "value": "or choose it from your device",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_choose_file_b09c73d9": {
+  "ui_choose_file": {
     "value": "Choose file",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_need_a_starting_point_e73f0076": {
+  "ui_need_a_starting_point": {
     "value": "Need a starting point?",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_basic_stays_simple_advanced_adds_moodle_metadata_e3ee2bf9": {
+  "ui_basic_stays_simple_advanced_adds_moodle_metadata": {
     "value": "Basic stays simple; Advanced adds Moodle metadata and six question types.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_basic_csv_9354212e": {
+  "ui_basic_csv": {
     "value": "Basic CSV",
     "locations": [
       "converter:text",
@@ -2789,7 +2789,7 @@
     ],
     "params": []
   },
-  "ui_advanced_csv_9e103aa8": {
+  "ui_advanced_csv": {
     "value": "Advanced CSV",
     "locations": [
       "converter:text",
@@ -2797,14 +2797,14 @@
     ],
     "params": []
   },
-  "ui_advanced_csv_types_1c1bc7e1": {
+  "ui_advanced_csv_types": {
     "value": "Advanced CSV types:",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_and_6201111b": {
+  "ui_and": {
     "value": "and",
     "locations": [
       "converter:text",
@@ -2812,56 +2812,56 @@
     ],
     "params": []
   },
-  "ui_download_the_six_type_example_44f54be0": {
+  "ui_download_the_six_type_example": {
     "value": "Download the six-type example",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_i_understand_that_file_analysis_happens_in_this__d1919ac8": {
+  "ui_i_understand_that_file_analysis_happens_in_this_": {
     "value": "I understand that file analysis happens in this browser. Confirming import sends the prepared questions to this Moodle site.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_analysis_stays_in_your_browser_questions_are_sen_9047f4fc": {
+  "ui_analysis_stays_in_your_browser_questions_are_sen": {
     "value": "Analysis stays in your browser. Questions are sent to Moodle only when you confirm import.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_need_help_preparing_a_file_969140c3": {
+  "ui_need_help_preparing_a_file": {
     "value": "Need help preparing a file?",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_open_the_guide_faq_7ce03f21": {
+  "ui_open_the_guide_faq": {
     "value": "Open the Guide & FAQ",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_analyse_questions_fe0dce9c": {
+  "ui_analyse_questions": {
     "value": "Analyse questions",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_step_2_of_5_15d0cd79": {
+  "ui_step_2_of_5": {
     "value": "Step 2 of 5",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_here_s_what_we_found_b68c4edd": {
+  "ui_here_s_what_we_found": {
     "value": "Here’s what we found",
     "locations": [
       "converter:text",
@@ -2869,7 +2869,7 @@
     ],
     "params": []
   },
-  "ui_utf_8_cda0b07e": {
+  "ui_utf_8": {
     "value": "✓ UTF-8",
     "locations": [
       "converter:text",
@@ -2877,28 +2877,28 @@
     ],
     "params": []
   },
-  "ui_help_us_match_your_columns_b906bfb1": {
+  "ui_help_us_match_your_columns": {
     "value": "Help us match your columns",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_choose_a_role_for_each_column_every_file_needs_o_c7fa68df": {
+  "ui_choose_a_role_for_each_column_every_file_needs_o": {
     "value": "Choose a role for each column. Every file needs one question column, at least two answer columns, and one correct-answer column.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_apply_column_mapping_a8f04708": {
+  "ui_apply_column_mapping": {
     "value": "Apply column mapping",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_back_aceb696a": {
+  "ui_back": {
     "value": "← Back",
     "locations": [
       "converter:text",
@@ -2907,357 +2907,357 @@
     ],
     "params": []
   },
-  "ui_continue_to_settings_7551a0ec": {
+  "ui_continue_to_settings": {
     "value": "Continue to settings",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_step_3_of_5_a2d3cc8e": {
+  "ui_step_3_of_5": {
     "value": "Step 3 of 5",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_choose_your_settings_778dc3d8": {
+  "ui_choose_your_settings": {
     "value": "Choose your settings",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_safe_defaults_are_already_selected_66bd9a3e": {
+  "ui_safe_defaults_are_already_selected": {
     "value": "Safe defaults are already selected",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_question_category_bd1b244c": {
+  "ui_question_category": {
     "value": "Question category",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_optional_59be7133": {
+  "ui_optional": {
     "value": "Optional",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_e_g_week_3_european_capitals_130deca5": {
+  "ui_e_g_week_3_european_capitals": {
     "value": "e.g. Week 3 / European capitals",
     "locations": [
       "converter:placeholder"
     ],
     "params": []
   },
-  "ui_used_in_the_xml_download_direct_import_uses_the__97f1aa24": {
+  "ui_used_in_the_xml_download_direct_import_uses_the_": {
     "value": "Used in the XML download. Direct import uses the destination selected in the final step.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_shuffle_answers_fad4787e": {
+  "ui_shuffle_answers": {
     "value": "Shuffle answers",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_sets_the_default_for_exported_questions_advanced_8e8b9360": {
+  "ui_sets_the_default_for_exported_questions_advanced": {
     "value": "Sets the default for exported questions. Advanced CSV questions with an explicit",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_value_keep_their_per_question_setting_7ee2670c": {
+  "ui_value_keep_their_per_question_setting": {
     "value": "value keep their per-question setting.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_generate_question_names_96bec212": {
+  "ui_generate_question_names": {
     "value": "Generate question names",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_uses_the_first_50_characters_of_each_question_ac6615c4": {
+  "ui_uses_the_first_50_characters_of_each_question": {
     "value": "Uses the first 50 characters of each question.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_remove_question_numbering_61fb2c4f": {
+  "ui_remove_question_numbering": {
     "value": "Remove question numbering",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_removes_detected_numbering_prefixes_such_as_1_1__8411a1e1": {
+  "ui_removes_detected_numbering_prefixes_such_as_1_1_": {
     "value": "Removes detected numbering prefixes such as 1., 1), Q1. or Question 1: from question text.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_capitalize_answer_text_75889690": {
+  "ui_capitalize_answer_text": {
     "value": "Capitalize answer text",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_capitalizes_the_first_character_while_leaving_th_ebbed6b3": {
+  "ui_capitalizes_the_first_character_while_leaving_th": {
     "value": "Capitalizes the first character while leaving the rest unchanged.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_answer_choice_labels_f1b172a3": {
+  "ui_answer_choice_labels": {
     "value": "Answer choice labels",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_a_b_c_aa8e1e20": {
+  "ui_a_b_c": {
     "value": "a, b, c…",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_a_b_c_51f9a7aa": {
+  "ui_a_b_c_2": {
     "value": "A, B, C…",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_no_numbering_b3d03f09": {
+  "ui_no_numbering": {
     "value": "No numbering",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_controls_how_answer_choices_are_labelled_in_mood_e952bb0f": {
+  "ui_controls_how_answer_choices_are_labelled_in_mood": {
     "value": "Controls how answer choices are labelled in Moodle. This does not affect numbering in the question text.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_review_questions_e2fd5ab9": {
+  "ui_review_questions": {
     "value": "Review questions",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_step_4_of_5_fa5155a5": {
+  "ui_step_4_of_5": {
     "value": "Step 4 of 5",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_review_your_questions_2388b224": {
+  "ui_review_your_questions": {
     "value": "Review your questions",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_ready_to_export_47942aa3": {
+  "ui_ready_to_export": {
     "value": "Ready to export",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_find_questions_1c1b3aca": {
+  "ui_find_questions": {
     "value": "Find questions",
     "locations": [
       "converter:aria-label"
     ],
     "params": []
   },
-  "ui_search_questions_7fa8a1cf": {
+  "ui_search_questions": {
     "value": "Search questions",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_search_questions_fd859bef": {
+  "ui_search_questions_2": {
     "value": "Search questions…",
     "locations": [
       "converter:placeholder"
     ],
     "params": []
   },
-  "ui_clear_search_3b7ea517": {
+  "ui_clear_search": {
     "value": "Clear search",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_filter_questions_by_status_80c927ad": {
+  "ui_filter_questions_by_status": {
     "value": "Filter questions by status",
     "locations": [
       "converter:aria-label"
     ],
     "params": []
   },
-  "ui_all_a52ace42": {
+  "ui_all": {
     "value": "All",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_warnings_0e04cd10": {
+  "ui_warnings": {
     "value": "Warnings",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_errors_cb702378": {
+  "ui_errors": {
     "value": "Errors",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_question_preview_b700dffc": {
+  "ui_question_preview": {
     "value": "Question preview",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_questions_per_page_6b7d61fd": {
+  "ui_questions_per_page": {
     "value": "Questions per page",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_question_preview_pages_d4cff244": {
+  "ui_question_preview_pages": {
     "value": "Question preview pages",
     "locations": [
       "converter:aria-label"
     ],
     "params": []
   },
-  "ui_previous_a57b08a4": {
+  "ui_previous": {
     "value": "Previous",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_next_1ff57a29": {
+  "ui_next": {
     "value": "Next",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_resolve_the_errors_in_the_preview_before_exporti_93e1c19c": {
+  "ui_resolve_the_errors_in_the_preview_before_exporti": {
     "value": "Resolve the errors in the preview before exporting Moodle XML.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_generate_moodle_xml_f0275228": {
+  "ui_generate_moodle_xml": {
     "value": "Generate Moodle XML",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_conversion_complete_76529479": {
+  "ui_conversion_complete": {
     "value": "Conversion complete",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_moodle_xml_validation_passed_4e1309ce": {
+  "ui_moodle_xml_validation_passed": {
     "value": "Moodle XML validation passed",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_review_the_destination_below_then_confirm_import_aab33bdb": {
+  "ui_review_the_destination_below_then_confirm_import": {
     "value": "Review the destination below, then confirm import or download the XML.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_import_into_moodle_467d6413": {
+  "ui_import_into_moodle": {
     "value": "Import into Moodle",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_i_have_reviewed_these_questions_and_want_to_add__6283e218": {
+  "ui_i_have_reviewed_these_questions_and_want_to_add_": {
     "value": "I have reviewed these questions and want to add them to the selected category.",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_download_moodle_xml_bb279fef": {
+  "ui_download_moodle_xml": {
     "value": "Download Moodle XML",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_start_a_new_conversion_53cb905c": {
+  "ui_start_a_new_conversion": {
     "value": "Start a new conversion",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_preparing_your_questions_1dafaa7b": {
+  "ui_preparing_your_questions": {
     "value": "Preparing your questions",
     "locations": [
       "converter:aria-label"
     ],
     "params": []
   },
-  "ui_preparing_your_questions_9c813fe0": {
+  "ui_preparing_your_questions_2": {
     "value": "Preparing your questions…",
     "locations": [
       "converter:text"
     ],
     "params": []
   },
-  "ui_this_happens_privately_in_your_browser_4d3e4042": {
+  "ui_this_happens_privately_in_your_browser": {
     "value": "This happens privately in your browser.",
     "locations": [
       "converter:text",
@@ -3265,357 +3265,357 @@
     ],
     "params": []
   },
-  "ui_uniquiz_v0_7_0_browser_only_utility_fa0b46a2": {
+  "ui_uniquiz_v0_7_0_browser_only_utility": {
     "value": "UniQuiz v0.7.0 · Browser-only utility",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_aiken_259e11c4": {
+  "ui_aiken": {
     "value": "AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_fixer_3461c4f7": {
+  "ui_fixer": {
     "value": "Fixer",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_fix_common_moodle_aiken_formatting_problems_f8505d7a": {
+  "ui_fix_common_moodle_aiken_formatting_problems": {
     "value": "Fix common Moodle AIKEN formatting problems.",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_upload_or_paste_your_aiken_questions_uniquiz_che_cc23ef53": {
+  "ui_upload_or_paste_your_aiken_questions_uniquiz_che": {
     "value": "Upload or paste your AIKEN questions. UniQuiz checks the structure, explains problems and can repair safe formatting issues.",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_input_36ecb4f8": {
+  "ui_input": {
     "value": "Input",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_upload_or_paste_aiken_56df4e20": {
+  "ui_upload_or_paste_aiken": {
     "value": "Upload or paste AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_browser_only_bfa35eb1": {
+  "ui_browser_only": {
     "value": "🔒 Browser-only",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_upload_aiken_b3d1986e": {
+  "ui_upload_aiken": {
     "value": "Upload AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_choose_a_utf_8_b9f3e01e": {
+  "ui_choose_a_utf_8": {
     "value": "Choose a UTF-8",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_file_up_to_5_mb_b5a1089c": {
+  "ui_file_up_to_5_mb": {
     "value": "file, up to 5 MB.",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_choose_aiken_file_90129254": {
+  "ui_choose_aiken_file": {
     "value": "Choose AIKEN file",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_or_drop_an_aiken_file_here_576735d2": {
+  "ui_or_drop_an_aiken_file_here": {
     "value": "or drop an AIKEN file here",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_paste_aiken_43f53e35": {
+  "ui_paste_aiken": {
     "value": "Paste AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_paste_one_or_more_complete_questions_c4475af0": {
+  "ui_paste_one_or_more_complete_questions": {
     "value": "Paste one or more complete questions.",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_what_is_the_capital_of_hungary_a_vienna_b_budape_6495cd51": {
+  "ui_what_is_the_capital_of_hungary_a_vienna_b_budape": {
     "value": "What is the capital of Hungary?\nA. Vienna\nB. Budapest\nANSWER: B",
     "locations": [
       "aiken:placeholder"
     ],
     "params": []
   },
-  "ui_question_content_remains_in_this_browser_tab_it__149809b3": {
+  "ui_question_content_remains_in_this_browser_tab_it_": {
     "value": "Question content remains in this browser tab. It is not uploaded, stored, or sent to an external correction service.",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_check_aiken_3726455b": {
+  "ui_check_aiken": {
     "value": "Check AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_analysis_e70d8eb9": {
+  "ui_analysis": {
     "value": "Analysis",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_fix_all_safe_issues_20b96789": {
+  "ui_fix_all_safe_issues": {
     "value": "Fix all safe issues",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_reset_to_original_7b591d09": {
+  "ui_reset_to_original": {
     "value": "Reset to original",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_corrected_aiken_ee4d8a36": {
+  "ui_corrected_aiken": {
     "value": "Corrected AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_you_can_edit_the_text_directly_uniquiz_reparses__9badc87b": {
+  "ui_you_can_edit_the_text_directly_uniquiz_reparses_": {
     "value": "You can edit the text directly. UniQuiz reparses every change.",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_corrected_aiken_text_b0572b7f": {
+  "ui_corrected_aiken_text": {
     "value": "Corrected AIKEN text",
     "locations": [
       "aiken:aria-label"
     ],
     "params": []
   },
-  "ui_need_moodle_xml_open_uniquiz_converter_5dad4c4a": {
+  "ui_need_moodle_xml_open_uniquiz_converter": {
     "value": "Need Moodle XML? Open UniQuiz Converter →",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_download_corrected_aiken_75fb01df": {
+  "ui_download_corrected_aiken": {
     "value": "Download corrected AIKEN",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_checking_aiken_c95b0616": {
+  "ui_checking_aiken": {
     "value": "Checking AIKEN",
     "locations": [
       "aiken:aria-label"
     ],
     "params": []
   },
-  "ui_checking_aiken_structure_6177cd12": {
+  "ui_checking_aiken_structure": {
     "value": "Checking AIKEN structure…",
     "locations": [
       "aiken:text"
     ],
     "params": []
   },
-  "ui_open_uniquiz_from_the_question_bank_menu_choose__1059cdb4": {
+  "ui_open_uniquiz_from_the_question_bank_menu_choose_": {
     "value": "Open UniQuiz from the question bank menu. Choose a UTF-8 CSV or TXT file (up to 5 MB), review the analysis, choose settings, and review every warning or error. You can then download Moodle XML or confirm a direct import.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_basic_csv_makes_multiple_choice_questions_the_co_bbc9a128": {
+  "ui_basic_csv_makes_multiple_choice_questions_the_co": {
     "value": "Basic CSV makes Multiple Choice questions. The correct column accepts one answer label or several labels. Headings can be recognized automatically or mapped manually. Commas, semicolons and tabs are detected; quote values containing delimiters or line breaks.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_download_basic_csv_1eaddc87": {
+  "ui_download_basic_csv": {
     "value": "Download Basic CSV",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_use_c36d819e": {
+  "ui_use": {
     "value": "Use",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_to_mix_85085280": {
+  "ui_to_mix": {
     "value": "to mix",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_optional_fields_include_question_name_category_g_5b7891b9": {
+  "ui_optional_fields_include_question_name_category_g": {
     "value": ". Optional fields include question_name, category, general_feedback, default_mark, shuffle_answers, answer_numbering, single, answer_N_fraction, answer_N_feedback, answer_N_tolerance, case_sensitive and tags. Use semicolons between tags. Omit unused optional columns.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_for_multiple_choice_positive_fractions_must_tota_4dec0c89": {
+  "ui_for_multiple_choice_positive_fractions_must_tota": {
     "value": "For Multiple Choice, positive fractions must total 100. Do not mix explicit fractions with the Basic correct column in one row. Short Answer and Numerical support multiple accepted answers and require an answer worth 100%. Numerical accepts numbers and non-negative tolerances; units, formulas and calculated questions are unsupported. Essay and Description have no answer columns.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_the_two_column_question_answer_shorthand_accepts_9210958d": {
+  "ui_the_two_column_question_answer_shorthand_accepts": {
     "value": "The two-column question,answer shorthand accepts true or false and retains UniQuiz's two-option Multiple Choice output. Use type=truefalse with explicit true/false answers for native Moodle True/False.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_download_advanced_csv_320bfe67": {
+  "ui_download_advanced_csv": {
     "value": "Download Advanced CSV",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_download_all_six_types_8afed5c8": {
+  "ui_download_all_six_types": {
     "value": "Download all six types",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_structured_txt_and_aiken_cf4aa23c": {
+  "ui_structured_txt_and_aiken": {
     "value": "Structured TXT and AIKEN",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_separate_questions_with_blank_lines_structured_t_49f7f931": {
+  "ui_separate_questions_with_blank_lines_structured_t": {
     "value": "Separate questions with blank lines. Structured TXT supports multiple correct labels. The AIKEN fixer is a separate tab: it repairs safe formatting problems and downloads corrected AIKEN. Review any proposed change that joins lines or removes numbering before accepting it.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_review_and_import_7ad4a60a": {
+  "ui_review_and_import": {
     "value": "Review and import",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_errors_block_the_complete_bank_including_questio_276b6544": {
+  "ui_errors_block_the_complete_bank_including_questio": {
     "value": "Errors block the complete bank, including questions hidden by search or pagination. Warnings allow export but deserve review. Preview filters never change which questions are exported or imported.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_shuffle_and_answer_label_settings_apply_to_multi_409c1e76": {
+  "ui_shuffle_and_answer_label_settings_apply_to_multi": {
     "value": "Shuffle and answer-label settings apply to Multiple Choice. Explicit Advanced CSV settings take precedence. Capitalization does not change Short Answer accepted values. Numbering removal can be disabled to preserve original prefixes.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_at_the_final_step_select_a_destination_category__929dd083": {
+  "ui_at_the_final_step_select_a_destination_category_": {
     "value": "At the final step select a destination category and confirm. Direct import puts every question into that category and creates new questions. It does not update existing questions or create categories from source paths. Category paths remain in downloaded XML, which can be imported separately using Moodle's standard import options.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_direct_import_accepts_up_to_500_questions_and_8__0af0cb27": {
+  "ui_direct_import_accepts_up_to_500_questions_and_8_": {
     "value": "Direct import accepts up to 500 questions and 8 MB of generated XML, subject to your Moodle server's request limits. Larger valid banks remain downloadable as XML. The server independently validates each request. If a batch fails before commit, its database changes are rolled back. Other tabs in the same Moodle session may wait while an import is running.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_question_text_multiple_choice_answers_and_feedba_2ebc2b65": {
+  "ui_question_text_multiple_choice_answers_and_feedba": {
     "value": "Question text, Multiple Choice answers and feedback are plain text: angle brackets and ampersands stay visible, and line breaks are preserved. HTML source is not interpreted as formatting. Short Answer accepted values remain literal. Invalid XML characters are reported during analysis; correct them in the source rather than silently losing text. Tags and question names are limited to 255 characters.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_server_validation_errors_identify_the_question_a_bfc079bd": {
+  "ui_server_validation_errors_identify_the_question_a": {
     "value": "Server validation errors identify the question and field when possible. For an unexpected error, give the displayed reference to your Moodle administrator. If the connection drops or the result is unconfirmed, check the question bank before starting another batch.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_direct_import_also_limits_each_question_to_100_a_4cb5a0e3": {
+  "ui_direct_import_also_limits_each_question_to_100_a": {
     "value": "Direct import also limits each question to 100 answers and 100 tags, each batch to 5000 answers and 5000 tags, 500 category markers and 50000 XML elements, and each text field to 256 KiB. Split or simplify larger sources, or download XML for a separately managed import.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_privacy_and_languages_404cc5d2": {
+  "ui_privacy_and_languages": {
     "value": "Privacy and languages",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_file_reading_mapping_analysis_search_and_preview_b2745cff": {
+  "ui_file_reading_mapping_analysis_search_and_preview": {
     "value": "File reading, mapping, analysis, search and preview run in this browser. Confirming import sends the prepared questions to this Moodle site, where they become normal Moodle question-bank records. UniQuiz does not call an external conversion or AI service. Closing or reloading the page discards unimported work.",
     "locations": [
       "help:text"
     ],
     "params": []
   },
-  "ui_the_interface_and_diagnostics_follow_moodle_s_la_c7f1a7b3": {
+  "ui_the_interface_and_diagnostics_follow_moodle_s_la": {
     "value": "The interface and diagnostics follow Moodle’s language settings. Unicode question content is supported; CSV field names and AIKEN syntax remain unchanged.",
     "locations": [
       "help:text"

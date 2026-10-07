@@ -1,33 +1,87 @@
+{{!
+    @template qbank_uniquiz/help
+
+    UniQuiz interface.
+
+    Example context (json):
+    {
+        "lang": {
+            "ui_open_uniquiz_from_the_question_bank_menu_choose_": "Open UniQuiz from the question bank menu. Choose a UTF-8 CSV or TXT file (up to 5 MB), review the analysis, choose settings, and review every warning or error. You can then download Moodle XML or confirm a direct import.",
+            "ui_basic_csv": "Basic CSV",
+            "ui_basic_csv_makes_multiple_choice_questions_the_co": "Basic CSV makes Multiple Choice questions. The correct column accepts one answer label or several labels. Headings can be recognized automatically or mapped manually. Commas, semicolons and tabs are detected; quote values containing delimiters or line breaks.",
+            "ui_download_basic_csv": "Download Basic CSV",
+            "ui_advanced_csv": "Advanced CSV",
+            "ui_use": "Use",
+            "ui_to_mix": "to mix",
+            "ui_and": "and",
+            "ui_optional_fields_include_question_name_category_g": ". Optional fields include question_name, category, general_feedback, default_mark, shuffle_answers, answer_numbering, single, answer_N_fraction, answer_N_feedback, answer_N_tolerance, case_sensitive and tags. Use semicolons between tags. Omit unused optional columns.",
+            "ui_for_multiple_choice_positive_fractions_must_tota": "For Multiple Choice, positive fractions must total 100. Do not mix explicit fractions with the Basic correct column in one row. Short Answer and Numerical support multiple accepted answers and require an answer worth 100%. Numerical accepts numbers and non-negative tolerances; units, formulas and calculated questions are unsupported. Essay and Description have no answer columns.",
+            "ui_the_two_column_question_answer_shorthand_accepts": "The two-column question,answer shorthand accepts true or false and retains UniQuiz's two-option Multiple Choice output. Use type=truefalse with explicit true/false answers for native Moodle True/False.",
+            "ui_download_advanced_csv": "Download Advanced CSV",
+            "ui_download_all_six_types": "Download all six types",
+            "ui_structured_txt_and_aiken": "Structured TXT and AIKEN",
+            "ui_separate_questions_with_blank_lines_structured_t": "Separate questions with blank lines. Structured TXT supports multiple correct labels. The AIKEN fixer is a separate tab: it repairs safe formatting problems and downloads corrected AIKEN. Review any proposed change that joins lines or removes numbering before accepting it.",
+            "ui_review_and_import": "Review and import",
+            "ui_errors_block_the_complete_bank_including_questio": "Errors block the complete bank, including questions hidden by search or pagination. Warnings allow export but deserve review. Preview filters never change which questions are exported or imported.",
+            "ui_shuffle_and_answer_label_settings_apply_to_multi": "Shuffle and answer-label settings apply to Multiple Choice. Explicit Advanced CSV settings take precedence. Capitalization does not change Short Answer accepted values. Numbering removal can be disabled to preserve original prefixes.",
+            "ui_at_the_final_step_select_a_destination_category_": "At the final step select a destination category and confirm. Direct import puts every question into that category and creates new questions. It does not update existing questions or create categories from source paths. Category paths remain in downloaded XML, which can be imported separately using Moodle's standard import options.",
+            "ui_direct_import_accepts_up_to_500_questions_and_8_": "Direct import accepts up to 500 questions and 8 MB of generated XML, subject to your Moodle server's request limits. Larger valid banks remain downloadable as XML. The server independently validates each request. If a batch fails before commit, its database changes are rolled back. Other tabs in the same Moodle session may wait while an import is running.",
+            "ui_question_text_multiple_choice_answers_and_feedba": "Question text, Multiple Choice answers and feedback are plain text: angle brackets and ampersands stay visible, and line breaks are preserved. HTML source is not interpreted as formatting. Short Answer accepted values remain literal. Invalid XML characters are reported during analysis; correct them in the source rather than silently losing text. Tags and question names are limited to 255 characters.",
+            "ui_server_validation_errors_identify_the_question_a": "Server validation errors identify the question and field when possible. For an unexpected error, give the displayed reference to your Moodle administrator. If the connection drops or the result is unconfirmed, check the question bank before starting another batch.",
+            "ui_direct_import_also_limits_each_question_to_100_a": "Direct import also limits each question to 100 answers and 100 tags, each batch to 5000 answers and 5000 tags, 500 category markers and 50000 XML elements, and each text field to 256 KiB. Split or simplify larger sources, or download XML for a separately managed import.",
+            "ui_privacy_and_languages": "Privacy and languages",
+            "ui_file_reading_mapping_analysis_search_and_preview": "File reading, mapping, analysis, search and preview run in this browser. Confirming import sends the prepared questions to this Moodle site, where they become normal Moodle question-bank records. UniQuiz does not call an external conversion or AI service. Closing or reloading the page discards unimported work.",
+            "ui_the_interface_and_diagnostics_follow_moodle_s_la": "The interface and diagnostics follow Moodle’s language settings. Unicode question content is supported; CSV field names and AIKEN syntax remain unchanged."
+        },
+        "config": "{}",
+        "baseurl": "https://example.invalid/question/bank/uniquiz",
+        "helpurl": "https://example.invalid/help",
+        "converterurl": "https://example.invalid/convert",
+        "bankurl": "https://example.invalid/questions",
+        "categories": [
+            {
+                "id": 1,
+                "name": "Example category",
+                "selected": true
+            }
+        ],
+        "importintro": "Review and confirm import.",
+        "destinationlabel": "Destination",
+        "categorypolicy": "Use this category.",
+        "importconfirm": "Import questions",
+        "returnbank": "Return to question bank"
+    }
+}}
 {{! UniQuiz © 2026 Tamas Kery. GNU GPL v3 or later. }}
 <article class="container">
   <h2>{{#str}}guidetitle, qbank_uniquiz{{/str}}</h2>
-  <p>{{lang.ui_open_uniquiz_from_the_question_bank_menu_choose__1059cdb4}}</p>
-  <h3>{{lang.ui_basic_csv_9354212e}}</h3>
+  <p>{{lang.ui_open_uniquiz_from_the_question_bank_menu_choose_}}</p>
+  <h3>{{lang.ui_basic_csv}}</h3>
   <pre>question_text,answer_1,answer_2,answer_3,correct
 What is the capital of Hungary?,Vienna,Budapest,Prague,B
 Select the prime numbers,2,3,4,"A,B"</pre>
-  <p>{{lang.ui_basic_csv_makes_multiple_choice_questions_the_co_bbc9a128}}</p>
-  <p><a href="{{baseurl}}/examples/uniquiz-template.csv" download>{{lang.ui_download_basic_csv_1eaddc87}}</a></p>
-  <h3>{{lang.ui_advanced_csv_9e103aa8}}</h3>
-  <p>{{lang.ui_use_c36d819e}} <code>type</code> {{lang.ui_to_mix_85085280}} <code>multichoice</code>, <code>truefalse</code>, <code>shortanswer</code>, <code>numerical</code>, <code>essay</code> {{lang.ui_and_6201111b}} <code>description</code>{{lang.ui_optional_fields_include_question_name_category_g_5b7891b9}}</p>
-  <p>{{lang.ui_for_multiple_choice_positive_fractions_must_tota_4dec0c89}}</p>
-  <p>{{lang.ui_the_two_column_question_answer_shorthand_accepts_9210958d}}</p>
-  <p><a href="{{baseurl}}/examples/uniquiz-advanced-template.csv" download>{{lang.ui_download_advanced_csv_320bfe67}}</a> · <a href="{{baseurl}}/examples/uniquiz-question-types.csv" download>{{lang.ui_download_all_six_types_8afed5c8}}</a></p>
-  <h3>{{lang.ui_structured_txt_and_aiken_cf4aa23c}}</h3>
+  <p>{{lang.ui_basic_csv_makes_multiple_choice_questions_the_co}}</p>
+  <p><a href="{{baseurl}}/examples/uniquiz-template.csv" download>{{lang.ui_download_basic_csv}}</a></p>
+  <h3>{{lang.ui_advanced_csv}}</h3>
+  <p>{{lang.ui_use}} <code>type</code> {{lang.ui_to_mix}} <code>multichoice</code>, <code>truefalse</code>, <code>shortanswer</code>, <code>numerical</code>, <code>essay</code> {{lang.ui_and}} <code>description</code>{{lang.ui_optional_fields_include_question_name_category_g}}</p>
+  <p>{{lang.ui_for_multiple_choice_positive_fractions_must_tota}}</p>
+  <p>{{lang.ui_the_two_column_question_answer_shorthand_accepts}}</p>
+  <p><a href="{{baseurl}}/examples/uniquiz-advanced-template.csv" download>{{lang.ui_download_advanced_csv}}</a> · <a href="{{baseurl}}/examples/uniquiz-question-types.csv" download>{{lang.ui_download_all_six_types}}</a></p>
+  <h3>{{lang.ui_structured_txt_and_aiken}}</h3>
   <pre>What is the capital of Hungary?
 A. Vienna
 B. Budapest
 ANSWER: B</pre>
-  <p>{{lang.ui_separate_questions_with_blank_lines_structured_t_49f7f931}}</p>
-  <h3 id="faq">{{lang.ui_review_and_import_7ad4a60a}}</h3>
-  <p>{{lang.ui_errors_block_the_complete_bank_including_questio_276b6544}}</p>
-  <p>{{lang.ui_shuffle_and_answer_label_settings_apply_to_multi_409c1e76}}</p>
-  <p>{{lang.ui_at_the_final_step_select_a_destination_category__929dd083}}</p>
-  <p>{{lang.ui_direct_import_accepts_up_to_500_questions_and_8__0af0cb27}}</p>
-  <p>{{lang.ui_question_text_multiple_choice_answers_and_feedba_2ebc2b65}}</p>
-  <p>{{lang.ui_server_validation_errors_identify_the_question_a_bfc079bd}}</p>
-  <p>{{lang.ui_direct_import_also_limits_each_question_to_100_a_4cb5a0e3}}</p>
-  <h3>{{lang.ui_privacy_and_languages_404cc5d2}}</h3>
-  <p>{{lang.ui_file_reading_mapping_analysis_search_and_preview_b2745cff}}</p>
-  <p>{{lang.ui_the_interface_and_diagnostics_follow_moodle_s_la_c7f1a7b3}}</p>
+  <p>{{lang.ui_separate_questions_with_blank_lines_structured_t}}</p>
+  <h3 id="faq">{{lang.ui_review_and_import}}</h3>
+  <p>{{lang.ui_errors_block_the_complete_bank_including_questio}}</p>
+  <p>{{lang.ui_shuffle_and_answer_label_settings_apply_to_multi}}</p>
+  <p>{{lang.ui_at_the_final_step_select_a_destination_category_}}</p>
+  <p>{{lang.ui_direct_import_accepts_up_to_500_questions_and_8_}}</p>
+  <p>{{lang.ui_question_text_multiple_choice_answers_and_feedba}}</p>
+  <p>{{lang.ui_server_validation_errors_identify_the_question_a}}</p>
+  <p>{{lang.ui_direct_import_also_limits_each_question_to_100_a}}</p>
+  <h3>{{lang.ui_privacy_and_languages}}</h3>
+  <p>{{lang.ui_file_reading_mapping_analysis_search_and_preview}}</p>
+  <p>{{lang.ui_the_interface_and_diagnostics_follow_moodle_s_la}}</p>
 </article>

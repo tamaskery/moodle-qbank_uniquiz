@@ -1,0 +1,32 @@
+{
+  "questionCount": 1,
+  "scenarios": {
+    "v044-warning-diagnostic": {
+      "shuffleAnswers": true,
+      "answerNumbering": "abc",
+      "capitalizeAnswers": false,
+      "categoryFromFile": false
+    }
+  },
+  "questions": [
+    {
+      "text": "Which option repeats?",
+      "name": "Which option repeats?",
+      "defaultMark": 1,
+      "generalFeedback": "",
+      "shuffleAnswers": true,
+      "answerNumbering": "abc",
+      "single": true,
+      "correctFeedback": "",
+      "partiallyCorrectFeedback": "",
+      "incorrectFeedback": "",
+      "correct": [0],
+      "answers": [
+        { "text": "Same", "fraction": 100, "feedback": "" },
+        { "text": "Same", "fraction": 0, "feedback": "" },
+        { "text": "Different", "fraction": 0, "feedback": "" }
+      ],
+      "tags": []
+    }
+  ]
+}

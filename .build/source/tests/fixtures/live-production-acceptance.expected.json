@@ -1,0 +1,79 @@
+{
+  "fixtureVersion": 1,
+  "description": "Independent semantic expectations for the synthetic live-production acceptance fixture.",
+  "questionCount": 12,
+  "scenarios": {
+    "default": {
+      "shuffleAnswers": true,
+      "capitalizeAnswers": false,
+      "answerNumbering": "abc"
+    },
+    "shuffle-off-capitalized": {
+      "shuffleAnswers": false,
+      "capitalizeAnswers": true,
+      "answerNumbering": "123"
+    }
+  },
+  "questions": [
+    {
+      "text": "UNIQUIZ_PRIVACY_CANARY_20260813_X7Q9 — What is the capital of Hungary?",
+      "answers": ["Vienna", "Budapest UNIQUIZ_PRIVACY_CANARY_20260813_X7Q9", "Prague", "Warsaw"],
+      "correct": [1]
+    },
+    {
+      "text": "Which numbers are prime?",
+      "answers": ["2", "3", "4", "6"],
+      "correct": [0, 1]
+    },
+    {
+      "text": "Which are primary colours in additive light?",
+      "answers": ["Red", "Green", "Blue", "Yellow"],
+      "correct": [0, 1, 2]
+    },
+    {
+      "text": "Is the statement \"The Earth orbits the Sun\" true?",
+      "answers": ["True", "False", "Only in winter", "Unknown"],
+      "correct": [0]
+    },
+    {
+      "text": "Melyik Magyarország fővárosa?",
+      "answers": ["Bécs", "Budapest", "Prága", "Pozsony"],
+      "correct": [1]
+    },
+    {
+      "text": "Какой город является столицей Венгрии?",
+      "answers": ["Вена", "Будапешт", "Прага", "Варшава"],
+      "correct": [1]
+    },
+    {
+      "text": "ما عاصمة المجر؟",
+      "answers": ["فيينا", "بودابست", "براغ", "وارسو"],
+      "correct": [1]
+    },
+    {
+      "text": "ハンガリーの首都はどこですか？",
+      "answers": ["ウィーン", "ブダペスト", "プラハ", "ワルシャワ"],
+      "correct": [1]
+    },
+    {
+      "text": "Which expression is true: 2 < 3 & 4 > 1?",
+      "answers": ["yes & definitely", "no <never>", "maybe \"sometimes\"", "greater > smaller"],
+      "correct": [0]
+    },
+    {
+      "text": "Which lowercase city should be capitalized by the optional setting?",
+      "answers": ["budapest", "vienna", "prague", "warsaw"],
+      "correct": [0]
+    },
+    {
+      "text": "This deliberately long question checks that generated Moodle question names are truncated safely after exactly fifty Unicode code points without changing the full question text.",
+      "answers": ["Correct long answer", "Incorrect long answer", "Another distractor", "Final distractor"],
+      "correct": [0]
+    },
+    {
+      "text": "匈牙利的首都是哪里？",
+      "answers": ["维也纳", "布达佩斯", "布拉格", "华沙"],
+      "correct": [1]
+    }
+  ]
+}

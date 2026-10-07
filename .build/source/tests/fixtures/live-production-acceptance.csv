@@ -1,0 +1,13 @@
+Question,Answer A,Answer B,Answer C,Answer D,Correct
+UNIQUIZ_PRIVACY_CANARY_20260813_X7Q9 — What is the capital of Hungary?,Vienna,Budapest UNIQUIZ_PRIVACY_CANARY_20260813_X7Q9,Prague,Warsaw,B
+Which numbers are prime?,2,3,4,6,"A,B"
+Which are primary colours in additive light?,Red,Green,Blue,Yellow,"A,B,C"
+"Is the statement ""The Earth orbits the Sun"" true?",True,False,Only in winter,Unknown,A
+Melyik Magyarország fővárosa?,Bécs,Budapest,Prága,Pozsony,B
+Какой город является столицей Венгрии?,Вена,Будапешт,Прага,Варшава,B
+ما عاصمة المجر؟,فيينا,بودابست,براغ,وارسو,B
+ハンガリーの首都はどこですか？,ウィーン,ブダペスト,プラハ,ワルシャワ,B
+"Which expression is true: 2 < 3 & 4 > 1?",yes & definitely,no <never>,"maybe ""sometimes""",greater > smaller,A
+Which lowercase city should be capitalized by the optional setting?,budapest,vienna,prague,warsaw,A
+This deliberately long question checks that generated Moodle question names are truncated safely after exactly fifty Unicode code points without changing the full question text.,Correct long answer,Incorrect long answer,Another distractor,Final distractor,A
+匈牙利的首都是哪里？,维也纳,布达佩斯,布拉格,华沙,B
