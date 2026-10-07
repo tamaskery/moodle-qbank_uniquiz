@@ -46,6 +46,7 @@ jobs:
         working-directory: plugin
         run: |
           npm ci --prefix .build/tools
+          npm ci --prefix .build/moodle --ignore-scripts
           node .build/tools/build.mjs
           git diff --exit-code -- amd templates lang styles.css examples ENGINE-SOURCES.json
           node --test .build/source/tests/*.test.js

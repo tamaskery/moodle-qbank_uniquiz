@@ -2,9 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import {transformAsync} from '@babel/core';
-import amd from '@babel/plugin-transform-modules-amd';
-import {minify} from 'terser';
+import {compileAmd} from './compile-amd.mjs';
 import postcss from 'postcss';
 import {localizeJavaScript, localizeTemplate, languagePhp, catalogue} from './localize.mjs';
 import {formatJavaScript} from './format.mjs';
@@ -64,16 +62,7 @@ for (const name of ['core', 'preview', 'timing', 'app', 'aiken-core', 'aiken-app
     source = await formatJavaScript(source, `${name}.js`);
     if (name === 'aiken-app') source = source.replace('init = (config)', 'init = ()');
     await write(`amd/src/${name}.js`, banner + source);
-    const compiled = await transformAsync(banner + source, {
-        sourceMaps: true, sourceFileName: `../src/${name}.js`,
-        plugins: [[amd, {moduleIds: true, moduleId: `qbank_uniquiz/${name}`}]],
-    });
-    const built = await minify(compiled.code, {
-        format: {comments: false, preamble: banner.trim()},
-        sourceMap: {content: compiled.map, filename: `${name}.min.js`, url: `${name}.min.js.map`, includeSources: true},
-    });
-    await write(`amd/build/${name}.min.js`, built.code + '\n');
-    await write(`amd/build/${name}.min.js.map`, built.map + '\n');
+    await compileAmd(name);
 }
 
 // Extract the proven UI, with only the Moodle-specific shell, links and final hand-off changed.

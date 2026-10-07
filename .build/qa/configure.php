@@ -13,6 +13,9 @@ $extra = <<<'PHP'
 $CFG->wwwroot = 'http://127.0.0.1:18080';
 $CFG->prefix = 'uqaccept_';
 $CFG->dataroot .= '/uniquiz_acceptance';
+if (!is_dir($CFG->dataroot)) {
+    mkdir($CFG->dataroot, 0770, true);
+}
 $CFG->noemailever = true;
 $CFG->passwordpolicy = 0;
 PHP;
