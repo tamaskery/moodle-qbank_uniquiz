@@ -8,11 +8,12 @@ To rebuild generated AMD JavaScript, source maps, templates, styles and English 
 
 ```sh
 npm ci --prefix .build/tools
+npm ci --prefix .build/moodle --ignore-scripts
 node .build/tools/build.mjs
 ```
 
 Edit `.build/source` and `.build/tools`, then rebuild. Do not edit generated AMD files directly. `ENGINE-SOURCES.json` paths are relative to `.build/source`.
 
-The CI workflow runs Moodle Plugin CI against PostgreSQL and MariaDB. All checks are required for submission readiness; a failing job must not be represented as a pass. The reviewed 0.1.4 beta still has known release gates listed in QA.md. Semantic translation keys must be migrated before translation work or a stable release.
+The CI workflow runs Moodle Plugin CI against PostgreSQL and MariaDB. All checks are required for submission readiness; a failing job must not be represented as a pass. See QA.md for candidate results and remaining deployment gates. Stable translation keys are held in the explicit registry; preserve keys when editing English copy, as described in TRANSLATING.md.
 
 Use an explicit release version increase for distributable changes. Build tooling and CI files are excluded by `git archive` export rules; development dependencies and private site configuration must never enter release packages.

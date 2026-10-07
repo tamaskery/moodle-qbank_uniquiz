@@ -1,6 +1,6 @@
 # Translating UniQuiz
 
-Version 0.1.2 routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. The package includes English fallback strings, not a completed non-English translation.
+UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. The package includes English fallback strings, not a completed non-English translation.
 
 ## Site administrators and translators
 
@@ -25,4 +25,4 @@ The complete 0.1.4-to-0.1.5 key map is published in `.build/tools/language-key-m
 
 Source locations and placeholder descriptions are in the build catalogue. The English language file is kept sorted and unique. The registry and migration map are development resources in the public repository, excluded from installable archives.
 
-Before release, run `node .build/tools/check-language.mjs`, `node .build/tools/check-assets.mjs`, and the real Moodle browser suites. The 0.1.2 audit tested English and a deliberately modified language pack, including hostile HTML in a template attribute and a diagnostic, on Moodle 4.5 and 5.2. That proves the tested wiring/escaping and export invariance, not linguistic quality, complete RTL layout or every locale's grammar.
+Before release, run `node .build/tools/check-language.mjs`, `node .build/tools/check-assets.mjs`, and the real Moodle browser suites. See QA.md for candidate pseudolanguage and hostile-translation checks. These test wiring, escaping and export invariance; they do not establish linguistic quality, complete RTL layout or every locale's grammar.

@@ -1,14 +1,14 @@
-# UniQuiz for Moodle — qbank_uniquiz 0.1.4 beta
+# UniQuiz for Moodle — qbank_uniquiz 0.1.5 beta
 
 A native question-bank preparation wizard using the UniQuiz 0.7.0 browser engine. Select CSV/TXT, map columns, analyse, choose settings, search and review the full bank, then download Moodle XML or explicitly confirm direct import. Includes the AIKEN fixer as a separate tab.
 
 ## Install
 
-Install `qbank_uniquiz-0.1.4.zip` using **Site administration → Plugins → Install plugins**, or copy the `uniquiz` folder into `question/bank/uniquiz`. For Moodle 5.2 and 5.3 this is under the `public` directory. Complete the Moodle upgrade process. When upgrading an existing installation, replace its plugin files and run Moodle's upgrade; no plugin database migration is needed.
+Install `qbank_uniquiz-0.1.5.zip` using **Site administration → Plugins → Install plugins**, or copy the `uniquiz` folder into `question/bank/uniquiz`. For Moodle 5.2 and 5.3 this is under the `public` directory. Complete the Moodle upgrade process. When upgrading an existing installation, replace its plugin files and run Moodle's upgrade; no plugin database migration is needed.
 
 Open a question bank and select **UniQuiz** from its action menu. The plugin uses Moodle's existing `moodle/question:add` capability in the destination context; no additional role grants are required for users who can already import questions. The built-in Moodle XML format (`qformat_xml`) must be available. Enable UniQuiz in the question-bank plugin administration if necessary.
 
-This beta retains the tested 0.1.3 conversion/import implementation and has a new Moodle upgrade version. See the included [QA summary](QA.md) for exact tested versions, results and limits. Test upgrades on your staging site before production use. The optional inclusive `supported` range is deliberately omitted: `[405, 502]` would misleadingly include untested branches. The minimum installation version remains 4.5; this is not a guarantee for every later release. The wizard, guide, AIKEN fixer, diagnostics and server messages use Moodle language strings. English is included as the fallback; additional human translations are not bundled. See [TRANSLATING.md](TRANSLATING.md) for language customization and placeholders. Unicode question content is supported and is never translated automatically.
+This beta adds stable translation identifiers, Moodle-compliant generated assets and automated submission checks. See the included [QA summary](QA.md) for exact tested versions, results and limits. Test upgrades on your staging site before production use. The optional inclusive `supported` range is deliberately omitted: `[405, 502]` would misleadingly include untested branches. The minimum installation version remains 4.5; this is not a guarantee for every later release. The wizard, guide, AIKEN fixer, diagnostics and server messages use Moodle language strings. English is included as the fallback; additional human translations are not bundled. See [TRANSLATING.md](TRANSLATING.md) for language customization and placeholders. Unicode question content is supported and is never translated automatically.
 
 ## Import behavior
 
@@ -37,8 +37,7 @@ The standalone website's “no network connections” policy does not apply to t
 
 GNU GPL v3 or later; see `COPYING.txt`. This licence covers this plugin and the UniQuiz code bundled here, with the author's authorization. It does not change the licence of the separate standalone repository. No artwork or third-party runtime libraries are bundled.
 
-The `amd/src` and `amd/build` modules, wizard templates, namespaced styles, and example CSVs are generated from the shared standalone source by the repository's `moodle-plugin/build-tools/build.mjs`. Version 0.1.1 fixes text fidelity and validation in that shared source, so both builds benefit. `ENGINE-SOURCES.json` records exact source hashes; source maps are bundled. Build tooling is in the source repository, not the installable ZIP. From `moodle-plugin/build-tools`, run `npm ci` followed by `npm run build`. Development dependencies are excluded from the ZIP. Moodle administrators do not need Node.js.
+The `amd/src` and `amd/build` modules, templates, scoped styles and examples are generated from `.build/source` by `.build/tools/build.mjs` in the public source repository. `ENGINE-SOURCES.json` records the source hashes. Source maps are bundled; build tools and dependencies are excluded from the ZIP. Administrators do not need Node.js. See CONTRIBUTING.md in the source repository for rebuild instructions.
 
-Run the repository's `npm test`, plugin browser tests and real-Moodle integration harness before releases. The ZIP includes conventional PHPUnit tests and a Behat navigation scenario; see [QA.md](QA.md) for executed checks and remaining release gates. The plugin inherits the site font but keeps a scoped light wizard palette; arbitrary themes and dark mode are not certified.
-
+The public [source repository](https://github.com/tamaskery/moodle-qbank_uniquiz) includes [automated checks](https://github.com/tamaskery/moodle-qbank_uniquiz/actions) and an [issue tracker](https://github.com/tamaskery/moodle-qbank_uniquiz/issues). See [QA.md](QA.md) for executed checks and remaining limits. The plugin inherits the site font but keeps a scoped light wizard palette; arbitrary themes and dark mode are not certified.
 See [SECURITY.md](SECURITY.md) for this release's scoped security review, safeguards and deployment limitations. This beta is not security-certified; stage-test it and keep Moodle, PHP and the server patched.
