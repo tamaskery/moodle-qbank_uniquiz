@@ -1,6 +1,7 @@
 // Moodle's locked Rollup/Babel/Terser pipeline; see MOODLE-LINT-NOTICE.md.
 import {createRequire} from 'node:module';
 import path from 'node:path';
+import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const require = createRequire(new URL('../moodle/package.json', import.meta.url));
 const {rollup} = require('rollup');
@@ -21,6 +22,11 @@ export async function compileAmd(name) {
                     targets: {chrome: '93', edge: '96', firefox: '95', safari: '13.1', ios: '12.2', samsung: '15'}}]]});
         }
     }, terser({mangle: false, numWorkers: 1})]});
-    await bundle.write({file: path.resolve(here, '../../amd/build', name + '.min.js'), format: 'esm', sourcemap: true});
+    const destination = path.resolve(here, '../../amd/build', name + '.min.js');
+    const result = await bundle.generate({file: destination, format: 'esm', sourcemap: true});
+    const output = result.output[0];
+    // grunt-rollup appends a separate map comment with no trailing newline.
+    await fs.writeFile(destination, output.code + `\n//# sourceMappingURL=${name}.min.js.map`);
+    await fs.writeFile(destination + '.map', String(output.map));
     await bundle.close();
 }

@@ -110,6 +110,7 @@ jobs:
           if [ -d "$WEBROOT/public" ]; then WEBROOT="$WEBROOT/public"; fi
           php plugin/.build/qa/configure.php
           php "$UNIQUIZ_MOODLE_ROOT/admin/cli/install_database.php" --agree-license --fullname='UniQuiz CI' --shortname=uniquizci --adminpass='UniQuizPluginTest!' --adminemail=qa@example.invalid
+          php "$UNIQUIZ_MOODLE_ROOT/admin/cli/adhoc_task.php" --execute
           node plugin/.build/qa/fixtures.mjs
           cp plugin/.build/qa/integration.php "$WEBROOT/question/bank/uniquiz/qa.php"
           php "$WEBROOT/question/bank/uniquiz/qa.php"

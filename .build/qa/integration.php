@@ -48,13 +48,13 @@ function bank(stdClass $course): array {
     return [$category, $context, ['courseid' => $course->id]];
 }
 function testuser(string $username): stdClass {
-    global $DB;
+    global $DB, $CFG;
     $user = $DB->get_record('user', ['username' => $username]);
     if ($user) return $user;
     $id = user_create_user((object)[
         'username' => $username, 'password' => hash_internal_user_password('UniQuizTeacherTest!'),
         'firstname' => 'UniQuiz', 'lastname' => $username, 'email' => "$username@example.invalid",
-        'auth' => 'manual', 'confirmed' => 1, 'mnethostid' => 1,
+        'auth' => 'manual', 'confirmed' => 1, 'mnethostid' => $CFG->mnet_localhost_id,
     ], false, false);
     return $DB->get_record('user', ['id' => $id], '*', MUST_EXIST);
 }
