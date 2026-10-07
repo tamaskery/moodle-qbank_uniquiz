@@ -90,6 +90,7 @@ jobs:
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci mustache
       - name: Frontend lint
+        id: frontend
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci grunt --max-lint-warnings 0
       - name: PHPUnit
@@ -121,6 +122,15 @@ jobs:
           php plugin/.build/qa/pseudolang.php install
           trap 'php plugin/.build/qa/pseudolang.php restore' EXIT
           node plugin/.build/qa/pseudolang.cjs ci
+      - name: Preserve compiler diagnostics
+        if: ${{ !cancelled() && steps.frontend.outcome == 'failure' }}
+        run: |
+          WEBROOT="$GITHUB_WORKSPACE/moodle"
+          if [ -d "$WEBROOT/public" ]; then WEBROOT="$WEBROOT/public"; fi
+          cd "$WEBROOT/question/bank/uniquiz/amd"
+          npx grunt amd
+          mkdir -p "$GITHUB_WORKSPACE/acceptance/moodle-build"
+          cp build/* "$GITHUB_WORKSPACE/acceptance/moodle-build/"
       - name: Acceptance evidence
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
