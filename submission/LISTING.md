@@ -9,7 +9,8 @@
 - Candidate release: 0.1.5 beta (`2026100702`)
 - Source: https://github.com/tamaskery/moodle-qbank_uniquiz
 - Issue tracker: https://github.com/tamaskery/moodle-qbank_uniquiz/issues
-- Documentation: https://github.com/tamaskery/moodle-qbank_uniquiz/blob/main/README.md
+- Candidate review: https://github.com/tamaskery/moodle-qbank_uniquiz/pull/1
+- Documentation: https://github.com/tamaskery/moodle-qbank_uniquiz/blob/codex/marketplace-preparation/README.md
 
 ## Short description
 
@@ -37,7 +38,7 @@ Before upgrading, back up the site and test on staging. Sites with customized 0.
 
 ## Compatibility and limitations
 
-Select only the branches backed by the final candidate's passing CI results: Moodle 4.5, 5.2 and 5.3. Do not imply verification of 5.0 or 5.1 through an inclusive supported range. The release remains beta; testing does not certify arbitrary themes, database versions or production capacity.
+Verified Moodle branches: 4.5, 5.2 and 5.3. The exact versions and PostgreSQL/MariaDB matrix are recorded in QA.md and EVIDENCE.json. Do not imply verification of 5.0 or 5.1 through an inclusive supported range. The release remains beta; testing does not certify arbitrary themes, database versions or production capacity.
 
 ## Submission checklist
 

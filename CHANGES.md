@@ -4,6 +4,9 @@
 - Add complete validator parameter documentation and renderable Mustache example contexts.
 - Format generated JavaScript/CSS consistently with Moodle's rules and extract focused validation helpers.
 - Make frontend lint, source-map integrity, engine regressions and language/export invariance required build checks.
+- Match Moodle's locked AMD compiler and Grunt serialization exactly.
+- Verify hosted Moodle Plugin CI, PHPUnit, Behat and real import/browser/security suites on Moodle 4.5, 5.2 and 5.3, including MariaDB and a full mobile import journey.
+- Publish source, issue tracking, private vulnerability reporting and a separate Marketplace submission kit.
 
 # 0.1.4 — 7 October 2026
 
