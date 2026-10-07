@@ -5,6 +5,17 @@ const {chromium, edgeExecutable} = require('./playwright-runtime.cjs');
 const root = path.resolve(__dirname, '../source');
 const resultsDir = process.env.UNIQUIZ_QA_RESULTS;
 
+async function listingScreenshot(page, filename) {
+    const viewport = page.viewportSize();
+    // Keep the entire wizard in the viewport so Moodle's sticky site chrome
+    // cannot be painted across a stitched full-page screenshot.
+    await page.setViewportSize({width: 1440, height: 2600});
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForLoadState('networkidle');
+    await page.locator('#qbank-uniquiz').screenshot({path: filename});
+    await page.setViewportSize(viewport);
+}
+
 async function login(page, base, username = 'uniquizteacher') {
     await page.goto(base + '/login/index.php');
     await page.locator('#username').fill(username);
@@ -41,13 +52,13 @@ async function run(browser, branch) {
         }
         await page.waitForFunction(() => document.querySelector('#qbank-uniquiz')?.dataset.initialized === 'true');
         check((await page.locator('.debuggingmessage').count()) === 0, 'No Moodle developer warnings');
-        await page.screenshot({path: path.join(resultsDir, `${branch}-upload.png`), fullPage: true});
+        await listingScreenshot(page, path.join(resultsDir, `${branch}-upload.png`));
         await reviewFile(page, 'examples/uniquiz-question-types.csv');
         check(await page.locator('.question-card').count() === 6, 'All six question types previewed');
         await page.locator('#preview-search').fill('pi');
         check(await page.locator('.question-card').count() < 6, 'Search filters preview');
         await page.locator('#clear-preview-search').click();
-        await page.screenshot({path: path.join(resultsDir, `${branch}-review.png`), fullPage: true});
+        await listingScreenshot(page, path.join(resultsDir, `${branch}-review.png`));
         await page.locator('#generate-button').click();
         await page.locator('[data-step="5"]:visible').waitFor();
         check(await page.locator('#uq-import').isDisabled(), 'Explicit confirmation required');
@@ -91,7 +102,7 @@ async function run(browser, branch) {
         check(imported.success && imported.count === 6, `Confirmed direct import: ${JSON.stringify(imported)}`);
         await page.locator('#uq-return:visible').waitFor();
         check(await page.locator('#uq-import').isDisabled(), 'Completed import cannot be double-clicked');
-        await page.screenshot({path: path.join(resultsDir, `${branch}-imported.png`), fullPage: true});
+        await listingScreenshot(page, path.join(resultsDir, `${branch}-imported.png`));
         const retry = await context.request.post(base + '/question/bank/uniquiz/import.php', {form: submitted});
         check(JSON.stringify(await retry.json()) === JSON.stringify(imported), 'Identical retry returns original receipt');
         const changed = await context.request.post(base + '/question/bank/uniquiz/import.php', {form: {...submitted, xml: submitted.xml.replace('Budapest', 'Changed')}});
