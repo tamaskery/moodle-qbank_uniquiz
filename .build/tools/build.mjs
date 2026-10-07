@@ -134,9 +134,13 @@ css.walkRules((rule) => {
 });
 const animations = [];
 css.walkDecls((decl) => {
+    if (/\b(?:min|max|clamp)\(/.test(decl.value)) {
+        decl.before(postcss.comment({text: 'stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax.'}));
+        decl.after(postcss.comment({text: 'stylelint-enable csstree/validator'}));
+    }
     if (!decl.important) return;
     const rules = /duration$/.test(decl.prop) ? 'declaration-no-important, time-min-milliseconds' : 'declaration-no-important';
-    decl.before(postcss.comment({text: `stylelint-disable ${rules} -- Enforce hidden content and reduced-motion accessibility overrides.`}));
+    decl.before(postcss.comment({text: `stylelint-disable ${rules} -- Required accessibility override.`}));
     decl.after(postcss.comment({text: `stylelint-enable ${rules}`}));
 });
 css.walkAtRules(/keyframes$/, (rule) => { animations.push(rule.params); rule.params = 'uq-' + rule.params; });
@@ -157,6 +161,10 @@ for (const name of ['uniquiz-template.csv', 'uniquiz-advanced-template.csv', 'un
 }
 await write('ENGINE-SOURCES.json', JSON.stringify({version: (await read('VERSION')).trim(), files: hashes}, null, 2) + '\n');
 console.log('Built qbank_uniquiz AMD modules, templates, scoped styles, examples and engine hashes.');
-const styles = await fs.readFile(path.join(plugin, 'styles.css'), 'utf8');
+const styles = (await fs.readFile(path.join(plugin, 'styles.css'), 'utf8'))
+    .replace(/\s*(\/\* stylelint-[\s\S]*?\*\/)\s*/g, '\n$1\n');
 const formattedStyles = await stylelint.lint({code: styles, configFile: path.join(here, 'moodle-stylelint'), fix: true});
 await write('styles.css', formattedStyles.code ?? formattedStyles.output);
+const checkedStyles = await stylelint.lint({code: formattedStyles.code ?? formattedStyles.output,
+    configFile: path.join(here, 'moodle-stylelint')});
+if (checkedStyles.results.some(result => result.warnings.length)) throw new Error('CSS lint failed');

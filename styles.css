@@ -39,11 +39,15 @@
 #qbank-uniquiz a {
     color: var(--violet-dark);
 }
-#qbank-uniquiz [hidden] { /* stylelint-disable declaration-no-important -- Enforce hidden content and reduced-motion accessibility overrides. */
-    display: none !important; /* stylelint-enable declaration-no-important */
+#qbank-uniquiz [hidden] {
+    /* stylelint-disable declaration-no-important -- Required accessibility override. */
+    display: none !important;
+    /* stylelint-enable declaration-no-important */
 }
-#qbank-uniquiz .sr-only { /* stylelint-disable declaration-no-important -- Enforce hidden content and reduced-motion accessibility overrides. */
-    position: absolute !important; /* stylelint-enable declaration-no-important */
+#qbank-uniquiz .sr-only {
+    /* stylelint-disable declaration-no-important -- Required accessibility override. */
+    position: absolute !important;
+    /* stylelint-enable declaration-no-important */
     width: 1px;
     height: 1px;
     padding: 0;
@@ -124,7 +128,9 @@
 }
 
 #qbank-uniquiz .app-shell {
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     width: min(900px, calc(100% - 2rem));
+    /* stylelint-enable csstree/validator */
     margin: 1.2rem auto 5rem;
 }
 #qbank-uniquiz .hero {
@@ -143,7 +149,9 @@
 }
 #qbank-uniquiz .hero h1 {
     margin: 0;
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     font-size: clamp(2.4rem, 6vw, 4.6rem);
+    /* stylelint-enable csstree/validator */
     line-height: .98;
     letter-spacing: -.065em;
 }
@@ -223,7 +231,9 @@
     border: 1px solid rgba(218, 221, 238, .9);
     border-radius: 24px;
     box-shadow: var(--shadow);
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     padding: clamp(1.25rem, 4vw, 2.5rem);
+    /* stylelint-enable csstree/validator */
 }
 #qbank-uniquiz .section-heading {
     display: flex;
@@ -234,7 +244,9 @@
 }
 #qbank-uniquiz .section-heading h2,
 #qbank-uniquiz .final-card h2 {
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     font-size: clamp(1.7rem, 4vw, 2.35rem);
+    /* stylelint-enable csstree/validator */
     letter-spacing: -.045em;
     margin: 0;
 }
@@ -1301,7 +1313,9 @@
         display: none;
     }
     #qbank-uniquiz .app-shell {
+        /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
         width: min(100% - 1rem, 900px);
+        /* stylelint-enable csstree/validator */
         margin-top: 0;
     }
     #qbank-uniquiz .hero {
@@ -1386,7 +1400,9 @@
         align-items: start;
     }
     #qbank-uniquiz .preview-page-size {
+        /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
         width: min(100%, 180px);
+        /* stylelint-enable csstree/validator */
     }
     #qbank-uniquiz .question-card-meta {
         align-items: center;
@@ -1444,16 +1460,29 @@
 @media (prefers-reduced-motion: reduce) {
     #qbank-uniquiz *,
     #qbank-uniquiz *::before,
-    #qbank-uniquiz *::after { /* stylelint-disable declaration-no-important -- Enforce hidden content and reduced-motion accessibility overrides. */
-        scroll-behavior: auto !important; /* stylelint-enable declaration-no-important */ /* stylelint-disable declaration-no-important, time-min-milliseconds -- Enforce hidden content and reduced-motion accessibility overrides. */
-        animation-duration: .001ms !important; /* stylelint-enable declaration-no-important, time-min-milliseconds */ /* stylelint-disable declaration-no-important -- Enforce hidden content and reduced-motion accessibility overrides. */
-        animation-iteration-count: 1 !important; /* stylelint-enable declaration-no-important */ /* stylelint-disable declaration-no-important, time-min-milliseconds -- Enforce hidden content and reduced-motion accessibility overrides. */
-        transition-duration: .001ms !important; /* stylelint-enable declaration-no-important, time-min-milliseconds */
+    #qbank-uniquiz *::after {
+        /* stylelint-disable declaration-no-important -- Required accessibility override. */
+        scroll-behavior: auto !important;
+        /* stylelint-enable declaration-no-important */
+
+        /* stylelint-disable declaration-no-important, time-min-milliseconds -- Required accessibility override. */
+        animation-duration: .001ms !important;
+        /* stylelint-enable declaration-no-important, time-min-milliseconds */
+
+        /* stylelint-disable declaration-no-important -- Required accessibility override. */
+        animation-iteration-count: 1 !important;
+        /* stylelint-enable declaration-no-important */
+
+        /* stylelint-disable declaration-no-important, time-min-milliseconds -- Required accessibility override. */
+        transition-duration: .001ms !important;
+        /* stylelint-enable declaration-no-important, time-min-milliseconds */
     }
 }
 
 #qbank-uniquiz .aiken-shell {
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     width: min(980px, calc(100% - 2rem));
+    /* stylelint-enable csstree/validator */
     margin: 0 auto 5rem;
 }
 #qbank-uniquiz .aiken-hero {
@@ -1463,7 +1492,9 @@
 }
 #qbank-uniquiz .aiken-hero h1 {
     margin: .2rem 0 .7rem;
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     font-size: clamp(3.2rem, 9vw, 6rem);
+    /* stylelint-enable csstree/validator */
     line-height: .95;
     letter-spacing: -.07em;
 }
@@ -1482,12 +1513,16 @@
 }
 #qbank-uniquiz .aiken-hero .aiken-tagline {
     color: var(--ink);
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     font-size: clamp(1.25rem, 3vw, 1.7rem);
+    /* stylelint-enable csstree/validator */
     font-weight: 850;
 }
 #qbank-uniquiz .aiken-card {
     margin-top: 1.25rem;
+    /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
     padding: clamp(1.25rem, 4vw, 2.5rem);
+    /* stylelint-enable csstree/validator */
     background: white;
     border: 1px solid var(--border);
     border-radius: 24px;
@@ -1685,7 +1720,9 @@
 
 @media (max-width: 720px) {
     #qbank-uniquiz .aiken-shell {
+        /* stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax. */
         width: min(100% - 1rem, 980px);
+        /* stylelint-enable csstree/validator */
     }
     #qbank-uniquiz .aiken-hero {
         margin-top: 2.6rem;
