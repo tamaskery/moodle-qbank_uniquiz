@@ -1,6 +1,8 @@
-# Security review — UniQuiz 0.1.2 beta
+# Security notes — UniQuiz 0.1.5 beta
 
-Review date: 6 October 2026. Scope: this plugin's PHP entry points, destination authorization, restricted XML validation, Moodle import/rollback, session retry receipts, generated browser code, language handling, data flow and release packaging. Tests ran only on isolated localhost Moodle 4.5.13 and 5.2.2 sites with PHP 8.3.33, PostgreSQL 16 and Boost/Edge.
+The original implementation review covered 0.1.2 on 6 October 2026. Subsequent functional and security regression results are recorded in QA.md; those do not turn the original review into an independent audit of each later release.
+
+Original review scope: this plugin's PHP entry points, destination authorization, restricted XML validation, Moodle import/rollback, session retry receipts, generated browser code, language handling, data flow and release packaging. Tests ran only on isolated localhost Moodle 4.5.13 and 5.2.2 sites with PHP 8.3.33, PostgreSQL 16 and Boost/Edge.
 
 This is an implementation-time code review with targeted adversarial tests, not an independent penetration test, certification or guarantee that no vulnerabilities exist. No critical/high-severity issue was identified in this scope. The following resource-abuse weakness was fixed; deployment-specific and residual risks remain.
 
@@ -23,7 +25,7 @@ During localization development, regression tests also caught and corrected acci
 - Atomic request-owned database transaction; an induced late core failure leaves no partial questions, entries, versions or answers. Temporary XML is request-scoped and removed after the import attempt, with Moodle request cleanup as fallback. File attachments are not accepted.
 - Expected validation returns 422 without submitted content; unexpected import failures return 500 with a reference. Plugin log records exclude submitted content, exception messages, SQL and trace arguments. Moodle/web-server logging and debugging configuration are separate responsibilities.
 - Source files stay in browser memory until generated XML is explicitly submitted to the same Moodle site. No plugin analytics, AI/conversion service, persistent draft/history or plugin database tables. Moodle retains normal questions and import events.
-- Locked build dependencies: npm audit reported zero known advisories at review time. Those dependencies are not shipped as runtime packages. This is an advisory-database check, not source-level assurance of every dependency. Moodle/PHP/OS dependency audits are outside scope.
+- Build dependencies are locked and excluded from the installable archive. The Moodle-compatible development toolchain includes older packages and npm advisory warnings; no zero-advisory claim is made for the 0.1.5 toolchain. Run builds on isolated CI/development environments. Moodle/PHP/OS dependency audits are outside scope.
 
 See [QA.md](QA.md) for the current verification summary. No test credentials or test-site configuration are shipped.
 
@@ -35,4 +37,6 @@ Session receipts are not durable exactly-once storage: a crash after database co
 
 Direct forged XML can contain HTML that Moodle's purifier allows, including permitted links/resources. Such content is handled under the existing question-author capability; this plugin is not a remote-resource privacy firewall. Its normal converter exports plain text. Review question content and site filtering policies.
 
-Only the environments above were exercised in this 0.1.2 security review. See QA.md for subsequent Moodle 5.3 functional verification; the full adversarial suite was not rerun on 5.3. Other databases/PHP versions/themes, complete RTL behavior, hosted CI and full Behat execution remain unverified. Full frontend style-lint compliance remains an open beta release gate, not a passed security test. Report suspected vulnerabilities privately to the plugin/site maintainer with the version and a minimal reproduction; do not include live student data, passwords or session cookies in public reports.
+The environments listed at the top describe the original 0.1.2 review. Consult QA.md for the exact candidate checks, databases and browser results. Passing these tests is not a security certification or proof of deployment-specific safety. Custom themes, complete RTL behavior and production infrastructure need separate acceptance testing.
+
+Report suspected plugin vulnerabilities through [private vulnerability reporting](https://github.com/tamaskery/moodle-qbank_uniquiz/security/advisories/new), with the version and a minimal synthetic reproduction. Do not include live student data, passwords or session cookies in public reports.

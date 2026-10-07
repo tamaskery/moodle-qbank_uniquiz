@@ -1,0 +1,266 @@
+{
+  "fixtureVersion": 2,
+  "description": "Independent semantic expectations for tests/fixtures/moodle-compatibility.csv.",
+  "questionCount": 20,
+  "scenarios": {
+    "default": {
+      "shuffleAnswers": true,
+      "capitalizeAnswers": false,
+      "answerNumbering": "abc"
+    },
+    "shuffle-off-capitalized": {
+      "shuffleAnswers": false,
+      "capitalizeAnswers": true,
+      "answerNumbering": "123"
+    }
+  },
+  "questions": [
+    {
+      "text": "What is the capital of Hungary?",
+      "answers": [
+        "Vienna",
+        "Budapest",
+        "Prague",
+        "Warsaw"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "Which numbers are prime?",
+      "answers": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "correct": [
+        0,
+        1
+      ]
+    },
+    {
+      "text": "Which are primary colours in additive light?",
+      "answers": [
+        "Red",
+        "Green",
+        "Blue",
+        "Yellow"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "text": "Is the statement \"The Earth orbits the Sun\" true?",
+      "answers": [
+        "True",
+        "False",
+        "Only in winter",
+        "Unknown"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "text": "Melyik Magyarország fővárosa?",
+      "answers": [
+        "Bécs",
+        "Budapest",
+        "Prága",
+        "Pozsony"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "Какой город является столицей Венгрии?",
+      "answers": [
+        "Вена",
+        "Будапешт",
+        "Прага",
+        "Варшава"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "Ποια πόλη είναι η πρωτεύουσα της Ουγγαρίας;",
+      "answers": [
+        "Βιέννη",
+        "Βουδαπέστη",
+        "Πράγα",
+        "Βαρσοβία"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "ما عاصمة المجر؟",
+      "answers": [
+        "فيينا",
+        "بودابست",
+        "براغ",
+        "وارسو"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "מהי בירת הונגריה?",
+      "answers": [
+        "וינה",
+        "בודפשט",
+        "פראג",
+        "ורשה"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "匈牙利的首都是哪里？",
+      "answers": [
+        "维也纳",
+        "布达佩斯",
+        "布拉格",
+        "华沙"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "ハンガリーの首都はどこですか？",
+      "answers": [
+        "ウィーン",
+        "ブダペスト",
+        "プラハ",
+        "ワルシャワ"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "헝가리의 수도는 어디입니까?",
+      "answers": [
+        "빈",
+        "부다페스트",
+        "프라하",
+        "바르샤바"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "Thủ đô của Hungary là gì?",
+      "answers": [
+        "Viên",
+        "Budapest",
+        "Prague",
+        "Warsaw"
+      ],
+      "correct": [
+        1
+      ]
+    },
+    {
+      "text": "Which expression is true: 2 < 3 & 4 > 1?",
+      "answers": [
+        "yes & definitely",
+        "no <never>",
+        "maybe \"sometimes\"",
+        "apostrophe's answer"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "text": "Choose the city, country pair that names Hungary's capital.",
+      "answers": [
+        "Budapest, Hungary",
+        "Vienna, Austria",
+        "Prague, Czechia",
+        "Warsaw, Poland"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "text": "This deliberately long question checks that generated Moodle question names are truncated safely after exactly fifty Unicode code points without changing the full question text.",
+      "answers": [
+        "Correct long answer",
+        "Incorrect long answer",
+        "Another distractor",
+        "Final distractor"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "text": "Which lowercase city should be capitalized by the optional setting?",
+      "answers": [
+        "budapest",
+        "vienna",
+        "prague",
+        "warsaw"
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "text": "Which two values are even?",
+      "answers": [
+        "one",
+        "two",
+        "three",
+        "four"
+      ],
+      "correct": [
+        1,
+        3
+      ]
+    },
+    {
+      "text": "Which character is an ampersand?",
+      "answers": [
+        "&",
+        "<",
+        ">",
+        "\""
+      ],
+      "correct": [
+        0
+      ]
+    },
+    {
+      "text": "Select all valid UTF-8 examples.",
+      "answers": [
+        "Árvíztűrő tükörfúrógép",
+        "東京",
+        "Будапешт",
+        "plain ASCII"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

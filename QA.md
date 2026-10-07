@@ -1,34 +1,41 @@
-# UniQuiz 0.1.4 beta — QA summary
+# UniQuiz 0.1.5 beta — QA summary
 
-Checked 7 October 2026. Moodle plugin version `2026100701`, release `0.1.4`, maturity beta. This release gives the reviewed 0.1.3 respin a distinct upgrade number and trims the packaged documentation; conversion and import behavior are unchanged.
+Verified 7 October 2026 (UTC). Plugin version `2026100702`, release `0.1.5`, maturity beta. This candidate adds stable translation identifiers, generated-code formatting and Moodle-compatible build output. It is not a respin of 0.1.4.
 
-## Tested environments and results
+## Candidate verification
 
-The unchanged implementation was tested on Moodle 4.5.13 and 5.2.2 (build 20260810), PHP 8.3.33, PostgreSQL 16.14, Boost and Google Chrome. The following baseline results were obtained on the reviewed 0.1.3 respin, not rerun for the metadata/documentation-only change.
+[Hosted verification](https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37691431917) passed on commit `8f6aba4a2978e1c38c27f0a6ad7144ec3cc6f137`. Subsequent submission documentation and screenshots do not change executable plugin files. Tests used Ubuntu 24.04, PHP 8.3.35, Google Chrome and Moodle's Boost theme.
 
-| Check | Result |
-| --- | --- |
-| Real Moodle integration, permissions, rollback and batch limits | 96 checks passed on each version |
-| Chrome workflows, downloads, import, mobile and AJAX error recovery | 36 checks passed on each version |
-| Moodle PHPUnit | 11 tests / 62 assertions passed on each version |
-| Shared JavaScript regressions | 143 passed |
-| PHP syntax and Moodle CodeSniffer | All 15 PHP files passed, no warnings |
-| Language invariance/interpolation | 20 passed; 508 unique, sorted English keys |
-| AMD/source-map integrity | All 8 modules passed |
+| Moodle | Database | Integration | Chrome workflows | Adversarial HTTP | Translation checks | 500-question import |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| 4.5.15, build 20261005 | PostgreSQL 17 | 96/96 | 38/38 | 16/16 | 18/18 | 2.449 s |
+| 5.2.4, build 20261005 | PostgreSQL 17 | 96/96 | 38/38 | 16/16 | 18/18 | 1.974 s |
+| 5.3, build 20261005 | PostgreSQL 17 | 96/96 | 38/38 | 16/16 | 18/18 | 2.638 s |
+| 5.3, build 20261005 | MariaDB 11 | 96/96 | 38/38 | 16/16 | 18/18 | 1.860 s |
 
-Coverage includes all six supported question types, literal text and Unicode fidelity, destination authorization, expired-token/session errors, recovery, confirmed import, retry receipts and rollback after a late failure. Local 500-question CLI imports completed in 1.829 seconds on Moodle 4.5 and 2.384 seconds on 5.2, with whole-process peaks of 69 and 71 MiB. These are local measurements, not production capacity guarantees.
+Every environment also passed:
 
-## Moodle 5.3 verification for 0.1.4
+- Moodle Plugin CI PHP syntax, coding standard, PHPdoc, plugin validation, savepoints, Mustache and full Grunt checks, including exact generated-asset parity.
+- PHPUnit: 11 tests, 62 assertions, including late-failure rollback and log redaction.
+- Chrome Behat: 1 scenario, 9 steps.
+- 130 plugin engine regressions; 20 language/export invariance checks; all eight AMD source maps; 508 unique, alphabetically sorted English keys and complete translation-key migration mapping.
 
-Moodle 5.3 (build 20261005), PHP 8.3.33, PostgreSQL 17, Boost and Google Chrome were tested with this release. Moodle detected and completed the upgrade from plugin version 2026100700 to 2026100701. All 96 integration checks and 36 Chrome workflow checks passed, including permissions, all six question types, text fidelity, rollback, boundary limits, downloads, mobile and AJAX error recovery. The 500-question import took 2.253 seconds with a 69 MiB whole-process memory peak. PHPUnit was not rerun on 5.3 for this release.
+The 130 engine tests exclude 13 standalone marketing-site tests from the earlier 143-test suite. They are not plugin workflows. The complete standalone site's browser suite is outside this candidate's scope.
 
-## Known limits
+## What the acceptance tests verify
 
-- Direct import is limited to 500 questions and 8 MiB XML, with additional field/structure limits. The source input limit is 5 MB. See README.md for exact behavior.
-- Compatibility applies only to the exact environments tested. Moodle 5.0/5.1, other databases, PHP versions and custom themes are unverified. Minimum installation requirements do not certify every later Moodle version.
-- Hosted CI, Behat execution, full frontend lint and staging acceptance remain outstanding stable-release gates. This is a beta, not Plugins Directory approval or a security certification.
-- The complete standalone converter browser suite was not rerun. Targeted browser coverage is described above.
-- Human translations, locale grammar, full RTL and dark/custom themes need further testing. Stable semantic translation identifiers are planned before 1.0; see TRANSLATING.md.
-- Session receipts are not durable exactly-once guarantees. After an interrupted import, inspect the destination bank before retrying a new batch. Same-session requests may wait during import.
+All six supported question types, preview/search, XML download, explicit import confirmation, native question-bank results, malformed-input recovery, session/token and destination checks, retry receipts, literal text and Unicode fidelity, safe error references, invalid control characters, batch boundaries, AIKEN repair and student access denial. A 390 × 844 mobile journey completes upload, review, XML download and confirmed import. Browser exception checks pass.
 
-Test this beta on a staging copy of your site before production installation.
+The adversarial suite runs only against disposable CI sites. It covers entity envelopes, malformed structure, authorization, receipt integrity and concurrent retries; a database check confirms that the concurrent identical requests create one question. The pseudolanguage suite exercises native language customization, literal hostile translations and unchanged exported data. These are targeted regression checks, not an independent security audit.
+
+The 500-question measurements used 389,013 bytes of XML and a 30 MiB whole-process peak in these runners. They are observations, not production capacity guarantees.
+
+## Remaining acceptance limits
+
+- Stage-test installation and the upgrade from the installed beta on a backed-up copy of the intended production site. No production-copy staging acceptance was performed for this candidate.
+- Marketplace account declarations, archive precheck, manual review and publication are separate maintainer steps. Passing repository CI is not Marketplace approval.
+- Moodle 5.0/5.1, other PHP/database versions, arbitrary themes, full RTL, human translation quality and a complete accessibility audit remain unverified. Minimum installation requirements do not certify all later Moodle versions.
+- Direct import is limited to 500 questions and 8 MiB XML, with additional field and structure caps. Source files are limited to 5 MB. See README.md.
+- Session receipts do not provide durable exactly-once delivery. Inspect the destination bank after an interrupted import before starting a new batch.
+
+Keep beta maturity and stage-test the exact deployment before production use.

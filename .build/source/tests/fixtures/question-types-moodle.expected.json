@@ -1,0 +1,67 @@
+{
+  "questionCount": 6,
+  "questions": [
+    {
+      "type": "multichoice",
+      "text": "Which city is the capital of Hungary?",
+      "name": "Capital of Hungary",
+      "defaultMark": 1,
+      "answers": [
+        { "text": "Vienna", "fraction": 0, "feedback": "Budapest is Hungary's capital." },
+        { "text": "Budapest", "fraction": 100, "feedback": "Correct." }
+      ]
+    },
+    {
+      "type": "truefalse",
+      "text": "The Danube flows through Budapest.",
+      "name": "Danube and Budapest",
+      "defaultMark": 1,
+      "answers": [
+        { "text": "True", "fraction": 100, "feedback": "Correct." },
+        { "text": "False", "fraction": 0, "feedback": "" }
+      ]
+    },
+    {
+      "type": "shortanswer",
+      "text": "What is the capital of Hungary?",
+      "name": "Capital short answer",
+      "defaultMark": 1,
+      "caseSensitive": false,
+      "answers": [
+        { "text": "Budapest", "fraction": 100, "feedback": "Correct." },
+        { "text": "Budapest City", "fraction": 100, "feedback": "Also accepted." }
+      ]
+    },
+    {
+      "type": "numerical",
+      "text": "Approximately what is pi?",
+      "name": "Approximate pi",
+      "defaultMark": 1,
+      "answers": [
+        { "text": "3.14", "fraction": 100, "feedback": "Correct.", "tolerance": 0.01 },
+        { "text": "3.1416", "fraction": 100, "feedback": "Also accepted.", "tolerance": 0.0001 }
+      ]
+    },
+    {
+      "type": "essay",
+      "text": "Explain the principle of proportionality.",
+      "name": "Principle of proportionality",
+      "defaultMark": 10,
+      "answers": [],
+      "essay": {
+        "responseformat": "editor",
+        "responserequired": 1,
+        "responsefieldlines": 15,
+        "attachments": 0,
+        "attachmentsrequired": 0
+      }
+    },
+    {
+      "type": "description",
+      "text": "Read the following scenario before answering the next three questions.",
+      "name": "Scenario introduction",
+      "defaultMark": 0,
+      "answers": []
+    }
+  ]
+}

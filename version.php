@@ -22,10 +22,10 @@
  */
 defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'qbank_uniquiz';
-$plugin->version = 2026100701;
+$plugin->version = 2026100702;
 $plugin->requires = 2024100700;
 // No inclusive supported range: 5.0 and 5.1 have not been verified.
 // The QA summary lists the exact tested 4.5, 5.2 and 5.3 environments.
 $plugin->maturity = MATURITY_BETA;
-$plugin->release = '0.1.4';
+$plugin->release = '0.1.5';
 $plugin->dependencies = ['qformat_xml' => ANY_VERSION];

@@ -1,5 +1,9 @@
 name: Moodle Plugin CI
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -46,8 +50,12 @@ jobs:
         working-directory: plugin
         run: |
           npm ci --prefix .build/tools
+          npm ci --prefix .build/moodle --ignore-scripts
           node .build/tools/build.mjs
           git diff --exit-code -- amd templates lang styles.css examples ENGINE-SOURCES.json
+          node --test .build/source/tests/*.test.js
+          node .build/tools/check-language.mjs
+          node .build/tools/check-assets.mjs
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
@@ -86,6 +94,7 @@ jobs:
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci mustache
       - name: Frontend lint
+        id: frontend
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci grunt --max-lint-warnings 0
       - name: PHPUnit
@@ -94,3 +103,43 @@ jobs:
       - name: Behat
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci behat --profile chrome
+      - name: Real import and browser acceptance
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        env:
+          UNIQUIZ_MOODLE_ROOT: ${{ github.workspace }}/moodle
+          UNIQUIZ_QA_RESULTS: ${{ github.workspace }}/acceptance
+        run: |
+          export UNIQUIZ_CHROME_PATH="$(command -v google-chrome)"
+          WEBROOT="$UNIQUIZ_MOODLE_ROOT"
+          if [ -d "$WEBROOT/public" ]; then WEBROOT="$WEBROOT/public"; fi
+          php plugin/.build/qa/configure.php
+          php "$UNIQUIZ_MOODLE_ROOT/admin/cli/install_database.php" --agree-license --fullname='UniQuiz CI' --shortname=uniquizci --adminpass='UniQuizPluginTest!' --adminemail=qa@example.invalid
+          php "$UNIQUIZ_MOODLE_ROOT/admin/cli/adhoc_task.php" --execute
+          node plugin/.build/qa/fixtures.mjs
+          cp plugin/.build/qa/integration.php "$WEBROOT/question/bank/uniquiz/qa.php"
+          php "$WEBROOT/question/bank/uniquiz/qa.php"
+          cp /tmp/uniquiz-plugin-report.json "$UNIQUIZ_QA_RESULTS/ci-integration.json"
+          php -S 127.0.0.1:18080 -t "$WEBROOT" > "$UNIQUIZ_QA_RESULTS/server.log" 2>&1 &
+          for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:18080/login/index.php > /dev/null && break; sleep 1; done
+          node plugin/.build/qa/browser.cjs ci
+          node plugin/.build/qa/security.cjs ci
+          php plugin/.build/qa/verify-race.php
+          php plugin/.build/qa/pseudolang.php install
+          trap 'php plugin/.build/qa/pseudolang.php restore' EXIT
+          node plugin/.build/qa/pseudolang.cjs ci
+      - name: Preserve compiler diagnostics
+        if: ${{ !cancelled() && steps.frontend.outcome == 'failure' }}
+        run: |
+          WEBROOT="$GITHUB_WORKSPACE/moodle"
+          if [ -d "$WEBROOT/public" ]; then WEBROOT="$WEBROOT/public"; fi
+          cd "$WEBROOT/question/bank/uniquiz/amd"
+          npx grunt amd
+          mkdir -p "$GITHUB_WORKSPACE/acceptance/moodle-build"
+          cp build/* "$GITHUB_WORKSPACE/acceptance/moodle-build/"
+      - name: Acceptance evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: acceptance-${{ matrix.moodle }}-${{ matrix.database }}
+          path: acceptance
+          retention-days: 14

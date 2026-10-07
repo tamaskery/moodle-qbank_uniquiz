@@ -1,0 +1,27 @@
+1.5 litres equals how many millilitres?
+A. 150
+B. 1500
+C. 15
+D. 15000
+ANSWER: B
+
+2026 was a leap year. Which answer is correct?
+A. True
+B. False
+C. Unknown
+D. Not applicable
+ANSWER: B
+
+10 km equals how many metres?
+A. 100
+B. 1000
+C. 10000
+D. 100000
+ANSWER: C
+
+2-factor authentication is commonly abbreviated as what?
+A. 2FA
+B. FTP
+C. 2D
+D. API
+ANSWER: A

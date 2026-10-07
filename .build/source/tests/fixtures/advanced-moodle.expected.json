@@ -1,0 +1,55 @@
+{
+  "questionCount": 2,
+  "scenarios": {
+    "v043-advanced-foundation": {
+      "shuffleAnswers": true,
+      "answerNumbering": "abc",
+      "capitalizeAnswers": false,
+      "categoryFromFile": true
+    }
+  },
+  "questions": [
+    {
+      "text": "What is the capital of Hungary?",
+      "name": "Capital of Hungary",
+      "category": "UniQuiz Advanced Examples",
+      "defaultMark": 2,
+      "generalFeedback": "Budapest is Hungary's capital.",
+      "shuffleAnswers": false,
+      "answerNumbering": "ABCD",
+      "single": true,
+      "correctFeedback": "Correct.",
+      "partiallyCorrectFeedback": "Review the capital cities.",
+      "incorrectFeedback": "Budapest is the correct choice.",
+      "correct": [1],
+      "answers": [
+        { "text": "Vienna", "fraction": 0, "feedback": "Vienna is Austria's capital." },
+        { "text": "Budapest", "fraction": 100, "feedback": "Correct — Budapest is Hungary's capital." },
+        { "text": "Prague", "fraction": 0, "feedback": "Prague is the Czech Republic's capital." },
+        { "text": "Warsaw", "fraction": 0, "feedback": "Warsaw is Poland's capital." }
+      ],
+      "tags": ["geography", "capitals"]
+    },
+    {
+      "text": "Which of these are prime numbers?",
+      "name": "Prime numbers",
+      "category": "UniQuiz Advanced Examples",
+      "defaultMark": 1.5,
+      "generalFeedback": "A prime number has exactly two positive divisors.",
+      "shuffleAnswers": true,
+      "answerNumbering": "123",
+      "single": false,
+      "correctFeedback": "Both prime numbers were selected.",
+      "partiallyCorrectFeedback": "Select every prime number.",
+      "incorrectFeedback": "Review the definition of a prime number.",
+      "correct": [0, 1],
+      "answers": [
+        { "text": "2", "fraction": 50, "feedback": "2 is the smallest prime number." },
+        { "text": "3", "fraction": 50, "feedback": "3 is prime." },
+        { "text": "4", "fraction": -25, "feedback": "4 is divisible by 2." },
+        { "text": "6", "fraction": 0, "feedback": "6 is composite." }
+      ],
+      "tags": ["science", "prime numbers"]
+    }
+  ]
+}

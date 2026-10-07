@@ -1,0 +1,32 @@
+﻿Question,Answer A,Answer B,Answer C,Answer D,Answer E,Answer F,Correct
+What is the capital of Hungary?,vienna,budapest,prague,warsaw,,,B
+Which of the following numbers are prime numbers?,2,3,4,5,6,9,"A,B,D"
+The Earth orbits the Sun.,True,False,,,,,A
+Melyik Magyarország fővárosa?,bécs,budapest,prága,varsó,,,B
+Какая столица Венгрии?,Вена,Будапешт,Прага,Варшава,,,B
+Ποια είναι η πρωτεύουσα της Ελλάδας;,Αθήνα,Σόφια,Ρώμη,Λευκωσία,,,A
+ما عاصمة المجر؟,فيينا,بودابست,براغ,وارسو,,,B
+日本の首都はどこですか？,大阪,京都,東京,札幌,,,C
+다음 중 물의 화학식은 무엇입니까?,CO₂,H₂O,O₂,NaCl,,,B
+Thủ đô của Việt Nam là thành phố nào?,Hà Nội,Đà Nẵng,Huế,Cần Thơ,,,A
+Which comparison is mathematically true?,3 < 5,3 > 5,3 = 5,3 ≥ 5,,,A
+Which character is the ampersand symbol?,&,@,#,%,,,A
+Which city name below contains a comma as part of the displayed text?,"Washington, D.C.",Budapest,Vienna,Prague,,,A
+"Which option exactly matches the phrase He said, ""Hello"".?","He said, ""Hello"".",He said Hello.,"He said, ""Goodbye"".","""Hello"" said he?",,,A
+Which possessive form is correct for a book belonging to one teacher?,teachers book,teacher's book,teachers' book,teacher book's,,,B
+This intentionally long question is designed to verify that UniQuiz generates a Unicode-safe question name from only the first fifty characters of the question text without corrupting or incorrectly truncating the underlying full question.,first option,second option,third option,fourth option,,,C
+Which mathematical symbol represents pi?,π,√,≤,∞,,,A
+Which emoji represents a unicorn?,🐴,🦄,🦓,🐐,,,B
+Which answers are names for the language English in the languages shown?,English,Anglais,Englisch,Inglés,Английский,英語,A;B;C;D;E;F
+Which of these are primary additive colours of light?,Red,Green,Blue,Yellow,Black,White,A + B + C
+Which two planets are classified as gas giants?,Mercury,Jupiter,Earth,Saturn,Mars,Venus,B & D
+Which of these is a European Union institution?,European Commission,United Nations Security Council,NATO,,,,A
+Which answer is in the sixth option position?,Alpha,Beta,Gamma,Delta,Epsilon,Zeta,F
+Which of these planets is closest to the Sun?,Venus,Earth,Mars,Jupiter,Mercury,,E
+Which answer contains leading and trailing spaces in the source CSV but should still be interpreted as readable text?,  padded answer  ,normal answer,another answer,final answer,,,B
+Which statement contains both an ampersand and angle brackets as literal text?,R&D uses <research> tags only as text,Plain text without symbols,Only an ampersand & appears here,Only <angle brackets> appear here,,,A
+Which option is literal text that resembles an HTML script element and must remain harmless text?,<script>alert('x')</script>,<b>bold</b>,alert('x'),script,,,A
+Which option exactly preserves a formula-looking string rather than evaluating it?,=SUM(A1:A2),SUM(A1:A2),=A1+A2,A1:A2,,,A
+"This question contains an embedded line break inside one quoted CSV field.
+The second line is still part of the same question and tests RFC-style CSV parsing.",single CSV record,two separate questions,invalid Unicode,a database record,,,A
+Which three values satisfy x ≤ 3 from the listed integers?,1,2,3,4,5,6,"A, B, C"

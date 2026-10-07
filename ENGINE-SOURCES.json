@@ -1,7 +1,7 @@
 {
   "version": "0.7.0",
   "files": {
-    "js/core.js": "a58d5270148691dec9d34d353e1b80efe4e48cb9cec16c1e5c373eabba677a56",
+    "js/core.js": "4be9d0475a8833c458c512e66c951a9d6d6a88f61ff9c9f27bd7aae8a6073e1f",
     "js/preview.js": "3819f78ef5b6533eb376719b58e110f7954137c511d793a3f6e5118b18e266fd",
     "js/timing.js": "acca427b13906f4699ca0e1b7c751d3fd968b74f3919e68466d89ee2e99a06e8",
     "js/app.js": "1d6ce3efdd5f5bfc3407b781a675f540244a9c3eaf2ac580f01a0c641f6c736c",

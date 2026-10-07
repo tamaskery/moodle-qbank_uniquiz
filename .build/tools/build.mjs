@@ -2,17 +2,27 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import {transformAsync} from '@babel/core';
-import amd from '@babel/plugin-transform-modules-amd';
-import {minify} from 'terser';
+import {compileAmd} from './compile-amd.mjs';
 import postcss from 'postcss';
 import {localizeJavaScript, localizeTemplate, languagePhp, catalogue} from './localize.mjs';
+import {formatJavaScript} from './format.mjs';
+import stylelint from 'stylelint';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../source');
 const plugin = path.resolve(here, '../..');
 const read = (name) => fs.readFile(path.join(root, name), 'utf8');
 const write = async (name, value) => {
+    if (name.startsWith('templates/')) {
+        const lang = {};
+        for (const match of value.matchAll(/\{\{lang\.([^}]+)\}\}/g)) lang[match[1]] = catalogue.get(match[1]).value;
+        const context = {lang, config: '{}', baseurl: 'https://example.invalid/question/bank/uniquiz',
+            helpurl: 'https://example.invalid/help', converterurl: 'https://example.invalid/convert',
+            bankurl: 'https://example.invalid/questions', categories: [{id: 1, name: 'Example category', selected: true}],
+            importintro: 'Review and confirm import.', destinationlabel: 'Destination', categorypolicy: 'Use this category.',
+            importconfirm: 'Import questions', returnbank: 'Return to question bank'};
+        value = `{{!\n    @template qbank_uniquiz/${path.basename(name, '.mustache')}\n\n    UniQuiz interface.\n\n    Example context (json):\n    ${JSON.stringify(context, null, 4).replaceAll('\n', '\n    ')}\n}}\n` + value;
+    }
     const target = path.join(plugin, name);
     await fs.mkdir(path.dirname(target), {recursive: true});
     await fs.writeFile(target, value);
@@ -49,17 +59,10 @@ for (const name of ['core', 'preview', 'timing', 'app', 'aiken-core', 'aiken-app
         }
         source = imports + `\nexport const init = (config) => {\nconst container = document.getElementById('qbank-uniquiz');\nif (!container || container.dataset.initialized) return;\ncontainer.dataset.initialized = 'true';\n${source}\n};\n`;
     }
+    source = await formatJavaScript(source, `${name}.js`);
+    if (name === 'aiken-app') source = source.replace('init = (config)', 'init = ()');
     await write(`amd/src/${name}.js`, banner + source);
-    const compiled = await transformAsync(banner + source, {
-        sourceMaps: true, sourceFileName: `../src/${name}.js`,
-        plugins: [[amd, {moduleIds: true, moduleId: `qbank_uniquiz/${name}`}]],
-    });
-    const built = await minify(compiled.code, {
-        format: {comments: false, preamble: banner.trim()},
-        sourceMap: {content: compiled.map, filename: `${name}.min.js`, url: `${name}.min.js.map`, includeSources: true},
-    });
-    await write(`amd/build/${name}.min.js`, built.code + '\n');
-    await write(`amd/build/${name}.min.js.map`, built.map + '\n');
+    await compileAmd(name);
 }
 
 // Extract the proven UI, with only the Moodle-specific shell, links and final hand-off changed.
@@ -99,7 +102,8 @@ await write('templates/converter.mustache', localizeTemplate('converter', '{{! G
 const aiken = await read('aiken-fixer/index.html');
 let aikenMarkup = aiken.match(/<main[\s\S]*?<\/main>/)[0]
     .replace('<main id="main" class="aiken-shell">', '<div class="aiken-shell">').replace('</main>', '</div>')
-    .replaceAll('href="/convert/"', 'href="{{converterurl}}"');
+    .replaceAll('href="/convert/"', 'href="{{converterurl}}"')
+    .replace('<a id="download-aiken"', '<a href="#" id="download-aiken"');
 await write('templates/aiken.mustache', localizeTemplate('aiken', '<div id="qbank-uniquiz" data-config="{{config}}">' + aikenMarkup +
     aiken.match(/  <div id="aiken-processing"[\s\S]*?(?=\s*<\/body>)/)[0] + '</div>\n'));
 await write('templates/help.mustache', localizeTemplate('help', await fs.readFile(path.join(here, 'help.mustache'), 'utf8')));
@@ -118,6 +122,16 @@ css.walkRules((rule) => {
     });
 });
 const animations = [];
+css.walkDecls((decl) => {
+    if (/\b(?:min|max|clamp)\(/.test(decl.value)) {
+        decl.before(postcss.comment({text: 'stylelint-disable csstree/validator -- Valid CSS math; legacy Moodle checker lacks this syntax.'}));
+        decl.after(postcss.comment({text: 'stylelint-enable csstree/validator'}));
+    }
+    if (!decl.important) return;
+    const rules = /duration$/.test(decl.prop) ? 'declaration-no-important, time-min-milliseconds' : 'declaration-no-important';
+    decl.before(postcss.comment({text: `stylelint-disable ${rules} -- Required accessibility override.`}));
+    decl.after(postcss.comment({text: `stylelint-enable ${rules}`}));
+});
 css.walkAtRules(/keyframes$/, (rule) => { animations.push(rule.params); rule.params = 'uq-' + rule.params; });
 css.walkDecls(/^animation/, (decl) => {
     for (const name of animations) decl.value = decl.value.replace(new RegExp(`\\b${name}\\b`, 'g'), 'uq-' + name);
@@ -136,3 +150,10 @@ for (const name of ['uniquiz-template.csv', 'uniquiz-advanced-template.csv', 'un
 }
 await write('ENGINE-SOURCES.json', JSON.stringify({version: (await read('VERSION')).trim(), files: hashes}, null, 2) + '\n');
 console.log('Built qbank_uniquiz AMD modules, templates, scoped styles, examples and engine hashes.');
+const styles = (await fs.readFile(path.join(plugin, 'styles.css'), 'utf8'))
+    .replace(/\s*(\/\* stylelint-[\s\S]*?\*\/)\s*/g, '\n$1\n');
+const formattedStyles = await stylelint.lint({code: styles, configFile: path.join(here, 'moodle-stylelint'), fix: true});
+await write('styles.css', formattedStyles.code ?? formattedStyles.output);
+const checkedStyles = await stylelint.lint({code: formattedStyles.code ?? formattedStyles.output,
+    configFile: path.join(here, 'moodle-stylelint')});
+if (checkedStyles.results.some(result => result.warnings.length)) throw new Error('CSS lint failed');

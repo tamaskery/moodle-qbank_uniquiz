@@ -1,0 +1,18 @@
+{
+  "fixtureVersion": 1,
+  "description": "Independent expectations for the v0.4.7 mixed-prefix CSV/TXT correction output.",
+  "questionCount": 4,
+  "scenarios": {
+    "v047-numbering-correction": {
+      "shuffleAnswers": true,
+      "capitalizeAnswers": false,
+      "answerNumbering": "abc"
+    }
+  },
+  "questions": [
+    { "text": "Dot question?", "answers": ["Yes", "No"], "correct": [0] },
+    { "text": "Parenthesis question?", "answers": ["Yes", "No"], "correct": [0] },
+    { "text": "Q-prefix question?", "answers": ["Yes", "No"], "correct": [0] },
+    { "text": "Label question?", "answers": ["Yes", "No"], "correct": [0] }
+  ]
+}

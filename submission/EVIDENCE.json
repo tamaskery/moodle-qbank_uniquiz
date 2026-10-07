@@ -1,0 +1,67 @@
+{
+  "candidate": "0.1.5",
+  "version": 2026100702,
+  "commit": "8f6aba4a2978e1c38c27f0a6ad7144ec3cc6f137",
+  "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37691431917",
+  "result": "success",
+  "environments": [
+    {
+      "environment": "acceptance-MOODLE_405_STABLE-pgsql",
+      "release": "4.5.15 (Build: 20261005)",
+      "integration": 96,
+      "browser": 38,
+      "security": 16,
+      "translations": 18,
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.449,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      }
+    },
+    {
+      "environment": "acceptance-MOODLE_502_STABLE-pgsql",
+      "release": "5.2.4 (Build: 20261005)",
+      "integration": 96,
+      "browser": 38,
+      "security": 16,
+      "translations": 18,
+      "benchmark": {
+        "questions": 500,
+        "seconds": 1.974,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      }
+    },
+    {
+      "environment": "acceptance-MOODLE_503_STABLE-mariadb",
+      "release": "5.3 (Build: 20261005)",
+      "integration": 96,
+      "browser": 38,
+      "security": 16,
+      "translations": 18,
+      "benchmark": {
+        "questions": 500,
+        "seconds": 1.86,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      }
+    },
+    {
+      "environment": "acceptance-MOODLE_503_STABLE-pgsql",
+      "release": "5.3 (Build: 20261005)",
+      "integration": 96,
+      "browser": 38,
+      "security": 16,
+      "translations": 18,
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.638,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      }
+    }
+  ],
+  "packageCommit": "053d494b9d0bf38f33506b49a3e176ca7d5883a9",
+  "screenshotsRun": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37692862378"
+}
