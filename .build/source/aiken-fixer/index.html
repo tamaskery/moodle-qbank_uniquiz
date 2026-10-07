@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detect and safely repair common Moodle AIKEN formatting problems, privately in your browser.">
+  <meta name="theme-color" content="#5b3df5">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>UniQuiz AIKEN Fixer — Repair Moodle AIKEN Files</title>
+  <link rel="canonical" href="https://uniquiz.kerylabs.site/aiken-fixer/">
+  <link rel="icon" href="../assets/uniquiz-logo.png" type="image/png">
+  <link rel="stylesheet" href="../styles.css?v=0.7.0">
+  <link rel="stylesheet" href="../marketing.css?v=0.7.0">
+  <link rel="stylesheet" href="../aiken.css?v=0.7.0">
+  <script type="module" src="../js/aiken-app.js?v=0.7.0"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="marketing-header">
+    <a class="brand" href="/" aria-label="UniQuiz home"><span class="brand-mark"><img src="../assets/uniquiz-hero-v0.2.1.png" alt="" width="1122" height="1402"></span><span><strong>UniQuiz</strong><small>Moodle Question Bank Preflight</small></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="/convert/">Converter</a><a href="/aiken-fixer/" aria-current="page">AIKEN Fixer</a><a href="/guide/">Guide &amp; FAQ</a><a href="/changelog/">Changelog</a><a class="button button-primary nav-cta" href="/convert/">Start converting</a></nav>
+    <details class="mobile-nav"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="/">Home</a><a href="/convert/">Converter</a><a href="/aiken-fixer/" aria-current="page">AIKEN Fixer</a><a href="/guide/">Guide &amp; FAQ</a><a href="/changelog/">Changelog</a><a class="button button-primary" href="/convert/">Start converting</a></nav></details>
+  </header>
+
+  <main id="main" class="aiken-shell">
+    <section class="aiken-hero" aria-labelledby="aiken-title">
+      <p class="eyebrow">UniQuiz v0.7.0 · Browser-only utility</p>
+      <h1 id="aiken-title">AIKEN <span>Fixer</span></h1>
+      <p class="aiken-tagline">Fix common Moodle AIKEN formatting problems.</p>
+      <p>Upload or paste your AIKEN questions. UniQuiz checks the structure, explains problems and can repair safe formatting issues.</p>
+    </section>
+
+    <div id="aiken-status" class="sr-only" role="status" aria-live="polite"></div>
+    <div id="aiken-error" class="notice notice-error" role="alert" tabindex="-1" hidden></div>
+
+    <section class="aiken-card" aria-labelledby="input-title">
+      <div class="section-heading"><div><p class="step-kicker">Input</p><h2 id="input-title">Upload or paste AIKEN</h2></div><span class="privacy-pill">🔒 Browser-only</span></div>
+      <div class="aiken-input-grid">
+        <div id="aiken-drop-zone" class="aiken-upload">
+          <input id="aiken-file" type="file" accept=".txt,text/plain" class="sr-only" tabindex="-1" aria-hidden="true">
+          <div class="upload-icon" aria-hidden="true">↥</div>
+          <h3>Upload AIKEN</h3>
+          <p>Choose a UTF-8 <code>.txt</code> file, up to 5 MB.</p>
+          <button id="aiken-choose" class="button button-secondary" type="button">Choose AIKEN file</button>
+          <p id="aiken-selected" class="selected-file" hidden></p>
+          <p id="aiken-drop-help" class="drop-help">or drop an AIKEN file here</p>
+        </div>
+        <div class="aiken-paste">
+          <label for="aiken-source"><strong>Paste AIKEN</strong><span>Paste one or more complete questions.</span></label>
+          <textarea id="aiken-source" dir="auto" rows="14" spellcheck="false" placeholder="What is the capital of Hungary?&#10;A. Vienna&#10;B. Budapest&#10;ANSWER: B"></textarea>
+        </div>
+      </div>
+      <p class="microcopy">Question content remains in this browser tab. It is not uploaded, stored, or sent to an external correction service.</p>
+      <div class="actions actions-end"><button id="check-aiken" class="button button-primary button-arrow" type="button">Check AIKEN <span aria-hidden="true">→</span></button></div>
+    </section>
+
+    <section id="aiken-results" class="aiken-card" aria-labelledby="results-title" hidden>
+      <div class="section-heading"><div><p class="step-kicker">Analysis</p><h2 id="results-title">Here’s what we found</h2></div><span class="success-badge">✓ UTF-8</span></div>
+      <div id="aiken-metrics" class="metric-grid aiken-metrics"></div>
+      <div id="aiken-issues" class="aiken-issues"></div>
+      <div class="actions aiken-fix-actions">
+        <button id="fix-safe" class="button button-primary" type="button">Fix all safe issues</button>
+        <button id="reset-aiken" class="button button-ghost" type="button">Reset to original</button>
+      </div>
+
+      <div class="aiken-editor-heading"><div><h3>Corrected AIKEN</h3><p>You can edit the text directly. UniQuiz reparses every change.</p></div><span id="editor-state"></span></div>
+      <textarea id="aiken-corrected" class="aiken-editor" dir="auto" rows="20" spellcheck="false" aria-label="Corrected AIKEN text"></textarea>
+      <div id="aiken-validation" class="notice" role="status"></div>
+      <div class="actions aiken-download-actions">
+        <a class="text-link" href="/convert/">Need Moodle XML? Open UniQuiz Converter →</a>
+        <a id="download-aiken" class="button button-primary button-download" download>Download corrected AIKEN</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div><strong>UniQuiz</strong><span>Moodle Question Bank preparation, made simple.</span></div><nav aria-label="Footer"><a href="/convert/">Converter</a><a href="/aiken-fixer/">AIKEN Fixer</a><a href="/guide/">Guide</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav><div class="footer-operator"><strong>Operator</strong><span>Tamas Kery · Hungary</span><a href="mailto:tom@tomkery.eu">tom@tomkery.eu</a></div><p>Independent product; not affiliated with or endorsed by Moodle or Moodle HQ. “Moodle” is a trademark of Moodle Pty Ltd.</p></footer>
+
+  <div id="aiken-processing" class="processing" role="status" aria-live="polite" aria-label="Checking AIKEN" hidden><div class="processing-art" aria-hidden="true"><div class="rainbow-trail"></div><div class="mini-unicorn">🦄</div><div class="spark one">✦</div><div class="spark two">✧</div></div><strong>Checking AIKEN structure…</strong><span>This happens privately in your browser.</span></div>
+</body>
+</html>

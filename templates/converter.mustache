@@ -1,0 +1,154 @@
+{{! Generated from the standalone converter by build-tools/build.mjs. }}
+<div id="qbank-uniquiz" data-config="{{config}}">
+<div class="app-shell">
+    <p class="microcopy">{{lang.ui_choose_a_file_review_the_complete_question_bank__b8bbfb76}}</p>
+
+    <nav class="steps" aria-label="{{lang.ui_conversion_progress_87a3edfb}}">
+      <ol>
+        <li data-step-marker="1" class="is-current"><span>1</span><strong>{{lang.ui_upload_865e89de}}</strong></li>
+        <li data-step-marker="2"><span>2</span><strong>{{lang.ui_analyse_d8673f98}}</strong></li>
+        <li data-step-marker="3"><span>3</span><strong>{{lang.ui_settings_74a883a0}}</strong></li>
+        <li data-step-marker="4"><span>4</span><strong>{{lang.ui_review_aff0766a}}</strong></li>
+        <li data-step-marker="5"><span>5</span><strong>{{lang.ui_import_2cff9baa}}</strong></li>
+      </ol>
+    </nav>
+
+    <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+    <div id="error-summary" class="notice notice-error" role="alert" tabindex="-1" hidden></div>
+
+    <section class="wizard-card" data-step="1" aria-labelledby="upload-title">
+      <div class="section-heading">
+        <div><p class="step-kicker">{{lang.ui_step_1_of_5_13983850}}</p><h2 id="upload-title" tabindex="-1">{{lang.ui_upload_your_questions_31642d01}}</h2></div>
+        <p class="heading-note">{{lang.ui_csv_or_txt_up_to_5_mb_ae4e7fc3}}</p>
+      </div>
+
+      <div id="drop-zone" class="drop-zone">
+        <input id="file-input" type="file" accept=".csv,.txt,text/csv,text/plain" class="sr-only" tabindex="-1" aria-hidden="true">
+        <div class="upload-icon" aria-hidden="true">↥</div>
+        <h3>{{lang.ui_drop_your_file_here_6d2c22b8}}</h3>
+        <p>{{lang.ui_or_choose_it_from_your_device_5b506c9c}}</p>
+        <button id="choose-file" class="button button-primary" type="button">{{lang.ui_choose_file_b09c73d9}}</button>
+        <p id="selected-file" class="selected-file" hidden></p>
+      </div>
+
+      <div class="template-row">
+        <div class="template-icon" aria-hidden="true">▤</div>
+        <div><strong>{{lang.ui_need_a_starting_point_e73f0076}}</strong><span>{{lang.ui_basic_stays_simple_advanced_adds_moodle_metadata_e3ee2bf9}}</span></div>
+        <a class="text-link" href="{{baseurl}}/examples/uniquiz-template.csv" download>{{lang.ui_basic_csv_9354212e}} <span aria-hidden="true">↓</span></a>
+        <a class="text-link" href="{{baseurl}}/examples/uniquiz-advanced-template.csv" download>{{lang.ui_advanced_csv_9e103aa8}} <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="help-link"><strong>{{lang.ui_advanced_csv_types_1c1bc7e1}}</strong> <code>multichoice</code>, <code>truefalse</code>, <code>shortanswer</code>, <code>numerical</code>, <code>essay</code> {{lang.ui_and_6201111b}} <code>description</code>. <a href="{{baseurl}}/examples/uniquiz-question-types.csv" download>{{lang.ui_download_the_six_type_example_44f54be0}}</a>.</p>
+
+      <label class="consent-box" for="consent">
+        <input id="consent" type="checkbox">
+        <span>{{lang.ui_i_understand_that_file_analysis_happens_in_this__d1919ac8}}</span>
+      </label>
+      <p class="microcopy"><span aria-hidden="true">🔒</span> {{lang.ui_analysis_stays_in_your_browser_questions_are_sen_9047f4fc}}</p>
+      <p class="help-link">{{lang.ui_need_help_preparing_a_file_969140c3}} <a href="{{helpurl}}" target="_blank" rel="noopener">{{lang.ui_open_the_guide_faq_7ce03f21}}</a>.</p>
+
+      <div class="actions actions-end">
+        <button id="analyse-button" class="button button-primary button-arrow" type="button" disabled>{{lang.ui_analyse_questions_fe0dce9c}} <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <section class="wizard-card" data-step="2" aria-labelledby="analyse-title" hidden>
+      <div class="section-heading">
+        <div><p class="step-kicker">{{lang.ui_step_2_of_5_15d0cd79}}</p><h2 id="analyse-title" tabindex="-1">{{lang.ui_here_s_what_we_found_b68c4edd}}</h2></div>
+        <span class="success-badge">{{lang.ui_utf_8_cda0b07e}}</span>
+      </div>
+      <div id="analysis-summary" class="metric-grid"></div>
+      <div id="mapping-panel" class="mapping-panel" hidden>
+        <div class="notice notice-warning"><strong>{{lang.ui_help_us_match_your_columns_b906bfb1}}</strong><p>{{lang.ui_choose_a_role_for_each_column_every_file_needs_o_c7fa68df}}</p></div>
+        <div id="mapping-fields" class="mapping-fields"></div>
+        <button id="apply-mapping" class="button button-secondary" type="button">{{lang.ui_apply_column_mapping_a8f04708}}</button>
+      </div>
+      <div id="analysis-issues"></div>
+      <div class="actions">
+        <button class="button button-ghost" data-back="1" type="button">{{lang.ui_back_aceb696a}}</button>
+        <button id="to-settings" class="button button-primary button-arrow" type="button">{{lang.ui_continue_to_settings_7551a0ec}} <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <section class="wizard-card" data-step="3" aria-labelledby="settings-title" hidden>
+      <div class="section-heading">
+        <div><p class="step-kicker">{{lang.ui_step_3_of_5_a2d3cc8e}}</p><h2 id="settings-title" tabindex="-1">{{lang.ui_choose_your_settings_778dc3d8}}</h2></div>
+        <p class="heading-note">{{lang.ui_safe_defaults_are_already_selected_66bd9a3e}}</p>
+      </div>
+      <div class="settings-grid">
+        <label class="field field-wide"><span>{{lang.ui_question_category_bd1b244c}} <small>{{lang.ui_optional_59be7133}}</small></span><input id="category" type="text" maxlength="200" placeholder="{{lang.ui_e_g_week_3_european_capitals_130deca5}}"><em>{{lang.ui_used_in_the_xml_download_direct_import_uses_the__97f1aa24}}</em></label>
+        <label class="toggle-row"><span><strong>{{lang.ui_shuffle_answers_fad4787e}}</strong><small>{{lang.ui_sets_the_default_for_exported_questions_advanced_8e8b9360}} <code>shuffle_answers</code> {{lang.ui_value_keep_their_per_question_setting_7ee2670c}}</small></span><input id="shuffle" type="checkbox" checked><i aria-hidden="true"></i></label>
+        <label class="toggle-row"><span><strong>{{lang.ui_generate_question_names_96bec212}}</strong><small>{{lang.ui_uses_the_first_50_characters_of_each_question_ac6615c4}}</small></span><input id="generate-names" type="checkbox" checked><i aria-hidden="true"></i></label>
+        <label class="toggle-row"><span><strong>{{lang.ui_remove_question_numbering_61fb2c4f}}</strong><small>{{lang.ui_removes_detected_numbering_prefixes_such_as_1_1__8411a1e1}}</small></span><input id="remove-question-numbering" type="checkbox" checked><i aria-hidden="true"></i></label>
+        <label class="toggle-row"><span><strong>{{lang.ui_capitalize_answer_text_75889690}}</strong><small>{{lang.ui_capitalizes_the_first_character_while_leaving_th_ebbed6b3}}</small></span><input id="capitalize" type="checkbox"><i aria-hidden="true"></i></label>
+        <label class="field answer-numbering-setting"><span>{{lang.ui_answer_choice_labels_f1b172a3}}</span><select id="answer-numbering"><option value="abc">{{lang.ui_a_b_c_aa8e1e20}}</option><option value="ABCD">{{lang.ui_a_b_c_51f9a7aa}}</option><option value="123">1, 2, 3…</option><option value="none">{{lang.ui_no_numbering_b3d03f09}}</option></select><em>{{lang.ui_controls_how_answer_choices_are_labelled_in_mood_e952bb0f}}</em></label>
+      </div>
+      <div class="actions">
+        <button class="button button-ghost" data-back="2" type="button">{{lang.ui_back_aceb696a}}</button>
+        <button id="to-review" class="button button-primary button-arrow" type="button">{{lang.ui_review_questions_e2fd5ab9}} <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <section class="wizard-card" data-step="4" aria-labelledby="review-title" hidden>
+      <div class="section-heading">
+        <div><p class="step-kicker">{{lang.ui_step_4_of_5_fa5155a5}}</p><h2 id="review-title" tabindex="-1">{{lang.ui_review_your_questions_2388b224}}</h2></div>
+        <span id="review-state-badge" class="readiness-badge">{{lang.ui_ready_to_export_47942aa3}}</span>
+      </div>
+      <div id="review-summary" class="readiness-summary" role="status" aria-live="polite"></div>
+      <div class="preview-discovery" aria-label="{{lang.ui_find_questions_1c1b3aca}}">
+        <div class="preview-search-row">
+          <label class="preview-search" for="preview-search"><span>{{lang.ui_search_questions_7fa8a1cf}}</span><input id="preview-search" type="search" placeholder="{{lang.ui_search_questions_fd859bef}}" autocomplete="off" spellcheck="false"></label>
+          <button id="clear-preview-search" class="button button-ghost preview-clear-search" type="button" hidden>{{lang.ui_clear_search_3b7ea517}}</button>
+        </div>
+        <div class="preview-status-filters" role="group" aria-label="{{lang.ui_filter_questions_by_status_80c927ad}}">
+          <button class="preview-status-filter is-active" type="button" data-status-filter="all" aria-pressed="true">{{lang.ui_all_a52ace42}} <span data-filter-count="all">0</span></button>
+          <button class="preview-status-filter" type="button" data-status-filter="warning" aria-pressed="false">{{lang.ui_warnings_0e04cd10}} <span data-filter-count="warning">0</span></button>
+          <button class="preview-status-filter" type="button" data-status-filter="error" aria-pressed="false">{{lang.ui_errors_cb702378}} <span data-filter-count="error">0</span></button>
+        </div>
+        <p id="preview-result-summary" class="preview-result-summary" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      </div>
+      <div class="preview-heading" id="preview-heading" tabindex="-1">
+        <div><h3>{{lang.ui_question_preview_b700dffc}}</h3><p id="preview-limit" role="status" aria-live="polite" aria-atomic="true"></p><p id="preview-page-indicator"></p></div>
+        <label class="preview-page-size"><span>{{lang.ui_questions_per_page_6b7d61fd}}</span><select id="preview-page-size"><option value="20">20</option><option value="50">50</option><option value="100">100</option></select></label>
+      </div>
+      <div id="question-preview" class="question-list"></div>
+      <nav id="preview-pagination" class="preview-pagination" aria-label="{{lang.ui_question_preview_pages_d4cff244}}">
+        <button id="preview-previous" class="button button-ghost preview-nav-button" type="button">{{lang.ui_previous_a57b08a4}}</button>
+        <div id="preview-page-numbers" class="preview-page-numbers"></div>
+        <button id="preview-next" class="button button-ghost preview-nav-button" type="button">{{lang.ui_next_1ff57a29}}</button>
+      </nav>
+      <div class="actions">
+        <button class="button button-ghost" data-back="3" type="button">{{lang.ui_back_aceb696a}}</button>
+        <div class="export-action">
+          <p id="export-block-message" class="export-block-message" hidden>{{lang.ui_resolve_the_errors_in_the_preview_before_exporti_93e1c19c}}</p>
+          <button id="generate-button" class="button button-primary button-arrow" type="button">{{lang.ui_generate_moodle_xml_f0275228}} <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="wizard-card final-card" data-step="5" aria-labelledby="download-title" hidden>
+      <div class="final-check" aria-hidden="true">✓</div>
+      <p class="step-kicker">{{lang.ui_conversion_complete_76529479}}</p>
+      <h2 id="download-title" tabindex="-1">{{lang.ui_moodle_xml_validation_passed_4e1309ce}}</h2>
+      <p>{{lang.ui_review_the_destination_below_then_confirm_import_aab33bdb}}</p>
+      <div id="final-summary" class="metric-grid"></div>
+
+<section class="uq-import-panel" aria-labelledby="uq-import-title">
+  <h3 id="uq-import-title">{{lang.ui_import_into_moodle_467d6413}}</h3>
+  <p>{{importintro}}</p>
+  <label class="field" for="uq-destination"><span>{{destinationlabel}}</span>
+    <select id="uq-destination">{{#categories}}<option value="{{id}}" {{#selected}}selected{{/selected}}>{{name}}</option>{{/categories}}</select>
+  </label>
+  <p class="microcopy">{{categorypolicy}}</p>
+  <label class="consent-box"><input type="checkbox" id="uq-confirm"><span>{{lang.ui_i_have_reviewed_these_questions_and_want_to_add__6283e218}}</span></label>
+  <button id="uq-import" type="button" class="button button-primary" disabled>{{importconfirm}}</button>
+  <div id="uq-import-status" role="status" aria-live="polite" tabindex="-1"></div>
+  <a id="uq-return" class="button button-secondary" href="{{bankurl}}" hidden>{{returnbank}}</a>
+</section>
+      <a id="download-button" class="button button-primary button-download" href="#" download>{{lang.ui_download_moodle_xml_bb279fef}} <span aria-hidden="true">↓</span></a>
+      <button id="new-conversion" class="button button-ghost" type="button">{{lang.ui_start_a_new_conversion_53cb905c}}</button>
+    </section>
+  </div>  <div id="processing" class="processing" role="status" aria-live="polite" aria-label="{{lang.ui_preparing_your_questions_1dafaa7b}}" hidden>
+    <div class="processing-art" aria-hidden="true"><div class="rainbow-trail"></div><div class="mini-unicorn">🦄</div><div class="spark one">✦</div><div class="spark two">✧</div></div>
+    <strong id="processing-message">{{lang.ui_preparing_your_questions_9c813fe0}}</strong><span>{{lang.ui_this_happens_privately_in_your_browser_4d3e4042}}</span>
+  </div>
+</div>

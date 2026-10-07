@@ -1,0 +1,7 @@
+type,question_text,question_name,default_mark,general_feedback,answer_1,answer_1_fraction,answer_1_tolerance,answer_1_feedback,answer_2,answer_2_fraction,answer_2_tolerance,answer_2_feedback,case_sensitive
+multichoice,Which city is the capital of Hungary?,Capital of Hungary,1,,Vienna,0,,Budapest is Hungary's capital.,Budapest,100,,Correct.,
+truefalse,The Danube flows through Budapest.,Danube and Budapest,1,,true,100,,Correct.,false,0,,,
+shortanswer,What is the capital of Hungary?,Capital short answer,1,,Budapest,100,,Correct.,Budapest City,100,,Also accepted.,false
+numerical,Approximately what is pi?,Approximate pi,1,,3.14,100,0.01,Correct.,3.1416,100,0.0001,Also accepted.,
+essay,Explain the principle of proportionality.,Principle of proportionality,10,,,,,,,,,,
+description,"Read the following scenario before answering the next three questions.",Scenario introduction,,,,,,,,,,,

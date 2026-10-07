@@ -1,0 +1,33 @@
+{{! UniQuiz © 2026 Tamas Kery. GNU GPL v3 or later. }}
+<article class="container">
+  <h2>{{#str}}guidetitle, qbank_uniquiz{{/str}}</h2>
+  <p>Open UniQuiz from the question bank menu. Choose a UTF-8 CSV or TXT file (up to 5 MB), review the analysis, choose settings, and review every warning or error. You can then download Moodle XML or confirm a direct import.</p>
+  <h3>Basic CSV</h3>
+  <pre>question_text,answer_1,answer_2,answer_3,correct
+What is the capital of Hungary?,Vienna,Budapest,Prague,B
+Select the prime numbers,2,3,4,"A,B"</pre>
+  <p>Basic CSV makes Multiple Choice questions. The correct column accepts one answer label or several labels. Headings can be recognized automatically or mapped manually. Commas, semicolons and tabs are detected; quote values containing delimiters or line breaks.</p>
+  <p><a href="{{baseurl}}/examples/uniquiz-template.csv" download>Download Basic CSV</a></p>
+  <h3>Advanced CSV</h3>
+  <p>Use <code>type</code> to mix <code>multichoice</code>, <code>truefalse</code>, <code>shortanswer</code>, <code>numerical</code>, <code>essay</code> and <code>description</code>. Optional fields include question_name, category, general_feedback, default_mark, shuffle_answers, answer_numbering, single, answer_N_fraction, answer_N_feedback, answer_N_tolerance, case_sensitive and tags. Use semicolons between tags. Omit unused optional columns.</p>
+  <p>For Multiple Choice, positive fractions must total 100. Do not mix explicit fractions with the Basic correct column in one row. Short Answer and Numerical support multiple accepted answers and require an answer worth 100%. Numerical accepts numbers and non-negative tolerances; units, formulas and calculated questions are unsupported. Essay and Description have no answer columns.</p>
+  <p>The two-column question,answer shorthand accepts true or false and retains UniQuiz's two-option Multiple Choice output. Use type=truefalse with explicit true/false answers for native Moodle True/False.</p>
+  <p><a href="{{baseurl}}/examples/uniquiz-advanced-template.csv" download>Download Advanced CSV</a> · <a href="{{baseurl}}/examples/uniquiz-question-types.csv" download>Download all six types</a></p>
+  <h3>Structured TXT and AIKEN</h3>
+  <pre>What is the capital of Hungary?
+A. Vienna
+B. Budapest
+ANSWER: B</pre>
+  <p>Separate questions with blank lines. Structured TXT supports multiple correct labels. The AIKEN fixer is a separate tab: it repairs safe formatting problems and downloads corrected AIKEN. Review any proposed change that joins lines or removes numbering before accepting it.</p>
+  <h3 id="faq">Review and import</h3>
+  <p>Errors block the complete bank, including questions hidden by search or pagination. Warnings allow export but deserve review. Preview filters never change which questions are exported or imported.</p>
+  <p>Shuffle and answer-label settings apply to Multiple Choice. Explicit Advanced CSV settings take precedence. Capitalization does not change Short Answer accepted values. Numbering removal can be disabled to preserve original prefixes.</p>
+  <p>At the final step select a destination category and confirm. Direct import puts every question into that category and creates new questions. It does not update existing questions or create categories from source paths. Category paths remain in downloaded XML, which can be imported separately using Moodle's standard import options.</p>
+  <p>Direct import accepts up to 500 questions and 8 MB of generated XML, subject to your Moodle server's request limits. Larger valid banks remain downloadable as XML. The server independently validates each request. If a batch fails before commit, its database changes are rolled back. Other tabs in the same Moodle session may wait while an import is running.</p>
+  <p>Question text, Multiple Choice answers and feedback are plain text: angle brackets and ampersands stay visible, and line breaks are preserved. HTML source is not interpreted as formatting. Short Answer accepted values remain literal. Invalid XML characters are reported during analysis; correct them in the source rather than silently losing text. Tags and question names are limited to 255 characters.</p>
+  <p>Server validation errors identify the question and field when possible. For an unexpected error, give the displayed reference to your Moodle administrator. If the connection drops or the result is unconfirmed, check the question bank before starting another batch.</p>
+  <p>Direct import also limits each question to 100 answers and 100 tags, each batch to 5000 answers and 5000 tags, 500 category markers and 50000 XML elements, and each text field to 256 KiB. Split or simplify larger sources, or download XML for a separately managed import.</p>
+  <h3>Privacy and languages</h3>
+  <p>File reading, mapping, analysis, search and preview run in this browser. Confirming import sends the prepared questions to this Moodle site, where they become normal Moodle question-bank records. UniQuiz does not call an external conversion or AI service. Closing or reloading the page discards unimported work.</p>
+  <p>The interface and diagnostics follow Moodle’s language settings. Unicode question content is supported; CSV field names and AIKEN syntax remain unchanged.</p>
+</article>
