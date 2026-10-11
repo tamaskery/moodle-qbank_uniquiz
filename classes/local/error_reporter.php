@@ -48,6 +48,10 @@ final class error_reporter {
      * @return array HTTP status and response data.
      */
     public static function response(\Throwable $error): array {
+        if ($error instanceof \moodle_exception && $error->module === 'qbank_uniquiz' &&
+                $error->errorcode === 'importretrylimit') {
+            return [429, ['success' => false, 'message' => $error->getMessage(), 'retryafter' => (int)$error->a]];
+        }
         if (
             $error instanceof \moodle_exception && $error->module === 'qbank_uniquiz' &&
                 in_array($error->errorcode, ['invalidxml', 'invalidxmlquestion', 'batchlimit'], true)

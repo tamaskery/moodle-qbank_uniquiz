@@ -1,0 +1,24 @@
+{
+  "policy": {"percentageScale": 10000000, "inclusiveAllowance": 1000, "minimumMark": 0.0000001, "maximumMark": 10000},
+  "totals": [
+    {"name": "four-decimal thirds at inclusive boundary", "fractions": [33.3333, 33.3333, 33.3333], "valid": true, "coreImport": true},
+    {"name": "five-decimal thirds", "fractions": [33.33333, 33.33333, 33.33333], "valid": true, "coreImport": true},
+    {"name": "seven-decimal thirds", "fractions": [33.3333333, 33.3333333, 33.3333333], "valid": true, "coreImport": true},
+    {"name": "sixths", "fractions": [16.6666667, 16.6666667, 16.6666667, 16.6666667, 16.6666667, 16.6666667], "valid": true, "coreImport": true},
+    {"name": "99.999 is outside policy", "fractions": [33.333, 33.333, 33.333], "valid": false},
+    {"name": "inclusive lower boundary", "fractions": [50, 49.9999, 0], "valid": true, "coreImport": true},
+    {"name": "one unit beyond lower boundary", "fractions": [50, 49.9998999, 0], "valid": false},
+    {"name": "inclusive upper boundary", "fractions": [50, 50.0001, 0], "valid": true, "coreImport": true},
+    {"name": "one unit beyond upper boundary", "fractions": [50, 50.0001001, 0], "valid": false},
+    {"name": "positive halfway rounds up", "fractions": [50, 49.99989995, 0], "valid": true},
+    {"name": "below halfway remains outside", "fractions": [50, 49.99989994, 0], "valid": false},
+    {"name": "negative scores do not reduce positive total", "fractions": [50, 50, -25], "valid": true, "coreImport": true}
+  ],
+  "marks": [
+    {"value": 0, "valid": false}, {"value": -1, "valid": false},
+    {"value": 0.00000001, "valid": false}, {"value": 0.0000001, "valid": true},
+    {"value": 1, "valid": true}, {"value": 10000, "valid": true},
+    {"value": 10000.0000001, "valid": false}, {"value": 100000, "valid": false},
+    {"value": 1e100, "valid": false}
+  ]
+}

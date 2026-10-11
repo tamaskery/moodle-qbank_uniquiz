@@ -2,61 +2,61 @@
   "js_core_question_text_column_not_identified": {
     "value": "Question text column not identified",
     "locations": [
-      "core:22"
+      "core:49"
     ],
     "params": []
   },
   "js_core_answer_columns_not_identified_add_at_least_two_a": {
     "value": "Answer columns not identified; add at least two answer columns or one True/False answer column",
     "locations": [
-      "core:25"
+      "core:52"
     ],
     "params": []
   },
   "js_core_at_least_two_answer_columns_are_required": {
     "value": "At least two answer columns are required",
     "locations": [
-      "core:26"
+      "core:53"
     ],
     "params": []
   },
   "js_core_correct_answer_column_not_identified_add_a_corre": {
     "value": "Correct-answer column not identified; add a correct column or explicit answer fractions",
     "locations": [
-      "core:29"
+      "core:56"
     ],
     "params": []
   },
   "js_core_invalid_true_false_answers": {
     "value": "Invalid True/False answers",
     "locations": [
-      "core:41"
+      "core:68"
     ],
     "params": []
   },
   "js_core_native_true_false_questions_need_exactly_two_ans": {
     "value": "Native True/False questions need exactly two answers named true and false.",
     "locations": [
-      "core:42"
+      "core:69"
     ],
     "params": []
   },
   "js_core_invalid_answer_fraction": {
     "value": "Invalid answer fraction",
     "locations": [
-      "core:49",
-      "core:621",
-      "core:1264"
+      "core:76",
+      "core:648",
+      "core:1291"
     ],
     "params": []
   },
   "js_core_is_not_a_valid_answer_fraction_use_a_number_from": {
     "value": "“{$a->p0}” is not a valid answer fraction. Use a number from -100 to 100.",
     "locations": [
-      "core:50",
-      "core:625",
-      "core:633",
-      "core:1265"
+      "core:77",
+      "core:652",
+      "core:660",
+      "core:1292"
     ],
     "params": [
       "p0: dynamic display value"
@@ -65,28 +65,28 @@
   "js_core_no_correct_answer": {
     "value": "No correct answer",
     "locations": [
-      "core:61"
+      "core:88"
     ],
     "params": []
   },
   "js_core_this_question_has_no_positively_scored_answer_ma": {
     "value": "This question has no positively scored answer. Mark at least one answer as correct before exporting.",
     "locations": [
-      "core:62"
+      "core:89"
     ],
     "params": []
   },
   "js_core_answer_fractions_do_not_total_100": {
     "value": "Answer fractions do not total 100%",
     "locations": [
-      "core:68"
+      "core:95"
     ],
     "params": []
   },
   "js_core_positive_answer_fractions_must_total_100_the_cur": {
     "value": "Positive answer fractions must total 100%. The current total is {$a->p0}%.",
     "locations": [
-      "core:69"
+      "core:96"
     ],
     "params": [
       "p0: dynamic display value"
@@ -95,71 +95,72 @@
   "js_core_conflicting_answer_mode": {
     "value": "Conflicting answer mode",
     "locations": [
-      "core:75"
+      "core:102"
     ],
     "params": []
   },
   "js_core_this_question_is_marked_as_single_answer_but_its": {
     "value": "This question is marked as single-answer but its scoring defines multiple positively scored answers.",
     "locations": [
-      "core:76"
+      "core:103"
     ],
     "params": []
   },
   "js_core_invalid_default_mark": {
     "value": "Invalid default mark",
     "locations": [
-      "core:83",
-      "core:621",
-      "core:1209",
-      "core:1304"
+      "core:110",
+      "core:648",
+      "core:1236",
+      "core:1331"
     ],
     "params": []
   },
-  "js_core_the_default_mark_must_be_greater_than_0_enter_a_": {
-    "value": "The default mark must be greater than 0. Enter a positive number before exporting.",
+  "js_core_default_mark_range": {
+    "value": "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
     "locations": [
-      "core:84",
-      "core:634",
-      "core:1210",
-      "core:1305"
+      "core:111",
+      "core:653",
+      "core:661",
+      "core:1237",
+      "core:1332"
     ],
     "params": []
   },
   "js_core_unsupported_answer_numbering": {
     "value": "Unsupported answer numbering",
     "locations": [
-      "core:90",
-      "core:685"
+      "core:117",
+      "core:712"
     ],
     "params": []
   },
   "js_core_answer_numbering_must_be_abc_abcd_123_or_none_ch": {
     "value": "Answer numbering must be abc, ABCD, 123, or none. Choose one of the supported values.",
     "locations": [
-      "core:91",
-      "core:686"
+      "core:118",
+      "core:713"
     ],
     "params": []
   },
   "js_core_no_answer_labels": {
     "value": "no answer labels",
     "locations": [
-      "core:97"
+      "core:124"
     ],
     "params": []
   },
   "js_core_correct_answer_reference_is_invalid": {
     "value": "Correct answer reference is invalid",
     "locations": [
-      "core:99"
+      "core:126"
     ],
     "params": []
   },
   "js_core_the_correct_answer_field_refers_to_answer_but_th": {
     "value": "The correct-answer field refers to answer {$a->p0}, but the available answers are {$a->p1}. Choose a non-empty answer.",
     "locations": [
-      "core:100"
+      "core:127"
     ],
     "params": [
       "p0: label",
@@ -169,71 +170,71 @@
   "js_core_duplicate_correct_answer_reference": {
     "value": "Duplicate correct-answer reference",
     "locations": [
-      "core:107"
+      "core:134"
     ],
     "params": []
   },
   "js_core_the_same_correct_answer_is_listed_more_than_once": {
     "value": "The same correct answer is listed more than once. Keep each correct-answer reference only once.",
     "locations": [
-      "core:108"
+      "core:135"
     ],
     "params": []
   },
   "js_core_unsupported_text_character": {
     "value": "Unsupported text character",
     "locations": [
-      "core:133",
-      "core:260"
+      "core:160",
+      "core:287"
     ],
     "params": []
   },
   "js_core_this_field_contains_a_character_that_xml_cannot_": {
     "value": "This field contains a character that XML cannot represent. Correct the source before exporting.",
     "locations": [
-      "core:134"
+      "core:161"
     ],
     "params": []
   },
   "js_core_question_name_is_too_long": {
     "value": "Question name is too long",
     "locations": [
-      "core:138"
+      "core:165"
     ],
     "params": []
   },
   "js_core_use_at_most_255_characters_for_the_question_name": {
     "value": "Use at most 255 characters for the question name.",
     "locations": [
-      "core:139"
+      "core:166"
     ],
     "params": []
   },
   "js_core_tag_would_be_changed_by_moodle": {
     "value": "Tag would be changed by Moodle",
     "locations": [
-      "core:142"
+      "core:169"
     ],
     "params": []
   },
   "js_core_use_tags_of_at_most_255_characters_with_single_s": {
     "value": "Use tags of at most 255 characters, with single spaces and no control characters, angle brackets or backticks.",
     "locations": [
-      "core:143"
+      "core:170"
     ],
     "params": []
   },
   "js_core_unsupported_question_type": {
     "value": "Unsupported question type",
     "locations": [
-      "core:148"
+      "core:175"
     ],
     "params": []
   },
   "js_core_this_question_uses_the_unsupported_type_use_mult": {
     "value": "This question uses the unsupported type “{$a->p0}”. Use multichoice, truefalse, shortanswer, numerical, essay, or description.",
     "locations": [
-      "core:149"
+      "core:176"
     ],
     "params": [
       "p0: dynamic display value"
@@ -242,77 +243,77 @@
   "js_core_description_content_is_missing": {
     "value": "Description content is missing",
     "locations": [
-      "core:155"
+      "core:182"
     ],
     "params": []
   },
   "js_core_this_description_has_no_content_add_question_tex": {
     "value": "This Description has no content. Add question_text before exporting.",
     "locations": [
-      "core:155"
+      "core:182"
     ],
     "params": []
   },
   "js_core_essay_question_text_is_missing": {
     "value": "Essay question text is missing",
     "locations": [
-      "core:157"
+      "core:184"
     ],
     "params": []
   },
   "js_core_this_essay_question_is_missing_question_text_add": {
     "value": "This Essay question is missing question text. Add question_text before exporting.",
     "locations": [
-      "core:157"
+      "core:184"
     ],
     "params": []
   },
   "js_core_short_answer_question_text_is_missing": {
     "value": "Short Answer question text is missing",
     "locations": [
-      "core:159"
+      "core:186"
     ],
     "params": []
   },
   "js_core_this_short_answer_question_is_missing_question_t": {
     "value": "This Short Answer question is missing question text. Add question_text before exporting.",
     "locations": [
-      "core:159"
+      "core:186"
     ],
     "params": []
   },
   "js_core_numerical_question_text_is_missing": {
     "value": "Numerical question text is missing",
     "locations": [
-      "core:161"
+      "core:188"
     ],
     "params": []
   },
   "js_core_this_numerical_question_is_missing_question_text": {
     "value": "This Numerical question is missing question text. Add question_text before exporting.",
     "locations": [
-      "core:161"
+      "core:188"
     ],
     "params": []
   },
   "js_core_question_text_is_missing": {
     "value": "Question text is missing",
     "locations": [
-      "core:162"
+      "core:189"
     ],
     "params": []
   },
   "js_core_this_question_has_no_question_text_add_question_": {
     "value": "This question has no question text. Add question text before exporting.",
     "locations": [
-      "core:162"
+      "core:189"
     ],
     "params": []
   },
   "js_core_the_source_contains_which_xml_cannot_represent_r": {
     "value": "The source contains {$a->p0}, which XML cannot represent. Replace it in the source before continuing.",
     "locations": [
-      "core:261"
+      "core:288"
     ],
     "params": [
       "p0: codepoint"
@@ -321,15 +322,15 @@
   "js_core_review_this_issue_before_exporting": {
     "value": "Review this issue before exporting.",
     "locations": [
-      "core:310",
-      "core:1097"
+      "core:337",
+      "core:1124"
     ],
     "params": []
   },
   "js_core_csv_row": {
     "value": "CSV row {$a->p0}",
     "locations": [
-      "core:317"
+      "core:344"
     ],
     "params": [
       "p0: csvRow"
@@ -338,7 +339,7 @@
   "js_core_column": {
     "value": ", column {$a->p0}",
     "locations": [
-      "core:318"
+      "core:345"
     ],
     "params": [
       "p0: csvColumn"
@@ -347,7 +348,7 @@
   "js_core_csv_row_2": {
     "value": "CSV row {$a->p0}{$a->p1}",
     "locations": [
-      "core:318"
+      "core:345"
     ],
     "params": [
       "p0: csvRow",
@@ -357,7 +358,7 @@
   "js_core_column_2": {
     "value": "column {$a->p0}",
     "locations": [
-      "core:319"
+      "core:346"
     ],
     "params": [
       "p0: csvColumn"
@@ -366,7 +367,7 @@
   "js_core_csv_column": {
     "value": "CSV column {$a->p0}",
     "locations": [
-      "core:320"
+      "core:347"
     ],
     "params": [
       "p0: csvColumn"
@@ -375,7 +376,7 @@
   "js_core_line": {
     "value": "Line {$a->p0}",
     "locations": [
-      "core:322"
+      "core:349"
     ],
     "params": [
       "p0: line"
@@ -384,9 +385,9 @@
   "js_core_question": {
     "value": "Question {$a->p0}",
     "locations": [
-      "core:324",
-      "core:1528",
-      "core:1552"
+      "core:351",
+      "core:1555",
+      "core:1579"
     ],
     "params": [
       "p0: question"
@@ -395,7 +396,7 @@
   "js_core_answer": {
     "value": "Answer {$a->p0}",
     "locations": [
-      "core:327"
+      "core:354"
     ],
     "params": [
       "p0: dynamic display value"
@@ -404,56 +405,56 @@
   "js_core_unexpected_text_after_a_quoted_csv_value": {
     "value": "Unexpected text after a quoted CSV value",
     "locations": [
-      "core:472"
+      "core:499"
     ],
     "params": []
   },
   "js_core_a_quoted_csv_field_contains_unexpected_text_afte": {
     "value": "A quoted CSV field contains unexpected text after its closing quote. Remove the extra text or place it inside the quotes.",
     "locations": [
-      "core:473"
+      "core:500"
     ],
     "params": []
   },
   "js_core_quoted_csv_value_is_not_closed": {
     "value": "Quoted CSV value is not closed",
     "locations": [
-      "core:484"
+      "core:511"
     ],
     "params": []
   },
   "js_core_a_quoted_csv_field_is_not_closed_add_the_closing": {
     "value": "A quoted CSV field is not closed. Add the closing double quote before the end of the file.",
     "locations": [
-      "core:485"
+      "core:512"
     ],
     "params": []
   },
   "js_core_no_usable_rows": {
     "value": "No usable rows",
     "locations": [
-      "core:497"
+      "core:524"
     ],
     "params": []
   },
   "js_core_the_file_does_not_contain_any_usable_rows_add_a_": {
     "value": "The file does not contain any usable rows. Add a header row and at least one question row.",
     "locations": [
-      "core:498"
+      "core:525"
     ],
     "params": []
   },
   "js_core_unrecognized_column_ignored": {
     "value": "Unrecognized column ignored",
     "locations": [
-      "core:515"
+      "core:542"
     ],
     "params": []
   },
   "js_core_unrecognized_column_ignored_review_the_heading_o": {
     "value": "Unrecognized column ignored: “{$a->p0}”. Review the heading or leave it ignored.",
     "locations": [
-      "core:516"
+      "core:543"
     ],
     "params": [
       "p0: dynamic display value"
@@ -462,14 +463,14 @@
   "js_core_duplicate_column_detected": {
     "value": "Duplicate column detected",
     "locations": [
-      "core:527"
+      "core:554"
     ],
     "params": []
   },
   "js_core_duplicate_column_detected_keep_only_one_column_f": {
     "value": "Duplicate column detected: “{$a->p0}”. Keep only one column for this field before exporting.",
     "locations": [
-      "core:528"
+      "core:555"
     ],
     "params": [
       "p0: field"
@@ -478,14 +479,14 @@
   "js_core_all_required_columns_were_recognized": {
     "value": "All required columns were recognized.",
     "locations": [
-      "core:569"
+      "core:596"
     ],
     "params": []
   },
   "js_core_rename_the_column_or_use_manual_column_mapping": {
     "value": "{$a->p0}. Rename the column or use manual column mapping.",
     "locations": [
-      "core:570"
+      "core:597"
     ],
     "params": [
       "p0: dynamic display value"
@@ -494,16 +495,16 @@
   "js_core_invalid_numerical_tolerance": {
     "value": "Invalid numerical tolerance",
     "locations": [
-      "core:594",
-      "core:606",
-      "core:1282"
+      "core:621",
+      "core:633",
+      "core:1309"
     ],
     "params": []
   },
   "js_core_is_not_a_valid_numerical_tolerance_use_zero_or_a": {
     "value": "“{$a->p0}” is not a valid numerical tolerance. Use zero or a non-negative decimal number.",
     "locations": [
-      "core:595"
+      "core:622"
     ],
     "params": [
       "p0: source"
@@ -512,31 +513,22 @@
   "js_core_numerical_tolerance_must_be_zero_or_a_non_negati": {
     "value": "Numerical tolerance must be zero or a non-negative decimal number.",
     "locations": [
-      "core:607",
-      "core:1283"
+      "core:634",
+      "core:1310"
     ],
     "params": []
-  },
-  "js_core_is_not_a_valid_default_mark_enter_a_number_great": {
-    "value": "“{$a->p0}” is not a valid default mark. Enter a number greater than 0.",
-    "locations": [
-      "core:626"
-    ],
-    "params": [
-      "p0: source"
-    ]
   },
   "js_core_invalid_true_false_value": {
     "value": "Invalid true/false value",
     "locations": [
-      "core:649"
+      "core:676"
     ],
     "params": []
   },
   "js_core_must_be_true_false_1_or_0_update_the_value_befor": {
     "value": "{$a->p0} must be true, false, 1, or 0. Update the value before exporting.",
     "locations": [
-      "core:650"
+      "core:677"
     ],
     "params": [
       "p0: field"
@@ -545,30 +537,30 @@
   "js_core_unsupported_case_sensitive_value": {
     "value": "Unsupported case-sensitive value",
     "locations": [
-      "core:665"
+      "core:692"
     ],
     "params": []
   },
   "js_core_case_sensitive_must_be_true_false_1_or_0_update_": {
     "value": "case_sensitive must be true, false, 1, or 0. Update the value before exporting.",
     "locations": [
-      "core:666"
+      "core:693"
     ],
     "params": []
   },
   "js_core_answer_data_without_answer_text": {
     "value": "Answer data without answer text",
     "locations": [
-      "core:831",
-      "core:880"
+      "core:858",
+      "core:907"
     ],
     "params": []
   },
   "js_core_answer_contains_scoring_or_feedback_but_has_no_a": {
     "value": "Answer {$a->p0} contains scoring or feedback but has no answer text. Add the missing answer or remove its scoring and feedback.",
     "locations": [
-      "core:832",
-      "core:881"
+      "core:859",
+      "core:908"
     ],
     "params": [
       "p0: label"
@@ -577,28 +569,28 @@
   "js_core_conflicting_scoring_methods": {
     "value": "Conflicting scoring methods",
     "locations": [
-      "core:864"
+      "core:891"
     ],
     "params": []
   },
   "js_core_this_question_uses_both_correct_and_explicit_ans": {
     "value": "This question uses both Correct and explicit answer fractions. Keep one scoring method before exporting.",
     "locations": [
-      "core:865"
+      "core:892"
     ],
     "params": []
   },
   "js_core_answer_fraction_is_missing": {
     "value": "Answer fraction is missing",
     "locations": [
-      "core:899"
+      "core:926"
     ],
     "params": []
   },
   "js_core_answer_has_answer_text_but_no_explicit_fraction_": {
     "value": "Answer {$a->p0} has answer text but no explicit fraction. Add a fraction from -100 to 100.",
     "locations": [
-      "core:900"
+      "core:927"
     ],
     "params": [
       "p0: label"
@@ -607,14 +599,14 @@
   "js_core_answer_key_without_a_question": {
     "value": "Answer key without a question",
     "locations": [
-      "core:984"
+      "core:1011"
     ],
     "params": []
   },
   "js_core_line_has_an_answer_key_without_a_question_add_th": {
     "value": "Line {$a->p0} has an answer key without a question. Add the question and answers before this key.",
     "locations": [
-      "core:985"
+      "core:1012"
     ],
     "params": [
       "p0: answerLine"
@@ -623,14 +615,14 @@
   "js_core_ambiguous_txt_structure": {
     "value": "Ambiguous TXT structure",
     "locations": [
-      "core:1013"
+      "core:1040"
     ],
     "params": []
   },
   "js_core_line_is_ambiguous_add_an_answer_line_before_the_": {
     "value": "Line {$a->p0} is ambiguous. Add an ANSWER: line before the next question.",
     "locations": [
-      "core:1014"
+      "core:1041"
     ],
     "params": [
       "p0: lineNumber"
@@ -639,14 +631,14 @@
   "js_core_answer_key_is_missing": {
     "value": "Answer key is missing",
     "locations": [
-      "core:1026"
+      "core:1053"
     ],
     "params": []
   },
   "js_core_the_question_beginning_on_line_is_missing_an_ans": {
     "value": "The question beginning on line {$a->p0} is missing an ANSWER: line. Add its answer key before exporting.",
     "locations": [
-      "core:1027"
+      "core:1054"
     ],
     "params": [
       "p0: sourceLine"
@@ -655,59 +647,59 @@
   "js_core_no_questions_detected": {
     "value": "No questions detected",
     "locations": [
-      "core:1036",
-      "core:1146"
+      "core:1063",
+      "core:1173"
     ],
     "params": []
   },
   "js_core_uniquiz_could_not_identify_any_supported_questio": {
     "value": "UniQuiz could not identify any supported questions in this input. Check the file structure or try another supported format.",
     "locations": [
-      "core:1037",
-      "core:1148"
+      "core:1064",
+      "core:1175"
     ],
     "params": []
   },
   "js_core_review_recommended": {
     "value": "Review recommended",
     "locations": [
-      "core:1096"
+      "core:1123"
     ],
     "params": []
   },
   "js_core_issue_requires_attention": {
     "value": "Issue requires attention",
     "locations": [
-      "core:1096"
+      "core:1123"
     ],
     "params": []
   },
   "js_core_export_blocked": {
     "value": "Export blocked",
     "locations": [
-      "core:1149",
-      "core:1174"
+      "core:1176",
+      "core:1201"
     ],
     "params": []
   },
   "js_core_question_2": {
     "value": "question",
     "locations": [
-      "core:1154"
+      "core:1181"
     ],
     "params": []
   },
   "js_core_questions": {
     "value": "questions",
     "locations": [
-      "core:1154"
+      "core:1181"
     ],
     "params": []
   },
   "js_core_ready_for_moodle": {
     "value": "{$a->p0} {$a->p1} ready for Moodle",
     "locations": [
-      "core:1159"
+      "core:1186"
     ],
     "params": [
       "p0: total",
@@ -717,49 +709,49 @@
   "js_core_no_issues_detected": {
     "value": "No issues detected.",
     "locations": [
-      "core:1161"
+      "core:1188"
     ],
     "params": []
   },
   "js_core_ready_to_export": {
     "value": "Ready to export",
     "locations": [
-      "core:1162"
+      "core:1189"
     ],
     "params": []
   },
   "js_core_with_warning": {
     "value": "with warning",
     "locations": [
-      "core:1166"
+      "core:1193"
     ],
     "params": []
   },
   "js_core_with_warnings": {
     "value": "with warnings",
     "locations": [
-      "core:1166"
+      "core:1193"
     ],
     "params": []
   },
   "js_core_with_error": {
     "value": "with error",
     "locations": [
-      "core:1167"
+      "core:1194"
     ],
     "params": []
   },
   "js_core_with_errors": {
     "value": "with errors",
     "locations": [
-      "core:1167"
+      "core:1194"
     ],
     "params": []
   },
   "js_core_ready": {
     "value": "{$a->p0} ready · {$a->p1} {$a->p2} · {$a->p3} {$a->p4}",
     "locations": [
-      "core:1168"
+      "core:1195"
     ],
     "params": [
       "p0: dynamic display value",
@@ -772,14 +764,14 @@
   "js_core_1_question_contains_an_error_that_must_be_resolv": {
     "value": "1 question contains an error that must be resolved before export.",
     "locations": [
-      "core:1171"
+      "core:1198"
     ],
     "params": []
   },
   "js_core_questions_contain_errors_that_must_be_resolved_b": {
     "value": "{$a->p0} questions contain errors that must be resolved before export.",
     "locations": [
-      "core:1172"
+      "core:1199"
     ],
     "params": [
       "p0: dynamic display value"
@@ -788,15 +780,15 @@
   "js_core_import_errors_must_be_resolved_before_export": {
     "value": "Import errors must be resolved before export.",
     "locations": [
-      "core:1173"
+      "core:1200"
     ],
     "params": []
   },
   "js_core_found": {
     "value": "{$a->p0} {$a->p1} found",
     "locations": [
-      "core:1174",
-      "core:1177"
+      "core:1201",
+      "core:1204"
     ],
     "params": [
       "p0: total",
@@ -806,28 +798,28 @@
   "js_core_warnings_do_not_prevent_export_but_reviewing_the": {
     "value": "Warnings do not prevent export, but reviewing them is recommended.",
     "locations": [
-      "core:1179"
+      "core:1206"
     ],
     "params": []
   },
   "js_core_ready_to_export_with_warnings": {
     "value": "Ready to export with warnings",
     "locations": [
-      "core:1180"
+      "core:1207"
     ],
     "params": []
   },
   "js_core_invalid_true_false_answer": {
     "value": "Invalid true/false answer",
     "locations": [
-      "core:1222"
+      "core:1249"
     ],
     "params": []
   },
   "js_core_is_not_a_supported_true_false_answer_use_true_or": {
     "value": "“{$a->p0}” is not a supported true/false answer. Use true or false.",
     "locations": [
-      "core:1224"
+      "core:1251"
     ],
     "params": [
       "p0: found"
@@ -836,21 +828,21 @@
   "js_core_the_true_false_answer_is_empty_enter_true_or_fal": {
     "value": "The true/false answer is empty. Enter true or false before exporting.",
     "locations": [
-      "core:1225"
+      "core:1252"
     ],
     "params": []
   },
   "js_core_duplicate_answer_label": {
     "value": "Duplicate answer label",
     "locations": [
-      "core:1236"
+      "core:1263"
     ],
     "params": []
   },
   "js_core_answer_label_is_used_more_than_once_give_each_an": {
     "value": "Answer label {$a->p0} is used more than once. Give each answer a unique label.",
     "locations": [
-      "core:1237"
+      "core:1264"
     ],
     "params": [
       "p0: dynamic display value"
@@ -859,28 +851,28 @@
   "js_core_not_enough_answers": {
     "value": "Not enough answers",
     "locations": [
-      "core:1244"
+      "core:1271"
     ],
     "params": []
   },
   "js_core_multiple_choice_questions_need_at_least_two_non_": {
     "value": "Multiple-choice questions need at least two non-empty answers.",
     "locations": [
-      "core:1245"
+      "core:1272"
     ],
     "params": []
   },
   "js_core_duplicate_answer_text": {
     "value": "Duplicate answer text",
     "locations": [
-      "core:1254"
+      "core:1281"
     ],
     "params": []
   },
   "js_core_answers_and_contain_the_same_text_the_question_c": {
     "value": "Answers {$a->p0} and {$a->p1} contain the same text. The question can still be exported, but you may want to review it.",
     "locations": [
-      "core:1255"
+      "core:1282"
     ],
     "params": [
       "p0: dynamic display value",
@@ -890,101 +882,101 @@
   "js_core_invalid_numerical_answer": {
     "value": "Invalid numerical answer",
     "locations": [
-      "core:1274"
+      "core:1301"
     ],
     "params": []
   },
   "js_core_is_not_a_valid_number_enter_a_finite_integer_or_": {
     "value": "“{$a->p0}” is not a valid number. Enter a finite integer or decimal value.",
     "locations": [
-      "core:1275"
+      "core:1302"
     ],
     "params": [
       "p0: numericText"
     ]
   },
-  "js_core_no_accepted_short_answer": {
+  "js_core_no_full_credit_short_answer": {
     "value": "No full-credit Short Answer",
     "locations": [
-      "core:1294"
+      "core:1321"
     ],
     "params": []
   },
-  "js_core_no_accepted_numerical_answer": {
+  "js_core_no_full_credit_numerical_answer": {
     "value": "No full-credit numerical answer",
     "locations": [
-      "core:1294"
+      "core:1321"
     ],
     "params": []
   },
-  "js_core_short_answer_question_has_no_accepted_answer_add": {
+  "js_core_short_answer_requires_full_credit": {
     "value": "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it.",
     "locations": [
-      "core:1296"
+      "core:1323"
     ],
     "params": []
   },
-  "js_core_numerical_question_has_no_accepted_answer_add_at": {
+  "js_core_numerical_requires_full_credit": {
     "value": "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it.",
     "locations": [
-      "core:1297"
+      "core:1324"
     ],
     "params": []
   },
   "js_core_a_question_must_have_a_correct_answer": {
     "value": "A question must have a correct answer.",
     "locations": [
-      "core:1355"
+      "core:1382"
     ],
     "params": []
   },
   "js_core_moodle_numeric_values_must_be_finite": {
     "value": "Moodle numeric values must be finite.",
     "locations": [
-      "core:1361"
+      "core:1388"
     ],
     "params": []
   },
   "js_core_unsupported_answer_numbering_setting": {
     "value": "Unsupported answer numbering setting.",
     "locations": [
-      "core:1380"
+      "core:1407"
     ],
     "params": []
   },
   "js_core_the_xml_declaration_is_missing_or_is_not_the_fir": {
     "value": "The XML declaration is missing or is not the first content in the file.",
     "locations": [
-      "core:1519"
+      "core:1546"
     ],
     "params": []
   },
   "js_core_an_xml_parser_is_not_available_in_this_browser": {
     "value": "An XML parser is not available in this browser.",
     "locations": [
-      "core:1521"
+      "core:1548"
     ],
     "params": []
   },
   "js_core_the_generated_xml_is_not_well_formed": {
     "value": "The generated XML is not well-formed.",
     "locations": [
-      "core:1524"
+      "core:1551"
     ],
     "params": []
   },
   "js_core_the_generated_xml_does_not_have_a_quiz_root": {
     "value": "The generated XML does not have a quiz root.",
     "locations": [
-      "core:1525"
+      "core:1552"
     ],
     "params": []
   },
   "js_core_has_no_name": {
     "value": "{$a->p0} has no name.",
     "locations": [
-      "core:1529",
-      "core:1553"
+      "core:1556",
+      "core:1580"
     ],
     "params": [
       "p0: label"
@@ -993,8 +985,8 @@
   "js_core_has_no_question_text": {
     "value": "{$a->p0} has no question text.",
     "locations": [
-      "core:1530",
-      "core:1554"
+      "core:1557",
+      "core:1581"
     ],
     "params": [
       "p0: label"
@@ -1003,7 +995,7 @@
   "js_core_has_fewer_than_two_answers": {
     "value": "{$a->p0} has fewer than two answers.",
     "locations": [
-      "core:1532"
+      "core:1559"
     ],
     "params": [
       "p0: label"
@@ -1012,8 +1004,8 @@
   "js_core_has_invalid_grading_fractions": {
     "value": "{$a->p0} has invalid grading fractions.",
     "locations": [
-      "core:1536",
-      "core:1567"
+      "core:1563",
+      "core:1594"
     ],
     "params": [
       "p0: label"
@@ -1022,7 +1014,7 @@
   "js_core_grading_totals_not_100": {
     "value": "{$a->p0} grading totals {$a->p1}, not 100.",
     "locations": [
-      "core:1539"
+      "core:1566"
     ],
     "params": [
       "p0: label",
@@ -1032,7 +1024,7 @@
   "js_core_has_an_inconsistent_single_answer_setting": {
     "value": "{$a->p0} has an inconsistent single-answer setting.",
     "locations": [
-      "core:1541"
+      "core:1568"
     ],
     "params": [
       "p0: label"
@@ -1041,7 +1033,7 @@
   "js_core_has_unsupported_answer_numbering": {
     "value": "{$a->p0} has unsupported answer numbering.",
     "locations": [
-      "core:1543"
+      "core:1570"
     ],
     "params": [
       "p0: label"
@@ -1050,8 +1042,8 @@
   "js_core_has_an_invalid_default_grade": {
     "value": "{$a->p0} has an invalid default grade.",
     "locations": [
-      "core:1545",
-      "core:1559"
+      "core:1572",
+      "core:1586"
     ],
     "params": [
       "p0: label"
@@ -1060,7 +1052,7 @@
   "js_core_description_has_a_non_zero_default_grade": {
     "value": "{$a->p0} description has a non-zero default grade.",
     "locations": [
-      "core:1557"
+      "core:1584"
     ],
     "params": [
       "p0: label"
@@ -1069,7 +1061,7 @@
   "js_core_has_no_accepted_answers": {
     "value": "{$a->p0} has no accepted answers.",
     "locations": [
-      "core:1563"
+      "core:1590"
     ],
     "params": [
       "p0: label"
@@ -1078,7 +1070,7 @@
   "js_core_has_an_invalid_case_sensitivity_setting": {
     "value": "{$a->p0} has an invalid case-sensitivity setting.",
     "locations": [
-      "core:1571"
+      "core:1598"
     ],
     "params": [
       "p0: label"
@@ -1087,7 +1079,7 @@
   "js_core_has_an_invalid_numerical_answer": {
     "value": "{$a->p0} has an invalid numerical answer.",
     "locations": [
-      "core:1577"
+      "core:1604"
     ],
     "params": [
       "p0: label"
@@ -1096,7 +1088,7 @@
   "js_core_has_an_invalid_numerical_tolerance": {
     "value": "{$a->p0} has an invalid numerical tolerance.",
     "locations": [
-      "core:1578"
+      "core:1605"
     ],
     "params": [
       "p0: label"
@@ -1105,7 +1097,7 @@
   "js_core_has_invalid_true_false_answers": {
     "value": "{$a->p0} has invalid True/False answers.",
     "locations": [
-      "core:1586"
+      "core:1613"
     ],
     "params": [
       "p0: label"
@@ -1114,7 +1106,7 @@
   "js_core_should_not_contain_automatically_graded_answers": {
     "value": "{$a->p0} should not contain automatically graded answers.",
     "locations": [
-      "core:1590"
+      "core:1617"
     ],
     "params": [
       "p0: label"
@@ -1123,7 +1115,7 @@
   "js_core_the_xml_contains_no_supported_questions": {
     "value": "The XML contains no supported questions.",
     "locations": [
-      "core:1594"
+      "core:1621"
     ],
     "params": []
   },

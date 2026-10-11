@@ -119,6 +119,7 @@ jobs:
           cp plugin/.build/qa/integration.php "$WEBROOT/question/bank/uniquiz/qa.php"
           php "$WEBROOT/question/bank/uniquiz/qa.php"
           cp /tmp/uniquiz-plugin-report.json "$UNIQUIZ_QA_RESULTS/ci-integration.json"
+          cp plugin/.build/qa/fault.php "$WEBROOT/question/bank/uniquiz/qa-fault.php"
           php -S 127.0.0.1:18080 -t "$WEBROOT" > "$UNIQUIZ_QA_RESULTS/server.log" 2>&1 &
           for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:18080/login/index.php > /dev/null && break; sleep 1; done
           node plugin/.build/qa/browser.cjs ci

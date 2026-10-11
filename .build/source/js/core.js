@@ -1,5 +1,32 @@
+// Product mark limits and integer XML-percentage policy; see tests/fixtures/grading-vectors.json.
+const MIN_DEFAULT_MARK = 0.0000001;
+const MAX_DEFAULT_MARK = 10000;
+const FRACTION_SCALE = 10000000;
+function validDefaultMark(value) { return Number.isFinite(value) && value >= MIN_DEFAULT_MARK && value <= MAX_DEFAULT_MARK; }
+function positiveTotalValid(fractions) {
+  // Only positive contributions are rounded. PHP uses half-up; sums stay within exact integer range.
+  const units = fractions.filter(value => value > 0).reduce((sum, value) => sum + Math.round(value * FRACTION_SCALE), 0);
+  return Math.abs(units - 100 * FRACTION_SCALE) <= 1000;
+}
+function formatFractionPercentage(value) {
+  const units = Math.round(Math.abs(value) * FRACTION_SCALE);
+  const digits = String(units).padStart(8, "0");
+  return (value < 0 && units ? "-" : "") + (digits.slice(0, -7) + "." + digits.slice(-7)).replace(/\.?0+$/u, "");
+}
+function plainMoodleNumber(number) {
+  const shortest = String(number);
+  if (!/[eE]/u.test(shortest)) return shortest;
+  const [mantissa, exponent] = shortest.toLowerCase().split("e");
+  const sign = mantissa.startsWith("-") ? "-" : "";
+  const unsigned = mantissa.replace(/^-/, "");
+  const [whole, fraction = ""] = unsigned.split(".");
+  const digits = whole + fraction;
+  const point = whole.length + Number(exponent);
+  if (point <= 0) return sign + "0." + "0".repeat(-point) + digits;
+  if (point >= digits.length) return sign + digits + "0".repeat(point - digits.length);
+  return sign + digits.slice(0, point) + "." + digits.slice(point);
+}
 function isCsvLineEnding(char) { return char === "\n" || char === "\r"; }
-function isPositiveFinite(value) { return Number.isFinite(value) && value > 0; }
 function appendCategory(lines, question, settings, activeCategory) {
     const questionCategory = String(question.category || settings.category || "").trim();
     if (questionCategory !== activeCategory) {
@@ -63,7 +90,7 @@ function validateChoiceQuestion(question, number, own, usable, labels) {
           number, { field: "correct" },
         ));
       }
-    } else if (Math.abs(positiveTotal - 100) > 0.0001) {
+    } else if (!positiveTotalValid(positiveAnswers.map(answer => answer.fraction))) {
       own.push(questionDiagnostic(
         DIAGNOSTIC_CODES.POSITIVE_FRACTION_TOTAL_INVALID, "error", "Answer fractions do not total 100%",
         `Positive answer fractions must total 100%. The current total is ${diagnosticNumber(positiveTotal)}%.`,
@@ -78,10 +105,10 @@ function validateChoiceQuestion(question, number, own, usable, labels) {
       ));
     }
     if (question.defaultMark !== null
-      && (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)) {
+      && !validDefaultMark(question.defaultMark)) {
       own.push(questionDiagnostic(
         DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
-        "The default mark must be greater than 0. Enter a positive number before exporting.",
+        "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
         number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
       ));
     }
@@ -623,7 +650,7 @@ function parseOptionalNumber(value, field, questionNumber, issues, { minimum = -
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/u.test(source)) {
     issues.push(questionDiagnostic(code, "error", title, isFraction
       ? `\`${source}\` is not a valid answer fraction. Use a number from -100 to 100.`
-      : `\`${source}\` is not a valid default mark. Enter a number greater than 0.`, questionNumber,
+      : "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.", questionNumber,
     { field, answerIndex: answerLabel, metadata: { rawValue: source } }));
     return Number.NaN;
   }
@@ -631,7 +658,7 @@ function parseOptionalNumber(value, field, questionNumber, issues, { minimum = -
   if (!Number.isFinite(number) || number < minimum || number > maximum) {
     issues.push(questionDiagnostic(code, "error", title, isFraction
       ? `\`${source}\` is not a valid answer fraction. Use a number from -100 to 100.`
-      : "The default mark must be greater than 0. Enter a positive number before exporting.", questionNumber,
+      : "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.", questionNumber,
     { field, answerIndex: answerLabel, metadata: { rawValue: source, minimum, maximum } }));
     return Number.NaN;
   }
@@ -913,7 +940,7 @@ export function questionsFromCsvRows(rows, roles, rowLocations = []) {
       return [answer];
     });
     const defaultMark = parseOptionalNumber(optionalText(row, metadataIndexes.default_mark), "default_mark", questionNumber,
-      sourceIssues);
+      sourceIssues, {minimum: MIN_DEFAULT_MARK, maximum: MAX_DEFAULT_MARK});
     const metadata = {
       type: questionType,
       category: optionalText(row, metadataIndexes.category),
@@ -1204,10 +1231,10 @@ export function validateQuestions(questions, fileIssues = []) {
     validateQuestionContent(question, number, own);
     if (["essay", "description"].includes(question.type)) {
       if (question.type === "essay" && question.defaultMark !== null
-        && (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)) {
+        && !validDefaultMark(question.defaultMark)) {
         own.push(questionDiagnostic(
           DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
-          "The default mark must be greater than 0. Enter a positive number before exporting.",
+          "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
           number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
         ));
       }
@@ -1299,10 +1326,10 @@ export function validateQuestions(questions, fileIssues = []) {
         ));
       }
       if (question.defaultMark !== null
-        && (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)) {
+        && !validDefaultMark(question.defaultMark)) {
         own.push(questionDiagnostic(
           DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
-          "The default mark must be greater than 0. Enter a positive number before exporting.",
+          "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
           number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
         ));
       }
@@ -1360,7 +1387,7 @@ function formatMoodleNumber(value, decimals = 7) {
   const number = Number(value);
   if (!Number.isFinite(number)) throw new Error("Moodle numeric values must be finite.");
   // Numerical tolerances are stored as text by Moodle and must retain Number precision.
-  if (decimals === null) return String(number);
+  if (decimals === null) return plainMoodleNumber(number);
   return number.toFixed(decimals).replace(/\.0+$/u, "").replace(/(\.\d*?)0+$/u, "$1");
 }
 
@@ -1398,7 +1425,7 @@ export function generateMoodleXml(questions, settings) {
       if (question.type === "shortanswer") lines.push(`    <usecase>${question.caseSensitive ? "1" : "0"}</usecase>`);
       question.answers.forEach((answer) => {
         lines.push(
-          `    <answer fraction="${formatMoodleNumber(answer.fraction)}" format="html">`,
+          `    <answer fraction="${formatFractionPercentage(answer.fraction)}" format="html">`,
           `      <text>${escapeXml(answer.transformedText)}</text>`,
           `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
         );
@@ -1462,7 +1489,7 @@ export function generateMoodleXml(questions, settings) {
       ["true", "false"].forEach((value) => {
         const answer = question.answers.find(({ originalText }) => originalText.trim().toLocaleLowerCase() === value);
         lines.push(
-          `    <answer fraction="${formatMoodleNumber(answer?.fraction ?? 0)}" format="html">`,
+          `    <answer fraction="${formatFractionPercentage(answer?.fraction ?? 0)}" format="html">`,
           `      <text>${value}</text>`,
           `      <feedback format="html"><text>${escapeMoodleHtml(answer?.feedback ?? "")}</text></feedback>`,
           "    </answer>",
@@ -1491,7 +1518,7 @@ export function generateMoodleXml(questions, settings) {
     );
     question.answers.forEach((answer) => {
       lines.push(
-        `    <answer fraction="${formatMoodleNumber(answer.fraction)}" format="html">`,
+        `    <answer fraction="${formatFractionPercentage(answer.fraction)}" format="html">`,
         `      <text>${escapeMoodleHtml(answer.transformedText)}</text>`,
         `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
         "    </answer>",
@@ -1536,13 +1563,13 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
       errors.push(`${label} has invalid grading fractions.`);
     }
     const total = positive.reduce((sum, value) => sum + value, 0);
-    if (Math.abs(total - 100) > 0.0001) errors.push(`${label} grading totals ${total}, not 100.`);
+    if (!positiveTotalValid(fractions)) errors.push(`${label} grading totals ${total}, not 100.`);
     const single = question.querySelector(":scope > single")?.textContent === "true";
     if (single && positive.length !== 1) errors.push(`${label} has an inconsistent single-answer setting.`);
     const numbering = question.querySelector(":scope > answernumbering")?.textContent;
     if (!ANSWER_NUMBERING.has(numbering)) errors.push(`${label} has unsupported answer numbering.`);
     const defaultGrade = Number(question.querySelector(":scope > defaultgrade")?.textContent);
-    if (!isPositiveFinite(defaultGrade)) errors.push(`${label} has an invalid default grade.`);
+    if (!validDefaultMark(defaultGrade)) errors.push(`${label} has an invalid default grade.`);
   });
   const additionalQuestions = [...document.querySelectorAll(
     'question[type="truefalse"], question[type="shortanswer"], question[type="numerical"], question[type="essay"], question[type="description"]',
@@ -1555,7 +1582,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
     const defaultGrade = Number(question.querySelector(":scope > defaultgrade")?.textContent);
     if (type === "description") {
       if (defaultGrade !== 0) errors.push(`${label} description has a non-zero default grade.`);
-    } else if (!isPositiveFinite(defaultGrade)) {
+    } else if (!validDefaultMark(defaultGrade)) {
       errors.push(`${label} has an invalid default grade.`);
     }
     const answers = [...question.querySelectorAll(":scope > answer")];

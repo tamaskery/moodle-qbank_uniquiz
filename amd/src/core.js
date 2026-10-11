@@ -1,18 +1,68 @@
 /** UniQuiz © 2026 Tamas Kery. GNU GPL v3 or later. See COPYING.txt. */
 import {string as uiString, locale as uiLocale} from "qbank_uniquiz/i18n";
+// Product mark limits and integer XML-percentage policy; see tests/fixtures/grading-vectors.json.
+const MIN_DEFAULT_MARK = 0.0000001;
+const MAX_DEFAULT_MARK = 10000;
+const FRACTION_SCALE = 10000000;
+/**
+ *
+ * @param {*} value
+ */
+function validDefaultMark(value) {
+    return Number.isFinite(value) && value >= MIN_DEFAULT_MARK && value <= MAX_DEFAULT_MARK;
+}
+/**
+ *
+ * @param {*} fractions
+ */
+function positiveTotalValid(fractions) {
+    // Only positive contributions are rounded. PHP uses half-up; sums stay within exact integer range.
+    const units = fractions
+        .filter((value) => value > 0)
+        .reduce((sum, value) => sum + Math.round(value * FRACTION_SCALE), 0);
+    return Math.abs(units - 100 * FRACTION_SCALE) <= 1000;
+}
+/**
+ *
+ * @param {*} value
+ */
+function formatFractionPercentage(value) {
+    const units = Math.round(Math.abs(value) * FRACTION_SCALE);
+    const digits = String(units).padStart(8, "0");
+    return (
+        (value < 0 && units ? "-" : "") +
+        (digits.slice(0, -7) + "." + digits.slice(-7)).replace(/\.?0+$/u, "")
+    );
+}
+/**
+ *
+ * @param {*} number
+ */
+function plainMoodleNumber(number) {
+    const shortest = String(number);
+    if (!/[eE]/u.test(shortest)) {
+        return shortest;
+    }
+    const [mantissa, exponent] = shortest.toLowerCase().split("e");
+    const sign = mantissa.startsWith("-") ? "-" : "";
+    const unsigned = mantissa.replace(/^-/, "");
+    const [whole, fraction = ""] = unsigned.split(".");
+    const digits = whole + fraction;
+    const point = whole.length + Number(exponent);
+    if (point <= 0) {
+        return sign + "0." + "0".repeat(-point) + digits;
+    }
+    if (point >= digits.length) {
+        return sign + digits + "0".repeat(point - digits.length);
+    }
+    return sign + digits.slice(0, point) + "." + digits.slice(point);
+}
 /**
  *
  * @param {*} char
  */
 function isCsvLineEnding(char) {
     return char === "\n" || char === "\r";
-}
-/**
- *
- * @param {*} value
- */
-function isPositiveFinite(value) {
-    return Number.isFinite(value) && value > 0;
 }
 /**
  *
@@ -158,7 +208,7 @@ function validateChoiceQuestion(question, number, own, usable, labels) {
                 ),
             );
         }
-    } else if (Math.abs(positiveTotal - 100) > 0.0001) {
+    } else if (!positiveTotalValid(positiveAnswers.map((answer) => answer.fraction))) {
         own.push(
             questionDiagnostic(
                 DIAGNOSTIC_CODES.POSITIVE_FRACTION_TOTAL_INVALID,
@@ -194,16 +244,13 @@ function validateChoiceQuestion(question, number, own, usable, labels) {
             ),
         );
     }
-    if (
-        question.defaultMark !== null &&
-        (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)
-    ) {
+    if (question.defaultMark !== null && !validDefaultMark(question.defaultMark)) {
         own.push(
             questionDiagnostic(
                 DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK,
                 "error",
                 uiString("js_core_invalid_default_mark"),
-                uiString("js_core_the_default_mark_must_be_greater_than_0_enter_a_"),
+                uiString("js_core_default_mark_range"),
                 number,
                 {
                     field: "default_mark",
@@ -1267,9 +1314,7 @@ function parseOptionalNumber(
                     ? uiString("js_core_is_not_a_valid_answer_fraction_use_a_number_from", {
                           p0: source,
                       })
-                    : uiString("js_core_is_not_a_valid_default_mark_enter_a_number_great", {
-                          p0: source,
-                      }),
+                    : uiString("js_core_default_mark_range"),
                 questionNumber,
                 {
                     field,
@@ -1293,7 +1338,7 @@ function parseOptionalNumber(
                     ? uiString("js_core_is_not_a_valid_answer_fraction_use_a_number_from", {
                           p0: source,
                       })
-                    : uiString("js_core_the_default_mark_must_be_greater_than_0_enter_a_"),
+                    : uiString("js_core_default_mark_range"),
                 questionNumber,
                 {
                     field,
@@ -1818,6 +1863,10 @@ export function questionsFromCsvRows(rows, roles, rowLocations = []) {
             "default_mark",
             questionNumber,
             sourceIssues,
+            {
+                minimum: MIN_DEFAULT_MARK,
+                maximum: MAX_DEFAULT_MARK,
+            },
         );
         const metadata = {
             type: questionType,
@@ -2317,14 +2366,14 @@ export function validateQuestions(questions, fileIssues = []) {
             if (
                 question.type === "essay" &&
                 question.defaultMark !== null &&
-                (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)
+                !validDefaultMark(question.defaultMark)
             ) {
                 own.push(
                     questionDiagnostic(
                         DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK,
                         "error",
                         uiString("js_core_invalid_default_mark"),
-                        uiString("js_core_the_default_mark_must_be_greater_than_0_enter_a_"),
+                        uiString("js_core_default_mark_range"),
                         number,
                         {
                             field: "default_mark",
@@ -2516,11 +2565,11 @@ export function validateQuestions(questions, fileIssues = []) {
                         DIAGNOSTIC_CODES.NO_POSITIVE_ANSWER,
                         "error",
                         question.type === "shortanswer"
-                            ? uiString("js_core_no_accepted_short_answer")
-                            : uiString("js_core_no_accepted_numerical_answer"),
+                            ? uiString("js_core_no_full_credit_short_answer")
+                            : uiString("js_core_no_full_credit_numerical_answer"),
                         question.type === "shortanswer"
-                            ? uiString("js_core_short_answer_question_has_no_accepted_answer_add")
-                            : uiString("js_core_numerical_question_has_no_accepted_answer_add_at"),
+                            ? uiString("js_core_short_answer_requires_full_credit")
+                            : uiString("js_core_numerical_requires_full_credit"),
                         number,
                         {
                             field: "answers",
@@ -2528,16 +2577,13 @@ export function validateQuestions(questions, fileIssues = []) {
                     ),
                 );
             }
-            if (
-                question.defaultMark !== null &&
-                (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)
-            ) {
+            if (question.defaultMark !== null && !validDefaultMark(question.defaultMark)) {
                 own.push(
                     questionDiagnostic(
                         DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK,
                         "error",
                         uiString("js_core_invalid_default_mark"),
-                        uiString("js_core_the_default_mark_must_be_greater_than_0_enter_a_"),
+                        uiString("js_core_default_mark_range"),
                         number,
                         {
                             field: "default_mark",
@@ -2643,7 +2689,7 @@ function formatMoodleNumber(value, decimals = 7) {
     }
     // Numerical tolerances are stored as text by Moodle and must retain Number precision.
     if (decimals === null) {
-        return String(number);
+        return plainMoodleNumber(number);
     }
     return number
         .toFixed(decimals)
@@ -2708,7 +2754,7 @@ export function generateMoodleXml(questions, settings) {
             }
             question.answers.forEach((answer) => {
                 lines.push(
-                    `    <answer fraction="${formatMoodleNumber(answer.fraction)}" format="html">`,
+                    `    <answer fraction="${formatFractionPercentage(answer.fraction)}" format="html">`,
                     `      <text>${escapeXml(answer.transformedText)}</text>`,
                     `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
                 );
@@ -2782,7 +2828,7 @@ export function generateMoodleXml(questions, settings) {
                     ({originalText}) => originalText.trim().toLocaleLowerCase() === value,
                 );
                 lines.push(
-                    `    <answer fraction="${formatMoodleNumber(answer?.fraction ?? 0)}" format="html">`,
+                    `    <answer fraction="${formatFractionPercentage(answer?.fraction ?? 0)}" format="html">`,
                     `      <text>${value}</text>`,
                     `      <feedback format="html"><text>${escapeMoodleHtml(answer?.feedback ?? "")}</text></feedback>`,
                     "    </answer>",
@@ -2813,7 +2859,7 @@ export function generateMoodleXml(questions, settings) {
         );
         question.answers.forEach((answer) => {
             lines.push(
-                `    <answer fraction="${formatMoodleNumber(answer.fraction)}" format="html">`,
+                `    <answer fraction="${formatFractionPercentage(answer.fraction)}" format="html">`,
                 `      <text>${escapeMoodleHtml(answer.transformedText)}</text>`,
                 `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
                 "    </answer>",
@@ -2913,7 +2959,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
             );
         }
         const total = positive.reduce((sum, value) => sum + value, 0);
-        if (Math.abs(total - 100) > 0.0001) {
+        if (!positiveTotalValid(fractions)) {
             errors.push(
                 uiString("js_core_grading_totals_not_100", {
                     p0: label,
@@ -2938,7 +2984,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
             );
         }
         const defaultGrade = Number(question.querySelector(":scope > defaultgrade")?.textContent);
-        if (!isPositiveFinite(defaultGrade)) {
+        if (!validDefaultMark(defaultGrade)) {
             errors.push(
                 uiString("js_core_has_an_invalid_default_grade", {
                     p0: label,
@@ -2980,7 +3026,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
                     }),
                 );
             }
-        } else if (!isPositiveFinite(defaultGrade)) {
+        } else if (!validDefaultMark(defaultGrade)) {
             errors.push(
                 uiString("js_core_has_an_invalid_default_grade", {
                     p0: label,

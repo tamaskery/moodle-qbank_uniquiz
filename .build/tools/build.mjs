@@ -20,7 +20,8 @@ const write = async (name, value) => {
             helpurl: 'https://example.invalid/help', converterurl: 'https://example.invalid/convert',
             bankurl: 'https://example.invalid/questions', categories: [{id: 1, name: 'Example category', selected: true}],
             importintro: 'Review and confirm import.', destinationlabel: 'Destination', categorypolicy: 'Use this category.',
-            importconfirm: 'Import questions', returnbank: 'Return to question bank'};
+            categorysearch: 'Search category names', categoryfind: 'Search', categoryprevious: 'Previous categories',
+            categorynext: 'Next categories', importconfirm: 'Import questions', returnbank: 'Return to question bank'};
         value = `{{!\n    @template qbank_uniquiz/${path.basename(name, '.mustache')}\n\n    UniQuiz interface.\n\n    Example context (json):\n    ${JSON.stringify(context, null, 4).replaceAll('\n', '\n    ')}\n}}\n` + value;
     }
     const target = path.join(plugin, name);
@@ -86,6 +87,11 @@ const finalActions = `
 <section class="uq-import-panel" aria-labelledby="uq-import-title">
   <h3 id="uq-import-title">Import into Moodle</h3>
   <p>{{importintro}}</p>
+  <label class="field" for="uq-category-search"><span>{{categorysearch}}</span><input id="uq-category-search" type="search" maxlength="255"></label>
+  <button id="uq-category-find" type="button" class="button button-secondary">{{categoryfind}}</button>
+  <button id="uq-category-previous" type="button" class="button button-secondary" disabled>{{categoryprevious}}</button>
+  <button id="uq-category-next" type="button" class="button button-secondary">{{categorynext}}</button>
+  <p id="uq-category-status" role="status" aria-live="polite"></p>
   <label class="field" for="uq-destination"><span>{{destinationlabel}}</span>
     <select id="uq-destination">{{#categories}}<option value="{{id}}" {{#selected}}selected{{/selected}}>{{name}}</option>{{/categories}}</select>
   </label>

@@ -34,42 +34,28 @@ $PAGE->set_title(get_string('pluginname', 'qbank_uniquiz'));
 $PAGE->set_heading($COURSE->fullname);
 $PAGE->activityheader->disable();
 $allowed = $contexts->having_cap('moodle/question:add');
-$contextids = array_map(static fn($context) => $context->id, $allowed);
-[$insql, $params] = $DB->get_in_or_equal($contextids, SQL_PARAMS_NAMED);
-$records = $DB->get_records_select('question_categories', "contextid $insql", $params, 'sortorder, name');
 $selected = (int)explode(',', $pagevars['cat'])[0];
-$categories = [];
-foreach ($records as $record) {
-    if (!$record->parent) {
-        continue;
-    }
-    $parts = [$record->name];
-    $parent = $record->parent;
-    $visited = [$record->id];
-    while (isset($records[$parent]) && $records[$parent]->parent && !in_array($parent, $visited)) {
-        array_unshift($parts, $records[$parent]->name);
-        $visited[] = $parent;
-        $parent = $records[$parent]->parent;
-    }
-    $context = context::instance_by_id($record->contextid);
-    $label = strip_tags($context->get_context_name(false)) . ' / ' . implode(' / ', $parts);
-    $categories[] = ['id' => $record->id, 'name' => $label, 'selected' => (int)$record->id === $selected];
+$categorypage = \qbank_uniquiz\local\categories::search($allowed);
+$categories = $categorypage['categories'];
+// Keep the current destination available even when it falls outside the first page.
+$selectedcategory = \qbank_uniquiz\local\access::category($selected, $allowed);
+if (!in_array($selected, array_column($categories, 'id'), true)) {
+    $parentcache = [];
+    array_unshift($categories, ['id' => $selected,
+        'name' => \qbank_uniquiz\local\categories::label($selectedcategory, $parentcache)]);
 }
-// Keep each complete hierarchy together instead of mixing sortorder values from contexts.
-usort($categories, static fn($left, $right) => strnatcasecmp($left['name'], $right['name']));
+foreach ($categories as &$categoryoption) {
+    $categoryoption['selected'] = $categoryoption['id'] === $selected;
+}
+unset($categoryoption);
 $contextparams = $cmid ? ['cmid' => $cmid] : ['courseid' => $COURSE->id];
 $bankurl = new moodle_url('/question/edit.php', $contextparams);
 $converterurl = new moodle_url('/question/bank/uniquiz/index.php', $contextparams);
 $aikenurl = new moodle_url('/question/bank/uniquiz/index.php', $contextparams + ['tool' => 'aiken']);
 $helpurl = new moodle_url('/question/bank/uniquiz/help.php', $contextparams);
-$token = bin2hex(random_bytes(24));
 $receipts = $SESSION->qbank_uniquiz_receipts ?? [];
-// Keep bounded session-only receipts for safe retries; no question content is stored here.
-$receipts = array_filter($receipts, static fn($receipt) => $receipt['created'] > time() - 86400);
-if (count($receipts) >= 50) {
-    array_shift($receipts);
-}
-$receipts[$token] = ['created' => time(), 'contextparams' => $contextparams];
+// Preserve every unexpired token, including another tab's draft and completed replay receipts.
+$token = \qbank_uniquiz\local\receipts::issue($receipts, $contextparams, time());
 $SESSION->qbank_uniquiz_receipts = $receipts;
 $stringkeys = \qbank_uniquiz\local\strings::keys('js_');
 $PAGE->requires->strings_for_js($stringkeys, 'qbank_uniquiz');
@@ -77,12 +63,14 @@ $PAGE->requires->js_call_amd('qbank_uniquiz/bootstrap', 'init');
 $config = [
     'tool' => $tool, 'stringkeys' => $stringkeys, 'language' => current_language(),
     'helpurl' => $helpurl->out(false),
+    'categoryurl' => (new moodle_url('/question/bank/uniquiz/categories.php'))->out(false),
+    'categorymore' => $categorypage['more'],
     'importurl' => (new moodle_url('/question/bank/uniquiz/import.php'))->out(false),
     'contextparams' => $contextparams, 'token' => $token, 'sesskey' => sesskey(),
     'maxxmlbytes' => \qbank_uniquiz\local\xml_validator::MAX_BYTES,
     'maxquestions' => \qbank_uniquiz\local\xml_validator::MAX_QUESTIONS,
     'strings' => array_combine(
-        ['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult'],
+        ['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult', 'categoryresults', 'categoryempty'],
         array_map(
             static fn($key) => get_string($key, 'qbank_uniquiz'),
             ['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult']
@@ -101,6 +89,10 @@ echo $OUTPUT->render_from_template('qbank_uniquiz/' . $tool, [
     'baseurl' => (new moodle_url('/question/bank/uniquiz'))->out(false),
     'converterurl' => $converterurl->out(false), 'helpurl' => $helpurl->out(false),
     'bankurl' => $bankurl->out(false), 'categories' => $categories,
+    'categorysearch' => get_string('categorysearch', 'qbank_uniquiz'),
+    'categoryfind' => get_string('categoryfind', 'qbank_uniquiz'),
+    'categoryprevious' => get_string('categoryprevious', 'qbank_uniquiz'),
+    'categorynext' => get_string('categorynext', 'qbank_uniquiz'),
     'destinationlabel' => get_string('destination', 'qbank_uniquiz'),
     'importintro' => get_string('importintro', 'qbank_uniquiz'),
     'categorypolicy' => get_string('categorypolicy', 'qbank_uniquiz'),

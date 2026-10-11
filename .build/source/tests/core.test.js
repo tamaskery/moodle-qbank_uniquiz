@@ -187,7 +187,7 @@ test("advanced fraction and metadata validation remains strict", () => {
     ["question_text,answer_1,answer_1_fraction,answer_2,answer_2_fraction,answer_3_feedback\nOrphan?,A,100,B,0,Feedback", /scoring or feedback but has no answer text/u],
     ["question_text,answer_1,answer_1_fraction,answer_2,answer_2_fraction,correct\nConflicting?,A,100,B,0,A", /both Correct and explicit answer fractions/u],
     ["type,question_text,answer_1,answer_1_fraction,answer_2,answer_2_fraction\nmatching,Wrong type?,A,100,B,0", /unsupported type/u],
-    ["question_text,answer_1,answer_1_fraction,answer_2,answer_2_fraction,default_mark\nBad mark?,A,100,B,0,0", /default mark must be greater than 0/u],
+    ["question_text,answer_1,answer_1_fraction,answer_2,answer_2_fraction,default_mark\nBad mark?,A,100,B,0,0", /default mark must be between 0.0000001 and 10000/u],
     ["question_text,answer_1,answer_1_fraction,answer_2,answer_2_fraction,single\nBad single?,A,50,B,50,true", /marked as single-answer/u],
   ];
   for (const [csv, expected] of cases) {

@@ -31,7 +31,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
 \core_question\local\bank\helper::require_plugin_enabled('qbank_uniquiz');
 $token = required_param('token', PARAM_ALPHANUM);
 $receipt = $SESSION->qbank_uniquiz_receipts[$token] ?? null;
-if (!$receipt || $receipt['created'] < time() - 86400) {
+if (!$receipt || $receipt['created'] <= time() - \qbank_uniquiz\local\receipts::LIFETIME) {
     throw new moodle_exception('invalidrequest', 'qbank_uniquiz');
 }
 foreach ($receipt['contextparams'] as $name => $value) {
@@ -56,6 +56,10 @@ if (isset($receipt['hash'])) {
 }
 // Moodle retains the session lock throughout this request, serializing concurrent retries.
 try {
+    $budget = $SESSION->qbank_uniquiz_budget ?? [];
+    \qbank_uniquiz\local\receipts::attempt($receipt, $budget, time());
+    $SESSION->qbank_uniquiz_receipts[$token] = $receipt;
+    $SESSION->qbank_uniquiz_budget = $budget;
     $ids = \qbank_uniquiz\local\importer::run($xml, $count, $category, $COURSE);
     $bankurl = new moodle_url('/question/edit.php', $receipt['contextparams'] + [
         'category' => $category->id . ',' . $category->contextid,
@@ -73,6 +77,9 @@ try {
     echo json_encode($result);
 } catch (Throwable $error) {
     [$status, $result] = \qbank_uniquiz\local\error_reporter::response($error);
+    if ($status === 429) {
+        header('Retry-After: ' . (int)$result['retryafter']);
+    }
     http_response_code($status);
     echo json_encode($result);
 }

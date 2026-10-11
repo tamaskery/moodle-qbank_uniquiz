@@ -8,7 +8,7 @@ const root = new URL('../source/', import.meta.url);
 const catalogue = JSON.parse(await fs.readFile(new URL('./language-catalogue.json', import.meta.url), 'utf8'));
 const registry = JSON.parse(await fs.readFile(new URL('./language-registry.json', import.meta.url), 'utf8'));
 const migration = JSON.parse(await fs.readFile(new URL('./language-key-migration-0.1.4.json', import.meta.url), 'utf8'));
-assert.deepEqual(new Set(Object.values(migration)), new Set(Object.keys(registry)), 'Migration must cover every stable key');
+for (const key of Object.values(migration)) assert.ok(registry[key], 'Historical migration key must remain registered');
 assert.equal(Object.values(migration).length, new Set(Object.values(migration)).size, 'Migration must not merge translations');
 for (const [key, entry] of Object.entries(catalogue)) {
     assert.ok(!/_[0-9a-f]{8}$/.test(key), 'Text hashes are not stable identifiers');

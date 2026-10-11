@@ -66,6 +66,33 @@ async function run(browser, branch) {
         const results = await Promise.all(responses.map(r => r.json()));
         check(results.every(r => r.success && r.count === 1) && JSON.stringify(results[0]) === JSON.stringify(results[1]),
             'Concurrent identical submissions return one matching receipt');
+        const retry = await session();
+        await retry.page.goto(report.url);
+        const retryConfig = await retry.page.locator('#qbank-uniquiz').evaluate(el => JSON.parse(el.dataset.config));
+        const retryForm = {...form, token: retryConfig.token, sesskey: retryConfig.sesskey, xml: '<quiz/>'};
+        for (let i = 0; i < 20; i++) {
+            check((await retry.context.request.post(endpoint, {form: retryForm})).status() === 422, 'Failed attempt ' + (i + 1) + ' receives validation feedback');
+        }
+        const limited = await retry.context.request.post(endpoint, {form: retryForm});
+        const limitedResult = await limited.json();
+        check(limited.status() === 429 && Number(limited.headers()['retry-after']) > 0 && limitedResult.retryafter > 0,
+            'Token retry budget returns HTTP 429 with Retry-After');
+        // Fifty-one wizard opens previously evicted the original tab. Preserve both drafts and completed receipts.
+        for (let i = 0; i < 51; i++) await context.request.get(report.url);
+        const replay = await context.request.post(endpoint, {form});
+        check((await replay.json()).success, 'Completed receipt survives more than fifty new tabs');
+        for (let i = 0; i < 51; i++) await stranger.context.request.get(report.url);
+        const olderDraft = await stranger.context.request.post(endpoint, {form: {...form,
+            token: await stranger.page.locator('#qbank-uniquiz').evaluate(el => JSON.parse(el.dataset.config).token), sesskey: ownKey}});
+        check((await olderDraft.json()).success, 'Unattempted draft survives more than fifty new tabs');
+        const categoryRequest = {...config.contextparams, sesskey: config.sesskey, search: 'Paged category', page: '2'};
+        const categoryResponse = await context.request.post(config.categoryurl, {form: categoryRequest});
+        const categoryResult = await categoryResponse.json();
+        check(categoryResult.categories.length === 10 && !categoryResult.more, 'Authorized category endpoint returns only the requested page');
+        check(!(await stranger.context.request.post(config.categoryurl, {form: {...categoryRequest, sesskey: 'bad'}})).ok(),
+            'Category search rejects an invalid sesskey');
+        check(!(await student.context.request.post(config.categoryurl, {form: {...categoryRequest, sesskey: studentKey}})).ok(),
+            'Category search denies a student');
         const record = {passed: checks.length, checks, raceQuestionName: name};
         await fs.writeFile(path.join(dir, `${branch}-security.json`), JSON.stringify(record, null, 2));
         console.log(`${branch}: ${checks.length} security HTTP checks passed; verify one DB row for ${name}`);

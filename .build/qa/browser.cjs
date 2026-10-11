@@ -124,6 +124,18 @@ async function run(browser, branch) {
             'Preview preserves multiline layout');
         await page.locator('#generate-button').click();
         await page.locator('[data-step="5"]:visible').waitFor();
+        const originalDestination = await page.locator('#uq-destination').inputValue();
+        check(await page.locator('#uq-destination option').count() <= 51, 'Initial destination list is bounded');
+        await page.locator('#uq-category-search').fill('Paged category');
+        await page.locator('#uq-category-find').click();
+        await page.locator('#uq-category-status').filter({hasText: 'Category page 1'}).waitFor();
+        await page.locator('#uq-category-next').click();
+        await page.locator('#uq-category-status').filter({hasText: 'Category page 2'}).waitFor();
+        check(await page.locator('#uq-destination').inputValue() === originalDestination, 'Searching and paging preserve the selected destination');
+        await page.locator('#uq-confirm').check();
+        await page.locator('#uq-destination').selectOption({label: (await page.locator('#uq-destination option').nth(1).textContent())});
+        check(!(await page.locator('#uq-confirm').isChecked()), 'Changing destination requires renewed confirmation');
+        await page.locator('#uq-destination').selectOption(originalDestination);
         const token = await page.locator('#qbank-uniquiz').evaluate(el => JSON.parse(el.dataset.config).token);
         const fidelityXml = await fs.readFile(path.join(resultsDir, 'text-fidelity.xml'), 'utf8');
         const fresh = {...submitted, token, count: '2', xml: fidelityXml};
@@ -133,12 +145,14 @@ async function run(browser, branch) {
         const invalidResult = await invalid.json();
         check(invalid.status() === 422 && invalidResult.message.includes('Question 1, defaultgrade') &&
             !invalidResult.message.includes('SECRET'), 'Validation HTTP 422 identifies question and field without source content');
-        const failed = await context.request.post(base + '/question/bank/uniquiz/import.php', {
+        const tooLarge = await context.request.post(base + '/question/bank/uniquiz/import.php', {
             form: {...fresh, xml: fidelityXml.replace(/<defaultgrade>[^<]+<\/defaultgrade>/, '<defaultgrade>1e100</defaultgrade>')},
         });
+        check(tooLarge.status() === 422 && !(await tooLarge.json()).success, 'Excessive default mark returns HTTP 422');
+        const failed = await context.request.post(base + '/question/bank/uniquiz/qa-fault.php', {form: fresh});
         const failedResult = await failed.json();
         check(failed.status() === 500 && /^[a-f0-9]{16}$/.test(failedResult.reference) &&
-            !JSON.stringify(failedResult).includes('1e100'), 'Unexpected HTTP 500 returns safe incident reference');
+            !JSON.stringify(failedResult).includes('1e100'), 'Test-only late failure uses the production safe error mapper with HTTP 500');
         await fs.writeFile(path.join(resultsDir, `${branch}-error-reference.json`), JSON.stringify(failedResult, null, 2));
         const oversized = await context.request.post(base + '/question/bank/uniquiz/import.php', {form: {...fresh, count: '501'}});
         check(oversized.status() === 422 && (await oversized.json()).message.includes('500'), 'Server rejects oversized submitted count');

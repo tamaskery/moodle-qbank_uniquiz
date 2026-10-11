@@ -104,7 +104,7 @@ final class importer_test extends \advanced_testcase {
     }
 
     /**
-     * A successful batch is committed; failure on question two rolls back question one.
+     * A successful batch is committed; failure after native postprocessing rolls back the whole batch.
      */
     public function test_success_and_late_failure_rollback(): void {
         global $DB;
@@ -117,11 +117,26 @@ final class importer_test extends \advanced_testcase {
         foreach (['question', 'question_bank_entries', 'question_versions', 'question_answers'] as $table) {
             $before[$table] = $DB->count_records($table);
         }
-        $broken = str_replace('<defaultgrade>1</defaultgrade>', '<defaultgrade>1e100</defaultgrade>', $this->question());
+        require_once($GLOBALS['CFG']->dirroot . '/question/format/xml/format.php');
+        $format = new class extends \qformat_xml {
+            /** @var int Number of real questions created before the injected failure. */
+            public int $observed = 0;
+
+            /**
+             * Fail after successful native postprocessing but before commit.
+             * @return bool Always throws after successful postprocessing
+             */
+            public function importpostprocess() {
+                parent::importpostprocess();
+                $this->observed = count($this->questionids);
+                throw new \RuntimeException('Synthetic postprocessing failure');
+            }
+        };
         try {
-            importer::run('<quiz>' . $this->question() . $broken . '</quiz>', 2, $category, $course);
-            $this->fail('Out-of-range database mark did not fail.');
-        } catch (\dml_exception $error) {
+            importer::run('<quiz>' . $this->question() . $this->question() . '</quiz>', 2, $category, $course, $format);
+            $this->fail('Injected late failure did not propagate.');
+        } catch (\RuntimeException $error) {
+            $this->assertSame(2, $format->observed);
             foreach ($before as $table => $total) {
                 $this->assertSame($total, $DB->count_records($table), $table);
             }

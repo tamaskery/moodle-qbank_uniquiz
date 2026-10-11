@@ -161,16 +161,56 @@ check(count($thirdsids) === 1, 'Seven-place thirds import successfully');
 $roundedthirds = str_replace('33.3333333', '33.333', $thirdsxml);
 rejects(static fn() => xml_validator::prepare($roundedthirds, 1), 'Total 99.999 rejected');
 
-// A finite grade accepted by the envelope exceeds the DB numeric precision at question 2.
-// This proves rollback after question 1 was already inserted, not only parse-error rejection.
-$broken = new DOMDocument();
-$broken->loadXML($xml);
-$broken->getElementsByTagName('defaultgrade')->item(1)->textContent = '1e100';
+// Native core grade matching proves the deliberate inclusive percentage boundary.
+$vectors = json_decode(file_get_contents(__DIR__ . '/tests/fixtures/grading-vectors.json'), true);
+foreach ($vectors['totals'] as $vector) {
+    $answers = '';
+    foreach ($vector['fractions'] as $i => $fraction) {
+        $answers .= '<answer fraction="' . json_encode($fraction) . '" format="html"><text>Option ' . $i . '</text></answer>';
+    }
+    $vectorxml = '<quiz><question type="multichoice"><name><text>Grade vector</text></name>' .
+        '<questiontext format="html"><text>Choose</text></questiontext><defaultgrade>1</defaultgrade>' .
+        '<single>false</single><shuffleanswers>1</shuffleanswers><answernumbering>abc</answernumbering>' .
+        $answers . '</question></quiz>';
+    if (!empty($vector['coreImport'])) {
+        check(count(importer::run($vectorxml, 1, $checked, $course)) === 1, 'Native core accepts ' . $vector['name']);
+    } else if (!$vector['valid']) {
+        rejects(static fn() => importer::run($vectorxml, 1, $checked, $course), 'Native path rejects ' . $vector['name']);
+    }
+}
+$graderange = str_replace('<defaultgrade>1</defaultgrade>', '<defaultgrade>10000</defaultgrade>', $thirdsxml);
+check(count(importer::run($graderange, 1, $checked, $course)) === 1, 'Maximum product mark imports');
+rejects(static fn() => importer::run(str_replace('10000', '10000.0000001', $graderange), 1, $checked, $course),
+    'Above-maximum mark fails before native import');
+// Provide a large bank to browser acceptance without putting questions into these categories.
+for ($i = 0; $i < 110; $i++) {
+    $DB->insert_record('question_categories', (object)[
+        'contextid' => $context->id, 'name' => sprintf('Paged category %03d', $i),
+        'info' => '', 'infoformat' => FORMAT_HTML, 'parent' => $category->parent,
+        'sortorder' => $i, 'stamp' => make_unique_id_code(),
+    ]);
+}
+$categorypage = \qbank_uniquiz\local\categories::search([$context], 'Paged category');
+check(count($categorypage['categories']) === 50 && $categorypage['more'], 'Category results are paginated');
+$categorylast = \qbank_uniquiz\local\categories::search([$context], 'Paged category', 2);
+check(count($categorylast['categories']) === 10 && !$categorylast['more'], 'Final category page is bounded');
+check(!\qbank_uniquiz\local\categories::search([$context], '%')['categories'], 'Category wildcards are literal');
+
+// Inject a trusted formatter failure after all native questions exist, before commit.
+$format = new class extends qformat_xml {
+    public int $observed = 0;
+    public function importpostprocess() {
+        parent::importpostprocess();
+        $this->observed = count($this->questionids);
+        throw new RuntimeException('Synthetic postprocessing failure');
+    }
+};
 $before = [];
 foreach (['question', 'question_bank_entries', 'question_versions', 'question_answers'] as $table) {
     $before[$table] = $DB->count_records($table);
 }
-rejects(static fn() => importer::run($broken->saveXML(), 6, $checked, $course), 'Late database failure reported');
+rejects(static fn() => importer::run($xml, 6, $checked, $course, $format), 'Late postprocessing failure reported');
+check($format->observed === 6, 'Rollback fixture reaches all six saved questions before failure');
 foreach ($before as $table => $total) {
     check($DB->count_records($table) === $total, "Failed batch rolls back $table");
 }
@@ -206,7 +246,8 @@ rejects(static fn() => xml_validator::prepare('<quiz>' . str_repeat($questionxml
 
 $navigation = (new \qbank_uniquiz\plugin_feature())->get_navigation_node();
 check($navigation->get_navigation_key() === 'uniquiz', 'Native question-bank navigation registered');
-$report = ['release' => $CFG->release, 'checks' => $checks, 'passed' => count($checks), 'benchmark' => $benchmark,
+$report = ['release' => $CFG->release, 'tolerance' => ['exported' => (new SimpleXMLElement($tinyxml))->question->answer->tolerance->__toString(),
+        'stored_text' => (string)$storedtolerance], 'checks' => $checks, 'passed' => count($checks), 'benchmark' => $benchmark,
     'courseid' => $course->id, 'categoryid' => $category->id, 'contextid' => $context->id,
     'othercategoryid' => $othercategory->id, 'params' => $params,
     'url' => (new moodle_url('/question/bank/uniquiz/index.php', $params))->out(false)];

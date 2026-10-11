@@ -409,19 +409,19 @@
   },
   "js_core_no_accepted_short_answer": {
     "prefix": "js_core",
-    "value": "No full-credit Short Answer"
+    "value": "No accepted Short Answer"
   },
   "js_core_no_accepted_numerical_answer": {
     "prefix": "js_core",
-    "value": "No full-credit numerical answer"
+    "value": "No accepted numerical answer"
   },
   "js_core_short_answer_question_has_no_accepted_answer_add": {
     "prefix": "js_core",
-    "value": "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it."
+    "value": "Short Answer question has no accepted answer. Add at least one answer with a positive fraction."
   },
   "js_core_numerical_question_has_no_accepted_answer_add_at": {
     "prefix": "js_core",
-    "value": "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it."
+    "value": "Numerical question has no accepted answer. Add at least one numeric answer with a positive fraction."
   },
   "js_core_invalid_true_false_answers": {
     "prefix": "js_core",
@@ -1898,5 +1898,25 @@
   "ui_the_interface_and_diagnostics_follow_moodle_s_la": {
     "prefix": "ui",
     "value": "The interface and diagnostics follow Moodle’s language settings. Unicode question content is supported; CSV field names and AIKEN syntax remain unchanged."
+  },
+  "js_core_no_full_credit_short_answer": {
+    "prefix": "js_core",
+    "value": "No full-credit Short Answer"
+  },
+  "js_core_no_full_credit_numerical_answer": {
+    "prefix": "js_core",
+    "value": "No full-credit numerical answer"
+  },
+  "js_core_short_answer_requires_full_credit": {
+    "prefix": "js_core",
+    "value": "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it."
+  },
+  "js_core_numerical_requires_full_credit": {
+    "prefix": "js_core",
+    "value": "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it."
+  },
+  "js_core_default_mark_range": {
+    "prefix": "js_core",
+    "value": "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting."
   }
 }
