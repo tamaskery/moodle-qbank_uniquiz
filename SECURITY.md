@@ -1,4 +1,4 @@
-# Security notes — UniQuiz 0.1.5 beta
+# Security notes — UniQuiz 0.1.6 beta
 
 The original implementation review covered 0.1.2 on 6 October 2026. Subsequent functional and security regression results are recorded in QA.md; those do not turn the original review into an independent audit of each later release.
 
@@ -25,7 +25,7 @@ During localization development, regression tests also caught and corrected acci
 - Atomic request-owned database transaction; an induced late core failure leaves no partial questions, entries, versions or answers. Temporary XML is request-scoped and removed after the import attempt, with Moodle request cleanup as fallback. File attachments are not accepted.
 - Expected validation returns 422 without submitted content; unexpected import failures return 500 with a reference. Plugin log records exclude submitted content, exception messages, SQL and trace arguments. Moodle/web-server logging and debugging configuration are separate responsibilities.
 - Source files stay in browser memory until generated XML is explicitly submitted to the same Moodle site. No plugin analytics, AI/conversion service, persistent draft/history or plugin database tables. Moodle retains normal questions and import events.
-- Build dependencies are locked and excluded from the installable archive. The Moodle-compatible development toolchain includes older packages and npm advisory warnings; no zero-advisory claim is made for the 0.1.5 toolchain. Run builds on isolated CI/development environments. Moodle/PHP/OS dependency audits are outside scope.
+- Build dependencies are locked and excluded from the installable archive. The Moodle-compatible development toolchain includes older packages and npm advisory warnings; no zero-advisory claim is made for the 0.1.6 toolchain. Run builds on isolated CI/development environments. Moodle/PHP/OS dependency audits are outside scope.
 
 See [QA.md](QA.md) for the current verification summary. No test credentials or test-site configuration are shipped.
 

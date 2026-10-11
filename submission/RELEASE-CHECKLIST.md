@@ -4,7 +4,7 @@
 
 - Public Moodle-style repository: `tamaskery/moodle-qbank_uniquiz`; Issues enabled.
 - Unique component declared consistently as `qbank_uniquiz`.
-- Candidate 0.1.5 beta, upgrade version `2026100702`.
+- Candidate 0.1.6 beta, upgrade version `2026101100`.
 - GPL v3-or-later licence, installation and privacy documentation.
 - Stable language identifiers and a mapping for earlier beta customizations.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
@@ -28,7 +28,7 @@ Do not submit development archives, synthetic credentials, CI server logs or a p
 From a clean, verified commit at the repository root:
 
 ```sh
-git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-0.1.5.zip HEAD
+git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-0.1.6.zip HEAD
 ```
 
 The ZIP must contain one `uniquiz` directory with `version.php`, matching source/build files and bundled user documentation. Inspect its entries and checksum before uploading. Development build instructions are in CONTRIBUTING.md.

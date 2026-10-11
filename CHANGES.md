@@ -1,3 +1,10 @@
+# 0.1.6 — 11 October 2026
+
+- Preserve numerical tolerance precision, including values smaller than 0.0000001.
+- Require a 100% answer for Short Answer and Numerical in both browser validation stages, matching direct import.
+- Align Multiple Choice grading-total tolerance with the server (0.0001).
+- Retain existing diagnostic codes and translation identifiers; clarify the full-credit requirement.
+
 # 0.1.5 — 7 October 2026
 
 - Replace generated hash-suffixed translation keys with an explicit stable registry and publish a migration map for 0.1.4 translations.

@@ -409,19 +409,19 @@
   },
   "js_core_no_accepted_short_answer": {
     "prefix": "js_core",
-    "value": "No accepted Short Answer"
+    "value": "No full-credit Short Answer"
   },
   "js_core_no_accepted_numerical_answer": {
     "prefix": "js_core",
-    "value": "No accepted numerical answer"
+    "value": "No full-credit numerical answer"
   },
   "js_core_short_answer_question_has_no_accepted_answer_add": {
     "prefix": "js_core",
-    "value": "Short Answer question has no accepted answer. Add at least one answer with a positive fraction."
+    "value": "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it."
   },
   "js_core_numerical_question_has_no_accepted_answer_add_at": {
     "prefix": "js_core",
-    "value": "Numerical question has no accepted answer. Add at least one numeric answer with a positive fraction."
+    "value": "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it."
   },
   "js_core_invalid_true_false_answers": {
     "prefix": "js_core",

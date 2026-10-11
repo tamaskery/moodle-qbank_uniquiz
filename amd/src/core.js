@@ -158,7 +158,7 @@ function validateChoiceQuestion(question, number, own, usable, labels) {
                 ),
             );
         }
-    } else if (Math.abs(positiveTotal - 100) > 0.0011) {
+    } else if (Math.abs(positiveTotal - 100) > 0.0001) {
         own.push(
             questionDiagnostic(
                 DIAGNOSTIC_CODES.POSITIVE_FRACTION_TOTAL_INVALID,
@@ -2509,10 +2509,8 @@ export function validateQuestions(questions, fileIssues = []) {
                     }
                 }
             });
-            const positiveAnswers = question.answers.filter(
-                ({fraction}) => Number.isFinite(fraction) && fraction > 0,
-            );
-            if (positiveAnswers.length === 0) {
+            const fullCreditAnswer = question.answers.some(({fraction}) => fraction === 100);
+            if (!fullCreditAnswer) {
                 own.push(
                     questionDiagnostic(
                         DIAGNOSTIC_CODES.NO_POSITIVE_ANSWER,
@@ -2643,6 +2641,10 @@ function formatMoodleNumber(value, decimals = 7) {
     if (!Number.isFinite(number)) {
         throw new Error(uiString("js_core_moodle_numeric_values_must_be_finite"));
     }
+    // Numerical tolerances are stored as text by Moodle and must retain Number precision.
+    if (decimals === null) {
+        return String(number);
+    }
     return number
         .toFixed(decimals)
         .replace(/\.0+$/u, "")
@@ -2711,7 +2713,9 @@ export function generateMoodleXml(questions, settings) {
                     `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
                 );
                 if (question.type === "numerical") {
-                    lines.push(`      <tolerance>${formatMoodleNumber(answer.tolerance ?? 0)}</tolerance>`);
+                    lines.push(
+                        `      <tolerance>${formatMoodleNumber(answer.tolerance ?? 0, null)}</tolerance>`,
+                    );
                 }
                 lines.push("    </answer>");
             });
@@ -2909,7 +2913,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
             );
         }
         const total = positive.reduce((sum, value) => sum + value, 0);
-        if (Math.abs(total - 100) > 0.0011) {
+        if (Math.abs(total - 100) > 0.0001) {
             errors.push(
                 uiString("js_core_grading_totals_not_100", {
                     p0: label,
@@ -2994,7 +2998,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
             }
             const fractions = answers.map((answer) => Number(answer.getAttribute("fraction")));
             if (
-                !fractions.some((value) => value > 0) ||
+                !fractions.some((value) => value === 100) ||
                 fractions.some((value) => !Number.isFinite(value) || value < -100 || value > 100)
             ) {
                 errors.push(

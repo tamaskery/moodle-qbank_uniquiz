@@ -1,8 +1,12 @@
-# UniQuiz 0.1.5 beta — QA summary
+# UniQuiz 0.1.6 beta — QA summary
 
 Verified 7 October 2026 (UTC). Plugin version `2026100702`, release `0.1.5`, maturity beta. This candidate adds stable translation identifiers, generated-code formatting and Moodle-compatible build output. It is not a respin of 0.1.4.
 
-## Candidate verification
+## 0.1.6 grading corrections
+
+This candidate fixes small numerical tolerance serialization, requires full-credit Short Answer/Numerical answers in the browser, and aligns Multiple Choice total validation with the server. Moodle upgrade version: `2026101100`. Four focused regression tests cover both browser validators, output precision, recovery and grading boundaries. Hosted verification for these changes is pending.
+
+## 0.1.5 baseline verification (before these corrections)
 
 [Hosted verification](https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37691431917) passed on commit `8f6aba4a2978e1c38c27f0a6ad7144ec3cc6f137`. Subsequent submission documentation and screenshots do not change executable plugin files. Tests used Ubuntu 24.04, PHP 8.3.35, Google Chrome and Moodle's Boost theme.
 

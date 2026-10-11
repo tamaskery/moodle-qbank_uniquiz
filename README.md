@@ -1,10 +1,10 @@
-# UniQuiz for Moodle — qbank_uniquiz 0.1.5 beta
+# UniQuiz for Moodle — qbank_uniquiz 0.1.6 beta
 
 A native question-bank preparation wizard using the UniQuiz 0.7.0 browser engine. Select CSV/TXT, map columns, analyse, choose settings, search and review the full bank, then download Moodle XML or explicitly confirm direct import. Includes the AIKEN fixer as a separate tab.
 
 ## Install
 
-Install `qbank_uniquiz-0.1.5.zip` using **Site administration → Plugins → Install plugins**, or copy the `uniquiz` folder into `question/bank/uniquiz`. For Moodle 5.2 and 5.3 this is under the `public` directory. Complete the Moodle upgrade process. When upgrading an existing installation, replace its plugin files and run Moodle's upgrade; no plugin database migration is needed.
+Install `qbank_uniquiz-0.1.6.zip` using **Site administration → Plugins → Install plugins**, or copy the `uniquiz` folder into `question/bank/uniquiz`. For Moodle 5.2 and 5.3 this is under the `public` directory. Complete the Moodle upgrade process. When upgrading an existing installation, replace its plugin files and run Moodle's upgrade; no plugin database migration is needed.
 
 Open a question bank and select **UniQuiz** from its action menu. The plugin uses Moodle's existing `moodle/question:add` capability in the destination context; no additional role grants are required for users who can already import questions. The built-in Moodle XML format (`qformat_xml`) must be available. Enable UniQuiz in the question-bank plugin administration if necessary.
 

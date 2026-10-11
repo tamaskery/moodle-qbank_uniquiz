@@ -63,7 +63,7 @@ function validateChoiceQuestion(question, number, own, usable, labels) {
           number, { field: "correct" },
         ));
       }
-    } else if (Math.abs(positiveTotal - 100) > 0.0011) {
+    } else if (Math.abs(positiveTotal - 100) > 0.0001) {
       own.push(questionDiagnostic(
         DIAGNOSTIC_CODES.POSITIVE_FRACTION_TOTAL_INVALID, "error", "Answer fractions do not total 100%",
         `Positive answer fractions must total 100%. The current total is ${diagnosticNumber(positiveTotal)}%.`,
@@ -1287,14 +1287,14 @@ export function validateQuestions(questions, fileIssues = []) {
           }
         }
       });
-      const positiveAnswers = question.answers.filter(({ fraction }) => Number.isFinite(fraction) && fraction > 0);
-      if (positiveAnswers.length === 0) {
+      const fullCreditAnswer = question.answers.some(({ fraction }) => fraction === 100);
+      if (!fullCreditAnswer) {
         own.push(questionDiagnostic(
           DIAGNOSTIC_CODES.NO_POSITIVE_ANSWER, "error",
-          question.type === "shortanswer" ? "No accepted Short Answer" : "No accepted numerical answer",
+          question.type === "shortanswer" ? "No full-credit Short Answer" : "No full-credit numerical answer",
           question.type === "shortanswer"
-            ? "Short Answer question has no accepted answer. Add at least one answer with a positive fraction."
-            : "Numerical question has no accepted answer. Add at least one numeric answer with a positive fraction.",
+            ? "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it."
+            : "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it.",
           number, { field: "answers" },
         ));
       }
@@ -1359,6 +1359,8 @@ export function formatFraction(correctCount) {
 function formatMoodleNumber(value, decimals = 7) {
   const number = Number(value);
   if (!Number.isFinite(number)) throw new Error("Moodle numeric values must be finite.");
+  // Numerical tolerances are stored as text by Moodle and must retain Number precision.
+  if (decimals === null) return String(number);
   return number.toFixed(decimals).replace(/\.0+$/u, "").replace(/(\.\d*?)0+$/u, "$1");
 }
 
@@ -1401,7 +1403,7 @@ export function generateMoodleXml(questions, settings) {
           `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
         );
         if (question.type === "numerical") {
-          lines.push(`      <tolerance>${formatMoodleNumber(answer.tolerance ?? 0)}</tolerance>`);
+          lines.push(`      <tolerance>${formatMoodleNumber(answer.tolerance ?? 0, null)}</tolerance>`);
         }
         lines.push("    </answer>");
       });
@@ -1534,7 +1536,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
       errors.push(`${label} has invalid grading fractions.`);
     }
     const total = positive.reduce((sum, value) => sum + value, 0);
-    if (Math.abs(total - 100) > 0.0011) errors.push(`${label} grading totals ${total}, not 100.`);
+    if (Math.abs(total - 100) > 0.0001) errors.push(`${label} grading totals ${total}, not 100.`);
     const single = question.querySelector(":scope > single")?.textContent === "true";
     if (single && positive.length !== 1) errors.push(`${label} has an inconsistent single-answer setting.`);
     const numbering = question.querySelector(":scope > answernumbering")?.textContent;
@@ -1560,7 +1562,7 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
     if (["shortanswer", "numerical"].includes(type)) {
       if (answers.length < 1) errors.push(`${label} has no accepted answers.`);
       const fractions = answers.map((answer) => Number(answer.getAttribute("fraction")));
-      if (!fractions.some((value) => value > 0)
+      if (!fractions.some((value) => value === 100)
         || fractions.some((value) => !Number.isFinite(value) || value < -100 || value > 100)) {
         errors.push(`${label} has invalid grading fractions.`);
       }

@@ -385,8 +385,8 @@
     "value": "Question {$a->p0}",
     "locations": [
       "core:324",
-      "core:1526",
-      "core:1550"
+      "core:1528",
+      "core:1552"
     ],
     "params": [
       "p0: question"
@@ -904,28 +904,28 @@
     ]
   },
   "js_core_no_accepted_short_answer": {
-    "value": "No accepted Short Answer",
+    "value": "No full-credit Short Answer",
     "locations": [
       "core:1294"
     ],
     "params": []
   },
   "js_core_no_accepted_numerical_answer": {
-    "value": "No accepted numerical answer",
+    "value": "No full-credit numerical answer",
     "locations": [
       "core:1294"
     ],
     "params": []
   },
   "js_core_short_answer_question_has_no_accepted_answer_add": {
-    "value": "Short Answer question has no accepted answer. Add at least one answer with a positive fraction.",
+    "value": "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it.",
     "locations": [
       "core:1296"
     ],
     "params": []
   },
   "js_core_numerical_question_has_no_accepted_answer_add_at": {
-    "value": "Numerical question has no accepted answer. Add at least one numeric answer with a positive fraction.",
+    "value": "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it.",
     "locations": [
       "core:1297"
     ],
@@ -948,43 +948,43 @@
   "js_core_unsupported_answer_numbering_setting": {
     "value": "Unsupported answer numbering setting.",
     "locations": [
-      "core:1378"
+      "core:1380"
     ],
     "params": []
   },
   "js_core_the_xml_declaration_is_missing_or_is_not_the_fir": {
     "value": "The XML declaration is missing or is not the first content in the file.",
     "locations": [
-      "core:1517"
+      "core:1519"
     ],
     "params": []
   },
   "js_core_an_xml_parser_is_not_available_in_this_browser": {
     "value": "An XML parser is not available in this browser.",
     "locations": [
-      "core:1519"
+      "core:1521"
     ],
     "params": []
   },
   "js_core_the_generated_xml_is_not_well_formed": {
     "value": "The generated XML is not well-formed.",
     "locations": [
-      "core:1522"
+      "core:1524"
     ],
     "params": []
   },
   "js_core_the_generated_xml_does_not_have_a_quiz_root": {
     "value": "The generated XML does not have a quiz root.",
     "locations": [
-      "core:1523"
+      "core:1525"
     ],
     "params": []
   },
   "js_core_has_no_name": {
     "value": "{$a->p0} has no name.",
     "locations": [
-      "core:1527",
-      "core:1551"
+      "core:1529",
+      "core:1553"
     ],
     "params": [
       "p0: label"
@@ -993,8 +993,8 @@
   "js_core_has_no_question_text": {
     "value": "{$a->p0} has no question text.",
     "locations": [
-      "core:1528",
-      "core:1552"
+      "core:1530",
+      "core:1554"
     ],
     "params": [
       "p0: label"
@@ -1003,7 +1003,7 @@
   "js_core_has_fewer_than_two_answers": {
     "value": "{$a->p0} has fewer than two answers.",
     "locations": [
-      "core:1530"
+      "core:1532"
     ],
     "params": [
       "p0: label"
@@ -1012,8 +1012,8 @@
   "js_core_has_invalid_grading_fractions": {
     "value": "{$a->p0} has invalid grading fractions.",
     "locations": [
-      "core:1534",
-      "core:1565"
+      "core:1536",
+      "core:1567"
     ],
     "params": [
       "p0: label"
@@ -1022,7 +1022,7 @@
   "js_core_grading_totals_not_100": {
     "value": "{$a->p0} grading totals {$a->p1}, not 100.",
     "locations": [
-      "core:1537"
+      "core:1539"
     ],
     "params": [
       "p0: label",
@@ -1032,7 +1032,7 @@
   "js_core_has_an_inconsistent_single_answer_setting": {
     "value": "{$a->p0} has an inconsistent single-answer setting.",
     "locations": [
-      "core:1539"
+      "core:1541"
     ],
     "params": [
       "p0: label"
@@ -1041,7 +1041,7 @@
   "js_core_has_unsupported_answer_numbering": {
     "value": "{$a->p0} has unsupported answer numbering.",
     "locations": [
-      "core:1541"
+      "core:1543"
     ],
     "params": [
       "p0: label"
@@ -1050,8 +1050,8 @@
   "js_core_has_an_invalid_default_grade": {
     "value": "{$a->p0} has an invalid default grade.",
     "locations": [
-      "core:1543",
-      "core:1557"
+      "core:1545",
+      "core:1559"
     ],
     "params": [
       "p0: label"
@@ -1060,7 +1060,7 @@
   "js_core_description_has_a_non_zero_default_grade": {
     "value": "{$a->p0} description has a non-zero default grade.",
     "locations": [
-      "core:1555"
+      "core:1557"
     ],
     "params": [
       "p0: label"
@@ -1069,7 +1069,7 @@
   "js_core_has_no_accepted_answers": {
     "value": "{$a->p0} has no accepted answers.",
     "locations": [
-      "core:1561"
+      "core:1563"
     ],
     "params": [
       "p0: label"
@@ -1078,7 +1078,7 @@
   "js_core_has_an_invalid_case_sensitivity_setting": {
     "value": "{$a->p0} has an invalid case-sensitivity setting.",
     "locations": [
-      "core:1569"
+      "core:1571"
     ],
     "params": [
       "p0: label"
@@ -1087,7 +1087,7 @@
   "js_core_has_an_invalid_numerical_answer": {
     "value": "{$a->p0} has an invalid numerical answer.",
     "locations": [
-      "core:1575"
+      "core:1577"
     ],
     "params": [
       "p0: label"
@@ -1096,7 +1096,7 @@
   "js_core_has_an_invalid_numerical_tolerance": {
     "value": "{$a->p0} has an invalid numerical tolerance.",
     "locations": [
-      "core:1576"
+      "core:1578"
     ],
     "params": [
       "p0: label"
@@ -1105,7 +1105,7 @@
   "js_core_has_invalid_true_false_answers": {
     "value": "{$a->p0} has invalid True/False answers.",
     "locations": [
-      "core:1584"
+      "core:1586"
     ],
     "params": [
       "p0: label"
@@ -1114,7 +1114,7 @@
   "js_core_should_not_contain_automatically_graded_answers": {
     "value": "{$a->p0} should not contain automatically graded answers.",
     "locations": [
-      "core:1588"
+      "core:1590"
     ],
     "params": [
       "p0: label"
@@ -1123,7 +1123,7 @@
   "js_core_the_xml_contains_no_supported_questions": {
     "value": "The XML contains no supported questions.",
     "locations": [
-      "core:1592"
+      "core:1594"
     ],
     "params": []
   },

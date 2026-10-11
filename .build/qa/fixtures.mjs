@@ -11,3 +11,13 @@ await fs.writeFile('/tmp/uniquiz-text.xml', xml(source));
 await fs.writeFile(process.env.UNIQUIZ_QA_RESULTS + '/text-fidelity.xml', xml(source));
 await fs.writeFile('/tmp/uniquiz-six.xml', xml(await fs.readFile(new URL('../source/examples/uniquiz-question-types.csv', import.meta.url), 'utf8')));
 await fs.copyFile(new URL('../source/tests/fixtures/question-types-moodle.expected.json', import.meta.url), '/tmp/uniquiz-expected.json');
+
+const grading = {
+    tiny: 'type,question_text,answer_1,answer_1_fraction,answer_1_tolerance\nnumerical,Tiny tolerance,1,100,0.00000001',
+    shortanswer: 'type,question_text,answer_1,answer_1_fraction\nshortanswer,Full credit,Answer,100',
+    numerical: 'type,question_text,answer_1,answer_1_fraction\nnumerical,Full credit,1,100',
+    thirds: 'type,question_text,answer_1,answer_2,answer_3,answer_1_fraction,answer_2_fraction,answer_3_fraction\nmultichoice,Thirds,A,B,C,33.3333333,33.3333333,33.3333333',
+};
+for (const [name, csv] of Object.entries(grading)) {
+    await fs.writeFile('/tmp/uniquiz-grading-' + name + '.xml', xml(csv));
+}

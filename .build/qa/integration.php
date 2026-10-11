@@ -142,6 +142,25 @@ foreach ($ids as $i => $id) {
     check((int)$categoryactual === (int)$category->id, "Question $i stays in chosen destination");
 }
 
+// Grading contract regressions: test the actual generated XML and core importer.
+$tinyxml = file_get_contents('/tmp/uniquiz-grading-tiny.xml');
+$tinyids = importer::run($tinyxml, 1, $checked, $course);
+check(count($tinyids) === 1, 'Tiny numerical tolerance imports');
+$storedtolerance = $DB->get_field('question_numerical', 'tolerance', ['question' => $tinyids[0]], MUST_EXIST);
+check((float)$storedtolerance === 0.00000001, 'Tiny tolerance retains its value in the Moodle database');
+foreach (['shortanswer', 'numerical'] as $type) {
+    $fullcreditxml = file_get_contents('/tmp/uniquiz-grading-' . $type . '.xml');
+    [$accepted, $acceptedcount] = xml_validator::prepare($fullcreditxml, 1);
+    check($acceptedcount === 1, "$type full credit accepted");
+    $partialxml = str_replace('fraction="100"', 'fraction="50"', $fullcreditxml);
+    rejects(static fn() => xml_validator::prepare($partialxml, 1), "$type partial-credit-only rejected");
+}
+$thirdsxml = file_get_contents('/tmp/uniquiz-grading-thirds.xml');
+$thirdsids = importer::run($thirdsxml, 1, $checked, $course);
+check(count($thirdsids) === 1, 'Seven-place thirds import successfully');
+$roundedthirds = str_replace('33.3333333', '33.333', $thirdsxml);
+rejects(static fn() => xml_validator::prepare($roundedthirds, 1), 'Total 99.999 rejected');
+
 // A finite grade accepted by the envelope exceeds the DB numeric precision at question 2.
 // This proves rollback after question 1 was already inserted, not only parse-error rejection.
 $broken = new DOMDocument();

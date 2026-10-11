@@ -6,7 +6,7 @@
 - Component: `qbank_uniquiz`
 - Plugin type: Question bank plugin
 - Distribution: Free, GNU GPL v3 or later
-- Candidate release: 0.1.5 beta (`2026100702`)
+- Candidate release: 0.1.6 beta (`2026101100`)
 - Source: https://github.com/tamaskery/moodle-qbank_uniquiz
 - Issue tracker: https://github.com/tamaskery/moodle-qbank_uniquiz/issues
 - Candidate review: https://github.com/tamaskery/moodle-qbank_uniquiz/pull/1
