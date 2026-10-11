@@ -26,7 +26,7 @@ const root = path.resolve(__dirname, '../source');
             await page.goto(report.url + '&lang=' + language); await ready();
             check(await page.locator('#qbank-uniquiz').evaluate(el => JSON.parse(el.dataset.config).language) === language,
                 language + ': Moodle selected the installed language');
-            check(await page.locator('#analyse-button').innerText() === s.ui_analyse_questions,
+            check(await page.getByRole('button', {name: s.ui_analyse_questions, exact: true}).count() === 1,
                 language + ': wizard template translated');
             await page.locator('#file-input').setInputFiles(path.join(root, 'examples/uniquiz-question-types.csv'));
             await page.locator('#consent').check(); await page.locator('#analyse-button').click();
@@ -46,6 +46,7 @@ const root = path.resolve(__dirname, '../source');
             await page.locator('#uq-import').click();
             const result = await (await response).json();
             check(result.success && result.message === s.importsuccess.replace('{$a}', '6'), language + ': native translated import response');
+            await page.waitForLoadState('networkidle');
             await page.screenshot({path: path.join(dir, 'ci-' + language + '-import.png'), fullPage: true});
             await page.goto(report.url + '&lang=' + language); await ready();
             await page.locator('#file-input').setInputFiles({name: 'blocked.csv', mimeType: 'text/csv',
@@ -65,6 +66,7 @@ const root = path.resolve(__dirname, '../source');
             await page.setViewportSize({width: 390, height: 844});
             await page.goto(report.url + '&lang=' + language); await ready();
             check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), language + ': no mobile overflow');
+            await page.waitForLoadState('networkidle');
             await page.screenshot({path: path.join(dir, 'ci-' + language + '-mobile.png'), fullPage: true});
             await page.setViewportSize({width: 1280, height: 900});
         }
