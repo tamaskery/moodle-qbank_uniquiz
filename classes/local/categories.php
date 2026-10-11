@@ -52,8 +52,15 @@ final class categories {
             $where .= ' AND ' . $DB->sql_like('name', ':search', false);
             $params['search'] = '%' . $DB->sql_like_escape($search) . '%';
         }
-        $records = array_values($DB->get_records_select('question_categories', $where, $params,
-            'contextid, name, id', '*', $page * self::PAGE_SIZE, self::PAGE_SIZE + 1));
+        $records = array_values($DB->get_records_select(
+            'question_categories',
+            $where,
+            $params,
+            'contextid, name, id',
+            '*',
+            $page * self::PAGE_SIZE,
+            self::PAGE_SIZE + 1
+        ));
         $more = count($records) > self::PAGE_SIZE;
         $records = array_slice($records, 0, self::PAGE_SIZE);
         $cache = [];
@@ -78,8 +85,10 @@ final class categories {
         while ($parent && count($seen) < 100 && !in_array($parent, $seen, true)) {
             $seen[] = $parent;
             if (!array_key_exists($parent, $cache)) {
-                $cache[$parent] = $DB->get_record('question_categories',
-                    ['id' => $parent, 'contextid' => $record->contextid]);
+                $cache[$parent] = $DB->get_record(
+                    'question_categories',
+                    ['id' => $parent, 'contextid' => $record->contextid]
+                );
             }
             $ancestor = $cache[$parent];
             if (!$ancestor || !$ancestor->parent) {
