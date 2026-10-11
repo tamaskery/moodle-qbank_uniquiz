@@ -6,7 +6,7 @@
 - Component: `qbank_uniquiz`
 - Plugin type: Question bank plugin
 - Distribution: Free, GNU GPL v3 or later
-- Candidate release: 0.1.7 beta (`2026101101`)
+- Candidate release: 0.1.7 beta (`2026101102`)
 - Source: https://github.com/tamaskery/moodle-qbank_uniquiz
 - Issue tracker: https://github.com/tamaskery/moodle-qbank_uniquiz/issues
 - Candidate review: https://github.com/tamaskery/moodle-qbank_uniquiz/pull/1
@@ -28,7 +28,7 @@ Direct import supports up to 500 questions and 8 MiB of XML, with additional str
 
 English fallback plus complete Spanish, German, French and Hungarian plugin translations are included. The interface, guide and messages follow Moodle's language selection. Stable identifiers and semantic migration maps support site-local customizations. Source question content and technical input syntax remain unchanged.
 
-Candidate 0.1.7 preserves numerical precision, enforces deliberate grading and mark bounds, protects retry receipts, limits repeated failed imports, and provides authorized category search with pagination. All four hosted environments passed, including the four translated browser journeys. QA.md and EVIDENCE.json record the exact tested commit, versions and results. Listing screenshots are fresh 0.1.7 UI illustrations.
+Candidate 0.1.7 preserves numerical precision, enforces deliberate grading and mark bounds, protects retry receipts, limits repeated failed imports, and provides authorized category search with pagination. All four hosted environments passed, including the four translated browser journeys. QA.md and EVIDENCE.json record the exact tested commit, versions and results. Listing screenshots are retained earlier 0.1.7 build 2026101101 UI illustrations with explicit provenance.
 
 ## Installation and upgrade
 

@@ -9,9 +9,9 @@
 - Stable language identifiers, semantic migration maps and complete Spanish, German, French and Hungarian plugin strings.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
 - Disposable real-Moodle import, browser, adversarial and translation checks.
-- All four candidate artifacts inspected; actual versions, timings, tested commit and report hashes recorded in EVIDENCE.json.
+- All four build 2026101102 candidate artifacts inspected, including stored canonical fractions and immutable post-Grunt AMD comparison; actual versions, timings, tested commit and report hashes recorded in EVIDENCE.json.
 - Earlier reviewer findings assessed in REVIEW-0.1.7.md; the implemented robustness fixes and retained staging limits are described there.
-- Fresh 0.1.7 English and four-language screenshots with CI provenance.
+- Earlier 0.1.7 build 2026101101 English and four-language UI illustrations retained with explicit CI provenance.
 - Listing copy in LISTING.md; source and issue links supplied.
 - Git archive rules exclude development dependencies, CI fixtures and submission materials.
 
