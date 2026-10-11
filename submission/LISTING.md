@@ -28,6 +28,8 @@ Direct import supports up to 500 questions and 8 MiB of XML, with additional str
 
 English is included. The user interface and messages use Moodle language strings, with stable identifiers and a migration map for earlier beta customizations. Human translations are not bundled.
 
+Candidate 0.1.6 preserves tiny numerical tolerances, requires a full-credit Short Answer/Numerical answer in both browser validation stages, and aligns Multiple Choice grading-total validation with the server. Its four-environment hosted verification passed; QA.md and EVIDENCE.json record the tested commit, actual versions and results. Listing screenshots are retained as earlier 0.1.5 UI illustrations.
+
 ## Installation and upgrade
 
 Upload the release ZIP through Site administration → Plugins → Install plugins, or place its `uniquiz` directory under `question/bank`. On Moodle 5.2 and 5.3 this is under the Moodle `public` directory. Complete the Moodle upgrade process, then enable UniQuiz in question-bank plugin administration if needed.

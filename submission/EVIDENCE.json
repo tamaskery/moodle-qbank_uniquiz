@@ -1,67 +1,511 @@
 {
-  "candidate": "0.1.5",
-  "version": 2026100702,
-  "commit": "8f6aba4a2978e1c38c27f0a6ad7144ec3cc6f137",
-  "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37691431917",
+  "candidate": "0.1.6",
+  "version": 2026101100,
+  "commit": "0559a8cfa46932bb7ef2b7ddffeb502e169eaf76",
+  "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38126997472",
   "result": "success",
+  "verifiedDate": "2026-10-11",
+  "createdAt": "2026-10-11T09:03:20Z",
+  "completedAt": "2026-10-11T09:12:45Z",
+  "runtime": {
+    "os": "Ubuntu 24.04",
+    "runnerImage": "ubuntu24/20261004.327",
+    "php": "8.3.35",
+    "node": "22.23.3",
+    "browser": "Google Chrome, headless; executable selected with command -v google-chrome",
+    "browserVersion": "Not emitted by acceptance harness; no exact version claimed",
+    "theme": "Boost"
+  },
+  "repositoryChecks": {
+    "engine": 134,
+    "languageInvariance": 20,
+    "englishKeys": 508,
+    "amdModulesAndMaps": 8,
+    "phpunit": {
+      "tests": 11,
+      "assertions": 62
+    },
+    "behat": {
+      "scenarios": 1,
+      "steps": 9
+    }
+  },
   "environments": [
     {
       "environment": "acceptance-MOODLE_405_STABLE-pgsql",
       "release": "4.5.15 (Build: 20261005)",
-      "integration": 96,
+      "database": "PostgreSQL 17.11",
+      "integration": 104,
       "browser": 38,
       "security": 16,
       "translations": 18,
+      "concurrentRetryDatabase": "one question; assertion passed in job log",
       "benchmark": {
         "questions": 500,
-        "seconds": 2.449,
+        "seconds": 2.488,
         "process_peak_memory_bytes": 31457280,
         "xml_bytes": 389013
-      }
+      },
+      "gradingRegressions": [
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        }
+      ],
+      "startedAt": "2026-10-11T09:03:22Z",
+      "completedAt": "2026-10-11T09:10:52Z",
+      "durationSeconds": 450,
+      "acceptanceDurationSeconds": 184,
+      "artifact": {
+        "id": 11697208367,
+        "name": "acceptance-MOODLE_405_STABLE-pgsql",
+        "archiveBytes": 682455,
+        "reportSha256": {
+          "ci-integration.json": "3b02795268a5c568fc13216bfe48e0a379cd303cc30a07a45ed4c1845ac65772",
+          "ci-browser.json": "1c6e48c06217ee68f50369a6775855370df9b2a0e6754590b4fd1e666ec61bc6",
+          "ci-security.json": "b832485512ebd3eb9ac88eb15da875d009fc82a50292e4a309887b4394a40cfe",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38126997472/job/114433323481",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
     },
     {
       "environment": "acceptance-MOODLE_502_STABLE-pgsql",
       "release": "5.2.4 (Build: 20261005)",
-      "integration": 96,
+      "database": "PostgreSQL 17.11",
+      "integration": 104,
       "browser": 38,
       "security": 16,
       "translations": 18,
+      "concurrentRetryDatabase": "one question; assertion passed in job log",
       "benchmark": {
         "questions": 500,
-        "seconds": 1.974,
+        "seconds": 1.968,
         "process_peak_memory_bytes": 31457280,
         "xml_bytes": 389013
-      }
+      },
+      "gradingRegressions": [
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        }
+      ],
+      "startedAt": "2026-10-11T09:03:22Z",
+      "completedAt": "2026-10-11T09:12:03Z",
+      "durationSeconds": 521,
+      "acceptanceDurationSeconds": 204,
+      "artifact": {
+        "id": 11697193529,
+        "name": "acceptance-MOODLE_502_STABLE-pgsql",
+        "archiveBytes": 746270,
+        "reportSha256": {
+          "ci-integration.json": "a350d7e3b39d8daf488e37cf97303ab379c2c8b8c0a0909b4c8eab95e4cc81d8",
+          "ci-browser.json": "20cd38429cfc33f31bcd462aec60ae5f3976edab6ca280cd57c3730826ca3677",
+          "ci-security.json": "4f859fa06a8f67cc6573165ebab3ba79e7b083a6fcdf3debc77587140c596812",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38126997472/job/114433323317",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
     },
     {
       "environment": "acceptance-MOODLE_503_STABLE-mariadb",
       "release": "5.3 (Build: 20261005)",
-      "integration": 96,
+      "database": "MariaDB 11.8.9",
+      "integration": 104,
       "browser": 38,
       "security": 16,
       "translations": 18,
+      "concurrentRetryDatabase": "one question; assertion passed in job log",
       "benchmark": {
         "questions": 500,
-        "seconds": 1.86,
+        "seconds": 1.819,
         "process_peak_memory_bytes": 31457280,
         "xml_bytes": 389013
-      }
+      },
+      "gradingRegressions": [
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        }
+      ],
+      "startedAt": "2026-10-11T09:03:22Z",
+      "completedAt": "2026-10-11T09:12:45Z",
+      "durationSeconds": 563,
+      "acceptanceDurationSeconds": 274,
+      "artifact": {
+        "id": 11697198530,
+        "name": "acceptance-MOODLE_503_STABLE-mariadb",
+        "archiveBytes": 738607,
+        "reportSha256": {
+          "ci-integration.json": "f5f9b2678a381a897070877df0fbb233bd80579e2dd99f76313839e171628148",
+          "ci-browser.json": "98026c7a719c2a08599f0777635f91a5931f55a757fba61e865babb4df084e1b",
+          "ci-security.json": "befc80c79958c518cbe9e098c598a0627c568c9633767fbd4d4ccd117af74a01",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38126997472/job/114433323533",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
     },
     {
       "environment": "acceptance-MOODLE_503_STABLE-pgsql",
       "release": "5.3 (Build: 20261005)",
-      "integration": 96,
+      "database": "PostgreSQL 17.11",
+      "integration": 104,
       "browser": 38,
       "security": 16,
       "translations": 18,
+      "concurrentRetryDatabase": "one question; assertion passed in job log",
       "benchmark": {
         "questions": 500,
-        "seconds": 2.638,
+        "seconds": 1.954,
         "process_peak_memory_bytes": 31457280,
         "xml_bytes": 389013
-      }
+      },
+      "gradingRegressions": [
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        }
+      ],
+      "startedAt": "2026-10-11T09:03:22Z",
+      "completedAt": "2026-10-11T09:12:17Z",
+      "durationSeconds": 535,
+      "acceptanceDurationSeconds": 227,
+      "artifact": {
+        "id": 11697668506,
+        "name": "acceptance-MOODLE_503_STABLE-pgsql",
+        "archiveBytes": 736159,
+        "reportSha256": {
+          "ci-integration.json": "e664470d9d33a974d37d9bc52305e8b7fc93c5a17249ca4fd007ec919b40e623",
+          "ci-browser.json": "98026c7a719c2a08599f0777635f91a5931f55a757fba61e865babb4df084e1b",
+          "ci-security.json": "bc03781a2256089a010c4f57acee30c4b9cba47a32385ad9d9e418975b91661d",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38126997472/job/114433323537",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
     }
   ],
-  "packageCommit": "053d494b9d0bf38f33506b49a3e176ca7d5883a9",
-  "screenshotsRun": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37692862378"
+  "packagingProvenance": "Archive is built from the final committed source. PACKAGE.json in the separate submission kit records its exact commit and checksum. This evidence commit identifies the original hosted runtime test, not a different release.",
+  "screenshots": {
+    "candidate": "0.1.5",
+    "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37692862378",
+    "purpose": "Earlier UI illustrations retained explicitly; not fresh 0.1.6 verification evidence"
+  },
+  "remainingGates": [
+    "No intended-site staging access; installation/upgrade/theme/roles/question-bank acceptance pending",
+    "Previously reported core question-count HTTP 500 requires staging investigation",
+    "Marketplace declarations/name availability/archive validation/submission pending"
+  ],
+  "review": "REVIEW-0.1.6.md; assessment only, no additional runtime fixes"
 }

@@ -1,30 +1,33 @@
 # UniQuiz 0.1.6 beta — QA summary
 
-Verified 7 October 2026 (UTC). Plugin version `2026100702`, release `0.1.5`, maturity beta. This candidate adds stable translation identifiers, generated-code formatting and Moodle-compatible build output. It is not a respin of 0.1.4.
+Verified 11 October 2026 (UTC). Plugin version `2026101100`, release `0.1.6`, maturity beta.
 
-## 0.1.6 grading corrections
+## Hosted candidate verification
 
-This candidate fixes small numerical tolerance serialization, requires full-credit Short Answer/Numerical answers in the browser, and aligns Multiple Choice total validation with the server. Moodle upgrade version: `2026101100`. Four focused regression tests cover both browser validators, output precision, recovery and grading boundaries. Hosted verification for these changes is pending.
+[All four jobs passed](https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38126997472) on commit `0559a8cfa46932bb7ef2b7ddffeb502e169eaf76`. All four acceptance artifacts were downloaded and inspected. Subsequent handoff changes update documentation/evidence only; executable plugin files and test harnesses remain identical to this tested commit. The exact final archive commit/checksum is recorded separately in the submission kit's PACKAGE.json. Final PR-head checks are also linked in the PR handoff.
 
-## 0.1.5 baseline verification (before these corrections)
-
-[Hosted verification](https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37691431917) passed on commit `8f6aba4a2978e1c38c27f0a6ad7144ec3cc6f137`. Subsequent submission documentation and screenshots do not change executable plugin files. Tests used Ubuntu 24.04, PHP 8.3.35, Google Chrome and Moodle's Boost theme.
+Tests used Ubuntu 24.04 (runner image ubuntu24/20261004.327), PHP 8.3.35, Node 22.23.3, Google Chrome and Boost. Database patch versions below come from container job logs. The harness did not emit Chrome's exact version; no exact browser-version claim is made.
 
 | Moodle | Database | Integration | Chrome workflows | Adversarial HTTP | Translation checks | 500-question import |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| 4.5.15, build 20261005 | PostgreSQL 17 | 96/96 | 38/38 | 16/16 | 18/18 | 2.449 s |
-| 5.2.4, build 20261005 | PostgreSQL 17 | 96/96 | 38/38 | 16/16 | 18/18 | 1.974 s |
-| 5.3, build 20261005 | PostgreSQL 17 | 96/96 | 38/38 | 16/16 | 18/18 | 2.638 s |
-| 5.3, build 20261005 | MariaDB 11 | 96/96 | 38/38 | 16/16 | 18/18 | 1.860 s |
+| 4.5.15 (Build: 20261005) | PostgreSQL 17.11 | 104/104 | 38/38 | 16/16 | 18/18 | 2.488 s |
+| 5.2.4 (Build: 20261005) | PostgreSQL 17.11 | 104/104 | 38/38 | 16/16 | 18/18 | 1.968 s |
+| 5.3 (Build: 20261005) | MariaDB 11.8.9 | 104/104 | 38/38 | 16/16 | 18/18 | 1.819 s |
+| 5.3 (Build: 20261005) | PostgreSQL 17.11 | 104/104 | 38/38 | 16/16 | 18/18 | 1.954 s |
 
-Every environment also passed:
+Every environment passed PHP syntax, coding standard, PHPdoc, plugin validation, savepoints, Mustache, full Grunt/frontend checks and exact generated-file consistency. PHPUnit passed 11 tests / 62 assertions; Chrome Behat passed 1 scenario / 9 steps. The generated-file job passed 134 engine regressions, 20 language/export invariance checks, all eight AMD modules/maps, and 508 sorted unique English keys. These local engine/language/map checks were also repeated during finalization.
 
-- Moodle Plugin CI PHP syntax, coding standard, PHPdoc, plugin validation, savepoints, Mustache and full Grunt checks, including exact generated-asset parity.
-- PHPUnit: 11 tests, 62 assertions, including late-failure rollback and log redaction.
-- Chrome Behat: 1 scenario, 9 steps.
-- 130 plugin engine regressions; 20 language/export invariance checks; all eight AMD source maps; 508 unique, alphabetically sorted English keys and complete translation-key migration mapping.
+## Grading corrections proved in real Moodle
 
-The 130 engine tests exclude 13 standalone marketing-site tests from the earlier 143-test suite. They are not plugin workflows. The complete standalone site's browser suite is outside this candidate's scope.
+All four integration reports contain eight passing new checks: tiny numerical tolerance import and exact stored value `0.00000001`; full credit accepted and partial-credit-only rejected for both Short Answer and Numerical; successful import of seven-decimal thirds; and rejection of a `99.999` total. The database equality assertion cannot pass merely because the tolerance was rounded to zero. Four focused engine regressions also exercise both browser validators, mixed full/partial credit, recovery and grading boundaries.
+
+Run timestamps, per-job/acceptance durations, artifact IDs, report hashes and exact results are in submission/EVIDENCE.json. Measurements are runner observations, not production capacity guarantees.
+
+## Earlier evidence and review scope
+
+The [0.1.5 baseline](https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37691431917) tested commit `8f6aba4a2978e1c38c27f0a6ad7144ec3cc6f137`; its results are not represented as 0.1.6 results. Listing screenshots are explicitly retained as earlier 0.1.5 UI illustrations, with provenance in submission/screenshots/README.md.
+
+The earlier low/medium robustness findings were assessed against 0.1.6 in the separate submission review. The tag limit is correctly 255 on all tested branches. The database mark bound, receipt eviction, unpaginated categories and category-marker numbering remain known limitations; the review recommends targeted follow-up and does not claim those have been fixed. SECURITY.md explains relevant residual risks and plain-text handling. This focused assessment does not extend the independent-review scope or certify all native display surfaces.
 
 ## What the acceptance tests verify
 
@@ -32,7 +35,7 @@ All six supported question types, preview/search, XML download, explicit import 
 
 The adversarial suite runs only against disposable CI sites. It covers entity envelopes, malformed structure, authorization, receipt integrity and concurrent retries; a database check confirms that the concurrent identical requests create one question. The pseudolanguage suite exercises native language customization, literal hostile translations and unchanged exported data. These are targeted regression checks, not an independent security audit.
 
-The 500-question measurements used 389,013 bytes of XML and a 30 MiB whole-process peak in these runners. They are observations, not production capacity guarantees.
+The 0.1.6 500-question measurements used 389,013 bytes of XML and a 30 MiB whole-process peak in these runners. They are observations, not production capacity guarantees.
 
 ## Remaining acceptance limits
 

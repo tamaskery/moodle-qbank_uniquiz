@@ -2,6 +2,8 @@
 
 Captured in Google Chrome on disposable Moodle 5.3 with Boost, using synthetic questions and a synthetic teacher account. These show candidate 0.1.5 from https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37692862378 (Moodle 5.3 PostgreSQL job passed). The wizard itself is captured without stitching Moodle's sticky site navigation across the image. Functional verification is recorded in EVIDENCE.json.
 
+Retained for the 0.1.6 submission kit as earlier UI illustrations. They were not recaptured for 0.1.6 and do not prove its grading corrections. Fresh 0.1.6 acceptance results and screenshot artifacts are linked from EVIDENCE.json.
+
 1. `01-upload.png` — choose a source file and begin the wizard.
 2. `02-review.png` — inspect and search a six-type question bank before export.
 3. `03-imported.png` — successful confirmed import with XML download and return actions.
