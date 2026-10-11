@@ -1,11 +1,7 @@
 # Screenshots
 
-Captured in Google Chrome on disposable Moodle 5.3 with Boost, using synthetic questions and a synthetic teacher account. These show candidate 0.1.5 from https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/37692862378 (Moodle 5.3 PostgreSQL job passed). The wizard itself is captured without stitching Moodle's sticky site navigation across the image. Functional verification is recorded in EVIDENCE.json.
+Fresh 0.1.7 captures from https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556, commit c0e189f81bd6296ddbaa1168848114165f4dbc9d. All four jobs passed. Headless Chrome 154.0.8037.97 and Boost; synthetic questions and accounts only.
 
-Retained for the 0.1.6 submission kit as earlier UI illustrations. They were not recaptured for 0.1.6 and do not prove its grading corrections. Fresh 0.1.6 acceptance results and screenshot artifacts are linked from EVIDENCE.json.
+01-upload.png, 02-review.png and 03-imported.png show the English wizard on Moodle 5.3/PostgreSQL as region captures. The es/de/fr/hu-mobile.png captures show the four installed native language packs on Moodle 4.5.15/PostgreSQL at 390px width. These avoid the sticky navigation artifacts in some full-page Moodle 5.3 captures; unmodified raw captures remain in the CI artifacts. EVIDENCE.json records all four environments and functional checks.
 
-1. `01-upload.png` — choose a source file and begin the wizard.
-2. `02-review.png` — inspect and search a six-type question bank before export.
-3. `03-imported.png` — successful confirmed import with XML download and return actions.
-
-No production site, student data or real account details appear in these screenshots. Mobile workflow evidence is retained in the linked CI artifacts; the listing screenshots focus on the desktop workflow.
+The source questions, category names and test account labels remain synthetic English data; language selection does not translate imported educational content. Screenshots illustrate UI; they do not certify arbitrary themes or translation fluency. No production data appears here.

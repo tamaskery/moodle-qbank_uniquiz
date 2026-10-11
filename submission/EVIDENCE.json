@@ -1,10 +1,17 @@
 {
   "candidate": "0.1.7",
   "version": 2026101101,
-  "status": "Hosted multilingual verification pending",
-  "local": {
+  "commit": "c0e189f81bd6296ddbaa1168848114165f4dbc9d",
+  "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556",
+  "result": "success",
+  "verifiedDate": "2026-10-11",
+  "createdAt": "2026-10-11T14:48:26Z",
+  "completedAt": "2026-10-11T15:01:16Z",
+  "repositoryChecks": {
     "engine": 135,
-    "translations": {
+    "baselineLanguageChecks": 20,
+    "englishKeys": 516,
+    "bundledTranslations": {
       "languages": [
         "es",
         "de",
@@ -17,10 +24,1108 @@
     },
     "amdModulesAndMaps": 8
   },
-  "previousReleaseEvidence": "EVIDENCE-0.1.6.json; baseline only",
-  "pending": [
-    "Hosted final candidate CI and artifact inspection",
-    "Intended-site staging acceptance",
-    "Marketplace account and submission gates"
-  ]
+  "environments": [
+    {
+      "environment": "acceptance-MOODLE_405_STABLE-pgsql",
+      "release": "4.5.15 (Build: 20261005)",
+      "database": "PostgreSQL 17.11",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 123,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.504,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T14:48:28Z",
+      "completedAt": "2026-10-11T14:57:51Z",
+      "durationSeconds": 563,
+      "acceptanceDurationSeconds": 289,
+      "artifact": {
+        "id": 11706216892,
+        "name": "acceptance-MOODLE_405_STABLE-pgsql",
+        "archiveBytes": 2073950,
+        "reportSha256": {
+          "ci-integration.json": "eba23067af179d2fee1b21d007858927d7d20a87fb9f399b4a76d19784a88675",
+          "ci-browser.json": "6132f872c452a5aba5cb03d3d98a38e7dbca8e598dd7981170840f62415a1213",
+          "ci-security.json": "693c889adf11c9ce8a914a78430bcb450f0d603221e7d057b722fe9c19aadc4c",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556/job/114497307312",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    },
+    {
+      "environment": "acceptance-MOODLE_502_STABLE-pgsql",
+      "release": "5.2.4 (Build: 20261005)",
+      "database": "PostgreSQL 17.11",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 123,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.647,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T14:48:28Z",
+      "completedAt": "2026-10-11T14:58:40Z",
+      "durationSeconds": 612,
+      "acceptanceDurationSeconds": 328,
+      "artifact": {
+        "id": 11706351726,
+        "name": "acceptance-MOODLE_502_STABLE-pgsql",
+        "archiveBytes": 2312885,
+        "reportSha256": {
+          "ci-integration.json": "cbe3f52d2d0acbbc5e214a3a4b6f3495067928e4a2125999cbbfe76ae70ffecc",
+          "ci-browser.json": "e0039a82cf250d2de5e038cd5ae68da5f8fc7b2bf9a0c57ffc1f71889335e59e",
+          "ci-security.json": "e3f8771e5d3b8da1931c69c006df5ae7b09d705179454f663521afde95c521b2",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556/job/114497307533",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    },
+    {
+      "environment": "acceptance-MOODLE_503_STABLE-mariadb",
+      "release": "5.3 (Build: 20261005)",
+      "database": "MariaDB 11.8.9",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 123,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 1.833,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T14:48:28Z",
+      "completedAt": "2026-10-11T15:00:00Z",
+      "durationSeconds": 692,
+      "acceptanceDurationSeconds": 401,
+      "artifact": {
+        "id": 11706605775,
+        "name": "acceptance-MOODLE_503_STABLE-mariadb",
+        "archiveBytes": 2293812,
+        "reportSha256": {
+          "ci-integration.json": "b47a05beec2289eb482c6082fe6a2a5ac22fd150459fd78fa22049ac79376fac",
+          "ci-browser.json": "381aec34289916b2ee0549b37ea9e9cf2a66c5d831160f72cfac31c315980259",
+          "ci-security.json": "88d015f1fa20f8a0b3a51b6739df0ca5de1206a09288bfc75b4d42a0dd982fea",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556/job/114497307573",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    },
+    {
+      "environment": "acceptance-MOODLE_503_STABLE-pgsql",
+      "release": "5.3 (Build: 20261005)",
+      "database": "PostgreSQL 17.11",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 123,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.814,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T14:48:28Z",
+      "completedAt": "2026-10-11T15:01:16Z",
+      "durationSeconds": 768,
+      "acceptanceDurationSeconds": 438,
+      "artifact": {
+        "id": 11705957638,
+        "name": "acceptance-MOODLE_503_STABLE-pgsql",
+        "archiveBytes": 2320822,
+        "reportSha256": {
+          "ci-integration.json": "2617f186233b5fdca734cf5098f3d1d07621a06057184b5767d88e30356bdf79",
+          "ci-browser.json": "381aec34289916b2ee0549b37ea9e9cf2a66c5d831160f72cfac31c315980259",
+          "ci-security.json": "7c37c139d2aa8c2ba1f2653bd63b207f6eed81a55882273fe75b34878cd4fb63",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556/job/114497307471",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    }
+  ],
+  "previousReleaseEvidence": "EVIDENCE-0.1.6.json; historical baseline only",
+  "packagingProvenance": "PACKAGE.json records the exact archive commit/checksum and passing final-head CI. This document identifies the inspected runtime evidence commit.",
+  "screenshots": {
+    "candidate": "0.1.7",
+    "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556",
+    "environment": {
+      "englishDesktop": "Moodle 5.3 / PostgreSQL / Boost; wizard region",
+      "nativeMobile": "Moodle 4.5.15 / PostgreSQL / Boost; 390px wide"
+    },
+    "purpose": "Fresh candidate UI illustrations, synthetic content and accounts"
+  },
+  "remainingGates": [
+    "Intended-site backed-up staging installation/upgrade/theme/roles/question-bank acceptance",
+    "Reported core question-count HTTP 500 staging investigation",
+    "Marketplace declarations/name availability/archive validation/submission"
+  ],
+  "scope": "Automated functionality and translation wiring/escaping/invariance; native-speaker editorial review and full accessibility/theme audit not executed",
+  "deployment": "No production deployment, merge, release tag or Marketplace submission"
 }

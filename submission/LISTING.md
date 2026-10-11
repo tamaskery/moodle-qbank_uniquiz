@@ -28,7 +28,7 @@ Direct import supports up to 500 questions and 8 MiB of XML, with additional str
 
 English fallback plus complete Spanish, German, French and Hungarian plugin translations are included. The interface, guide and messages follow Moodle's language selection. Stable identifiers and semantic migration maps support site-local customizations. Source question content and technical input syntax remain unchanged.
 
-Candidate 0.1.7 preserves tiny numerical tolerances, requires a full-credit Short Answer/Numerical answer in both browser validation stages, and aligns Multiple Choice grading-total validation with the server. Its expanded four-environment hosted verification is pending; QA.md and EVIDENCE.json record the tested commit, actual versions and results. Listing screenshots are retained as earlier 0.1.5 UI illustrations.
+Candidate 0.1.7 preserves numerical precision, enforces deliberate grading and mark bounds, protects retry receipts, limits repeated failed imports, and provides authorized category search with pagination. All four hosted environments passed, including the four translated browser journeys. QA.md and EVIDENCE.json record the exact tested commit, versions and results. Listing screenshots are fresh 0.1.7 UI illustrations.
 
 ## Installation and upgrade
 

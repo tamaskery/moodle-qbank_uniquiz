@@ -9,9 +9,9 @@
 - Stable language identifiers, semantic migration maps and complete Spanish, German, French and Hungarian plugin strings.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
 - Disposable real-Moodle import, browser, adversarial and translation checks.
-- Inspect all four final candidate artifacts and record actual versions, timings, tested commit and report hashes in EVIDENCE.json.
+- All four candidate artifacts inspected; actual versions, timings, tested commit and report hashes recorded in EVIDENCE.json.
 - Earlier reviewer findings assessed in REVIEW-0.1.7.md; the implemented robustness fixes and retained staging limits are described there.
-- Listing screenshots explicitly retained as earlier 0.1.5 UI illustrations.
+- Fresh 0.1.7 English and four-language screenshots with CI provenance.
 - Listing copy in LISTING.md; source and issue links supplied.
 - Git archive rules exclude development dependencies, CI fixtures and submission materials.
 
