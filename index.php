@@ -69,14 +69,12 @@ $config = [
     'contextparams' => $contextparams, 'token' => $token, 'sesskey' => sesskey(),
     'maxxmlbytes' => \qbank_uniquiz\local\xml_validator::MAX_BYTES,
     'maxquestions' => \qbank_uniquiz\local\xml_validator::MAX_QUESTIONS,
-    'strings' => array_combine(
-        ['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult', 'categoryresults', 'categoryempty'],
-        array_map(
-            static fn($key) => get_string($key, 'qbank_uniquiz'),
-            ['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult']
-        )
-    ),
+    'strings' => [],
 ];
+foreach (['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult',
+        'categoryresults', 'categoryempty'] as $key) {
+    $config['strings'][$key] = get_string($key, 'qbank_uniquiz');
+}
 echo $OUTPUT->header();
 echo $OUTPUT->render(new \core_question\output\qbank_action_menu($url));
 echo $OUTPUT->tabtree([
