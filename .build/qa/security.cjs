@@ -89,9 +89,13 @@ async function run(browser, branch) {
         const categoryResponse = await context.request.post(config.categoryurl, {form: categoryRequest});
         const categoryResult = await categoryResponse.json();
         check(categoryResult.categories.length === 10 && !categoryResult.more, 'Authorized category endpoint returns only the requested page');
-        check(!(await stranger.context.request.post(config.categoryurl, {form: {...categoryRequest, sesskey: 'bad'}})).ok(),
+        const badCategories = await (await stranger.context.request.post(config.categoryurl,
+            {form: {...categoryRequest, sesskey: 'bad'}})).json();
+        check(!Array.isArray(badCategories.categories) && Boolean(badCategories.error),
             'Category search rejects an invalid sesskey');
-        check(!(await student.context.request.post(config.categoryurl, {form: {...categoryRequest, sesskey: studentKey}})).ok(),
+        const studentCategories = await (await student.context.request.post(config.categoryurl,
+            {form: {...categoryRequest, sesskey: studentKey}})).json();
+        check(!Array.isArray(studentCategories.categories) && Boolean(studentCategories.error),
             'Category search denies a student');
         const record = {passed: checks.length, checks, raceQuestionName: name};
         await fs.writeFile(path.join(dir, `${branch}-security.json`), JSON.stringify(record, null, 2));

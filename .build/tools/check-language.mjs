@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import * as original from '../source/js/core.js';
 import * as aiken from '../source/js/aiken-core.js';
 import * as preview from '../source/js/preview.js';
+import {languagePacks, entries} from './translations.mjs';
 const root = new URL('../source/', import.meta.url);
 const catalogue = JSON.parse(await fs.readFile(new URL('./language-catalogue.json', import.meta.url), 'utf8'));
 const registry = JSON.parse(await fs.readFile(new URL('./language-registry.json', import.meta.url), 'utf8'));
@@ -69,5 +70,22 @@ const english = await fs.readFile(new URL('../../lang/en/qbank_uniquiz.php', imp
 const englishKeys = [...english.matchAll(/^\$string\['([^']+)'\]/gm)].map(match => match[1]);
 assert.equal(new Set(englishKeys).size, englishKeys.length, 'Duplicate English language key');
 assert.deepEqual(englishKeys, [...englishKeys].sort(), 'English language keys must be alphabetically sorted');
+const packs = await languagePacks(english);
+for (const [language, source] of Object.entries(packs)) {
+    assert.equal(await fs.readFile(new URL(`../../lang/${language}/qbank_uniquiz.php`, import.meta.url), 'utf8'), source,
+        `${language}: generated translation file matches its source`);
+    const strings = entries(source);
+    i18n.configure(keys, keys.map(key => strings[key]), language);
+    for (const name of ['examples/uniquiz-question-types.csv', 'examples/uniquiz-advanced-template.csv',
+        'examples/uniquiz-template.csv']) {
+        const csv = await fs.readFile(new URL(name, root), 'utf8');
+        assert.equal(engine.generateMoodleXml(engine.applySettings(engine.parseCsv(csv).questions, settings), settings),
+            original.generateMoodleXml(original.applySettings(original.parseCsv(csv).questions, settings), settings),
+            `${language}: translated UI preserves question data`);
+    }
+    assert.equal(translatedAiken.applySafeAikenFixes('Question?\na) Yes\nb) No\nanswer: a'),
+        aiken.applySafeAikenFixes('Question?\na) Yes\nb) No\nanswer: a'), `${language}: AIKEN wire syntax`);
+}
+console.log(`Four complete translations: ${englishKeys.length} keys each; placeholders, generated files, XML and AIKEN invariance passed.`);
 console.log(`${checks + 4} language invariance/interpolation checks passed; ${keys.length} JS and ${Object.keys(catalogue).length - keys.length} template strings extracted.`);
 console.log(`${englishKeys.length} English language keys are unique and alphabetically sorted.`);

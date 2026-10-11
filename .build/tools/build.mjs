@@ -7,6 +7,7 @@ import postcss from 'postcss';
 import {localizeJavaScript, localizeTemplate, languagePhp, catalogue} from './localize.mjs';
 import {formatJavaScript} from './format.mjs';
 import stylelint from 'stylelint';
+import {languagePacks} from './translations.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../source');
@@ -113,7 +114,11 @@ let aikenMarkup = aiken.match(/<main[\s\S]*?<\/main>/)[0]
 await write('templates/aiken.mustache', localizeTemplate('aiken', '<div id="qbank-uniquiz" data-config="{{config}}">' + aikenMarkup +
     aiken.match(/  <div id="aiken-processing"[\s\S]*?(?=\s*<\/body>)/)[0] + '</div>\n'));
 await write('templates/help.mustache', localizeTemplate('help', await fs.readFile(path.join(here, 'help.mustache'), 'utf8')));
-await write('lang/en/qbank_uniquiz.php', languagePhp(await fs.readFile(path.join(here, 'lang-en.php'), 'utf8')));
+const englishLanguage = languagePhp(await fs.readFile(path.join(here, 'lang-en.php'), 'utf8'));
+await write('lang/en/qbank_uniquiz.php', englishLanguage);
+for (const [language, source] of Object.entries(await languagePacks(englishLanguage))) {
+    await write(`lang/${language}/qbank_uniquiz.php`, source);
+}
 await fs.writeFile(path.join(here, 'language-catalogue.json'), JSON.stringify(Object.fromEntries(catalogue), null, 2) + '\n');
 
 // Every CSS selector is scoped. Moodle concatenates plugin styles across the site.

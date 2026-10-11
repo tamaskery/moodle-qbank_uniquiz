@@ -125,6 +125,8 @@ jobs:
           node plugin/.build/qa/browser.cjs ci
           node plugin/.build/qa/security.cjs ci
           php plugin/.build/qa/verify-race.php
+          php plugin/.build/qa/languages.php
+          node plugin/.build/qa/languages.cjs
           php plugin/.build/qa/pseudolang.php install
           trap 'php plugin/.build/qa/pseudolang.php restore' EXIT
           node plugin/.build/qa/pseudolang.cjs ci

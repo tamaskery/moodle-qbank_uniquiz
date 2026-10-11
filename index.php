@@ -71,8 +71,9 @@ $config = [
     'maxquestions' => \qbank_uniquiz\local\xml_validator::MAX_QUESTIONS,
     'strings' => [],
 ];
-foreach (['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult',
-        'categoryresults', 'categoryempty'] as $key) {
+$nativekeys = ['importcount', 'importcountsingle', 'batchlimit', 'xmltoolarge', 'importing', 'noresult',
+    'categoryresults', 'categoryempty'];
+foreach ($nativekeys as $key) {
     $config['strings'][$key] = get_string($key, 'qbank_uniquiz');
 }
 echo $OUTPUT->header();
