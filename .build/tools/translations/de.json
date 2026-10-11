@@ -489,7 +489,7 @@
   "ui_the_interface_and_diagnostics_follow_moodle_s_la": "Oberfläche und Diagnosen folgen den Spracheinstellungen von Moodle. Unicode-Frageinhalte werden unterstützt; CSV-Feldnamen und AIKEN-Syntax bleiben unverändert.",
   "ui_the_two_column_question_answer_shorthand_accepts": "Das zweispaltige Kurzformat question,answer akzeptiert true oder false und behält die UniQuiz-Ausgabe als Multiple Choice mit zwei Optionen bei. Verwenden Sie type=truefalse mit ausdrücklichen true/false-Antworten für natives Moodle Wahr/Falsch.",
   "ui_this_happens_privately_in_your_browser": "Dies geschieht privat in Ihrem Browser.",
-  "ui_to_mix": "zum Kombinieren",
+  "ui_to_mix": "zum Kombinieren von",
   "ui_uniquiz_v0_7_0_browser_only_utility": "UniQuiz v0.7.0 · Browser-Werkzeug",
   "ui_upload": "Hochladen",
   "ui_upload_aiken": "AIKEN hochladen",

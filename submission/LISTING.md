@@ -6,7 +6,7 @@
 - Component: `qbank_uniquiz`
 - Plugin type: Question bank plugin
 - Distribution: Free, GNU GPL v3 or later
-- Candidate release: 0.1.6 beta (`2026101100`)
+- Candidate release: 0.1.7 beta (`2026101101`)
 - Source: https://github.com/tamaskery/moodle-qbank_uniquiz
 - Issue tracker: https://github.com/tamaskery/moodle-qbank_uniquiz/issues
 - Candidate review: https://github.com/tamaskery/moodle-qbank_uniquiz/pull/1
@@ -26,9 +26,9 @@ File analysis runs in the browser. Questions are sent to the Moodle site only wh
 
 Direct import supports up to 500 questions and 8 MiB of XML, with additional structure and field limits. Source files are limited to 5 MB. Larger valid banks can be downloaded as XML. Source text is treated as plain text; this beta does not provide a raw-HTML authoring mode.
 
-English is included. The user interface and messages use Moodle language strings, with stable identifiers and a migration map for earlier beta customizations. Human translations are not bundled.
+English fallback plus complete Spanish, German, French and Hungarian plugin translations are included. The interface, guide and messages follow Moodle's language selection. Stable identifiers and semantic migration maps support site-local customizations. Source question content and technical input syntax remain unchanged.
 
-Candidate 0.1.6 preserves tiny numerical tolerances, requires a full-credit Short Answer/Numerical answer in both browser validation stages, and aligns Multiple Choice grading-total validation with the server. Its four-environment hosted verification passed; QA.md and EVIDENCE.json record the tested commit, actual versions and results. Listing screenshots are retained as earlier 0.1.5 UI illustrations.
+Candidate 0.1.7 preserves tiny numerical tolerances, requires a full-credit Short Answer/Numerical answer in both browser validation stages, and aligns Multiple Choice grading-total validation with the server. Its expanded four-environment hosted verification is pending; QA.md and EVIDENCE.json record the tested commit, actual versions and results. Listing screenshots are retained as earlier 0.1.5 UI illustrations.
 
 ## Installation and upgrade
 

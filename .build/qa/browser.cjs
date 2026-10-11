@@ -18,6 +18,7 @@ async function listingScreenshot(page, filename) {
 
 async function login(page, base, username = 'uniquizteacher') {
     await page.goto(base + '/login/index.php');
+    await page.waitForLoadState('networkidle');
     await page.locator('#username').fill(username);
     await page.locator('#password').fill(username === 'admin' ? 'UniQuizPluginTest!' : 'UniQuizTeacherTest!');
     await Promise.all([page.waitForURL(url => !url.pathname.endsWith('/login/index.php')), page.locator('#loginbtn').click()]);

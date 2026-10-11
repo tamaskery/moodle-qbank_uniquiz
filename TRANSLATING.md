@@ -1,12 +1,12 @@
 # Translating UniQuiz
 
-UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. The package includes English fallback strings, not a completed non-English translation.
+UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. Version 0.1.7 bundles complete Spanish, German, French and Hungarian plugin strings, with English fallback. Install the matching core Moodle language pack, then select the language in Moodle.
 
 ## Site administrators and translators
 
 Use **Site administration → Language → Language customisation**, select the target installed language, load its strings, and filter the component to `qbank_uniquiz.php`. Translate and save the local language pack using Moodle's normal workflow. Moodle selects the user's/course's effective language and falls back to English for missing entries. Purge Moodle caches when deploying language files manually; reopen the wizard after a language change. This follows [Moodle's language customisation workflow](https://docs.moodle.org/en/Language_customisation).
 
-For a distributable translation, provide `lang/<language>/qbank_uniquiz.php` using the keys from `lang/en/qbank_uniquiz.php`, with valid UTF-8 PHP syntax. Treat language-pack PHP files as trusted executable code; only an administrator should install them. The build retains additional language directories. No Moodle language-service/AMOS publication is claimed for this unpublished beta.
+For a distributable translation, provide `lang/<language>/qbank_uniquiz.php` using the keys from `lang/en/qbank_uniquiz.php`, with valid UTF-8 PHP syntax. Treat language-pack PHP files as trusted executable code; only an administrator should install them. Edit the corresponding complete JSON source in `.build/tools/translations/`, then rebuild; the build checks key and placeholder parity and generates the four language PHP files. Do not hand-edit these generated files. No Moodle language-service/AMOS publication is claimed for this unpublished beta.
 
 - `ui_…` strings are template labels/help. `js_…` strings are dynamic browser messages. Short keys such as `importsuccess` are native PHP/bridge messages.
 - Keep `{$a}`, `{$a->question}`, `{$a->field}`, `{$a->reason}` and numbered placeholders such as `{$a->p0}` exactly intact. Move them within the translated sentence as needed. Numbered placeholders are substituted once, as literal text; values containing `$&` or another placeholder are not reinterpreted.
@@ -22,6 +22,8 @@ Do not hand-edit generated English strings or AMD files. Edit `.build/tools/lang
 Version 0.1.5 uses explicitly registered, stable semantic identifiers. The English value can change while its registered key stays fixed. The build rejects unregistered prose, so wording changes cannot silently create replacement keys. Maintainers update the existing entry in `.build/tools/language-registry.json` and the source wording together. New messages need new descriptive keys; never reuse a key for a different meaning.
 
 The complete 0.1.4-to-0.1.5 key map is published in `.build/tools/language-key-migration-0.1.4.json` in the public source repository. Before upgrading a customized language pack, back it up and rename each generated key using this map, retaining the translated value. Native PHP keys are unchanged. Review placeholders, import the updated pack through Moodle's language customization, and purge caches. Never execute a language PHP file obtained from an untrusted source.
+
+In 0.1.7 the full-credit requirement has new semantic keys: `js_core_no_full_credit_short_answer`, `js_core_no_full_credit_numerical_answer`, `js_core_short_answer_requires_full_credit` and `js_core_numerical_requires_full_credit`. The bounded-mark message uses `js_core_default_mark_range`. The 0.1.6-to-0.1.7 map is in `.build/tools/language-key-migration-0.1.6.json`. Re-review existing local translations for these meanings; do not copy the old partial-credit wording unchanged. The older registry entries remain reserved for migration history.
 
 Source locations and placeholder descriptions are in the build catalogue. The English language file is kept sorted and unique. The registry and migration map are development resources in the public repository, excluded from installable archives.
 

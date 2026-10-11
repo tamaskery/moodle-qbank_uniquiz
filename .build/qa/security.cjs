@@ -15,6 +15,7 @@ async function run(browser, branch) {
         const context = await browser.newContext(); contexts.push(context);
         const page = await context.newPage();
         await page.goto(base + '/login/index.php');
+        await page.waitForLoadState('networkidle');
         await page.locator('#username').fill(username);
         await page.locator('#password').fill('UniQuizTeacherTest!');
         await Promise.all([page.waitForURL(url => !url.pathname.endsWith('/login/index.php')), page.locator('#loginbtn').click()]);
@@ -82,7 +83,7 @@ async function run(browser, branch) {
         const replay = await context.request.post(endpoint, {form});
         check((await replay.json()).success, 'Completed receipt survives more than fifty new tabs');
         for (let i = 0; i < 51; i++) await stranger.context.request.get(report.url);
-        const olderDraft = await stranger.context.request.post(endpoint, {form: {...form,
+        const olderDraft = await stranger.context.request.post(endpoint, {form: {...form, xml: xml.replace(name, name + '-older-draft'),
             token: await stranger.page.locator('#qbank-uniquiz').evaluate(el => JSON.parse(el.dataset.config).token), sesskey: ownKey}});
         check((await olderDraft.json()).success, 'Unattempted draft survives more than fifty new tabs');
         const categoryRequest = {...config.contextparams, sesskey: config.sesskey, search: 'Paged category', page: '2'};

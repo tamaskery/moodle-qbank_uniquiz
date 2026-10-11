@@ -77,6 +77,8 @@ $othercourse = newcourse('other');
 [$othercategory, $othercontext] = bank($othercourse);
 $teacher = testuser('uniquizteacher');
 $student = testuser('uniquizstudent');
+check(validate_internal_user_password($teacher, 'UniQuizTeacherTest!'), 'Disposable teacher login password verifies');
+check(validate_internal_user_password($student, 'UniQuizTeacherTest!'), 'Disposable student login password verifies');
 enrol($course, $teacher, 'editingteacher');
 enrol($course, $student, 'student');
 set_config('site_is_public', 0);

@@ -17,6 +17,7 @@ const root = path.resolve(__dirname, '../source');
     page.on('pageerror', error => errors.push(error.message));
     try {
         await page.goto(new URL('/login/index.php', report.url).href);
+        await page.waitForLoadState('networkidle');
         await page.locator('#username').fill('uniquizteacher');
         await page.locator('#password').fill('UniQuizTeacherTest!');
         await Promise.all([page.waitForURL(url => !url.pathname.endsWith('/login/index.php')), page.locator('#loginbtn').click()]);
@@ -68,7 +69,7 @@ const root = path.resolve(__dirname, '../source');
             await page.setViewportSize({width: 1280, height: 900});
         }
         check(errors.length === 0, 'No browser exceptions in the four native languages');
-        await fs.writeFile(path.join(dir, 'ci-languages.json'), JSON.stringify({passed: checks.length, checks}, null, 2));
+        await fs.writeFile(path.join(dir, 'ci-languages.json'), JSON.stringify({passed: checks.length, checks, browserVersion: browser.version()}, null, 2));
         console.log(checks.length + ' native four-language browser checks passed');
     } catch (error) {
         await page.screenshot({path: path.join(dir, 'ci-languages-failure.png'), fullPage: true});

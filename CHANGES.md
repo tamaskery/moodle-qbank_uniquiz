@@ -1,3 +1,16 @@
+# 0.1.7 — 11 October 2026
+
+- Bound default marks to 0.0000001–10000 in both browser stages and direct import; Description remains 0.
+- Sum positive grading percentages as seven-decimal integers with an inclusive 0.0001 percentage-point allowance. Browser and PHPUnit consume one shared vector fixture; real core imports exercise thirds and sixths.
+- Export numerical tolerances as plain decimals derived from the shortest round-trip representation.
+- Limit authorized import work to 20 attempts per token and 50 per session in ten minutes, with HTTP 429, Retry-After and recovery guidance. Successful receipt replay remains available.
+- Preserve all unexpired receipts, with expiry pruning and a clear capacity response at 200; opening tabs no longer silently invalidates older drafts or completed receipts.
+- Search and paginate permitted destination categories in pages of 50, preserving selection and renewing confirmation after destination changes.
+- Make XML diagnostics instance-local and report category-marker errors at document/category locations.
+- Ship shared grading and receipt policy PHPUnit tests. Replace overflow-based rollback fixtures with trusted formatter failure after native questions have been created.
+- Bundle complete Spanish, German, French and Hungarian translations of the wizard, AIKEN tool, guide, diagnostics and server messages.
+- Introduce full-credit semantic keys: js_core_no_full_credit_short_answer, js_core_no_full_credit_numerical_answer, js_core_short_answer_requires_full_credit and js_core_numerical_requires_full_credit. The mark-range key is js_core_default_mark_range. Site-local translators should re-review these entries using the 0.1.6 migration map; old registry keys stay reserved.
+
 # 0.1.6 — 11 October 2026
 
 - Preserve numerical tolerance precision, including values smaller than 0.0000001.

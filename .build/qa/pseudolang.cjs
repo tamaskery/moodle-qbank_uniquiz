@@ -24,6 +24,7 @@ async function run(browser, branch) {
     };
     try {
         await page.goto(base + '/login/index.php');
+        await page.waitForLoadState('networkidle');
         await page.locator('#username').fill('uniquizteacher');
         await page.locator('#password').fill('UniQuizTeacherTest!');
         await Promise.all([page.waitForURL(url => !url.pathname.endsWith('/login/index.php')), page.locator('#loginbtn').click()]);

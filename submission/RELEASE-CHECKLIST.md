@@ -4,13 +4,13 @@
 
 - Public Moodle-style repository: `tamaskery/moodle-qbank_uniquiz`; Issues enabled.
 - Unique component declared consistently as `qbank_uniquiz`.
-- Candidate 0.1.6 beta, upgrade version `2026101100`.
+- Candidate 0.1.7 beta, upgrade version `2026101101`.
 - GPL v3-or-later licence, installation and privacy documentation.
-- Stable language identifiers and a mapping for earlier beta customizations.
+- Stable language identifiers, semantic migration maps and complete Spanish, German, French and Hungarian plugin strings.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
 - Disposable real-Moodle import, browser, adversarial and translation checks.
-- All four 0.1.6 acceptance artifacts inspected; eight new grading checks passed per environment. Actual versions, timings, tested commit and report hashes are in EVIDENCE.json.
-- Earlier reviewer findings assessed in REVIEW-0.1.6.md; recommended robustness follow-ups remain documented rather than claimed fixed.
+- Inspect all four final candidate artifacts and record actual versions, timings, tested commit and report hashes in EVIDENCE.json.
+- Earlier reviewer findings assessed in REVIEW-0.1.7.md; the implemented robustness fixes and retained staging limits are described there.
 - Listing screenshots explicitly retained as earlier 0.1.5 UI illustrations.
 - Listing copy in LISTING.md; source and issue links supplied.
 - Git archive rules exclude development dependencies, CI fixtures and submission materials.
@@ -31,7 +31,7 @@ Do not submit development archives, synthetic credentials, CI server logs or a p
 From a clean, verified commit at the repository root:
 
 ```sh
-git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-0.1.6.zip HEAD
+git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-0.1.7.zip HEAD
 ```
 
 The ZIP must contain one `uniquiz` directory with `version.php`, matching source/build files and bundled user documentation. Inspect its entries and checksum before uploading. Development build instructions are in CONTRIBUTING.md.

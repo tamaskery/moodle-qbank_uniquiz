@@ -18,12 +18,14 @@ export async function languagePacks(english) {
             assert.equal(typeof value, 'string', `${language}/${key}`);
             assert.ok(value.trim(), `${language}/${key}: empty translation`);
             assert.deepEqual(placeholders(value), placeholders(source[key]), `${language}/${key}: placeholders`);
+            const tokens = source[key].match(/\b(?:question_text|question_name|general_feedback|default_mark|shuffle_answers|answer_numbering|answer_N_(?:fraction|feedback|tolerance)|case_sensitive)\b/g) ?? [];
+            for (const token of tokens) assert.ok(value.includes(token), `${language}/${key}: technical token ${token}`);
             assert.equal(value.includes('\u0000'), false, `${language}/${key}: NUL`);
         }
         const header = english.slice(0, english.indexOf('$string['))
             .replace('English plugin strings. Generated browser strings are appended during the build.',
                 `${language} plugin strings. Generated from the complete translation source.`);
-        result[language] = header + Object.entries(strings).sort(([a], [b]) => a.localeCompare(b, 'en'))
+        result[language] = header + Object.entries(strings).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)
             .map(([key, value]) => `$string[${quote(key)}] = ${quote(value)};\n`).join('');
     }
     return result;
