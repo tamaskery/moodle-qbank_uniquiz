@@ -102,7 +102,9 @@ jobs:
         run: |
           WEBROOT="$GITHUB_WORKSPACE/moodle"
           if [ -d "$WEBROOT/public" ]; then WEBROOT="$WEBROOT/public"; fi
-          diff -ru plugin/amd/build "$WEBROOT/question/bank/uniquiz/amd/build"
+          mkdir -p "$RUNNER_TEMP/uniquiz-committed"
+          git -C plugin archive --format=tar HEAD amd/build | tar -x -C "$RUNNER_TEMP/uniquiz-committed"
+          diff -ru "$RUNNER_TEMP/uniquiz-committed/amd/build" "$WEBROOT/question/bank/uniquiz/amd/build"
       - name: PHPUnit
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci phpunit --fail-on-warning
