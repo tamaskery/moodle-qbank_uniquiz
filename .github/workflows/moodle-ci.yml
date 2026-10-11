@@ -97,6 +97,12 @@ jobs:
         id: frontend
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci grunt --max-lint-warnings 0
+      - name: Verify native Grunt AMD consistency
+        if: ${{ !cancelled() && steps.frontend.outcome == 'success' }}
+        run: |
+          WEBROOT="$GITHUB_WORKSPACE/moodle"
+          if [ -d "$WEBROOT/public" ]; then WEBROOT="$WEBROOT/public"; fi
+          diff -ru plugin/amd/build "$WEBROOT/question/bank/uniquiz/amd/build"
       - name: PHPUnit
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: moodle-plugin-ci phpunit --fail-on-warning

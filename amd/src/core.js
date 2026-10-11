@@ -3,7 +3,7 @@ import {string as uiString, locale as uiLocale} from "qbank_uniquiz/i18n";
 // Product mark limits and integer XML-percentage policy; see tests/fixtures/grading-vectors.json.
 const MIN_DEFAULT_MARK = 0.0000001;
 const MAX_DEFAULT_MARK = 10000;
-const FRACTION_SCALE = 10000000;
+const XML_PERCENTAGE_SCALE = 10000000;
 /**
  *
  * @param {*} value
@@ -19,15 +19,15 @@ function positiveTotalValid(fractions) {
     // Only positive contributions are rounded. PHP uses half-up; sums stay within exact integer range.
     const units = fractions
         .filter((value) => value > 0)
-        .reduce((sum, value) => sum + Math.round(value * FRACTION_SCALE), 0);
-    return Math.abs(units - 100 * FRACTION_SCALE) <= 1000;
+        .reduce((sum, value) => sum + Math.round(value * XML_PERCENTAGE_SCALE), 0);
+    return Math.abs(units - 100 * XML_PERCENTAGE_SCALE) <= 1000;
 }
 /**
  *
  * @param {*} value
  */
 function formatFractionPercentage(value) {
-    const units = Math.round(Math.abs(value) * FRACTION_SCALE);
+    const units = Math.round(Math.abs(value) * XML_PERCENTAGE_SCALE);
     const digits = String(units).padStart(8, "0");
     return (
         (value < 0 && units ? "-" : "") +

@@ -1,6 +1,10 @@
 # UniQuiz 0.1.7 beta — QA summary
 
-Verified 11 October 2026 (UTC). Plugin version `2026101101`, release `0.1.7`, maturity beta.
+Verified 11 October 2026 (UTC). Plugin version `2026101102`, release `0.1.7`, maturity beta.
+
+## Review polish verification
+
+Build `2026101102` clarifies XML percentage units, adds database assertions for canonical stored fractions and an explicit post-native-Grunt AMD comparison. Hosted verification of these additions is pending; the results below are earlier 0.1.7 evidence, not verification of this build.
 
 ## Hosted candidate verification
 

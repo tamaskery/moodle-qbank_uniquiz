@@ -14,6 +14,8 @@ node .build/tools/build.mjs
 
 Edit `.build/source` and `.build/tools`, then rebuild. Do not edit generated AMD files directly. `ENGINE-SOURCES.json` paths are relative to `.build/source`.
 
+The [disposable acceptance harness](.build/qa/README.md) explains how CI runs real core imports and verifies stored fractions, plus where to retrieve its reports. It is available in this repository and deliberately excluded from installation archives.
+
 The CI workflow runs Moodle Plugin CI against PostgreSQL and MariaDB. All checks are required for submission readiness; a failing job must not be represented as a pass. See QA.md for candidate results and remaining deployment gates. Stable translation keys are held in the explicit registry; preserve keys when editing English copy, as described in TRANSLATING.md.
 
 Use an explicit release version increase for distributable changes. Build tooling and CI files are excluded by `git archive` export rules; development dependencies and private site configuration must never enter release packages.

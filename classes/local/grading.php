@@ -28,7 +28,7 @@ final class grading {
     /** Product limit comfortably below Moodle's database ceiling. */
     public const MAX_MARK = 10000;
     /** Units per XML percentage point, not units per stored proportion. */
-    public const FRACTION_SCALE = 10000000;
+    public const XML_PERCENTAGE_SCALE = 10000000;
     /** Inclusive 0.0001 percentage-point allowance. */
     public const TOTAL_ALLOWANCE = 1000;
 
@@ -43,9 +43,9 @@ final class grading {
         $units = 0;
         foreach ($fractions as $fraction) {
             if ($fraction > 0) {
-                $units += (int)round($fraction * self::FRACTION_SCALE, 0, PHP_ROUND_HALF_UP);
+                $units += (int)round($fraction * self::XML_PERCENTAGE_SCALE, 0, PHP_ROUND_HALF_UP);
             }
         }
-        return abs($units - 100 * self::FRACTION_SCALE) <= self::TOTAL_ALLOWANCE;
+        return abs($units - 100 * self::XML_PERCENTAGE_SCALE) <= self::TOTAL_ALLOWANCE;
     }
 }

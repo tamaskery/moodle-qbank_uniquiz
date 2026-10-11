@@ -165,6 +165,7 @@ rejects(static fn() => xml_validator::prepare($roundedthirds, 1), 'Total 99.999 
 
 // Native core grade matching proves the deliberate inclusive percentage boundary.
 $vectors = json_decode(file_get_contents(__DIR__ . '/tests/fixtures/grading-vectors.json'), true);
+$storedgrading = [];
 foreach ($vectors['totals'] as $vector) {
     $answers = '';
     foreach ($vector['fractions'] as $i => $fraction) {
@@ -175,7 +176,20 @@ foreach ($vectors['totals'] as $vector) {
         '<single>false</single><shuffleanswers>1</shuffleanswers><answernumbering>abc</answernumbering>' .
         $answers . '</question></quiz>';
     if (!empty($vector['coreImport'])) {
-        check(count(importer::run($vectorxml, 1, $checked, $course)) === 1, 'Native core accepts ' . $vector['name']);
+        $vectorids = importer::run($vectorxml, 1, $checked, $course);
+        check(count($vectorids) === 1, 'Native core accepts ' . $vector['name']);
+        $storedanswers = array_values($DB->get_records('question_answers', ['question' => $vectorids[0]], 'id'));
+        check(count($storedanswers) === count($vector['storedFractions']), 'Stored answer count: ' . $vector['name']);
+        $storedtexts = [];
+        foreach ($storedanswers as $i => $answer) {
+            check($answer->answer === 'Option ' . $i, 'Stored answer order: ' . $vector['name'] . ' / ' . $i);
+            // Compare canonical proportions at DB precision, not the input XML percentages or a fuzzy tolerance.
+            check(number_format((float)$answer->fraction, 7, '.', '') === $vector['storedFractions'][$i],
+                'Stored canonical fraction: ' . $vector['name'] . ' / ' . $i);
+            $storedtexts[] = (string)$answer->fraction;
+        }
+        $storedgrading[] = ['name' => $vector['name'], 'xmlPercentages' => $vector['fractions'],
+            'expectedProportions' => $vector['storedFractions'], 'storedText' => $storedtexts];
     } else if (!$vector['valid']) {
         rejects(static fn() => importer::run($vectorxml, 1, $checked, $course), 'Native path rejects ' . $vector['name']);
     }
@@ -248,7 +262,7 @@ rejects(static fn() => xml_validator::prepare('<quiz>' . str_repeat($questionxml
 
 $navigation = (new \qbank_uniquiz\plugin_feature())->get_navigation_node();
 check($navigation->get_navigation_key() === 'uniquiz', 'Native question-bank navigation registered');
-$report = ['release' => $CFG->release, 'tolerance' => ['exported' => (new SimpleXMLElement($tinyxml))->question->answer->tolerance->__toString(),
+$report = ['release' => $CFG->release, 'storedGrading' => $storedgrading, 'tolerance' => ['exported' => (new SimpleXMLElement($tinyxml))->question->answer->tolerance->__toString(),
         'stored_text' => (string)$storedtolerance], 'checks' => $checks, 'passed' => count($checks), 'benchmark' => $benchmark,
     'courseid' => $course->id, 'categoryid' => $category->id, 'contextid' => $context->id,
     'othercategoryid' => $othercategory->id, 'params' => $params,

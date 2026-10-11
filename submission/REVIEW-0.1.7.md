@@ -5,7 +5,7 @@ This is an implementation response, not an independent audit. QA.md identifies t
 | Finding | Candidate behavior |
 | --- | --- |
 | Unbounded defaultgrade | Browser analysis, generated-XML validation and server validation enforce 0.0000001–10000; Description requires 0. Rejected before core import with 422. |
-| Float boundary | Seven-decimal percentage units are rounded half-up and summed as integers. The 0.0001 allowance is inclusive. Four-decimal thirds are accepted deliberately and checked against native core grade matching. This scale is an XML percentage policy, not Moodle's stored proportional-fraction scale. |
+| Float boundary | Each positive XML percentage is rounded half-up to seven decimal places, then scaled and summed as an integer. The 0.0001 allowance is inclusive. Four-decimal thirds are accepted deliberately and checked against native core grade matching and explicit canonical stored proportions by `.build/qa/integration.php`. This scale is an XML percentage policy, not Moodle's stored proportional-fraction scale. |
 | Tolerance exponent output | Shortest round-trip decimal expansion preserves numeric precision and emits plain decimals. Integration records exported text and raw DB-returned text separately. |
 | Translation semantics | Full-credit and bounded-mark messages have new semantic keys and a migration map. Four complete native translation sources are bundled and checked for placeholder/key parity. |
 | Failed-token retries | Twenty authorized attempts per token and fifty per session in ten minutes. Failed attempts count; successful identical replay bypasses work counters. Temporary 429 response retains prepared questions and includes Retry-After. Separate sessions remain outside this budget. |

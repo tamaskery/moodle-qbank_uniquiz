@@ -1,7 +1,7 @@
 # 0.1.7 — 11 October 2026
 
 - Bound default marks to 0.0000001–10000 in both browser stages and direct import; Description remains 0.
-- Sum positive grading percentages as seven-decimal integers with an inclusive 0.0001 percentage-point allowance. Browser and PHPUnit consume one shared vector fixture; real core imports exercise thirds and sixths.
+- Round each positive XML grading percentage half-up to seven decimal places, then sum the scaled integers with an inclusive 0.0001 percentage-point allowance. This is a percentage policy, distinct from Moodle's stored seven-decimal proportions. Browser and PHPUnit consume one shared vector fixture; the repository's real-import harness checks thirds and sixths against explicit canonical stored fractions.
 - Export numerical tolerances as plain decimals derived from the shortest round-trip representation.
 - Limit authorized import work to 20 attempts per token and 50 per session in ten minutes, with HTTP 429, Retry-After and recovery guidance. Successful receipt replay remains available.
 - Preserve all unexpired receipts, with expiry pruning and a clear capacity response at 200; opening tabs no longer silently invalidates older drafts or completed receipts.

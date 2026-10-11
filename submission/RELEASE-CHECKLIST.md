@@ -4,7 +4,7 @@
 
 - Public Moodle-style repository: `tamaskery/moodle-qbank_uniquiz`; Issues enabled.
 - Unique component declared consistently as `qbank_uniquiz`.
-- Candidate 0.1.7 beta, upgrade version `2026101101`.
+- Candidate 0.1.7 beta, upgrade version `2026101102`.
 - GPL v3-or-later licence, installation and privacy documentation.
 - Stable language identifiers, semantic migration maps and complete Spanish, German, French and Hungarian plugin strings.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
