@@ -368,6 +368,8 @@
   "noresult": "Moodle no ha devuelto un resultado de importación confirmado. La sesión o conexión puede haber caducado. Revisa el banco de preguntas antes de iniciar otra importación.",
   "pluginname": "UniQuiz",
   "privacy:metadata": "UniQuiz analiza los archivos en la memoria del navegador. Tras la confirmación crea preguntas mediante las API de Moodle. Moodle gestiona estas preguntas y los eventos de importación habituales. Los registros temporales de sesión contienen hashes y cantidades, no el contenido de las preguntas; UniQuiz no crea un almacén persistente de datos personales separado.",
+  "privacy:metadata:core_log": "Las importaciones confirmadas generan eventos estándar de Moodle asociados al usuario que importa y al contexto de destino. Moodle gestiona la retención, exportación y eliminación de registros.",
+  "privacy:metadata:core_question": "Las importaciones confirmadas crean preguntas y autoría en el subsistema de preguntas de Moodle. Moodle gestiona el acceso, la exportación y la eliminación de estos datos.",
   "receiptcapacity": "Esta sesión tiene demasiados registros de importación abiertos o completados. Usa una pestaña UniQuiz existente o espera a que los registros antiguos caduquen a las 24 horas. No se ha eliminado ninguno.",
   "returnbank": "Volver al banco de preguntas",
   "ui_a_b_c": "a, b, c…",

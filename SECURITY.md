@@ -1,6 +1,6 @@
 # Security notes — UniQuiz 1.0 beta
 
-Release 1.0 (`2026101200`) carries forward the 0.1.7 runtime and safeguards unchanged. Its version and documentation update does not constitute a new security audit; the dated review and test scope below remain historical evidence.
+Release 1.0 build `2026101201` carries forward the 0.1.7 conversion/import safeguards. Marketplace corrections add explicit Privacy API metadata links for core_question and core_log, source headers, English-only installation packaging and developer-debugging acceptance checks. This is not a new independent security audit; the dated review scope below remains historical evidence.
 
 The original implementation review covered 0.1.2 on 6 October 2026. Subsequent functional and security regression results are recorded in QA.md; those do not turn the original review into an independent audit of each later release.
 

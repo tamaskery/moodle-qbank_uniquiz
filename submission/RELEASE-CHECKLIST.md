@@ -4,9 +4,9 @@
 
 - Public Moodle-style repository: `tamaskery/moodle-qbank_uniquiz`; Issues enabled.
 - Unique component declared consistently as `qbank_uniquiz`.
-- Candidate 1.0 beta, upgrade version `2026101200`; runtime unchanged from 0.1.7.
+- Candidate 1.0 beta, upgrade version `2026101201`; conversion/import behavior retained; Marketplace/privacy corrections applied.
 - GPL v3-or-later licence, installation and privacy documentation.
-- Stable language identifiers, semantic migration maps and complete Spanish, German, French and Hungarian plugin strings.
+- English-only installable language files, stable identifiers and semantic migration maps; four non-English development sources retained for AMOS after approval.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
 - Disposable real-Moodle import, browser, adversarial and translation checks.
 - Historical 0.1.7 build 2026101102 artifacts inspected in all four environments, including stored canonical fractions and immutable post-Grunt AMD comparison; actual versions, timings, tested commit and report hashes recorded in EVIDENCE.json. Exact 1.0 package CI must be checked separately.
@@ -35,3 +35,12 @@ git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-1.0.zip HEAD
 ```
 
 The ZIP must contain one `uniquiz` directory with `version.php`, matching source/build files and bundled user documentation. Inspect its entries and checksum before uploading. Development build instructions are in CONTRIBUTING.md.
+
+## Guidelines correction gates
+
+- Verify actual ZIP excludes lang/de, lang/es, lang/fr and lang/hu.
+- Verify generated source copyright/licence/GPL headers and native AMD compiler consistency.
+- Verify Privacy API declares core_question and core_log and passes the privacy regression test.
+- Acceptance runs with developer debugging and visible diagnostics.
+- Maintainer reported the earlier 1.0 upgrade worked; that report does not verify this new build.
+- Account ownership/licence declarations, Marketplace name availability and upload validation still require maintainer completion.

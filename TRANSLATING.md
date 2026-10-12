@@ -1,6 +1,6 @@
 # Translating UniQuiz
 
-UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. Version 1.0 bundles complete Spanish, German, French and Hungarian plugin strings, with English fallback. Install the matching core Moodle language pack, then select the language in Moodle. The 1.0 release preserves all 0.1.7 strings and identifiers; upgrading from 0.1.7 needs no translation-key migration.
+UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. The Marketplace installation ZIP contains English only. Complete Spanish, German, French and Hungarian sources remain in `.build/tools/translations/` and the generated repository `lang/` directories for AMOS contribution after approval. They are excluded from `git archive` release packages and are not yet available through AMOS. The translation interface remains compatible with Moodle language packs. Build 2026101201 adds two Privacy API descriptions, bringing the current source catalogue to 518 keys.
 
 ## Site administrators and translators
 
@@ -27,4 +27,4 @@ In 0.1.7 the full-credit requirement has new semantic keys: `js_core_no_full_cre
 
 Source locations and placeholder descriptions are in the build catalogue. The English language file is kept sorted and unique. The registry and migration map are development resources in the public repository, excluded from installable archives.
 
-Before release, run `node .build/tools/check-language.mjs`, `node .build/tools/check-assets.mjs`, and the real Moodle browser suites. See QA.md for candidate pseudolanguage and hostile-translation checks. These test wiring, escaping and export invariance; they do not establish linguistic quality, complete RTL layout or every locale's grammar.
+Before release, run `node .build/tools/check-language.mjs`, `node .build/tools/check-assets.mjs`, and the real Moodle browser suites. Non-English browser checks use development-only translation files, not the English-only submission ZIP. See QA.md for candidate pseudolanguage and hostile-translation checks. These test wiring, escaping and export invariance; they do not establish linguistic quality, complete RTL layout or every locale's grammar.

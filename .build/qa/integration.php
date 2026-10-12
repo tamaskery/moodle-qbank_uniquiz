@@ -27,6 +27,8 @@ function rejects(callable $call, string $name): void {
     try { $call(); } catch (Throwable $error) { check(true, $name); return; }
     check(false, $name);
 }
+check($CFG->debug === DEBUG_DEVELOPER && $CFG->debugdisplay,
+    'Acceptance runs with developer debugging and visible diagnostics');
 function newcourse(string $label): stdClass {
     global $DB;
     return create_course((object)[

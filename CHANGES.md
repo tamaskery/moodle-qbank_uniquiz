@@ -1,5 +1,13 @@
 # 1.0 — 12 October 2026
 
+Marketplace correction, build `2026101201`:
+
+- Ship English only in the installation ZIP; retain four development translation sources for AMOS contribution after approval.
+- Generate Moodle GPL boilerplate and explicit copyright/licence tags for JavaScript source, CSS and templates.
+- Declare core question and logging subsystems in the Privacy API metadata provider, with a PHPUnit regression check.
+- Run acceptance under explicit developer debugging and validate the actual release ZIP in CI.
+- Keep release label 1.0 beta with a distinct upgrade number; no plugin database migration.
+
 - Set the public plugin release to 1.0 and increase Moodle's upgrade version to `2026101200`; beta maturity is retained.
 - Update installation, upgrade, translation, security, QA and Marketplace preparation documentation for 1.0.
 - Carry forward the 0.1.7 conversion engine, import safeguards and four bundled translations without runtime changes or plugin database migrations.

@@ -12,6 +12,9 @@ try {
             throw "Development-only content: $($entry.FullName)"
         }
         $relative = $entry.FullName.Substring(8)
+        if ($relative.StartsWith('lang/') -and $relative -ne 'lang/en/qbank_uniquiz.php') {
+            throw "Non-English language file in Marketplace archive: $relative"
+        }
         $source = Join-Path (Resolve-Path "$PSScriptRoot/../..") $relative
         $stream = $entry.Open()
         try {

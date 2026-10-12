@@ -368,6 +368,8 @@
   "noresult": "A Moodle nem adott megerősített importálási eredményt. Lehet, hogy a munkamenet vagy a kapcsolat lejárt. Új importálás előtt ellenőrizd a kérdésbankot.",
   "pluginname": "UniQuiz",
   "privacy:metadata": "A UniQuiz a böngésző memóriájában dolgozza fel a forrásfájlokat. Megerősítés után a Moodle kérdés-API-jával hoz létre kérdéseket. A kérdéseket és a szokásos importálási eseményeket a Moodle kezeli. Az ideiglenes munkamenet-nyugták kéréslenyomatokat és darabszámokat tartalmaznak, kérdéstartalmat nem; a UniQuiz nem hoz létre külön tartós személyesadat-tárolót.",
+  "privacy:metadata:core_log": "A megerősített importálások szabványos Moodle-eseményeket hoznak létre az importáló felhasználóhoz és a célkörnyezethez kapcsolva. A naplók megőrzését, exportálását és törlését a Moodle kezeli.",
+  "privacy:metadata:core_question": "A megerősített importálások kérdéseket és szerzői hozzárendelést hoznak létre a Moodle kérdésalrendszerében. Az adatok hozzáférését, exportálását és törlését a Moodle kezeli.",
   "receiptcapacity": "A munkamenetben túl sok nyitott vagy befejezett importálási nyugta van. Használj egy meglévő UniQuiz-lapot, vagy várj, amíg a régebbi nyugták 24 óra után lejárnak. Meglévő nyugta nem lett eltávolítva.",
   "returnbank": "Vissza a kérdésbankhoz",
   "ui_a_b_c": "a, b, c…",

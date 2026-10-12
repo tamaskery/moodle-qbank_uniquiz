@@ -18,5 +18,7 @@ if (!is_dir($CFG->dataroot)) {
 }
 $CFG->noemailever = true;
 $CFG->passwordpolicy = 0;
+$CFG->debug = 32767;
+$CFG->debugdisplay = true;
 PHP;
 file_put_contents($file, str_replace($marker, $extra . "\n" . $marker, $contents));
