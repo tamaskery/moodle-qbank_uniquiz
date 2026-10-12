@@ -1,0 +1,24 @@
+{
+  "fixtureVersion": 1,
+  "description": "Independent expectations for exact browser XML generated from numbering-dot-mcq.csv.",
+  "questionCount": 10,
+  "scenarios": {
+    "numbering-dot": {
+      "shuffleAnswers": true,
+      "capitalizeAnswers": false,
+      "answerNumbering": "abc"
+    }
+  },
+  "questions": [
+    { "text": "What is the capital of Hungary?", "answers": ["Vienna", "Budapest", "Prague", "Warsaw"], "correct": [1] },
+    { "text": "Which planet is known as the Red Planet?", "answers": ["Venus", "Mars", "Earth", "Jupiter"], "correct": [1] },
+    { "text": "Which value is greater than 10?", "answers": ["8", "9", "11", "7"], "correct": [2] },
+    { "text": "Melyik Magyarország fővárosa?", "answers": ["Bécs", "Budapest", "Prága", "Varsó"], "correct": [1] },
+    { "text": "Какая столица Венгрии?", "answers": ["Вена", "Будапешт", "Прага", "Варшава"], "correct": [1] },
+    { "text": "Which symbol means less than?", "answers": [">", "<", "=", "≥"], "correct": [1] },
+    { "text": "Which option contains an ampersand?", "answers": ["R&D", "Research", "Development", "None"], "correct": [0] },
+    { "text": "Which answer is a Unicode word?", "answers": ["café", "plain", "basic", "simple"], "correct": [0] },
+    { "text": "Which statement is correct?", "answers": ["2 + 2 = 5", "2 + 2 = 4", "2 + 2 = 3", "2 + 2 = 6"], "correct": [1] },
+    { "text": "Which emoji is a unicorn?", "answers": ["🐴", "🦄", "🐐", "🦓"], "correct": [1] }
+  ]
+}

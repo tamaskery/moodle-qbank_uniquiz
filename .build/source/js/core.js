@@ -1,3 +1,201 @@
+// Product mark limits and integer XML-percentage policy; see tests/fixtures/grading-vectors.json.
+const MIN_DEFAULT_MARK = 0.0000001;
+const MAX_DEFAULT_MARK = 10000;
+const XML_PERCENTAGE_SCALE = 10000000;
+function validDefaultMark(value) { return Number.isFinite(value) && value >= MIN_DEFAULT_MARK && value <= MAX_DEFAULT_MARK; }
+function positiveTotalValid(fractions) {
+  // Only positive contributions are rounded. PHP uses half-up; sums stay within exact integer range.
+  const units = fractions.filter(value => value > 0).reduce((sum, value) => sum + Math.round(value * XML_PERCENTAGE_SCALE), 0);
+  return Math.abs(units - 100 * XML_PERCENTAGE_SCALE) <= 1000;
+}
+function formatFractionPercentage(value) {
+  const units = Math.round(Math.abs(value) * XML_PERCENTAGE_SCALE);
+  const digits = String(units).padStart(8, "0");
+  return (value < 0 && units ? "-" : "") + (digits.slice(0, -7) + "." + digits.slice(-7)).replace(/\.?0+$/u, "");
+}
+function plainMoodleNumber(number) {
+  const shortest = String(number);
+  if (!/[eE]/u.test(shortest)) return shortest;
+  const [mantissa, exponent] = shortest.toLowerCase().split("e");
+  const sign = mantissa.startsWith("-") ? "-" : "";
+  const unsigned = mantissa.replace(/^-/, "");
+  const [whole, fraction = ""] = unsigned.split(".");
+  const digits = whole + fraction;
+  const point = whole.length + Number(exponent);
+  if (point <= 0) return sign + "0." + "0".repeat(-point) + digits;
+  if (point >= digits.length) return sign + digits + "0".repeat(point - digits.length);
+  return sign + digits.slice(0, point) + "." + digits.slice(point);
+}
+function isCsvLineEnding(char) { return char === "\n" || char === "\r"; }
+function appendCategory(lines, question, settings, activeCategory) {
+    const questionCategory = String(question.category || settings.category || "").trim();
+    if (questionCategory !== activeCategory) {
+      if (questionCategory || activeCategory !== null) {
+        lines.push(
+          '  <question type="category">',
+          `    <category><text>${escapeXml(categoryPath(questionCategory))}</text></category>`,
+          "  </question>",
+        );
+      }
+      activeCategory = questionCategory;
+    }
+ return activeCategory;
+}
+
+function hasXmlText(question, selector) { return Boolean(question.querySelector(selector)?.textContent?.trim()); }
+
+function mappingRequirements(questionFound, booleanSchema, typedAdvancedSchema, answerLabels, correctFound, fractionLabels) {
+  const missingRequirements = [];
+  if (!questionFound) missingRequirements.push("Question text column not identified");
+  if (!booleanSchema && !typedAdvancedSchema && answerLabels.size < 2) {
+    missingRequirements.push(answerLabels.size === 0
+      ? "Answer columns not identified; add at least two answer columns or one True/False answer column"
+      : "At least two answer columns are required");
+  }
+  if (!booleanSchema && !typedAdvancedSchema && answerLabels.size >= 2 && !correctFound && fractionLabels.size === 0) {
+    missingRequirements.push("Correct-answer column not identified; add a correct column or explicit answer fractions");
+  }
+  return missingRequirements;
+}
+
+function isCsvRecordBreak(char, next) { return char === "\n" || (char === "\r" && next !== "\n"); }
+
+function validateChoiceQuestion(question, number, own, usable, labels) {
+    if (question.type === "truefalse") {
+      const normalized = usable.map(({ originalText }) => originalText.trim().toLocaleLowerCase()).sort();
+      if (usable.length !== 2 || normalized[0] !== "false" || normalized[1] !== "true") {
+        own.push(questionDiagnostic(
+          DIAGNOSTIC_CODES.TOO_FEW_ANSWERS, "error", "Invalid True/False answers",
+          "Native True/False questions need exactly two answers named true and false.", number, { field: "answers" },
+        ));
+      }
+    }
+    question.answers.forEach((answer, answerIndex) => {
+      if (!Number.isFinite(answer.fraction) || answer.fraction < -100 || answer.fraction > 100) {
+        own.push(questionDiagnostic(
+          DIAGNOSTIC_CODES.INVALID_ANSWER_FRACTION, "error", "Invalid answer fraction",
+          `\`${String(answer.fraction)}\` is not a valid answer fraction. Use a number from -100 to 100.`, number,
+          { field: `answer_${answer.label}_fraction`, answerIndex: answer.label,
+            metadata: { answerPosition: answerIndex + 1, rawValue: answer.fraction } },
+        ));
+      }
+    });
+    const positiveAnswers = question.answers.filter(({ fraction }) => Number.isFinite(fraction) && fraction > 0);
+    const positiveTotal = positiveAnswers.reduce((sum, { fraction }) => sum + fraction, 0);
+    if (positiveAnswers.length === 0) {
+      if (question.correctLabels.length === 0) {
+        own.push(questionDiagnostic(
+          DIAGNOSTIC_CODES.NO_POSITIVE_ANSWER, "error", "No correct answer",
+          "This question has no positively scored answer. Mark at least one answer as correct before exporting.",
+          number, { field: "correct" },
+        ));
+      }
+    } else if (!positiveTotalValid(positiveAnswers.map(answer => answer.fraction))) {
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.POSITIVE_FRACTION_TOTAL_INVALID, "error", "Answer fractions do not total 100%",
+        `Positive answer fractions must total 100%. The current total is ${diagnosticNumber(positiveTotal)}%.`,
+        number, { field: "answer_fractions", metadata: { positiveTotal } },
+      ));
+    }
+    if (question.single === true && positiveAnswers.length > 1) {
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.SINGLE_MODE_CONFLICT, "error", "Conflicting answer mode",
+        "This question is marked as single-answer but its scoring defines multiple positively scored answers.",
+        number, { field: "single", metadata: { positiveAnswerCount: positiveAnswers.length } },
+      ));
+    }
+    if (question.defaultMark !== null
+      && !validDefaultMark(question.defaultMark)) {
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
+        "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
+        number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
+      ));
+    }
+    if (question.answerNumbering !== null && !ANSWER_NUMBERING.has(question.answerNumbering)) {
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.INVALID_ANSWER_NUMBERING, "error", "Unsupported answer numbering",
+        "Answer numbering must be abc, ABCD, 123, or none. Choose one of the supported values.",
+        number, { field: "answer_numbering", metadata: { rawValue: question.answerNumbering } },
+      ));
+    }
+    question.correctLabels.forEach((label) => {
+      if (!labels.includes(label)) {
+        const range = labels.length ? labels.join(", ") : "no answer labels";
+        own.push(questionDiagnostic(
+          DIAGNOSTIC_CODES.CORRECT_ANSWER_REFERENCE_INVALID, "error", "Correct answer reference is invalid",
+          `The correct-answer field refers to answer ${label}, but the available answers are ${range}. Choose a non-empty answer.`,
+          number, { field: "correct", answerIndex: label, metadata: { availableLabels: labels } },
+        ));
+      }
+    });
+    if (new Set(question.correctLabels).size !== question.correctLabels.length) {
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.DUPLICATE_CORRECT_REFERENCE, "error", "Duplicate correct-answer reference",
+        "The same correct answer is listed more than once. Keep each correct-answer reference only once.",
+        number, { field: "correct" },
+      ));
+    }
+    const diagnostics = deduplicateDiagnostics(own.map((diagnostic) => addQuestionSourceLocation(diagnostic, question)));
+    const status = classifyQuestionStatus(diagnostics);
+    return { ...question, diagnostics, validationIssues: diagnostics, status };
+
+
+}
+
+function validateQuestionContent(question, number, own) {
+    const textFields = {
+      question_text: question.text, question_name: question.questionName, name: question.name,
+      category: question.category, general_feedback: question.generalFeedback,
+      correct_feedback: question.correctFeedback, partially_correct_feedback: question.partiallyCorrectFeedback,
+      incorrect_feedback: question.incorrectFeedback,
+    };
+    question.answers.forEach((answer, i) => {
+      textFields[`answer_${i + 1}`] = answer.transformedText ?? answer.originalText;
+      textFields[`answer_${i + 1}_feedback`] = answer.feedback;
+    });
+    (question.tags ?? []).forEach((tag, i) => { textFields[`tag_${i + 1}`] = tag; });
+    for (const [field, value] of Object.entries(textFields)) {
+      if (INVALID_XML_CHARACTER.test(String(value ?? ""))) {
+        own.push(questionDiagnostic(DIAGNOSTIC_CODES.XML_INVALID_CHARACTER, "error", "Unsupported text character",
+          "This field contains a character that XML cannot represent. Correct the source before exporting.", number, { field }));
+      }
+    }
+    if (Array.from(question.questionName || question.name || "").length > 255) {
+      own.push(questionDiagnostic(DIAGNOSTIC_CODES.QUESTION_NAME_TOO_LONG, "error", "Question name is too long",
+        "Use at most 255 characters for the question name.", number, { field: "question_name" }));
+    }
+    if ((question.tags ?? []).some((tag) => !validMoodleTag(tag))) {
+      own.push(questionDiagnostic(DIAGNOSTIC_CODES.INVALID_TAG, "error", "Tag would be changed by Moodle",
+        "Use tags of at most 255 characters, with single spaces and no control characters, angle brackets or backticks.",
+        number, { field: "tags" }));
+    }
+    if (!SUPPORTED_QUESTION_TYPES.has(question.type)) {
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.UNSUPPORTED_QUESTION_TYPE, "error", "Unsupported question type",
+        `This question uses the unsupported type \`${question.type}\`. Use multichoice, truefalse, shortanswer, numerical, essay, or description.`, number,
+        { field: "type", metadata: { rawValue: question.type } },
+      ));
+    }
+    if (!question.text.trim()) {
+      const missingCopy = question.type === "description"
+        ? ["Description content is missing", "This Description has no content. Add question_text before exporting."]
+        : question.type === "essay"
+          ? ["Essay question text is missing", "This Essay question is missing question text. Add question_text before exporting."]
+          : question.type === "shortanswer"
+            ? ["Short Answer question text is missing", "This Short Answer question is missing question text. Add question_text before exporting."]
+            : question.type === "numerical"
+              ? ["Numerical question text is missing", "This Numerical question is missing question text. Add question_text before exporting."]
+              : ["Question text is missing", "This question has no question text. Add question text before exporting."];
+      own.push(questionDiagnostic(
+        DIAGNOSTIC_CODES.QUESTION_TEXT_MISSING, "error", missingCopy[0],
+        missingCopy[1], number, { field: "question_text" },
+      ));
+    }
+
+
+}
+
 export const ANSWER_NUMBERING = new Set(["none", "abc", "ABCD", "123"]);
 export const SUPPORTED_QUESTION_TYPES = new Set([
   "multichoice", "truefalse", "shortanswer", "numerical", "essay", "description",
@@ -267,7 +465,7 @@ export function parseDelimited(text, delimiter = detectDelimiter(text)) {
         }
       } else {
         field += char;
-        if (char === "\n" || (char === "\r" && text[i + 1] !== "\n")) csvRow += 1;
+        if (isCsvRecordBreak(char, text[i + 1])) csvRow += 1;
       }
       continue;
     }
@@ -280,7 +478,7 @@ export function parseDelimited(text, delimiter = detectDelimiter(text)) {
       row.push(field);
       field = "";
       justClosedQuote = false;
-    } else if (char === "\n" || char === "\r") {
+    } else if (isCsvLineEnding(char)) {
       if (char === "\r" && text[i + 1] === "\n") i += 1;
       row.push(field);
       if (row.some((cell) => cell.trim() !== "")) {
@@ -385,16 +583,7 @@ export function detectCsvMapping(headers, headerLocation = { csvRow: 1 }) {
   const booleanSchema = booleanFound && answerLabels.size === 0;
   const typedAdvancedSchema = typeFound && questionFound;
   const certain = questionFound && (explicitSchema || fractionSchema || booleanSchema || typedAdvancedSchema);
-  const missingRequirements = [];
-  if (!questionFound) missingRequirements.push("Question text column not identified");
-  if (!booleanSchema && !typedAdvancedSchema && answerLabels.size < 2) {
-    missingRequirements.push(answerLabels.size === 0
-      ? "Answer columns not identified; add at least two answer columns or one True/False answer column"
-      : "At least two answer columns are required");
-  }
-  if (!booleanSchema && !typedAdvancedSchema && answerLabels.size >= 2 && !correctFound && fractionLabels.size === 0) {
-    missingRequirements.push("Correct-answer column not identified; add a correct column or explicit answer fractions");
-  }
+  const missingRequirements = mappingRequirements(questionFound, booleanSchema, typedAdvancedSchema, answerLabels, correctFound, fractionLabels);
   return {
     roles,
     fields,
@@ -461,7 +650,7 @@ function parseOptionalNumber(value, field, questionNumber, issues, { minimum = -
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/u.test(source)) {
     issues.push(questionDiagnostic(code, "error", title, isFraction
       ? `\`${source}\` is not a valid answer fraction. Use a number from -100 to 100.`
-      : `\`${source}\` is not a valid default mark. Enter a number greater than 0.`, questionNumber,
+      : "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.", questionNumber,
     { field, answerIndex: answerLabel, metadata: { rawValue: source } }));
     return Number.NaN;
   }
@@ -469,7 +658,7 @@ function parseOptionalNumber(value, field, questionNumber, issues, { minimum = -
   if (!Number.isFinite(number) || number < minimum || number > maximum) {
     issues.push(questionDiagnostic(code, "error", title, isFraction
       ? `\`${source}\` is not a valid answer fraction. Use a number from -100 to 100.`
-      : "The default mark must be greater than 0. Enter a positive number before exporting.", questionNumber,
+      : "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.", questionNumber,
     { field, answerIndex: answerLabel, metadata: { rawValue: source, minimum, maximum } }));
     return Number.NaN;
   }
@@ -751,7 +940,7 @@ export function questionsFromCsvRows(rows, roles, rowLocations = []) {
       return [answer];
     });
     const defaultMark = parseOptionalNumber(optionalText(row, metadataIndexes.default_mark), "default_mark", questionNumber,
-      sourceIssues);
+      sourceIssues, {minimum: MIN_DEFAULT_MARK, maximum: MAX_DEFAULT_MARK});
     const metadata = {
       type: questionType,
       category: optionalText(row, metadataIndexes.category),
@@ -1039,60 +1228,13 @@ export function validateQuestions(questions, fileIssues = []) {
   const validated = questions.map((question, index) => {
     const number = question.sourceIndex ?? index + 1;
     const own = (question.sourceIssues ?? []).map((value) => normalizeDiagnostic(value, "question", number));
-    const textFields = {
-      question_text: question.text, question_name: question.questionName, name: question.name,
-      category: question.category, general_feedback: question.generalFeedback,
-      correct_feedback: question.correctFeedback, partially_correct_feedback: question.partiallyCorrectFeedback,
-      incorrect_feedback: question.incorrectFeedback,
-    };
-    question.answers.forEach((answer, i) => {
-      textFields[`answer_${i + 1}`] = answer.transformedText ?? answer.originalText;
-      textFields[`answer_${i + 1}_feedback`] = answer.feedback;
-    });
-    (question.tags ?? []).forEach((tag, i) => { textFields[`tag_${i + 1}`] = tag; });
-    for (const [field, value] of Object.entries(textFields)) {
-      if (INVALID_XML_CHARACTER.test(String(value ?? ""))) {
-        own.push(questionDiagnostic(DIAGNOSTIC_CODES.XML_INVALID_CHARACTER, "error", "Unsupported text character",
-          "This field contains a character that XML cannot represent. Correct the source before exporting.", number, { field }));
-      }
-    }
-    if (Array.from(question.questionName || question.name || "").length > 255) {
-      own.push(questionDiagnostic(DIAGNOSTIC_CODES.QUESTION_NAME_TOO_LONG, "error", "Question name is too long",
-        "Use at most 255 characters for the question name.", number, { field: "question_name" }));
-    }
-    if ((question.tags ?? []).some((tag) => !validMoodleTag(tag))) {
-      own.push(questionDiagnostic(DIAGNOSTIC_CODES.INVALID_TAG, "error", "Tag would be changed by Moodle",
-        "Use tags of at most 255 characters, with single spaces and no control characters, angle brackets or backticks.",
-        number, { field: "tags" }));
-    }
-    if (!SUPPORTED_QUESTION_TYPES.has(question.type)) {
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.UNSUPPORTED_QUESTION_TYPE, "error", "Unsupported question type",
-        `This question uses the unsupported type \`${question.type}\`. Use multichoice, truefalse, shortanswer, numerical, essay, or description.`, number,
-        { field: "type", metadata: { rawValue: question.type } },
-      ));
-    }
-    if (!question.text.trim()) {
-      const missingCopy = question.type === "description"
-        ? ["Description content is missing", "This Description has no content. Add question_text before exporting."]
-        : question.type === "essay"
-          ? ["Essay question text is missing", "This Essay question is missing question text. Add question_text before exporting."]
-          : question.type === "shortanswer"
-            ? ["Short Answer question text is missing", "This Short Answer question is missing question text. Add question_text before exporting."]
-            : question.type === "numerical"
-              ? ["Numerical question text is missing", "This Numerical question is missing question text. Add question_text before exporting."]
-              : ["Question text is missing", "This question has no question text. Add question text before exporting."];
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.QUESTION_TEXT_MISSING, "error", missingCopy[0],
-        missingCopy[1], number, { field: "question_text" },
-      ));
-    }
+    validateQuestionContent(question, number, own);
     if (["essay", "description"].includes(question.type)) {
       if (question.type === "essay" && question.defaultMark !== null
-        && (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)) {
+        && !validDefaultMark(question.defaultMark)) {
         own.push(questionDiagnostic(
           DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
-          "The default mark must be greater than 0. Enter a positive number before exporting.",
+          "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
           number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
         ));
       }
@@ -1172,22 +1314,22 @@ export function validateQuestions(questions, fileIssues = []) {
           }
         }
       });
-      const positiveAnswers = question.answers.filter(({ fraction }) => Number.isFinite(fraction) && fraction > 0);
-      if (positiveAnswers.length === 0) {
+      const fullCreditAnswer = question.answers.some(({ fraction }) => fraction === 100);
+      if (!fullCreditAnswer) {
         own.push(questionDiagnostic(
           DIAGNOSTIC_CODES.NO_POSITIVE_ANSWER, "error",
-          question.type === "shortanswer" ? "No accepted Short Answer" : "No accepted numerical answer",
+          question.type === "shortanswer" ? "No full-credit Short Answer" : "No full-credit numerical answer",
           question.type === "shortanswer"
-            ? "Short Answer question has no accepted answer. Add at least one answer with a positive fraction."
-            : "Numerical question has no accepted answer. Add at least one numeric answer with a positive fraction.",
+            ? "Short Answer question needs at least one answer worth 100%. Partial-credit answers may accompany it."
+            : "Numerical question needs at least one numeric answer worth 100%. Partial-credit answers may accompany it.",
           number, { field: "answers" },
         ));
       }
       if (question.defaultMark !== null
-        && (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)) {
+        && !validDefaultMark(question.defaultMark)) {
         own.push(questionDiagnostic(
           DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
-          "The default mark must be greater than 0. Enter a positive number before exporting.",
+          "The default mark must be between 0.0000001 and 10000. Enter a value in this range before exporting.",
           number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
         ));
       }
@@ -1195,84 +1337,7 @@ export function validateQuestions(questions, fileIssues = []) {
       const status = classifyQuestionStatus(diagnostics);
       return { ...question, diagnostics, validationIssues: diagnostics, status };
     }
-    if (question.type === "truefalse") {
-      const normalized = usable.map(({ originalText }) => originalText.trim().toLocaleLowerCase()).sort();
-      if (usable.length !== 2 || normalized[0] !== "false" || normalized[1] !== "true") {
-        own.push(questionDiagnostic(
-          DIAGNOSTIC_CODES.TOO_FEW_ANSWERS, "error", "Invalid True/False answers",
-          "Native True/False questions need exactly two answers named true and false.", number, { field: "answers" },
-        ));
-      }
-    }
-    question.answers.forEach((answer, answerIndex) => {
-      if (!Number.isFinite(answer.fraction) || answer.fraction < -100 || answer.fraction > 100) {
-        own.push(questionDiagnostic(
-          DIAGNOSTIC_CODES.INVALID_ANSWER_FRACTION, "error", "Invalid answer fraction",
-          `\`${String(answer.fraction)}\` is not a valid answer fraction. Use a number from -100 to 100.`, number,
-          { field: `answer_${answer.label}_fraction`, answerIndex: answer.label,
-            metadata: { answerPosition: answerIndex + 1, rawValue: answer.fraction } },
-        ));
-      }
-    });
-    const positiveAnswers = question.answers.filter(({ fraction }) => Number.isFinite(fraction) && fraction > 0);
-    const positiveTotal = positiveAnswers.reduce((sum, { fraction }) => sum + fraction, 0);
-    if (positiveAnswers.length === 0) {
-      if (question.correctLabels.length === 0) {
-        own.push(questionDiagnostic(
-          DIAGNOSTIC_CODES.NO_POSITIVE_ANSWER, "error", "No correct answer",
-          "This question has no positively scored answer. Mark at least one answer as correct before exporting.",
-          number, { field: "correct" },
-        ));
-      }
-    } else if (Math.abs(positiveTotal - 100) > 0.0011) {
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.POSITIVE_FRACTION_TOTAL_INVALID, "error", "Answer fractions do not total 100%",
-        `Positive answer fractions must total 100%. The current total is ${diagnosticNumber(positiveTotal)}%.`,
-        number, { field: "answer_fractions", metadata: { positiveTotal } },
-      ));
-    }
-    if (question.single === true && positiveAnswers.length > 1) {
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.SINGLE_MODE_CONFLICT, "error", "Conflicting answer mode",
-        "This question is marked as single-answer but its scoring defines multiple positively scored answers.",
-        number, { field: "single", metadata: { positiveAnswerCount: positiveAnswers.length } },
-      ));
-    }
-    if (question.defaultMark !== null
-      && (!Number.isFinite(question.defaultMark) || question.defaultMark <= 0)) {
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.INVALID_DEFAULT_MARK, "error", "Invalid default mark",
-        "The default mark must be greater than 0. Enter a positive number before exporting.",
-        number, { field: "default_mark", metadata: { rawValue: question.defaultMark } },
-      ));
-    }
-    if (question.answerNumbering !== null && !ANSWER_NUMBERING.has(question.answerNumbering)) {
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.INVALID_ANSWER_NUMBERING, "error", "Unsupported answer numbering",
-        "Answer numbering must be abc, ABCD, 123, or none. Choose one of the supported values.",
-        number, { field: "answer_numbering", metadata: { rawValue: question.answerNumbering } },
-      ));
-    }
-    question.correctLabels.forEach((label) => {
-      if (!labels.includes(label)) {
-        const range = labels.length ? labels.join(", ") : "no answer labels";
-        own.push(questionDiagnostic(
-          DIAGNOSTIC_CODES.CORRECT_ANSWER_REFERENCE_INVALID, "error", "Correct answer reference is invalid",
-          `The correct-answer field refers to answer ${label}, but the available answers are ${range}. Choose a non-empty answer.`,
-          number, { field: "correct", answerIndex: label, metadata: { availableLabels: labels } },
-        ));
-      }
-    });
-    if (new Set(question.correctLabels).size !== question.correctLabels.length) {
-      own.push(questionDiagnostic(
-        DIAGNOSTIC_CODES.DUPLICATE_CORRECT_REFERENCE, "error", "Duplicate correct-answer reference",
-        "The same correct answer is listed more than once. Keep each correct-answer reference only once.",
-        number, { field: "correct" },
-      ));
-    }
-    const diagnostics = deduplicateDiagnostics(own.map((diagnostic) => addQuestionSourceLocation(diagnostic, question)));
-    const status = classifyQuestionStatus(diagnostics);
-    return { ...question, diagnostics, validationIssues: diagnostics, status };
+    return validateChoiceQuestion(question, number, own, usable, labels);
   });
   const questionDiagnostics = validated.flatMap(({ diagnostics }) => diagnostics);
   const issues = [...importDiagnostics, ...questionDiagnostics];
@@ -1321,6 +1386,8 @@ export function formatFraction(correctCount) {
 function formatMoodleNumber(value, decimals = 7) {
   const number = Number(value);
   if (!Number.isFinite(number)) throw new Error("Moodle numeric values must be finite.");
+  // Numerical tolerances are stored as text by Moodle and must retain Number precision.
+  if (decimals === null) return plainMoodleNumber(number);
   return number.toFixed(decimals).replace(/\.0+$/u, "").replace(/(\.\d*?)0+$/u, "$1");
 }
 
@@ -1343,17 +1410,7 @@ export function generateMoodleXml(questions, settings) {
   const lines = ['<?xml version="1.0" encoding="UTF-8"?>', "<quiz>"];
   let activeCategory = null;
   questions.forEach((question) => {
-    const questionCategory = String(question.category || settings.category || "").trim();
-    if (questionCategory !== activeCategory) {
-      if (questionCategory || activeCategory !== null) {
-        lines.push(
-          '  <question type="category">',
-          `    <category><text>${escapeXml(categoryPath(questionCategory))}</text></category>`,
-          "  </question>",
-        );
-      }
-      activeCategory = questionCategory;
-    }
+    activeCategory = appendCategory(lines, question, settings, activeCategory);
     if (["shortanswer", "numerical"].includes(question.type)) {
       lines.push(
         `  <question type="${question.type}">`,
@@ -1368,12 +1425,12 @@ export function generateMoodleXml(questions, settings) {
       if (question.type === "shortanswer") lines.push(`    <usecase>${question.caseSensitive ? "1" : "0"}</usecase>`);
       question.answers.forEach((answer) => {
         lines.push(
-          `    <answer fraction="${formatMoodleNumber(answer.fraction)}" format="html">`,
+          `    <answer fraction="${formatFractionPercentage(answer.fraction)}" format="html">`,
           `      <text>${escapeXml(answer.transformedText)}</text>`,
           `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
         );
         if (question.type === "numerical") {
-          lines.push(`      <tolerance>${formatMoodleNumber(answer.tolerance ?? 0)}</tolerance>`);
+          lines.push(`      <tolerance>${formatMoodleNumber(answer.tolerance ?? 0, null)}</tolerance>`);
         }
         lines.push("    </answer>");
       });
@@ -1432,7 +1489,7 @@ export function generateMoodleXml(questions, settings) {
       ["true", "false"].forEach((value) => {
         const answer = question.answers.find(({ originalText }) => originalText.trim().toLocaleLowerCase() === value);
         lines.push(
-          `    <answer fraction="${formatMoodleNumber(answer?.fraction ?? 0)}" format="html">`,
+          `    <answer fraction="${formatFractionPercentage(answer?.fraction ?? 0)}" format="html">`,
           `      <text>${value}</text>`,
           `      <feedback format="html"><text>${escapeMoodleHtml(answer?.feedback ?? "")}</text></feedback>`,
           "    </answer>",
@@ -1461,7 +1518,7 @@ export function generateMoodleXml(questions, settings) {
     );
     question.answers.forEach((answer) => {
       lines.push(
-        `    <answer fraction="${formatMoodleNumber(answer.fraction)}" format="html">`,
+        `    <answer fraction="${formatFractionPercentage(answer.fraction)}" format="html">`,
         `      <text>${escapeMoodleHtml(answer.transformedText)}</text>`,
         `      <feedback format="html"><text>${escapeMoodleHtml(answer.feedback)}</text></feedback>`,
         "    </answer>",
@@ -1496,8 +1553,8 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
   const questions = [...document.querySelectorAll('question[type="multichoice"]')];
   questions.forEach((question, index) => {
     const label = `Question ${index + 1}`;
-    if (!question.querySelector("name > text")?.textContent?.trim()) errors.push(`${label} has no name.`);
-    if (!question.querySelector("questiontext > text")?.textContent?.trim()) errors.push(`${label} has no question text.`);
+    if (!hasXmlText(question, "name > text")) errors.push(`${label} has no name.`);
+    if (!hasXmlText(question, "questiontext > text")) errors.push(`${label} has no question text.`);
     const answers = [...question.querySelectorAll(":scope > answer")];
     if (answers.length < 2) errors.push(`${label} has fewer than two answers.`);
     const fractions = answers.map((answer) => Number(answer.getAttribute("fraction")));
@@ -1506,13 +1563,13 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
       errors.push(`${label} has invalid grading fractions.`);
     }
     const total = positive.reduce((sum, value) => sum + value, 0);
-    if (Math.abs(total - 100) > 0.0011) errors.push(`${label} grading totals ${total}, not 100.`);
+    if (!positiveTotalValid(fractions)) errors.push(`${label} grading totals ${total}, not 100.`);
     const single = question.querySelector(":scope > single")?.textContent === "true";
     if (single && positive.length !== 1) errors.push(`${label} has an inconsistent single-answer setting.`);
     const numbering = question.querySelector(":scope > answernumbering")?.textContent;
     if (!ANSWER_NUMBERING.has(numbering)) errors.push(`${label} has unsupported answer numbering.`);
     const defaultGrade = Number(question.querySelector(":scope > defaultgrade")?.textContent);
-    if (!Number.isFinite(defaultGrade) || defaultGrade <= 0) errors.push(`${label} has an invalid default grade.`);
+    if (!validDefaultMark(defaultGrade)) errors.push(`${label} has an invalid default grade.`);
   });
   const additionalQuestions = [...document.querySelectorAll(
     'question[type="truefalse"], question[type="shortanswer"], question[type="numerical"], question[type="essay"], question[type="description"]',
@@ -1520,19 +1577,19 @@ export function validateGeneratedXml(xml, Parser = globalThis.DOMParser) {
   additionalQuestions.forEach((question, index) => {
     const type = question.getAttribute("type");
     const label = `Question ${questions.length + index + 1}`;
-    if (!question.querySelector("name > text")?.textContent?.trim()) errors.push(`${label} has no name.`);
-    if (!question.querySelector("questiontext > text")?.textContent?.trim()) errors.push(`${label} has no question text.`);
+    if (!hasXmlText(question, "name > text")) errors.push(`${label} has no name.`);
+    if (!hasXmlText(question, "questiontext > text")) errors.push(`${label} has no question text.`);
     const defaultGrade = Number(question.querySelector(":scope > defaultgrade")?.textContent);
     if (type === "description") {
       if (defaultGrade !== 0) errors.push(`${label} description has a non-zero default grade.`);
-    } else if (!Number.isFinite(defaultGrade) || defaultGrade <= 0) {
+    } else if (!validDefaultMark(defaultGrade)) {
       errors.push(`${label} has an invalid default grade.`);
     }
     const answers = [...question.querySelectorAll(":scope > answer")];
     if (["shortanswer", "numerical"].includes(type)) {
       if (answers.length < 1) errors.push(`${label} has no accepted answers.`);
       const fractions = answers.map((answer) => Number(answer.getAttribute("fraction")));
-      if (!fractions.some((value) => value > 0)
+      if (!fractions.some((value) => value === 100)
         || fractions.some((value) => !Number.isFinite(value) || value < -100 || value > 100)) {
         errors.push(`${label} has invalid grading fractions.`);
       }

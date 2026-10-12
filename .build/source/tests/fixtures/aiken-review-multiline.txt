@@ -1,0 +1,6 @@
+What is the capital
+of Hungary?
+A. Vienna
+B. Budapest
+C. Prague
+ANSWER: B

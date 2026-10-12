@@ -1,0 +1,49 @@
+{
+  "scenarios": {
+    "safe-fixed": {
+      "questionCount": 2,
+      "questions": [
+        {
+          "text": "Which city is the capital of Hungary?",
+          "answers": ["Budapest", "Vienna", "Prague"],
+          "correct": 0
+        },
+        {
+          "text": "Which protocol secures a website?",
+          "answers": ["HTTP", "HTTPS", "FTP"],
+          "correct": 1
+        }
+      ]
+    },
+    "unicode": {
+      "questionCount": 3,
+      "questions": [
+        {
+          "text": "Melyik Magyarország fővárosa?",
+          "answers": ["Bécs", "Budapest", "Prága"],
+          "correct": 1
+        },
+        {
+          "text": "ما هي عاصمة المجر؟",
+          "answers": ["بودابست", "فيينا", "براغ"],
+          "correct": 0
+        },
+        {
+          "text": "以下哪个城市是匈牙利的首都？",
+          "answers": ["维也纳", "布达佩斯", "布拉格"],
+          "correct": 1
+        }
+      ]
+    },
+    "multiline-approved": {
+      "questionCount": 1,
+      "questions": [
+        {
+          "text": "What is the capital of Hungary?",
+          "answers": ["Vienna", "Budapest", "Prague"],
+          "correct": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+Which city is the capital of Hungary?   
+a.Budapest
+b. Vienna
+c. Prague
+answer:a
+
+
+
+Which protocol secures a website?
+A)HTTP
+B)   HTTPS
+C)FTP
+Answer:B

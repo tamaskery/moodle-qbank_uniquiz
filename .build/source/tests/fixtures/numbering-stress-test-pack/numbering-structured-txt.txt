@@ -1,0 +1,55 @@
+1. What is the capital of Hungary?
+A. Vienna
+B. Budapest
+C. Prague
+D. Warsaw
+ANSWER: B
+
+2. Which planet is known as the Red Planet?
+A. Venus
+B. Mars
+C. Earth
+D. Jupiter
+ANSWER: B
+
+3. Melyik Magyarország fővárosa?
+A. Bécs
+B. Budapest
+C. Prága
+D. Varsó
+ANSWER: B
+
+4. Какая столица Венгрии?
+A. Вена
+B. Будапешт
+C. Прага
+D. Варшава
+ANSWER: B
+
+5. Which symbol means less than?
+A. >
+B. <
+C. =
+D. ≥
+ANSWER: B
+
+6. Which option contains an ampersand?
+A. R&D
+B. Research
+C. Development
+D. None
+ANSWER: A
+
+7. Which emoji is a unicorn?
+A. 🐴
+B. 🦄
+C. 🐐
+D. 🦓
+ANSWER: B
+
+8. Which answer contains XML-sensitive literal text?
+A. R&D uses <research> tags
+B. Plain text
+C. Only &
+D. Only <angle brackets>
+ANSWER: A

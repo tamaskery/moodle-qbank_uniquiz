@@ -53,3 +53,14 @@ $string['invalidrequest'] = 'This import request has expired or changed. Prepare
 $string['importbusy'] = 'Another import is running for this account. Please try again shortly.';
 $string['returnbank'] = 'Return to question bank';
 $string['privacy:metadata'] = 'UniQuiz parses source files in browser memory. On confirmation it creates questions using Moodle question APIs. These questions and the standard import events are managed by Moodle. Temporary session receipts contain request hashes and counts, not question content; UniQuiz creates no separate persistent personal-data store.';
+
+$string['xmlmarkrange'] = 'Default marks must be between 0.0000001 and 10000. Description questions must use 0.';
+$string['receiptcapacity'] = 'This session has too many open or completed import receipts. Use an existing UniQuiz tab, or wait for older receipts to expire after 24 hours. No existing receipt was removed.';
+$string['importretrylimit'] = 'Too many import attempts in this session or tab. Wait {$a} seconds, then retry. Your prepared questions remain in this tab.';
+
+$string['categorysearch'] = 'Search category names';
+$string['categoryfind'] = 'Search';
+$string['categoryprevious'] = 'Previous categories';
+$string['categorynext'] = 'Next categories';
+$string['categoryresults'] = 'Category page {$a}. Your current destination stays selected until you choose another.';
+$string['categoryempty'] = 'No matching categories. Try another name. Your current destination stays selected.';

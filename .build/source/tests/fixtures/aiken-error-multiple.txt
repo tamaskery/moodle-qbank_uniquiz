@@ -1,0 +1,5 @@
+Which answers are prime?
+A. Two
+B. Three
+C. Four
+ANSWER: A,B

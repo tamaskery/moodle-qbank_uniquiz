@@ -1,0 +1,6 @@
+Q1. What is the capital of France?
+A. Paris
+B. London
+C. Berlin
+D. Madrid
+ANSWER: A

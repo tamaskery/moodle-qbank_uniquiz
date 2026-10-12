@@ -1,0 +1,271 @@
+<?php
+// Run only in the isolated local Moodle QA containers. Never deploy in the plugin ZIP.
+define('CLI_SCRIPT', true);
+require(__DIR__ . '/../../../config.php');
+require_once($CFG->dirroot . '/course/lib.php');
+require_once($CFG->dirroot . '/user/lib.php');
+require_once($CFG->dirroot . '/question/editlib.php');
+require_once($CFG->dirroot . '/question/format.php');
+require_once($CFG->dirroot . '/question/format/xml/format.php');
+
+use qbank_uniquiz\local\access;
+use qbank_uniquiz\local\importer;
+use qbank_uniquiz\local\xml_validator;
+use core_question\local\bank\question_edit_contexts;
+
+\core\session\manager::set_user(get_admin());
+$CFG->noemailever = true;
+$checks = [];
+function check(bool $ok, string $name): void {
+    global $checks;
+    $checks[] = ['name' => $name, 'passed' => $ok];
+    if (!$ok) {
+        throw new RuntimeException('FAILED: ' . $name);
+    }
+}
+function rejects(callable $call, string $name): void {
+    try { $call(); } catch (Throwable $error) { check(true, $name); return; }
+    check(false, $name);
+}
+function newcourse(string $label): stdClass {
+    global $DB;
+    return create_course((object)[
+        'fullname' => 'UniQuiz plugin QA ' . $label,
+        'shortname' => 'uqplugin-' . $label . '-' . bin2hex(random_bytes(3)),
+        'category' => $DB->get_field('course_categories', 'id', [], IGNORE_MULTIPLE),
+        'format' => 'topics', 'numsections' => 1,
+    ]);
+}
+function bank(stdClass $course): array {
+    global $CFG;
+    if ((int)$CFG->branch >= 500) {
+        $cm = \core_question\local\bank\question_bank_helper::get_default_open_instance_system_type($course, true);
+        $context = context_module::instance($cm->id);
+        return [question_get_default_category($context->id, true), $context, ['cmid' => $cm->id]];
+    }
+    $context = context_course::instance($course->id);
+    $category = question_make_default_categories((new question_edit_contexts($context))->all());
+    return [$category, $context, ['courseid' => $course->id]];
+}
+function testuser(string $username): stdClass {
+    global $DB, $CFG;
+    $user = $DB->get_record('user', ['username' => $username]);
+    if ($user) return $user;
+    $id = user_create_user((object)[
+        'username' => $username, 'password' => hash_internal_user_password('UniQuizTeacherTest!'),
+        'firstname' => 'UniQuiz', 'lastname' => $username, 'email' => "$username@example.invalid",
+        'auth' => 'manual', 'confirmed' => 1, 'mnethostid' => $CFG->mnet_localhost_id,
+    ], false, false);
+    return $DB->get_record('user', ['id' => $id], '*', MUST_EXIST);
+}
+function enrol(stdClass $course, stdClass $user, string $archetype): void {
+    global $DB;
+    $plugin = enrol_get_plugin('manual');
+    $instances = enrol_get_instances($course->id, true);
+    $instance = current(array_filter($instances, static fn($item) => $item->enrol === 'manual'));
+    if (!$instance) {
+        $id = $plugin->add_instance($course);
+        $instance = $DB->get_record('enrol', ['id' => $id]);
+    }
+    $roleid = $DB->get_field('role', 'id', ['archetype' => $archetype], IGNORE_MULTIPLE);
+    $plugin->enrol_user($instance, $user->id, $roleid);
+}
+
+$course = newcourse('primary');
+[$category, $context, $params] = bank($course);
+$othercourse = newcourse('other');
+[$othercategory, $othercontext] = bank($othercourse);
+$teacher = testuser('uniquizteacher');
+$student = testuser('uniquizstudent');
+check(validate_internal_user_password($teacher, 'UniQuizTeacherTest!'), 'Disposable teacher login password verifies');
+check(validate_internal_user_password($student, 'UniQuizTeacherTest!'), 'Disposable student login password verifies');
+enrol($course, $teacher, 'editingteacher');
+enrol($course, $student, 'student');
+set_config('site_is_public', 0);
+set_config('registerauth', '');
+$xml = file_get_contents('/tmp/uniquiz-six.xml');
+[$prepared, $count] = xml_validator::prepare($xml, 6);
+check($count === 6, 'Server accepts all six supported question types');
+
+foreach ([
+    'DOCTYPE/entity rejected' => str_replace('<quiz>', '<!DOCTYPE quiz [<!ENTITY bad SYSTEM "file:///etc/passwd">]><quiz>', $xml),
+    'Unsupported type rejected' => str_replace('type="essay"', 'type="calculated"', $xml),
+    'Embedded files rejected' => str_replace('</quiz>', '<question type="essay"><file>abc</file></question></quiz>', $xml),
+    'Invalid fraction rejected' => str_replace('fraction="100"', 'fraction="101"', $xml),
+    'Invalid tolerance rejected' => str_replace('<tolerance>0.01</tolerance>', '<tolerance>-1</tolerance>', $xml),
+    'Malformed XML rejected' => str_replace('</quiz>', '', $xml),
+    'Duplicate singleton rejected' => str_replace('<hidden>0</hidden>', '<hidden>0</hidden><hidden>0</hidden>', $xml),
+    'Essay attachments rejected' => str_replace('<attachments>0</attachments>', '<attachments>3</attachments>', $xml),
+    'Question namespace rejected' => str_replace('<question type="essay">', '<question xmlns="urn:bad" type="essay">', $xml),
+] as $name => $badxml) {
+    rejects(static fn() => xml_validator::prepare($badxml, 6), $name);
+}
+rejects(static fn() => xml_validator::prepare($xml, 5), 'Question-count mismatch rejected');
+rejects(static fn() => xml_validator::prepare(str_repeat('x', xml_validator::MAX_BYTES + 1), 6), 'Oversized input rejected');
+$categoryxml = str_replace('<quiz>', '<quiz><question type="category"><category><text>$system$/top/Unexpected</text></category></question>', $xml);
+[$withoutcategories] = xml_validator::prepare($categoryxml, 6);
+check(strpos($withoutcategories, 'type="category"') === false, 'Source category markers removed before import');
+$xss = str_replace('Which city is the capital of Hungary?', 'Test &lt;script&gt;alert(1)&lt;/script&gt;', $xml);
+[$sanitized] = xml_validator::prepare($xss, 6);
+check(strpos($sanitized, '&lt;script&gt;') === false, 'HTML script content sanitized on server');
+
+\core\session\manager::set_user($student);
+rejects(static fn() => access::category($category->id, [$context]), 'Student cannot import');
+\core\session\manager::set_user($teacher);
+$checked = access::category($category->id, [$context]);
+check((int)$checked->id === (int)$category->id, 'Editing teacher may import into own course bank');
+rejects(static fn() => access::category($othercategory->id, [$context]), 'Destination outside allowed context rejected');
+rejects(static fn() => access::category($othercategory->id, [$othercontext]), 'Foreign destination capability independently checked');
+rejects(static fn() => access::category($category->parent, [$context]), 'Top pseudo-category rejected');
+
+$ids = importer::run($categoryxml, 6, $checked, $course);
+check(count($ids) === 6, 'Teacher imports six questions through plugin importer');
+$expected = json_decode(file_get_contents('/tmp/uniquiz-expected.json'), true);
+foreach ($ids as $i => $id) {
+    $question = $DB->get_record('question', ['id' => $id], '*', MUST_EXIST);
+    $expect = $expected['questions'][$i];
+    check($question->qtype === $expect['type'], "Question $i type");
+    check($question->name === $expect['name'], "Question $i name");
+    check($question->questiontext === $expect['text'], "Question $i text");
+    check(abs($question->defaultmark - $expect['defaultMark']) < 0.000001, "Question $i mark");
+    $answers = array_values($DB->get_records('question_answers', ['question' => $id], 'id'));
+    check(count($answers) === count($expect['answers']), "Question $i answer count");
+    foreach ($answers as $j => $answer) {
+        check($answer->answer === $expect['answers'][$j]['text'], "Question $i answer $j text");
+        check(abs($answer->fraction - $expect['answers'][$j]['fraction'] / 100) < 0.000001, "Question $i answer $j grade");
+        check($answer->feedback === $expect['answers'][$j]['feedback'], "Question $i answer $j feedback");
+        if (isset($expect['answers'][$j]['tolerance'])) {
+            $tolerance = $DB->get_field('question_numerical', 'tolerance', ['question' => $id, 'answer' => $answer->id]);
+            check(abs($tolerance - $expect['answers'][$j]['tolerance']) < 0.000001, "Question $i answer $j tolerance");
+        }
+    }
+    $categoryactual = $DB->get_field_sql('SELECT b.questioncategoryid FROM {question_bank_entries} b
+        JOIN {question_versions} v ON v.questionbankentryid = b.id WHERE v.questionid = ?', [$id]);
+    check((int)$categoryactual === (int)$category->id, "Question $i stays in chosen destination");
+}
+
+// Grading contract regressions: test the actual generated XML and core importer.
+$tinyxml = file_get_contents('/tmp/uniquiz-grading-tiny.xml');
+$tinyids = importer::run($tinyxml, 1, $checked, $course);
+check(count($tinyids) === 1, 'Tiny numerical tolerance imports');
+$storedtolerance = $DB->get_field('question_numerical', 'tolerance', ['question' => $tinyids[0]], MUST_EXIST);
+check((float)$storedtolerance === 0.00000001, 'Tiny tolerance retains its value in the Moodle database');
+foreach (['shortanswer', 'numerical'] as $type) {
+    $fullcreditxml = file_get_contents('/tmp/uniquiz-grading-' . $type . '.xml');
+    [$accepted, $acceptedcount] = xml_validator::prepare($fullcreditxml, 1);
+    check($acceptedcount === 1, "$type full credit accepted");
+    $partialxml = str_replace('fraction="100"', 'fraction="50"', $fullcreditxml);
+    rejects(static fn() => xml_validator::prepare($partialxml, 1), "$type partial-credit-only rejected");
+}
+$thirdsxml = file_get_contents('/tmp/uniquiz-grading-thirds.xml');
+$thirdsids = importer::run($thirdsxml, 1, $checked, $course);
+check(count($thirdsids) === 1, 'Seven-place thirds import successfully');
+$roundedthirds = str_replace('33.3333333', '33.333', $thirdsxml);
+rejects(static fn() => xml_validator::prepare($roundedthirds, 1), 'Total 99.999 rejected');
+
+// Native core grade matching proves the deliberate inclusive percentage boundary.
+$vectors = json_decode(file_get_contents(__DIR__ . '/tests/fixtures/grading-vectors.json'), true);
+$storedgrading = [];
+foreach ($vectors['totals'] as $vector) {
+    $answers = '';
+    foreach ($vector['fractions'] as $i => $fraction) {
+        $answers .= '<answer fraction="' . json_encode($fraction) . '" format="html"><text>Option ' . $i . '</text></answer>';
+    }
+    $vectorxml = '<quiz><question type="multichoice"><name><text>Grade vector</text></name>' .
+        '<questiontext format="html"><text>Choose</text></questiontext><defaultgrade>1</defaultgrade>' .
+        '<single>false</single><shuffleanswers>1</shuffleanswers><answernumbering>abc</answernumbering>' .
+        $answers . '</question></quiz>';
+    if (!empty($vector['coreImport'])) {
+        $vectorids = importer::run($vectorxml, 1, $checked, $course);
+        check(count($vectorids) === 1, 'Native core accepts ' . $vector['name']);
+        $storedanswers = array_values($DB->get_records('question_answers', ['question' => $vectorids[0]], 'id'));
+        check(count($storedanswers) === count($vector['storedFractions']), 'Stored answer count: ' . $vector['name']);
+        $storedtexts = [];
+        foreach ($storedanswers as $i => $answer) {
+            check($answer->answer === 'Option ' . $i, 'Stored answer order: ' . $vector['name'] . ' / ' . $i);
+            // Compare canonical proportions at DB precision, not the input XML percentages or a fuzzy tolerance.
+            check(number_format((float)$answer->fraction, 7, '.', '') === $vector['storedFractions'][$i],
+                'Stored canonical fraction: ' . $vector['name'] . ' / ' . $i);
+            $storedtexts[] = (string)$answer->fraction;
+        }
+        $storedgrading[] = ['name' => $vector['name'], 'xmlPercentages' => $vector['fractions'],
+            'expectedProportions' => $vector['storedFractions'], 'storedText' => $storedtexts];
+    } else if (!$vector['valid']) {
+        rejects(static fn() => importer::run($vectorxml, 1, $checked, $course), 'Native path rejects ' . $vector['name']);
+    }
+}
+$graderange = str_replace('<defaultgrade>1</defaultgrade>', '<defaultgrade>10000</defaultgrade>', $thirdsxml);
+check(count(importer::run($graderange, 1, $checked, $course)) === 1, 'Maximum product mark imports');
+rejects(static fn() => importer::run(str_replace('10000', '10000.0000001', $graderange), 1, $checked, $course),
+    'Above-maximum mark fails before native import');
+// Provide a large bank to browser acceptance without putting questions into these categories.
+for ($i = 0; $i < 110; $i++) {
+    $DB->insert_record('question_categories', (object)[
+        'contextid' => $context->id, 'name' => sprintf('Paged category %03d', $i),
+        'info' => '', 'infoformat' => FORMAT_HTML, 'parent' => $category->parent,
+        'sortorder' => $i, 'stamp' => make_unique_id_code(),
+    ]);
+}
+$categorypage = \qbank_uniquiz\local\categories::search([$context], 'Paged category');
+check(count($categorypage['categories']) === 50 && $categorypage['more'], 'Category results are paginated');
+$categorylast = \qbank_uniquiz\local\categories::search([$context], 'Paged category', 2);
+check(count($categorylast['categories']) === 10 && !$categorylast['more'], 'Final category page is bounded');
+check(!\qbank_uniquiz\local\categories::search([$context], '%')['categories'], 'Category wildcards are literal');
+
+// Inject a trusted formatter failure after all native questions exist, before commit.
+$format = new class extends qformat_xml {
+    public int $observed = 0;
+    public function importpostprocess() {
+        parent::importpostprocess();
+        $this->observed = count($this->questionids);
+        throw new RuntimeException('Synthetic postprocessing failure');
+    }
+};
+$before = [];
+foreach (['question', 'question_bank_entries', 'question_versions', 'question_answers'] as $table) {
+    $before[$table] = $DB->count_records($table);
+}
+rejects(static fn() => importer::run($xml, 6, $checked, $course, $format), 'Late postprocessing failure reported');
+check($format->observed === 6, 'Rollback fixture reaches all six saved questions before failure');
+foreach ($before as $table => $total) {
+    check($DB->count_records($table) === $total, "Failed batch rolls back $table");
+}
+check(!$DB->is_transaction_started(), 'No transaction left open after failure');
+
+// Real imports of converter output preserve HTML-facing text and literal accepted answers.
+$textids = importer::run(file_get_contents('/tmp/uniquiz-text.xml'), 2, $checked, $course);
+$textquestion = $DB->get_record('question', ['id' => $textids[0]], '*', MUST_EXIST);
+check(str_contains($textquestion->questiontext, 'a&lt;b and c&gt;d &amp; literal &amp;lt;'), 'Literal comparisons survive core sanitization');
+check((bool)preg_match('~<br\s*/?>Second line 🦄~u', $textquestion->questiontext), 'Line breaks and supplementary Unicode survive import');
+$mcanswer = $DB->get_record('question_answers', ['question' => $textids[0], 'fraction' => 1], '*', MUST_EXIST);
+check(str_contains($mcanswer->answer, '&lt;yes&gt;'), 'Multiple-choice answer markup remains literal');
+check(str_contains($mcanswer->feedback, '&lt;feedback&gt;'), 'Answer feedback markup remains literal');
+$saanswer = $DB->get_record('question_answers', ['question' => $textids[1]], '*', MUST_EXIST);
+check($saanswer->answer === 'a<b & c', 'Short Answer accepted value is not HTML-encoded');
+
+// Benchmark the actual synchronous ceiling with MC answers, tags and normal core events.
+$batchdoc = new DOMDocument();
+$batchdoc->loadXML($xml);
+$batchquestion = $batchdoc->getElementsByTagName('question')->item(0);
+while ($batchquestion && $batchquestion->getAttribute('type') === 'category') {
+    $batchquestion = $batchquestion->nextElementSibling;
+}
+$questionxml = $batchdoc->saveXML($batchquestion);
+$batchxml = '<quiz>' . str_repeat($questionxml, 500) . '</quiz>';
+$start = microtime(true);
+$batchids = importer::run($batchxml, 500, $checked, $course);
+$benchmark = ['questions' => count($batchids), 'seconds' => round(microtime(true) - $start, 3),
+    'process_peak_memory_bytes' => memory_get_peak_usage(true), 'xml_bytes' => strlen($batchxml)];
+check(count($batchids) === 500, '500-question boundary batch imports atomically');
+rejects(static fn() => xml_validator::prepare('<quiz>' . str_repeat($questionxml, 501) . '</quiz>', 501),
+    '501-question batch rejected before core import');
+
+$navigation = (new \qbank_uniquiz\plugin_feature())->get_navigation_node();
+check($navigation->get_navigation_key() === 'uniquiz', 'Native question-bank navigation registered');
+$report = ['release' => $CFG->release, 'storedGrading' => $storedgrading, 'tolerance' => ['exported' => (new SimpleXMLElement($tinyxml))->question->answer->tolerance->__toString(),
+        'stored_text' => (string)$storedtolerance], 'checks' => $checks, 'passed' => count($checks), 'benchmark' => $benchmark,
+    'courseid' => $course->id, 'categoryid' => $category->id, 'contextid' => $context->id,
+    'othercategoryid' => $othercategory->id, 'params' => $params,
+    'url' => (new moodle_url('/question/bank/uniquiz/index.php', $params))->out(false)];
+file_put_contents('/tmp/uniquiz-plugin-report.json', json_encode($report, JSON_PRETTY_PRINT));
+echo json_encode($report, JSON_PRETTY_PRINT) . "\n";

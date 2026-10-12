@@ -29,9 +29,16 @@ final class importer {
      * @param int $count
      * @param \stdClass $category Checked by access::category.
      * @param \stdClass $course
+     * @param \qformat_xml|null $format Optional trusted format implementation for dependency injection
      * @return int[] Question ids.
      */
-    public static function run(string $xml, int $count, \stdClass $category, \stdClass $course): array {
+    public static function run(
+        string $xml,
+        int $count,
+        \stdClass $category,
+        \stdClass $course,
+        ?\qformat_xml $format = null
+    ): array {
         global $CFG, $DB;
         // This service owns a complete request-level transaction, never a caller's work.
         $DB->transactions_forbidden();
@@ -47,7 +54,9 @@ final class importer {
         if (file_put_contents($filename, $xml) === false) {
             throw new \moodle_exception('importfailed', 'qbank_uniquiz');
         }
-        $format = new \qformat_xml();
+        // The HTTP endpoint always uses core XML. Injected PHP objects are trusted server-side dependencies;
+        // every format still receives the same authorization, validated XML and destination/grade options.
+        $format = $format ?? new \qformat_xml();
         $format->setContexts([$category->context]);
         $format->setCourse($course);
         $format->setCategory($category);

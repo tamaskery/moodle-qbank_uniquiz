@@ -1,0 +1,19 @@
+{
+  "fixtureVersion": 1,
+  "description": "Independent expectations for the exact v0.4.8 browser XML generated from the supplied 51-55 Boolean regression fixture with number removal disabled.",
+  "questionCount": 5,
+  "scenarios": {
+    "v042-numbering-51-55-off": {
+      "shuffleAnswers": true,
+      "capitalizeAnswers": false,
+      "answerNumbering": "abc"
+    }
+  },
+  "questions": [
+    { "text": "51. Capital of Hungary is Budapest?", "answers": ["true", "false"], "correct": [0] },
+    { "text": "52. Capital of Slovakia is Budapest?", "answers": ["true", "false"], "correct": [1] },
+    { "text": "53. The Earth orbits the Sun.", "answers": ["true", "false"], "correct": [0] },
+    { "text": "54. 2026 was a leap year.", "answers": ["true", "false"], "correct": [1] },
+    { "text": "55. 🦄 is a unicorn emoji.", "answers": ["true", "false"], "correct": [0] }
+  ]
+}

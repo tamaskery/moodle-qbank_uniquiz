@@ -18,13 +18,16 @@ namespace qbank_uniquiz;
 
 use qbank_uniquiz\local\access;
 use qbank_uniquiz\local\importer;
+use qbank_uniquiz\local\categories;
 
 #[\PHPUnit\Framework\Attributes\CoversClass(access::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(importer::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(categories::class)]
 /**
  * Destination permissions and request-owned transaction regression tests.
  * @covers \qbank_uniquiz\local\access
  * @covers \qbank_uniquiz\local\importer
+ * @covers \qbank_uniquiz\local\categories
  * @package qbank_uniquiz
  * @copyright 2026 Tamas Kery
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -81,6 +84,7 @@ final class importer_test extends \advanced_testcase {
         $student = $this->getDataGenerator()->create_user();
         $this->getDataGenerator()->enrol_user($student->id, $course->id, 'student');
         $this->setUser($student);
+        $this->assertSame([], categories::search([$context])['categories']);
         try {
             access::category($category->id, [$context]);
             $this->fail('Student was allowed to import.');
@@ -91,6 +95,31 @@ final class importer_test extends \advanced_testcase {
         $this->getDataGenerator()->enrol_user($teacher->id, $course->id, 'editingteacher');
         $this->setUser($teacher);
         $this->assertEquals($category->id, access::category($category->id, [$context])->id);
+        $this->assertNotEmpty(categories::search([$context])['categories']);
+    }
+
+    /**
+     * Destination pages stay bounded and search wildcard characters remain literal.
+     */
+    public function test_category_pagination_and_search(): void {
+        global $DB;
+        [, $category, $context] = $this->destination();
+        for ($i = 0; $i < 51; $i++) {
+            $DB->insert_record('question_categories', (object)[
+                'contextid' => $context->id, 'name' => sprintf('Paging fixture %03d', $i),
+                'info' => '', 'infoformat' => FORMAT_HTML, 'parent' => $category->parent,
+                'sortorder' => $i, 'stamp' => make_unique_id_code(),
+            ]);
+        }
+        $first = categories::search([$context], 'Paging fixture');
+        $last = categories::search([$context], 'Paging fixture', 1);
+        $this->assertCount(50, $first['categories']);
+        $this->assertTrue($first['more']);
+        $this->assertCount(1, $last['categories']);
+        $this->assertFalse($last['more']);
+        $this->assertSame([], array_intersect(array_column($first['categories'], 'id'), array_column($last['categories'], 'id')));
+        $this->assertSame([], categories::search([$context], '%')['categories']);
+        $this->assertCount(1, categories::search([$context], 'Paging fixture 050')['categories']);
     }
 
     /**
@@ -104,7 +133,7 @@ final class importer_test extends \advanced_testcase {
     }
 
     /**
-     * A successful batch is committed; failure on question two rolls back question one.
+     * A successful batch is committed; failure after native postprocessing rolls back the whole batch.
      */
     public function test_success_and_late_failure_rollback(): void {
         global $DB;
@@ -117,11 +146,26 @@ final class importer_test extends \advanced_testcase {
         foreach (['question', 'question_bank_entries', 'question_versions', 'question_answers'] as $table) {
             $before[$table] = $DB->count_records($table);
         }
-        $broken = str_replace('<defaultgrade>1</defaultgrade>', '<defaultgrade>1e100</defaultgrade>', $this->question());
+        require_once($GLOBALS['CFG']->dirroot . '/question/format/xml/format.php');
+        $format = new class extends \qformat_xml {
+            /** @var int Number of real questions created before the injected failure. */
+            public int $observed = 0;
+
+            /**
+             * Fail after successful native postprocessing but before commit.
+             * @return bool Always throws after successful postprocessing
+             */
+            public function importpostprocess() {
+                parent::importpostprocess();
+                $this->observed = count($this->questionids);
+                throw new \RuntimeException('Synthetic postprocessing failure');
+            }
+        };
         try {
-            importer::run('<quiz>' . $this->question() . $broken . '</quiz>', 2, $category, $course);
-            $this->fail('Out-of-range database mark did not fail.');
-        } catch (\dml_exception $error) {
+            importer::run('<quiz>' . $this->question() . $this->question() . '</quiz>', 2, $category, $course, $format);
+            $this->fail('Injected late failure did not propagate.');
+        } catch (\RuntimeException $error) {
+            $this->assertSame(2, $format->observed);
             foreach ($before as $table => $total) {
                 $this->assertSame($total, $DB->count_records($table), $table);
             }

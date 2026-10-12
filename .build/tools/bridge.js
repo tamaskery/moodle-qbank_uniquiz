@@ -8,6 +8,66 @@ const importButton = container.querySelector('#uq-import');
 const importConfirm = container.querySelector('#uq-confirm');
 const importDestination = container.querySelector('#uq-destination');
 const importStatus = container.querySelector('#uq-import-status');
+const categorySearch = container.querySelector('#uq-category-search');
+const categoryFind = container.querySelector('#uq-category-find');
+const categoryPrevious = container.querySelector('#uq-category-previous');
+const categoryNext = container.querySelector('#uq-category-next');
+const categoryStatus = container.querySelector('#uq-category-status');
+let categoryPage = 0;
+let categoryQuery = '';
+let categoryMore = config.categorymore;
+let categoryBusy = false;
+function categoryControls() {
+    const locked = importBusy || importDone || categoryBusy;
+    categorySearch.disabled = locked;
+    categoryFind.disabled = locked;
+    categoryPrevious.disabled = locked || categoryPage === 0;
+    categoryNext.disabled = locked || !categoryMore;
+    importDestination.disabled = locked;
+    importButton.disabled = locked || importBlocked || !importXml || !importConfirm.checked;
+}
+async function findCategories(page, search) {
+    if (importBusy || importDone || categoryBusy) return;
+    categoryBusy = true;
+    categoryControls();
+    try {
+        const body = new URLSearchParams({...config.contextparams, sesskey: config.sesskey,
+            page: String(page), search});
+        const response = await fetch(config.categoryurl, {method: 'POST', credentials: 'same-origin', body});
+        const result = await response.json();
+        if (!response.ok || !Array.isArray(result.categories)) throw new Error(config.strings.noresult);
+        const selected = importDestination.selectedOptions[0];
+        const current = selected ? {id: selected.value, name: selected.textContent} : null;
+        const resultCount = result.categories.length;
+        const options = result.categories;
+        if (current && !options.some(item => String(item.id) === current.id)) options.unshift(current);
+        importDestination.replaceChildren(...options.map(item => {
+            const option = document.createElement('option');
+            option.value = String(item.id);
+            option.textContent = item.name;
+            option.selected = String(item.id) === current?.id;
+            return option;
+        }));
+        categoryPage = result.page;
+        categoryQuery = search;
+        categoryMore = result.more;
+        categoryStatus.textContent = (resultCount > 0
+            ? config.strings.categoryresults : config.strings.categoryempty).replace('{$a}', String(categoryPage + 1));
+    } catch (error) {
+        categoryStatus.textContent = error instanceof Error ? error.message : config.strings.noresult;
+    } finally {
+        categoryBusy = false;
+        categoryControls();
+    }
+}
+categoryFind.addEventListener('click', () => findCategories(0, categorySearch.value));
+categorySearch.addEventListener('keydown', event => {
+    if (event.key === 'Enter') { event.preventDefault(); findCategories(0, categorySearch.value); }
+});
+categoryPrevious.addEventListener('click', () => findCategories(Math.max(0, categoryPage - 1), categoryQuery));
+categoryNext.addEventListener('click', () => findCategories(categoryPage + 1, categoryQuery));
+importDestination.addEventListener('change', () => { importConfirm.checked = false; categoryControls(); });
+categoryControls();
 
 function resetImport() {
     importXml = '';
@@ -19,6 +79,7 @@ function resetImport() {
     importConfirm.disabled = false;
     importDestination.disabled = false;
     importStatus.textContent = '';
+    categoryControls();
     container.querySelector('#uq-return').hidden = true;
 }
 
@@ -39,7 +100,7 @@ importConfirm.addEventListener('change', () => {
 });
 
 importButton.addEventListener('click', async () => {
-    if (importBusy || importDone || importBlocked || !importConfirm.checked || !importXml) return;
+    if (importBusy || categoryBusy || importDone || importBlocked || !importConfirm.checked || !importXml) return;
     if (new Blob([importXml]).size > config.maxxmlbytes) {
         importStatus.textContent = config.strings.xmltoolarge;
         return;
@@ -49,6 +110,7 @@ importButton.addEventListener('click', async () => {
     importDestination.disabled = true;
     importConfirm.disabled = true;
     container.querySelector('#new-conversion').disabled = true;
+    categoryControls();
     importStatus.textContent = config.strings.importing;
     try {
         const body = new URLSearchParams({
@@ -82,5 +144,6 @@ importButton.addEventListener('click', async () => {
         importDestination.disabled = importDone;
         importConfirm.disabled = importDone;
         container.querySelector('#new-conversion').disabled = false;
+        categoryControls();
     }
 });

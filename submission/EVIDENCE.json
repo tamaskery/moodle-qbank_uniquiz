@@ -1,0 +1,2573 @@
+{
+  "candidate": "0.1.7",
+  "version": 2026101102,
+  "commit": "deeb6b82902498a936f6ca76e808163685f967a8",
+  "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38162869491",
+  "result": "success",
+  "verifiedDate": "2026-10-11",
+  "createdAt": "2026-10-11T18:12:55Z",
+  "completedAt": "2026-10-11T18:25:15Z",
+  "repositoryChecks": {
+    "engine": 135,
+    "baselineLanguageChecks": 20,
+    "englishKeys": 516,
+    "bundledTranslations": {
+      "languages": [
+        "es",
+        "de",
+        "fr",
+        "hu"
+      ],
+      "keysEach": 516,
+      "placeholderParity": true,
+      "exportInvariance": true
+    },
+    "amdModulesAndMaps": 8
+  },
+  "environments": [
+    {
+      "environment": "acceptance-MOODLE_405_STABLE-pgsql",
+      "release": "4.5.15 (Build: 20261005)",
+      "database": "PostgreSQL 17.11",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 178,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "storedGrading": [
+        {
+          "name": "four-decimal thirds at inclusive boundary",
+          "xmlPercentages": [
+            33.3333,
+            33.3333,
+            33.3333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "five-decimal thirds",
+          "xmlPercentages": [
+            33.33333,
+            33.33333,
+            33.33333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "seven-decimal thirds",
+          "xmlPercentages": [
+            33.3333333,
+            33.3333333,
+            33.3333333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "sixths",
+          "xmlPercentages": [
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667
+          ],
+          "expectedProportions": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ],
+          "storedText": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ]
+        },
+        {
+          "name": "inclusive lower boundary",
+          "xmlPercentages": [
+            50,
+            49.9999,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "inclusive upper boundary",
+          "xmlPercentages": [
+            50,
+            50.0001,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "negative scores do not reduce positive total",
+          "xmlPercentages": [
+            50,
+            50,
+            -25
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ]
+        }
+      ],
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.536,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T18:12:57Z",
+      "completedAt": "2026-10-11T18:22:06Z",
+      "durationSeconds": 549,
+      "acceptanceDurationSeconds": 282,
+      "artifact": {
+        "id": 11710678763,
+        "name": "acceptance-MOODLE_405_STABLE-pgsql",
+        "archiveBytes": 2071392,
+        "reportSha256": {
+          "ci-integration.json": "fbd2566b153f38289e5b2e2832a23df19e0d0b4a278d042f3b8d0b71816f1345",
+          "ci-browser.json": "6132f872c452a5aba5cb03d3d98a38e7dbca8e598dd7981170840f62415a1213",
+          "ci-security.json": "0215e497026c73f66901ffb55a705edbb54cb27fe87e4ee440482b664fc62102",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38162869491/job/114539266449",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "Verify native Grunt AMD consistency",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    },
+    {
+      "environment": "acceptance-MOODLE_502_STABLE-pgsql",
+      "release": "5.2.4 (Build: 20261005)",
+      "database": "PostgreSQL 17.11",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 178,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "storedGrading": [
+        {
+          "name": "four-decimal thirds at inclusive boundary",
+          "xmlPercentages": [
+            33.3333,
+            33.3333,
+            33.3333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "five-decimal thirds",
+          "xmlPercentages": [
+            33.33333,
+            33.33333,
+            33.33333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "seven-decimal thirds",
+          "xmlPercentages": [
+            33.3333333,
+            33.3333333,
+            33.3333333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "sixths",
+          "xmlPercentages": [
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667
+          ],
+          "expectedProportions": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ],
+          "storedText": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ]
+        },
+        {
+          "name": "inclusive lower boundary",
+          "xmlPercentages": [
+            50,
+            49.9999,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "inclusive upper boundary",
+          "xmlPercentages": [
+            50,
+            50.0001,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "negative scores do not reduce positive total",
+          "xmlPercentages": [
+            50,
+            50,
+            -25
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ]
+        }
+      ],
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 1.273,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T18:12:57Z",
+      "completedAt": "2026-10-11T18:20:54Z",
+      "durationSeconds": 477,
+      "acceptanceDurationSeconds": 256,
+      "artifact": {
+        "id": 11711600470,
+        "name": "acceptance-MOODLE_502_STABLE-pgsql",
+        "archiveBytes": 2314965,
+        "reportSha256": {
+          "ci-integration.json": "63bd26087460fe4db32c5447e15a40b631e1cfbb95f5c35d701f6cfec4379ac3",
+          "ci-browser.json": "e0039a82cf250d2de5e038cd5ae68da5f8fc7b2bf9a0c57ffc1f71889335e59e",
+          "ci-security.json": "3a388a44213b4ed4e45c8810971c0f358e99d3455969dd8676c56fbdd33d34cb",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38162869491/job/114539266722",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "Verify native Grunt AMD consistency",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    },
+    {
+      "environment": "acceptance-MOODLE_503_STABLE-mariadb",
+      "release": "5.3 (Build: 20261005)",
+      "database": "MariaDB 11.8.9",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 178,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "storedGrading": [
+        {
+          "name": "four-decimal thirds at inclusive boundary",
+          "xmlPercentages": [
+            33.3333,
+            33.3333,
+            33.3333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "five-decimal thirds",
+          "xmlPercentages": [
+            33.33333,
+            33.33333,
+            33.33333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "seven-decimal thirds",
+          "xmlPercentages": [
+            33.3333333,
+            33.3333333,
+            33.3333333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "sixths",
+          "xmlPercentages": [
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667
+          ],
+          "expectedProportions": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ],
+          "storedText": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ]
+        },
+        {
+          "name": "inclusive lower boundary",
+          "xmlPercentages": [
+            50,
+            49.9999,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "inclusive upper boundary",
+          "xmlPercentages": [
+            50,
+            50.0001,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "negative scores do not reduce positive total",
+          "xmlPercentages": [
+            50,
+            50,
+            -25
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ]
+        }
+      ],
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 1.853,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T18:12:57Z",
+      "completedAt": "2026-10-11T18:24:26Z",
+      "durationSeconds": 689,
+      "acceptanceDurationSeconds": 399,
+      "artifact": {
+        "id": 11711715523,
+        "name": "acceptance-MOODLE_503_STABLE-mariadb",
+        "archiveBytes": 2295162,
+        "reportSha256": {
+          "ci-integration.json": "ea3577d776cdc9f89c137ea7ea2b401d7288b3164fccc6706ddf7ad4c1d32a66",
+          "ci-browser.json": "381aec34289916b2ee0549b37ea9e9cf2a66c5d831160f72cfac31c315980259",
+          "ci-security.json": "6c892dbfaaa3b4bdb81f72f1a28a4bd6a474a302ee287a732b1801e4cb9ec3b1",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38162869491/job/114539266791",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "Verify native Grunt AMD consistency",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    },
+    {
+      "environment": "acceptance-MOODLE_503_STABLE-pgsql",
+      "release": "5.3 (Build: 20261005)",
+      "database": "PostgreSQL 17.11",
+      "runtime": {
+        "php": "8.3.35",
+        "node": "22.23.3",
+        "browser": "154.0.8037.97",
+        "os": "Ubuntu 24.04",
+        "theme": "Boost"
+      },
+      "results": {
+        "integration": 178,
+        "browser": 42,
+        "security": 42,
+        "pseudolang": 18,
+        "languages": 45
+      },
+      "phpunit": {
+        "tests": 17,
+        "assertions": 138
+      },
+      "behat": {
+        "scenarios": 1,
+        "steps": 9
+      },
+      "tolerance": {
+        "exported": "0.00000001",
+        "stored_text": "1.0E-8"
+      },
+      "storedGrading": [
+        {
+          "name": "four-decimal thirds at inclusive boundary",
+          "xmlPercentages": [
+            33.3333,
+            33.3333,
+            33.3333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "five-decimal thirds",
+          "xmlPercentages": [
+            33.33333,
+            33.33333,
+            33.33333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "seven-decimal thirds",
+          "xmlPercentages": [
+            33.3333333,
+            33.3333333,
+            33.3333333
+          ],
+          "expectedProportions": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ],
+          "storedText": [
+            "0.3333333",
+            "0.3333333",
+            "0.3333333"
+          ]
+        },
+        {
+          "name": "sixths",
+          "xmlPercentages": [
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667,
+            16.6666667
+          ],
+          "expectedProportions": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ],
+          "storedText": [
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667",
+            "0.1666667"
+          ]
+        },
+        {
+          "name": "inclusive lower boundary",
+          "xmlPercentages": [
+            50,
+            49.9999,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "inclusive upper boundary",
+          "xmlPercentages": [
+            50,
+            50.0001,
+            0
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "0.0000000"
+          ]
+        },
+        {
+          "name": "negative scores do not reduce positive total",
+          "xmlPercentages": [
+            50,
+            50,
+            -25
+          ],
+          "expectedProportions": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ],
+          "storedText": [
+            "0.5000000",
+            "0.5000000",
+            "-0.2500000"
+          ]
+        }
+      ],
+      "focusedIntegrationChecks": [
+        {
+          "name": "Disposable teacher login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Disposable student login password verifies",
+          "passed": true
+        },
+        {
+          "name": "Invalid tolerance rejected",
+          "passed": true
+        },
+        {
+          "name": "Source category markers removed before import",
+          "passed": true
+        },
+        {
+          "name": "Top pseudo-category rejected",
+          "passed": true
+        },
+        {
+          "name": "Question 0 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 1 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 2 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 0 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 3 answer 1 tolerance",
+          "passed": true
+        },
+        {
+          "name": "Question 4 mark",
+          "passed": true
+        },
+        {
+          "name": "Question 5 mark",
+          "passed": true
+        },
+        {
+          "name": "Tiny numerical tolerance imports",
+          "passed": true
+        },
+        {
+          "name": "Tiny tolerance retains its value in the Moodle database",
+          "passed": true
+        },
+        {
+          "name": "shortanswer full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "shortanswer partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "numerical full credit accepted",
+          "passed": true
+        },
+        {
+          "name": "numerical partial-credit-only rejected",
+          "passed": true
+        },
+        {
+          "name": "Seven-place thirds import successfully",
+          "passed": true
+        },
+        {
+          "name": "Total 99.999 rejected",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: four-decimal thirds at inclusive boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: four-decimal thirds at inclusive boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: five-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: five-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: seven-decimal thirds",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: seven-decimal thirds / 2",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: sixths",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 3",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 4",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: sixths / 5",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects 99.999 is outside policy",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive lower boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond lower boundary",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: inclusive upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: inclusive upper boundary / 2",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects one unit beyond upper boundary",
+          "passed": true
+        },
+        {
+          "name": "Native path rejects below halfway remains outside",
+          "passed": true
+        },
+        {
+          "name": "Native core accepts negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer count: negative scores do not reduce positive total",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 0",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 1",
+          "passed": true
+        },
+        {
+          "name": "Stored answer order: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Stored canonical fraction: negative scores do not reduce positive total / 2",
+          "passed": true
+        },
+        {
+          "name": "Maximum product mark imports",
+          "passed": true
+        },
+        {
+          "name": "Above-maximum mark fails before native import",
+          "passed": true
+        },
+        {
+          "name": "Category results are paginated",
+          "passed": true
+        },
+        {
+          "name": "Final category page is bounded",
+          "passed": true
+        },
+        {
+          "name": "Category wildcards are literal",
+          "passed": true
+        },
+        {
+          "name": "Rollback fixture reaches all six saved questions before failure",
+          "passed": true
+        },
+        {
+          "name": "Multiple-choice answer markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Answer feedback markup remains literal",
+          "passed": true
+        },
+        {
+          "name": "Native question-bank navigation registered",
+          "passed": true
+        }
+      ],
+      "concurrentRetryDatabase": "Exactly one race question; independent older draft also imported",
+      "benchmark": {
+        "questions": 500,
+        "seconds": 2.638,
+        "process_peak_memory_bytes": 31457280,
+        "xml_bytes": 389013
+      },
+      "startedAt": "2026-10-11T18:12:57Z",
+      "completedAt": "2026-10-11T18:25:14Z",
+      "durationSeconds": 737,
+      "acceptanceDurationSeconds": 426,
+      "artifact": {
+        "id": 11711446557,
+        "name": "acceptance-MOODLE_503_STABLE-pgsql",
+        "archiveBytes": 2299017,
+        "reportSha256": {
+          "ci-integration.json": "f342f41ffc421e495ed58dae824b535dd9796c1e51c1cebd8a12449c3b13e057",
+          "ci-browser.json": "381aec34289916b2ee0549b37ea9e9cf2a66c5d831160f72cfac31c315980259",
+          "ci-security.json": "2bd8769f922c5530c1388de8ac772954bdd4a436fd4edaa52084ea7eb71da904",
+          "ci-pseudolang.json": "d92a84c5266a03766866a3d10ebd103d15bff3832e304705214322bd400f7f5d",
+          "ci-languages.json": "fdc270a7691ff8487d65ade93a875a370123bcab0139d55b90d8dafe6d990e94"
+        }
+      },
+      "jobUrl": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38162869491/job/114539266739",
+      "checks": [
+        {
+          "name": "Verify generated files",
+          "result": "success"
+        },
+        {
+          "name": "PHP syntax",
+          "result": "success"
+        },
+        {
+          "name": "PHP coding standard",
+          "result": "success"
+        },
+        {
+          "name": "PHP documentation",
+          "result": "success"
+        },
+        {
+          "name": "Plugin validation",
+          "result": "success"
+        },
+        {
+          "name": "Savepoints",
+          "result": "success"
+        },
+        {
+          "name": "Mustache",
+          "result": "success"
+        },
+        {
+          "name": "Frontend lint",
+          "result": "success"
+        },
+        {
+          "name": "Verify native Grunt AMD consistency",
+          "result": "success"
+        },
+        {
+          "name": "PHPUnit",
+          "result": "success"
+        },
+        {
+          "name": "Behat",
+          "result": "success"
+        },
+        {
+          "name": "Real import and browser acceptance",
+          "result": "success"
+        },
+        {
+          "name": "Acceptance evidence",
+          "result": "success"
+        }
+      ]
+    }
+  ],
+  "previousReleaseEvidence": "EVIDENCE-0.1.6.json; historical baseline only",
+  "packagingProvenance": "PACKAGE.json records the exact archive commit/checksum and passing final-head CI. This document identifies the inspected runtime evidence commit.",
+  "screenshots": {
+    "candidate": "0.1.7",
+    "version": 2026101101,
+    "commit": "c0e189f81bd6296ddbaa1168848114165f4dbc9d",
+    "run": "https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38148673556",
+    "purpose": "Earlier 0.1.7 UI illustrations retained; review polish changes no UI strings or behavior. Exact environment provenance in screenshots/README.md"
+  },
+  "remainingGates": [
+    "Intended-site backed-up staging installation/upgrade/theme/roles/question-bank acceptance",
+    "Reported core question-count HTTP 500 staging investigation",
+    "Marketplace declarations/name availability/archive validation/submission"
+  ],
+  "scope": "Automated functionality and translation wiring/escaping/invariance; native-speaker editorial review and full accessibility/theme audit not executed",
+  "deployment": "No production deployment, merge, release tag or Marketplace submission"
+}

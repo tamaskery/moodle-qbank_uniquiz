@@ -1,0 +1,7 @@
+{
+  "js_core_no_accepted_short_answer": "js_core_no_full_credit_short_answer",
+  "js_core_no_accepted_numerical_answer": "js_core_no_full_credit_numerical_answer",
+  "js_core_short_answer_question_has_no_accepted_answer_add": "js_core_short_answer_requires_full_credit",
+  "js_core_numerical_question_has_no_accepted_answer_add_at": "js_core_numerical_requires_full_credit",
+  "js_core_the_default_mark_must_be_greater_than_0_enter_a_": "js_core_default_mark_range"
+}
