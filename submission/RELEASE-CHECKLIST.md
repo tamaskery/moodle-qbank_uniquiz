@@ -4,12 +4,12 @@
 
 - Public Moodle-style repository: `tamaskery/moodle-qbank_uniquiz`; Issues enabled.
 - Unique component declared consistently as `qbank_uniquiz`.
-- Candidate 0.1.7 beta, upgrade version `2026101102`.
+- Candidate 1.0 beta, upgrade version `2026101200`; runtime unchanged from 0.1.7.
 - GPL v3-or-later licence, installation and privacy documentation.
 - Stable language identifiers, semantic migration maps and complete Spanish, German, French and Hungarian plugin strings.
 - Hosted PHP, template, frontend, PHPUnit and Behat checks.
 - Disposable real-Moodle import, browser, adversarial and translation checks.
-- All four build 2026101102 candidate artifacts inspected, including stored canonical fractions and immutable post-Grunt AMD comparison; actual versions, timings, tested commit and report hashes recorded in EVIDENCE.json.
+- Historical 0.1.7 build 2026101102 artifacts inspected in all four environments, including stored canonical fractions and immutable post-Grunt AMD comparison; actual versions, timings, tested commit and report hashes recorded in EVIDENCE.json. Exact 1.0 package CI must be checked separately.
 - Earlier reviewer findings assessed in REVIEW-0.1.7.md; the implemented robustness fixes and retained staging limits are described there.
 - Earlier 0.1.7 build 2026101101 English and four-language UI illustrations retained with explicit CI provenance.
 - Listing copy in LISTING.md; source and issue links supplied.
@@ -17,7 +17,7 @@
 
 ## Before uploading
 
-1. Confirm the exact packaged commit has passing required checks. Use QA.md and the linked CI evidence, not results from an earlier beta.
+1. Confirm the exact 1.0 packaged commit has passing required checks. Use QA.md and the linked CI evidence, not results from an earlier beta. Record its commit, CI run and archive checksum together; the historical 0.1.7 evidence and archive checksum do not describe the 1.0 package.
 2. Stage-test installation and upgrade on a backed-up copy of the intended site. Inspect the question bank after import, and exercise the site's theme and roles. Investigate the previously reported core question-count HTTP 500 there. No staging access was available during candidate finalization; these checks remain pending.
 3. Review the current Marketplace provider terms and account-visible submission guidelines. Complete the provider profile and ownership declarations yourself.
 4. Verify the component name is available in the submission form. Repository naming does not reserve a Marketplace name.
@@ -31,7 +31,7 @@ Do not submit development archives, synthetic credentials, CI server logs or a p
 From a clean, verified commit at the repository root:
 
 ```sh
-git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-0.1.7.zip HEAD
+git archive --format=zip --prefix=uniquiz/ -o ../dist/qbank_uniquiz-1.0.zip HEAD
 ```
 
 The ZIP must contain one `uniquiz` directory with `version.php`, matching source/build files and bundled user documentation. Inspect its entries and checksum before uploading. Development build instructions are in CONTRIBUTING.md.

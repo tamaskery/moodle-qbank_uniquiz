@@ -1,3 +1,10 @@
+# 1.0 — 12 October 2026
+
+- Set the public plugin release to 1.0 and increase Moodle's upgrade version to `2026101200`; beta maturity is retained.
+- Update installation, upgrade, translation, security, QA and Marketplace preparation documentation for 1.0.
+- Carry forward the 0.1.7 conversion engine, import safeguards and four bundled translations without runtime changes or plugin database migrations.
+- Preserve previous release notes, test evidence and screenshot provenance under their original versions. Exact 1.0 CI and intended-site staging acceptance are separate checks.
+
 # 0.1.7 — 11 October 2026
 
 - Bound default marks to 0.0000001–10000 in both browser stages and direct import; Description remains 0.

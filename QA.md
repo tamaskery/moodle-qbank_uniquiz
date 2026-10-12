@@ -1,8 +1,14 @@
-# UniQuiz 0.1.7 beta — QA summary
+# UniQuiz 1.0 beta — QA summary
+
+## Current release
+
+Release `1.0`, Moodle upgrade version `2026101200`, maturity beta, prepared 12 October 2026. This update changes version metadata and documentation only; the runtime code, generated assets and test fixtures are unchanged from the verified 0.1.7 baseline below. Historical evidence and screenshot provenance remain tied to their original builds. A passing baseline run is not a test of the new upgrade number: check the exact 1.0 commit's [GitHub Actions results](https://github.com/tamaskery/moodle-qbank_uniquiz/actions) and stage-test installation and upgrade before uploading its archive.
+
+## Historical 0.1.7 baseline
 
 Verified 11 October 2026 (UTC). Plugin version `2026101102`, release `0.1.7`, maturity beta.
 
-## Hosted candidate verification
+## Hosted 0.1.7 candidate verification
 
 [All four jobs passed](https://github.com/tamaskery/moodle-qbank_uniquiz/actions/runs/38162869491) on commit `deeb6b82902498a936f6ca76e808163685f967a8`, build `2026101102`. All four acceptance artifacts were downloaded and inspected, including canonical stored fractions, native-language exports and report checksums. The native Grunt rebuild matches an immutable copy of the committed AMD files in every environment. Subsequent evidence updates are documentation only; PACKAGE.json in the submission kit records the final archive commit and its separate passing CI.
 
@@ -33,4 +39,4 @@ Run timestamps, job/acceptance durations, artifact IDs, hashes, raw tolerance te
 
 The passing 0.1.6 evidence remains separately in submission/EVIDENCE-0.1.6.json as historical baseline. Listing screenshots are retained earlier 0.1.7 build `2026101101` English desktop captures from Moodle 5.3/PostgreSQL and four-language mobile captures from Moodle 4.5.15/PostgreSQL, with provenance in submission/screenshots/README.md. Both screenshot artifacts belong to the earlier passing run `38148673556`; they illustrate the UI and are not new-build acceptance evidence. REVIEW-0.1.7.md maps the reviewer findings to the implemented changes and residual scope.
 
-No intended-production staging site was available. Backed-up staging installation/upgrade, native question display, theme/roles/import acceptance and the reported core question-count HTTP 500 investigation remain pending. Marketplace declarations, name availability, archive precheck, review and publication remain maintainer gates. No production deployment, merge or release tag was performed.
+No intended-production staging site was available for the historical baseline. Backed-up staging installation/upgrade, native question display, theme/roles/import acceptance and the reported core question-count HTTP 500 investigation remain pending for 1.0. Marketplace declarations, name availability, archive precheck, review and publication remain maintainer gates.

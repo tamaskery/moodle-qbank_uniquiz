@@ -1,6 +1,6 @@
 # Translating UniQuiz
 
-UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. Version 0.1.7 bundles complete Spanish, German, French and Hungarian plugin strings, with English fallback. Install the matching core Moodle language pack, then select the language in Moodle.
+UniQuiz routes the converter, column-mapping controls, settings, preview, accessibility labels, diagnostics, AIKEN fixer, guide and direct-import messages through Moodle's `qbank_uniquiz` language component. Version 1.0 bundles complete Spanish, German, French and Hungarian plugin strings, with English fallback. Install the matching core Moodle language pack, then select the language in Moodle. The 1.0 release preserves all 0.1.7 strings and identifiers; upgrading from 0.1.7 needs no translation-key migration.
 
 ## Site administrators and translators
 

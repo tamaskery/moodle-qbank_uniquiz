@@ -18,4 +18,4 @@ The [disposable acceptance harness](.build/qa/README.md) explains how CI runs re
 
 The CI workflow runs Moodle Plugin CI against PostgreSQL and MariaDB. All checks are required for submission readiness; a failing job must not be represented as a pass. See QA.md for candidate results and remaining deployment gates. Stable translation keys are held in the explicit registry; preserve keys when editing English copy, as described in TRANSLATING.md.
 
-Use an explicit release version increase for distributable changes. Build tooling and CI files are excluded by `git archive` export rules; development dependencies and private site configuration must never enter release packages.
+Use an explicit release version increase for distributable changes. The current release is `1.0` with Moodle upgrade version `2026101200` and beta maturity. Keep `version.php`, README.md, CHANGES.md and submission documentation consistent, and distinguish historical QA evidence from checks of the exact new release commit. Build tooling and CI files are excluded by `git archive` export rules; development dependencies and private site configuration must never enter release packages.
