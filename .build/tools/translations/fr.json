@@ -368,6 +368,8 @@
   "noresult": "Moodle n’a pas renvoyé de résultat d’importation confirmé. Votre session ou connexion a peut-être expiré. Vérifiez la banque de questions avant une nouvelle importation.",
   "pluginname": "UniQuiz",
   "privacy:metadata": "UniQuiz analyse les fichiers source dans la mémoire du navigateur. Après confirmation, il crée des questions avec les API de Moodle. Moodle gère ces questions et les événements d’importation habituels. Les reçus temporaires de session contiennent des empreintes et des nombres, pas le contenu des questions ; UniQuiz ne crée aucun stockage persistant distinct de données personnelles.",
+  "privacy:metadata:core_log": "Les imports confirmés génèrent des événements Moodle standard liés à l’utilisateur qui importe et au contexte de destination. Moodle gère la conservation, l’exportation et la suppression des journaux.",
+  "privacy:metadata:core_question": "Les imports confirmés créent des questions et leur attribution aux auteurs dans le sous-système de questions de Moodle. Moodle gère l’accès, l’exportation et la suppression de ces données.",
   "receiptcapacity": "Cette session contient trop de reçus d’importation ouverts ou terminés. Utilisez un onglet UniQuiz existant ou attendez l’expiration des anciens reçus après 24 heures. Aucun reçu existant n’a été supprimé.",
   "returnbank": "Retour à la banque de questions",
   "ui_a_b_c": "a, b, c…",

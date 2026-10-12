@@ -368,6 +368,8 @@
   "noresult": "Moodle hat kein bestätigtes Importergebnis zurückgegeben. Sitzung oder Verbindung sind möglicherweise abgelaufen. Prüfen Sie vor einem neuen Import die Fragensammlung.",
   "pluginname": "UniQuiz",
   "privacy:metadata": "UniQuiz verarbeitet Quelldateien im Browserspeicher. Nach Bestätigung erstellt es Fragen über Moodle-Frage-APIs. Moodle verwaltet diese Fragen und die üblichen Importereignisse. Temporäre Sitzungsbelege enthalten Anfrage-Hashes und Anzahlen, keine Frageinhalte; UniQuiz legt keinen eigenen dauerhaften Speicher für personenbezogene Daten an.",
+  "privacy:metadata:core_log": "Bestätigte Importe erzeugen standardmäßige Moodle-Ereignisse mit dem importierenden Benutzer und dem Zielkontext. Moodle verwaltet Aufbewahrung, Export und Löschung der Protokolle.",
+  "privacy:metadata:core_question": "Bestätigte Importe erstellen Fragen und Autorenzuordnungen im Moodle-Fragensystem. Moodle verwaltet Zugriff, Export und Löschung dieser Daten.",
   "receiptcapacity": "Diese Sitzung enthält zu viele offene oder abgeschlossene Importbelege. Verwenden Sie einen vorhandenen UniQuiz-Tab oder warten Sie, bis ältere Belege nach 24 Stunden ablaufen. Kein vorhandener Beleg wurde entfernt.",
   "returnbank": "Zur Fragensammlung zurückkehren",
   "ui_a_b_c": "a, b, c…",

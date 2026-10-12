@@ -56,6 +56,8 @@ jobs:
           node --test .build/source/tests/*.test.js
           node .build/tools/check-language.mjs
           node .build/tools/check-assets.mjs
+          git archive --format=zip --prefix=uniquiz/ -o "$RUNNER_TEMP/uniquiz.zip" HEAD
+          python3 .build/tools/check-submission.py "$RUNNER_TEMP/uniquiz.zip"
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'

@@ -23,13 +23,29 @@ const write = async (name, value) => {
             importintro: 'Review and confirm import.', destinationlabel: 'Destination', categorypolicy: 'Use this category.',
             categorysearch: 'Search category names', categoryfind: 'Search', categoryprevious: 'Previous categories',
             categorynext: 'Next categories', importconfirm: 'Import questions', returnbank: 'Return to question bank'};
-        value = `{{!\n    @template qbank_uniquiz/${path.basename(name, '.mustache')}\n\n    UniQuiz interface.\n\n    Example context (json):\n    ${JSON.stringify(context, null, 4).replaceAll('\n', '\n    ')}\n}}\n` + value;
+        value = `{{!\n${licenseText.split('\n').map(line => line ? '    ' + line : '').join('\n')}\n\n    @template qbank_uniquiz/${path.basename(name, '.mustache')}\n    @copyright 2026 Tamas Kery\n    @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later\n\n    UniQuiz interface.\n\n    Example context (json):\n    ${JSON.stringify(context, null, 4).replaceAll('\n', '\n    ')}\n}}\n` + value;
     }
     const target = path.join(plugin, name);
     await fs.mkdir(path.dirname(target), {recursive: true});
     await fs.writeFile(target, value);
 };
-const banner = '/** UniQuiz © 2026 Tamas Kery. GNU GPL v3 or later. See COPYING.txt. */\n';
+const licenseText = `This file is part of Moodle - http://moodle.org/
+
+Moodle is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Moodle is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Moodle. If not, see <https://www.gnu.org/licenses/>.`;
+const banner = '/**\n' + licenseText.split('\n').map(line => line ? ' * ' + line : ' *').join('\n') +
+    '\n *\n * UniQuiz generated interface code.\n * @module qbank_uniquiz\n' +
+    ' * @copyright 2026 Tamas Kery\n * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later\n */\n';
 const hashes = {};
 for (const name of ['core', 'preview', 'timing', 'app', 'aiken-core', 'aiken-app', 'i18n', 'bootstrap']) {
     const adapter = ['i18n', 'bootstrap'].includes(name);
@@ -147,7 +163,7 @@ css.walkAtRules(/keyframes$/, (rule) => { animations.push(rule.params); rule.par
 css.walkDecls(/^animation/, (decl) => {
     for (const name of animations) decl.value = decl.value.replace(new RegExp(`\\b${name}\\b`, 'g'), 'uq-' + name);
 });
-await write('styles.css', '/* Generated, scoped UniQuiz styles. GNU GPL v3 or later. */\n' + css.toString() + `
+await write('styles.css', banner.replace(' * @module qbank_uniquiz\n', '') + css.toString() + `
 #qbank-uniquiz { display: flow-root; }
 #qbank-uniquiz { font-family: inherit; }
 #qbank-uniquiz .app-shell { width: 100%; max-width: 1100px; margin: 0 auto; }

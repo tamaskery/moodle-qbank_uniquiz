@@ -15,18 +15,24 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace qbank_uniquiz\privacy;
+
+use core_privacy\local\metadata\collection;
+
 /**
- * No plugin-owned persistent data; questions belong to core_question.
+ * Declare question and logging subsystems used by confirmed imports.
  * @package qbank_uniquiz
  * @copyright 2026 Tamas Kery
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class provider implements \core_privacy\local\metadata\null_provider {
+class provider implements \core_privacy\local\metadata\provider {
     /**
-     * Describe the plugin data-handling policy.
-     * @return string
+     * Describe personal data stored by core on behalf of this plugin.
+     * @param \core_privacy\local\metadata\collection $items Metadata collection
+     * @return \core_privacy\local\metadata\collection Updated metadata
      */
-    public static function get_reason(): string {
-        return 'privacy:metadata';
+    public static function get_metadata(collection $items): collection {
+        $items->add_subsystem_link('core_question', [], 'privacy:metadata:core_question');
+        $items->add_subsystem_link('core_log', [], 'privacy:metadata:core_log');
+        return $items;
     }
 }

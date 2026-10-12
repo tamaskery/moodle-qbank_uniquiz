@@ -5,3 +5,7 @@
 .gitattributes export-ignore
 CONTRIBUTING.md export-ignore
 submission export-ignore
+lang/de export-ignore
+lang/es export-ignore
+lang/fr export-ignore
+lang/hu export-ignore

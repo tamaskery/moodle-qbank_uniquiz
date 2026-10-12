@@ -6,11 +6,11 @@
 - Component: `qbank_uniquiz`
 - Plugin type: Question bank plugin
 - Distribution: Free, GNU GPL v3 or later
-- Candidate release: 1.0 beta (`2026101200`)
+- Candidate release: 1.0 beta (`2026101201`)
 - Source: https://github.com/tamaskery/moodle-qbank_uniquiz
 - Issue tracker: https://github.com/tamaskery/moodle-qbank_uniquiz/issues
 - Candidate review: https://github.com/tamaskery/moodle-qbank_uniquiz/pull/1
-- Documentation: https://github.com/tamaskery/moodle-qbank_uniquiz/blob/codex/marketplace-preparation/README.md
+- Documentation: https://github.com/tamaskery/moodle-qbank_uniquiz/blob/main/README.md
 
 ## Short description
 
@@ -22,13 +22,13 @@ UniQuiz adds a preparation wizard to Moodle's question bank. Teachers can select
 
 Supported question types are Multiple Choice, True/False, Short Answer, basic Numerical, Essay and Description. A separate AIKEN tool checks formatting and offers safe repairs with a downloadable result.
 
-File analysis runs in the browser. Questions are sent to the Moodle site only when the user explicitly confirms direct import. The plugin uses Moodle's existing question permissions and XML importer, validates imported XML on the server, and rolls back failed import batches. It does not use a third-party conversion service, analytics, external API or paid subscription.
+File analysis runs in the browser. Questions are sent to the Moodle site only when the user explicitly confirms direct import. The plugin uses Moodle's existing question permissions and XML importer, validates imported XML on the server, and rolls back failed import batches. Imported questions retain author ownership and standard import events record user/context information. The Privacy API declares the core question and logging subsystems; Moodle manages the associated export, deletion and retention. It does not use a third-party conversion service, analytics, external API or paid subscription.
 
 Direct import supports up to 500 questions and 8 MiB of XML, with additional structure and field limits. Source files are limited to 5 MB. Larger valid banks can be downloaded as XML. Source text is treated as plain text; this beta does not provide a raw-HTML authoring mode.
 
-English fallback plus complete Spanish, German, French and Hungarian plugin translations are included. The interface, guide and messages follow Moodle's language selection. Stable identifiers and semantic migration maps support site-local customizations. Source question content and technical input syntax remain unchanged.
+The Marketplace plugin ZIP includes English only. Spanish, German, French and Hungarian sources are retained for AMOS contribution after approval and are not yet claimed available through AMOS. The interface, guide and messages use Moodle language APIs; source question content and technical syntax remain unchanged.
 
-Candidate 1.0 carries forward 0.1.7's numerical precision, grading and mark bounds, retry receipts, failed-import budgets, and authorized category search with pagination. This update changes release metadata and documentation only. All four hosted environments passed for the historical 0.1.7 baseline, including the four translated browser journeys. QA.md and EVIDENCE.json identify those exact tested commits, versions and results; confirm passing CI for the exact 1.0 package commit separately. Listing screenshots remain earlier 0.1.7 build 2026101101 UI illustrations with explicit provenance.
+Candidate 1.0 carries forward 0.1.7's numerical precision, grading and mark bounds, retry receipts, failed-import budgets, and authorized category search with pagination. Build 2026101201 corrects language packaging, source headers, Privacy API metadata and acceptance checks. All four hosted environments passed for the historical 0.1.7 baseline, including the four translated browser journeys. QA.md and EVIDENCE.json identify those exact tested commits, versions and results; confirm passing CI for the exact 1.0 package commit separately. Listing screenshots remain earlier 0.1.7 build 2026101101 UI illustrations with explicit provenance.
 
 ## Installation and upgrade
 
