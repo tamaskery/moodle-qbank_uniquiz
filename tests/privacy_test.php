@@ -28,14 +28,17 @@ use core_privacy\local\metadata\collection;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class privacy_test extends \advanced_testcase {
-    /** Check that both core subsystems are declared with resolvable descriptions. */
+    /**
+     * Check that both core subsystems are declared with resolvable descriptions.
+     */
     public function test_metadata_declares_question_and_log_subsystems(): void {
         $items = new collection('qbank_uniquiz');
         $this->assertSame($items, provider::get_metadata($items));
         $metadata = $items->get_collection();
         $this->assertCount(2, $metadata);
         $this->assertSame(['core_question', 'core_log'], array_map(
-            static fn($item) => $item->get_name(), $metadata
+            static fn($item) => $item->get_name(),
+            $metadata
         ));
         foreach ($metadata as $item) {
             $this->assertInstanceOf(\core_privacy\local\metadata\types\subsystem_link::class, $item);

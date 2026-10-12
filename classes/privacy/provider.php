@@ -15,6 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace qbank_uniquiz\privacy;
+
+use core_privacy\local\metadata\collection;
+
 /**
  * Declare question and logging subsystems used by confirmed imports.
  * @package qbank_uniquiz
@@ -27,8 +30,7 @@ class provider implements \core_privacy\local\metadata\provider {
      * @param \core_privacy\local\metadata\collection $items Metadata collection
      * @return \core_privacy\local\metadata\collection Updated metadata
      */
-    public static function get_metadata(\core_privacy\local\metadata\collection $items):
-            \core_privacy\local\metadata\collection {
+    public static function get_metadata(collection $items): collection {
         $items->add_subsystem_link('core_question', [], 'privacy:metadata:core_question');
         $items->add_subsystem_link('core_log', [], 'privacy:metadata:core_log');
         return $items;
